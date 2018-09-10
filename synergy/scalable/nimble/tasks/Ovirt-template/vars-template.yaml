@@ -1,0 +1,31 @@
+engine_url: https://rhvm.tennet.com/ovirt-engine/api
+engine_cafile: '/etc/pki/ovirt-engine/ca.pem'
+datacenter: Default
+cluster: Default
+disk_storage_domain: null
+template_disk_storage: Nimble-iSCSI
+qcow_url: "https://access.cdn.redhat.com//content/origin/files/sha256/7f/7ff0d81ebf68119816b2756b7ed591dc9b50d29713e3785cc6bed564429a8b04/rhel-server-7.5-update-1-x86_64-kvm.qcow2?_auth_=1534773342_4e3082d047726c57e0bf871fb667d775"
+image_path: '/var/images/rhel-server-7.5-50G'
+template_name: rhel7-template_7.5_2d-50G
+vm_name: rhel7_5-template_vm
+template_memory: 2GiB
+template_cpu: 2
+template_disk_interface: virtio
+template_disk_size: 100GiB
+template_disk_size_2: 30GiB
+image_cache_download: true
+template_nics:
+  - name: nic1
+    profile_name: ovirtmgmt
+    interface: virtio
+  - name: nic2
+    profile_name: iscsi_a
+    interface: virtio
+  - name: nic3
+    profile_name: iscsi_b
+    interface: virtio
+  - name: nic4
+    profile_name: Datacenter 
+    interface: virtio
+template_operating_system: rhel_7x64
+template_timeout: 800

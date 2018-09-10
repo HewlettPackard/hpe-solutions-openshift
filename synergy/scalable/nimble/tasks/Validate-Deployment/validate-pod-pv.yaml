@@ -1,0 +1,127 @@
+###
+## Copyright (2018) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+#### 
+
+---
+- hosts: masters
+  gather_facts: False
+  vars_prompt:
+     - name: ProjectName
+       prompt: "Please provide a Project Name to be used for Pod Deployment"
+       default: project-1234
+       private: no
+
+     - name: ClusterAdmin
+       prompt: "Please provide a username to be set as cluster Admin, PN:This user must already be created"
+       default: admin
+       private: no
+
+  tasks: 
+  - name: Check if the Project already exists
+    shell: 'oc get projects |grep "{{ ProjectName }}"'
+    register: projresult
+    run_once: true
+    ignore_errors: yes
+
+  - name: Create a Project
+    shell: 'oc new-project "{{ ProjectName }}"  --display-name="{{ ProjectName  }}"-Test --description=Openshift-Deployment-Testing-Project'
+    run_once: true
+    when: projresult.stdout == ''
+
+  - name: Connect to the newly created project
+    command: 'oc project "{{ ProjectName  }}"'
+    run_once: true
+  
+  - name: Add user admin as the cluster-admin 
+    command: 'oc adm policy add-role-to-user cluster-admin "{{ ClusterAdmin }}"'
+    run_once: true
+
+  - name: Use anyuid as default deployent 
+    command: 'oc adm policy add-scc-to-user anyuid -z default'
+    run_once: true
+  
+  - name: Check if the Storage Class already exists
+    shell: oc get sc | grep -E application| awk '{print $1}'
+    register: scresult
+    run_once: true
+    ignore_errors: yes
+
+  - name: Create a new Storage Class for Application 
+    import_tasks: sc-create-app.yaml
+    run_once: true
+    when: scresult.stdout != 'application'
+
+  - name: Check if the PVC already exists
+    shell: oc get pvc | grep -E pvc100 |awk '{print $1}'
+    register: pvcresult
+    run_once: true
+    ignore_errors: yes
+
+  - debug:
+        msg: "PVC with name pvc100 already exists in {{ ProjectName  }} , cannot proceed"
+    run_once: true
+    when: pvcresult.stdout == 'pvc100'
+
+  - name: End Play
+    meta: end_play
+    when: pvcresult.stdout == 'pvc100'
+
+  - name: Create a new PVC for Application 
+    import_tasks: pvc-create.yaml
+    run_once: true
+    when: pvcresult.stdout != 'pvc100'
+    ignore_errors: yes 
+
+  - name: Check if the Service already exists
+    shell: oc get service |grep mariadb |awk '{print $1}'
+    register: serresult
+    run_once: true
+    ignore_errors: yes
+
+  - debug:
+        msg: "Service with  name mariadb already exists in project {{ ProjectName  }} "
+    run_once: true
+    when: serresult.stdout == 'mariadb'
+    
+  - name: End Play
+    meta: end_play
+    when: serresult.stdout == 'mariadb' 
+
+  - name: Create a Service with persistent storage
+    import_tasks: pod-create.yaml
+    run_once: true
+    when: serresult.stdout != 'mariadb'
+    ignore_errors: yes
+       
+  - name: Wait for Seconds before proceeding
+    wait_for: timeout=30
+       
+  - name: Check if the Pod is running
+    shell: 'oc project "{{ ProjectName  }}"'
+    shell: oc get pods |grep -E "mariadb*.*Running"
+    run_once: true
+    register: podresult
+    ignore_errors: yes
+
+  - debug: 
+        msg: "Successfully created service with name mariadb in project {{ ProjectName  }} and is running with Persistent storage"
+    when: podresult.stderr == "" 
+    run_once: true
+
+  - debug: 
+        msg: "Pod failed to create with Persistent volume"  
+    when: podresult.stderr != ""
+    run_once: true
+
