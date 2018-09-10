@@ -1,5 +1,7 @@
 # Red Hat OpenShift Container Platform on HPE Synergy with HPE Nimble Storage
 
+Prior to using the instructions in this README.md file it is recommended that you read and understand the deployment guide found in the root of this folder.
+
 ________________________________________
 ## About ##
 ________________________________________
