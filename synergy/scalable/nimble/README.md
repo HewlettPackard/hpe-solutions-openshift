@@ -88,35 +88,35 @@ git clone https://github.com/openshift/openshift-ansible
 git checkout release-3.7
 ```
 
-Step2 : Create the VM template in RHV-M using the below command. 
+Step3 : Create the VM template in RHV-M using the below command. 
 
 This will create a template which will be used to clone and deploy VMs for OpenShift installation.
 ``` 
 ansible-playbook -i /etc/ansible/hpe-solutions-openshift/synergy/scalable/nimble/hosts /etc/ansible/hpe-solutions-openshift/synergy/scalable/nimble/tasks/Ovirt-template/deploy-template.yaml --ask-vault-pass -e@/etc/ansible/hpe-solutions-openshift/synergy/scalable/nimble/group_vars/vault_pass.yml
 ```
 
-Step3 : Deploy VMs from the template.
+Step4 : Deploy VMs from the template.
 
 Run the following command on the Ansible Engine to create VMs for Master, ETCD, Infra and LB nodes for OpenShift
 ```
 ansible-playbook -i /etc/ansible/hpe-solutions-openshift/synergy/scalable/nimble/hosts /etc/ansible/hpe-solutions-openshift/synergy/scalable/nimble/tasks/Ovirt-VM-Deploy/deploy-vm.yaml --ask-vault-pass -e@/etc/ansible/hpe-solutions-openshift/synergy/scalable/nimble/group_vars/vault_pass.yml
 ```
 
-Step4: Add Hosts to the Known Host File
+Step5: Add Hosts to the Known Host File
 
 Run the following shell script to add host details of the know_hosts file in the Ansible engine. 
 ```
 /etc/ansible/hpe-solutions-openshift/synergy/scalable/nimble/scripts/update-known_hosts.sh
 ```
 
-Step5: Install prerequisites on VMs and physical hosts prior to OpenShift installation
+Step6: Install prerequisites on VMs and physical hosts prior to OpenShift installation
 
 Run the following Ansible play on the Ansible Engine host to install and configure prerequisites for OpenShift installation.
 ```
 ansible-playbook -i /etc/ansible/hpe-solutions-openshift/synergy/scalable/nimble/hosts /etc/ansible/hpe-solutions-openshift/synergy/scalable/nimble/tasks/Host-Preparation/host-prepare.yaml --ask-vault-pass -e@/etc/ansible/hpe-solutions-openshift/synergy/scalable/nimble/group_vars/vault_pass.yml
 ```
 
-Step6: Deploy OpenShift
+Step7: Deploy OpenShift
 
 Run the following command to install OpenShift to the nodes specified in the host file.
 ```
