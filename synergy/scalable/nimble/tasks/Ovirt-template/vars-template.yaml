@@ -4,7 +4,7 @@ datacenter: Default
 cluster: Default
 disk_storage_domain: null
 template_disk_storage: Nimble-iSCSI
-qcow_url: "https://access.cdn.redhat.com//content/origin/files/sha256/7f/7ff0d81ebf68119816b2756b7ed591dc9b50d29713e3785cc6bed564429a8b04/rhel-server-7.5-update-1-x86_64-kvm.qcow2?_auth_=1534773342_4e3082d047726c57e0bf871fb667d775"
+qcow_url: "https://access.cdn.redhat.com/path_to_your_download"
 image_path: '/var/images/rhel-server-7.5-50G'
 template_name: rhel7-template_7.5_2d-50G
 vm_name: rhel7_5-template_vm
