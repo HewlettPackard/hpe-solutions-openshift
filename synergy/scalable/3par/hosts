@@ -1,0 +1,60 @@
+#~ Add all hosts Managed by Ansible for Openshift deployment  within this commented session , this will be used to update the known hostfile
+oshift-fc-m1.tennet.local
+oshift-fc-m2.tennet.local
+oshift-fc-m3.tennet.local
+oshift-fc-etcd1.tennet.local
+oshift-fc-etcd2.tennet.local
+oshift-fc-etcd3.tennet.local
+oshift-fc-nlb1.tennet.local
+oshift-fc-nlb2.tennet.local
+rhvhost1.tennet.local 
+rhvhost2.tennet.local
+rhvm.tennet.com
+workernode1.tennet.local
+workernode2.tennet.local
+workernode3.tennet.local
+#~ Do not make change to the format of the comment
+
+## RHV hosts to be listed here
+[rhv]
+rhvhost1.tennet.local 
+rhvhost2.tennet.local
+
+## RHEVM to be listed here
+[rhvm]
+rhvm.tennet.com
+
+## Standard openshift-ansible inventory
+[OSEv3:children]
+masters
+nodes
+etcd
+lb
+physical-nodes
+
+[masters]
+oshift-fc-m1.tennet.local
+oshift-fc-m2.tennet.local
+oshift-fc-m3.tennet.local
+
+[etcd]
+oshift-fc-etcd1.tennet.local
+oshift-fc-etcd2.tennet.local
+oshift-fc-etcd3.tennet.local
+
+[lb]
+oshift-fc-nlb1.tennet.local
+oshift-fc-nlb2.tennet.local
+
+[physical-nodes]
+workernode1.tennet.local
+workernode2.tennet.local
+workernode3.tennet.local
+
+[nodes]
+oshift-fc-m1.tennet.local openshift_schedulable=False
+oshift-fc-m2.tennet.local openshift_schedulable=False
+oshift-fc-m3.tennet.local openshift_schedulable=False
+workernode1.tennet.local openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+workernode2.tennet.local openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+workernode3.tennet.local openshift_node_labels="{'region': 'infra', 'zone': 'default'}"

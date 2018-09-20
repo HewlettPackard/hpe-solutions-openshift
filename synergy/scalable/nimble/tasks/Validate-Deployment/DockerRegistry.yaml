@@ -100,7 +100,6 @@
     run_once: true
     register: regpodnew
     ignore_errors: yes
-    when: regpod.stdout == ""
 
   - name: Use existing PVC to mount persistent storage on Docker Registry pod
     shell: oc volume deploymentconfigs/docker-registry --add --name=registry-storage -t pvc --claim-name=volreg --overwrite
