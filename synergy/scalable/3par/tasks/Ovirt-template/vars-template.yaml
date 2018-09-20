@@ -4,7 +4,7 @@ datacenter: Default
 cluster: Default
 disk_storage_domain: null
 template_disk_storage: 3PAR-Shared-storage
-qcow_url: "https://access.cdn.redhat.com//content/origin/files/sha256/7f/7ff0d81ebf68119816b2756b7ed591dc9b50d29713e3785cc6bed564429a8b04/rhel-server-7.5-update-1-x86_64-kvm.qcow2?_auth_=1536228767_282ee55b20c9678cb4bcbc1b3ce34c34"
+qcow_url: "https://access.cdn.redhat.com/path_to_your_download"
 image_path: '/var/images/rhel-server-7.5_3par-50G'
 template_name: rhel7-template_7.5_3par-2d-50G
 vm_name: rhel7_5-3par-template_vm
