@@ -10,7 +10,7 @@ These variables for creating a template in RHVM need to be filled in by the inst
 | datacenter              | RHVM           | Datacenter within RHV-M which will be used for template deployment | Default         |
 | Cluster                 | RHVM           | Cluster within RHV-M which will be used for template deployment| Default              |
 | template_disk_storage   | RHVM           | RHVM Storage domain  | Nimble-iSCSI |
-| qcow_url                | RHVM           | Red Hat Enterprise Linux 7.5 KVM Guest Image, download path from Redhat download | ht<span>tps\://access.cdn.redhat.com//content/origin/files/sha256/7f/7ff0d81ebf68119816b2756b7ed591dc9b50d29713e3785cc6bed564429a8b04/rhel-server-7.5-update-1-x86_64-kvm.qcow2?_auth_=1531994907_0819a45adde5729d51cfe519aedfa9ef |
+| qcow_url                | RHVM           | Red Hat Enterprise Linux 7.5 KVM Guest Image, download path from Redhat download | ht<span>tps\://access.cdn.redhat.com/path_to_your_download |
 | image_path              | RHVM           | Image download location on RHVM, directory /var/images and file name  rhel-server-7.5-50G | /var/images/rhel-server-7.5-50G |
 | template_name           | RHVM           | template name in RHV-M | rhel7-template_7.5_2d-50G |
 | vm_name                 | RHVM           | Name of the temporary VM before cloning to template | rhel7_5-template_vm |
