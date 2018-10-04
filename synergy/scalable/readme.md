@@ -4,3 +4,5 @@ To download the Reference Configurations that accompany these deployment guides,
 HPE Reference Configuration for Red Hat OpenShift on HPE Synergy and HPE 3PAR StoreServ Storage: https://h20195.www2.hpe.com/V2/GetDocument.aspx?docname=a00056102enw
 
 HPE Reference Configuration for Red Hat OpenShift on HPE Synergy and HPE Nimble Storage: https://h20195.www2.hpe.com/V2/GetDocument.aspx?docname=a00056101enw
+
+The Reference Configurations provide information around solution business value as well as bills of material for the solutions. 
