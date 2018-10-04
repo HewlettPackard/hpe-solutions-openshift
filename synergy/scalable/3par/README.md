@@ -1,5 +1,7 @@
 # HPE Deployment Guide for Red Hat OpenShift Container Platform on HPE Synergy and HPE 3PAR StoreServ Storage
 
+Prior to using the instructions in this README.md file it is recommended that you read and understand the deployment guide found in the root of this folder. Instructions found in the deployment guide will take precedence over instructions in README.md files.
+
 This guide is accompanied by a Reference Configuration. The Reference Configuration highlights business value and provides a bill of material for the tested configuration. It can be download from https://h20195.www2.hpe.com/V2/GetDocument.aspx?docname=a00056102enw.
 
 ________________________________________
