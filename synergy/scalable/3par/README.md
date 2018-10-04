@@ -1,4 +1,4 @@
-# HPE Deployment Guide for Deploying Red Hat OpenShift Container Platform on HPE Synergy
+# HPE Deployment Guide for Red Hat OpenShift Container Platform on HPE Synergy and HPE 3PAR StoreServ Storage
 
 This guide is accompanied by a Reference Configuration. The Reference Configuration highlights business value and provides a bill of material for the tested configuration. It can be download from https://h20195.www2.hpe.com/V2/GetDocument.aspx?docname=a00056102enw.
 
