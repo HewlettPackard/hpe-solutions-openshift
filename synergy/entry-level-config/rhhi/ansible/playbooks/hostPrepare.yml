@@ -1,0 +1,12 @@
+---
+
+- name: prepare hosts
+  hosts:
+    - masters
+    - infra
+    - apps
+    - lb
+  gather_facts: true
+  remote_user: root
+  roles:
+   - ../roles/host-prepare

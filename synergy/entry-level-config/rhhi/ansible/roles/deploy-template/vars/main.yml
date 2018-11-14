@@ -1,0 +1,45 @@
+###
+## Copyright (2018) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+####
+
+
+
+engine_url: "{{ vault_engine_url }}"
+engine_cafile: '/etc/pki/ovirt-engine/ca.pem'
+datacenter: Default
+cluster: Default
+network: 'ovirtmgmt'
+disk_storage_domain: vmstore
+template_disk_storage: vmstore
+qcow_url: http://192.168.1.101/qcow/rhel75.qcow2
+#qcow_url: "https://access.cdn.redhat.com//content/origin/files/sha256/67/67d22decd6e962036ad4869b45140986263b18a36ed661add868f548feb314b3/rhel-server-7.5-update-3-x86_64-kvm.qcow2?_auth_=<auth code>"
+image_path: '/var/images/rhel-server-7.5-50G'
+template_name: rhel7-template_7.5_2d-50G
+vm_name: rhel7_5-template_vm
+template_memory: 2GiB
+template_cpu: 2
+template_disk_interface: virtio
+template_disk_size: 50GiB
+template_disk_size_2: 30GiB
+image_cache_download: true
+template_nics:
+  - name: nic1
+    profile_name: ovirtmgmt
+    interface: virtio
+  - name: nic2
+    profile_name: Public
+    interface: virtio
+template_operating_system: rhel_7x64
+template_timeout: 1600

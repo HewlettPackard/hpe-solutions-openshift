@@ -1,0 +1,9 @@
+---
+
+- name: deploy vm template
+  hosts: rhvm
+  gather_facts: true
+  remote_user: root
+  roles:
+   - ../roles/deploy-template
+
