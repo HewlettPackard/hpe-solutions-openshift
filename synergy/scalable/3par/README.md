@@ -94,14 +94,14 @@ Step2 : Create the VM template in RHV-M using the below command.
 
 This will create a template which will be used to clone and deploy VMs for OpenShift installation.
 ``` 
-ansible-playbook -i /etc/ansible/hpe-solutions-openshift/hosts /etc/ansible/hpe-solutions-openshift/tasks/Ovirt-template/deploy-template.yaml --ask-vault-pass -e@/etc/ansible/hpe-solutions-openshift/group_vars/vault_pass.yml
+ansible-playbook -i /etc/ansible/hpe-solutions-openshift/hosts /etc/ansible/hpe-solutions-openshift/synergy/scalable/3par/tasks/Ovirt-template/deploy-template.yaml --ask-vault-pass -e@/etc/ansible/hpe-solutions-openshift/group_vars/vault_pass.yml
 ```
 
 Step3 : Deploy VMs from the template.
 
 Run the following command on the Ansible Engine to create VMs for Master, ETCD, Infra and LB nodes for OpenShift
 ```
-ansible-playbook -i /etc/ansible/hpe-solutions-openshift/hosts /etc/ansible/hpe-solutions-openshift/tasks/Ovirt-VM-Deploy/deploy-vm.yaml --ask-vault-pass -e@/etc/ansible/hpe-solutions-openshift/group_vars/vault_pass.yml
+ansible-playbook -i /etc/ansible/hpe-solutions-openshift/hosts /etc/ansible/hpe-solutions-openshift/synergy/scalable/3par/tasks/Ovirt-VM-Deploy/deploy-vm.yaml --ask-vault-pass -e@/etc/ansible/hpe-solutions-openshift/group_vars/vault_pass.yml
 ```
 
 Step4: Add Hosts to the Known Host File
@@ -115,7 +115,7 @@ Step5: Install Prerequisites on VMs and Physical Hosts for OpenShift Installatio
 
 Run the following Ansible play on the Ansible Engine host to install and configure prerequisites for OpenShift installation.
 ```
-ansible-playbook -i /etc/ansible/hpe-solutions-openshift/hosts /etc/ansible/hpe-solutions-openshift/tasks/Host-Preparation/host-prepare.yaml --ask-vault-pass -e@/etc/ansible/hpe-solutions-openshift/group_vars/vault_pass.yml 
+ansible-playbook -i /etc/ansible/hpe-solutions-openshift/hosts /etc/ansible/hpe-solutions-openshift/synergy/scalable/3par/tasks/Host-Preparation/host-prepare.yaml --ask-vault-pass -e@/etc/ansible/hpe-solutions-openshift/group_vars/vault_pass.yml 
 ```
 
 Step6: Deploy OpenShift
