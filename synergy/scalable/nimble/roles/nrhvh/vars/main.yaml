@@ -1,0 +1,12 @@
+---
+
+dns: "10.0.1.254"
+san_a_ip: 30.0.2.96
+san_b_ip: 40.0.2.96
+ifname1: bond1
+ifname2: bond2
+bondname1: Bond connection bond1
+bondname2: Bond connection bond2
+gateway: 10.0.1.1
+iscsia: System ens3f6
+iscsib: System ens3f7
