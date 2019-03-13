@@ -5,6 +5,34 @@ Prior to using the instructions in this README.md file it is recommended that yo
 This guide is accompanied by a Reference Configuration. The Reference Configuration highlights business value and provides a bill of material for the tested configuration. It can be download from https://h20195.www2.hpe.com/V2/GetDocument.aspx?docname=a00056101enw.
 
 ________________________________________
+## What's New? ##
+________________________________________
+
+The latest release (v 2.0, March 12, 2019) features a number of updates to the prior release.
+
+- We are now deploying Red Hat OpenShift Container Platform 3.10.
+
+- HPE Synergy Image Streamer is now being used to deploy the worker node operating systems.
+
+- Ansible playbooks are available for post-deployment configuration of networking and other core configuration parameters across both worker nodes and virtualization hosts.
+
+- Worker nodes now make use of network teaming.
+
+- The solution now utilizes six (6) rather than three (3) worker nodes.
+
+- The latest firmware matrix for HPE Converged System 750 is in use including major updates to HPE OneView, HPE Synergy Image Streamer and to HPE Nimble Storage. 
+
+- Existing Ansible plays have been revamped and are now structured within roles.
+
+- There are updates to product versions including the Nimble Linux Toolkit, HPE Nimble Kube Storage Controller, HPE Workload Aware Security for Linux and others.
+
+- The deployment guide introduces the use of Ansinimble as a method for deploying and configuring HPE Nimble Storage arrays using Ansible playbooks.
+
+- The deployment guide features a section introducing container data protection as a topic. 
+
+- The reference configuration (linked above) includes an updated Bill of Materials to reflect the increase in the number of workers within the solution. 
+
+________________________________________
 ## About ##
 ________________________________________
 
