@@ -1,0 +1,78 @@
+###
+## Copyright (2018) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+#### 
+
+---
+- name: Unregister VMs
+  hosts:
+    - masters
+    - nodes
+    - etcd
+    - lb
+  gather_facts: false
+  roles:
+    - rhsm-unregister
+  
+
+- name: oVirt infra destroy
+  hosts: rhvm
+  gather_facts: false
+  
+  pre_tasks:
+
+    - name: Variable files
+      include_vars: 
+         file: vars-vm.yaml
+
+    - name: Log in to oVirt 
+      ovirt_auth:
+        url: "{{ engine_url }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        ca_file: "{{ engine_cafile }}"
+      tags:
+        - always
+
+  tasks:
+    - name: Erase Master vms
+      ovirt_vms:
+        auth: "{{ ovirt_auth }}"
+        state: absent
+        name: "{{ item.key }}"
+      with_dict: "{{ vms_3nics }}"
+
+    - name: Erase LB vms
+      ovirt_vms:
+        auth: "{{ ovirt_auth }}"
+        state: absent
+        name: "{{ item.key }}"
+      with_dict: "{{ vms_2nics }}"
+ 
+
+    - name: Erase etcd vms
+      ovirt_vms:
+        auth: "{{ ovirt_auth }}"
+        state: absent
+        name: "{{ item.key }}"
+      with_dict: "{{ vms_1nics }}"
+
+
+  post_tasks:
+    - name: Logout from oVirt
+      ovirt_auth:
+        state: absent
+        ovirt_auth: "{{ ovirt_auth }}"
+      tags:
+        - always

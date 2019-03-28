@@ -1,0 +1,6 @@
+---
+
+- import_tasks: files.yaml
+- import_tasks: services.yaml
+- import_tasks: dcbond.yaml
+- import_tasks: bringup.yaml

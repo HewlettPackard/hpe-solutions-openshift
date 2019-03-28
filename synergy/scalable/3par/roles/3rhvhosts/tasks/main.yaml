@@ -1,0 +1,7 @@
+---
+
+- import_tasks: dcbond.yaml
+- import_tasks: mgbond.yaml
+- import_tasks: services.yaml
+- import_tasks: mpath.yaml
+- import_tasks: detach.yaml

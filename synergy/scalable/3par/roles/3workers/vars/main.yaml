@@ -1,0 +1,9 @@
+---
+
+dns1: 10.0.1.254
+dns2: 20.0.1.254
+ifname1: bond1
+ifname2: bond2
+bondname1: bond1
+bondname2: bond2
+gateway: 10.0.1.1

@@ -1,0 +1,6 @@
+---
+
+- import_tasks: hostname.yaml
+- import_tasks: hostreg.yaml
+- import_tasks: repos.yaml
+- import_tasks: yumtasks.yaml

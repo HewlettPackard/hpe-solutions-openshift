@@ -1,51 +1,43 @@
-# HPE Deployment Guide for Red Hat OpenShift Container Platform on HPE Synergy and HPE 3PAR StoreServ Storage
+# HPE Deployment Guide for Red Hat OpenShift Container Platform on HPE Synergy with Red Hat Hyperconverged Infrastructure
 
 Prior to using the instructions in this README.md file it is recommended that you read and understand the deployment guide found in the root of this folder. Instructions found in the deployment guide will take precedence over instructions in README.md files.
 
-This guide is accompanied by a Reference Configuration. The Reference Configuration highlights business value and provides a bill of material for the tested configuration. It can be download from https://h20195.www2.hpe.com/V2/GetDocument.aspx?docname=a00056102enw.
+This guide is accompanied by a Reference Configuration. The Reference Configuration highlights business value and provides a bill of material for the tested configuration. It can be download from https://h20195.www2.hpe.com/V2/GetDocument.aspx?docname=a00056101enw.
 
 ________________________________________
 ## About ##
 ________________________________________
 
-This repo contains Ansible plays and scripts to automate the installation of Red Hat OpenShift 3.7. The actual OpenShift deployment Ansible play is from the OpenShift-Ansible repo (https://github.com/openshift/openshift-ansible ) and is not included here.
+This repo contains Ansible plays and scripts to automate the installation of Red Hat OpenShift 3.10. 
 
 Contents of the repo are:
 
-**group_vars:** This folder contains the OSEv3 variable files used for OpenShift installation.
+**playbooks:** This folder contains the playbooks that call the ansible roles used for OpenShift installation.
 
-**Vault_pass.yml:** is the Ansible Vault file which stores the credentials.
+**rhhi.yml:** This playbook calls the rhhi role used to configure the Red Hat Virtualization Host and prepare the host for the Red Hat Virtualization Manager (Hosted Engine) installation.
 
-**scripts:** This folder contains the update-known_hosts.sh shell script which will add the OpenShift hosts to the known_hosts file on the Ansible Engine system.
+**deploy-template.yml:** This playbook calls the role that creates the virtual machine template that is the basis for the virtual machines running OpenShift.
 
-**hosts:** This is the host file which will be used by Ansible Engine to reference hosts during OpenShift deployment.
+**deploy-vm.yml:** This playbook calls the role that is used to deploy the virtual machines for this solution.
 
-**tasks:** This folder contains various sub-folders with tasks required to be completed for the OpenShift installation and validation.
+**preparehosts.yml:** This playbook calls the role that prepares the virtual machines and installs the prerequsites for the OpenShift installation.
 
-**Ovirt-template:** This folder contains the Ansible play and variable file for VM Template creation in RHV-M.
+**hosts:** This is the ansible inventory file which will be used by Ansible Engine to reference variables and hosts during OpenShift deployment.
 
-**Ovirt-VM-Deploy:** This folder contains Ansible plays for deploying VMs along with the associated variable file. It also contains delete-vm.yaml which is used to unregister and delete VMs from RHV-M.
+**roles:** This folder contains various sub-folders with tasks and variable files required for the OpenShift installation.
 
-**Host-Preparation:** The host-prepare.yaml play installs prerequisites and prepares hosts for OpenShift installation. The associated variable file is vars-hosts.yaml.
+**vault_pass.yml:** is the Ansible Vault file which stores the credentials ans sensitive variables used in this solution.
 
-**Validate-Deployment:** This folder consists of validate-pod-pv.yaml which creates a sample application with persistent storage. The descriptor files for Persistent Volume (PV) and the application can be found within the folder files.
+**ansible.cfg:** is a sample ansible configuration file used in this solution.
 
  
 ________________________________________
-## Pre-requisites ##
+## Prerequisites ##
 ________________________________________
  
- - Ansible Engine should be installed and configured and capable of communicating with the hosts used in this solution.
+ - Ansible Engine should be installed, configured, and capable of communicating with the hosts used in this solution.
  
- - Red Hat Virtualization Host 4.2 is installed and configured.
- 
- - RHV-M is installed as either hosted engine or independent within the solution environment.
- 
- - The RHV hosts have been added to the correct cluster within RHV-M.
- 
- - Create the appropriate Datacenter and cluster within RHV-M.
- 
- - Make sure that both storage and networking are configured per the installation doc within RHV-M.
+ - Red Hat Virtualization Hosts 4.2 have been installed.
  
  - DNS entries should exist for all hosts and hosts resolve correctly.
  
@@ -56,23 +48,33 @@ ________________________________________
 ## Custom Attributes\Variable Files  ##
 ________________________________________
 	
-Each Ansible play in the tasks folder has a variable file. This variable file needs to be edited by the installer according to the installerâ€™s environment.
+This variable file needs to be edited by the installer according to the installer’s environment.
 
-**group_vars/OSEv3**
+In the root of the repository, the hosts file is the ansible inventory file and the vault_pass.yml is an encrypted file used to store senstive variables. The variable specified in these files must be modified to reflect the customers environment.
+**hosts**
+**vault_pass**
 
-This file will be used during OpenShift installation and contains OpenShift related variables. 
+Each Ansible play has a variable file in its respective role directory "/<roles/role name>/vars/main.yml. 
 
-**tasks/Ovirt-template/vars-template.yaml**
+The rhhi role's variable file will be used to configure and prepare the RHVH hosts for the Red Hat Hyperconverged Infrastructure installation. 
 
-This file contains variables for the deploy-template.yaml play which creates the VM template. This file should contain RHV-M related information, template details and the RedHat download sites URL for Red Hat Enterprise Linux 7.5 KVM Guest Image.
+**roles/rhhi/vars/main.yml**
 
-**tasks/Ovirt-VM-Deploy/vars-vm.yaml**
 
-This files contains RHV-M related information and details about the virtual machines required for OpenShift Installation. The alignment of the details in the VMS and load balancers sections is important and should be maintained as per the file.
+The deploy-template role's variable file will be used to configure template details and the RedHat download sites URL for Red Hat Enterprise Linux 7.5 KVM Guest Image.
 
-**tasks/Host-Preparation/vars-hosts.yaml**
+**roles/vars/deploy-template/vars/main.yml**
 
-The file host-prepare.yaml uses this variable file to configure the hosts for OpenShift installation. This file contains the path to the second disk for the physical worker nodes for configuring Docker local storage as well as RedHat subscription repo pool IDs for physical and virtual machines.
+
+The deploy-vm role's variable file will be used to provide information and details about the virtual machines required for OpenShift Installation.
+
+**roles/deploy-vm/vars/main.yml**
+
+
+The host-prepare role's variable file will be used to configure the virtual machines for the OpenShift installation. 
+
+**roles/host-prepare/vars/main.yml**
+
 
 ________________________________________
 ## How to use ##
@@ -83,46 +85,49 @@ Step1 : Clone this repo to the Ansible Engine host to /etc/ansible using the bel
 git clone http://github.com/HewlettPackard/hpe-solutions-openshift
 ```
 
-Step2 : Clone the Openshift-Ansible repo for OpenShift deployment play to the Ansible Engine.
+Step2 : Configure the RHVH hosts to prepare for the Red Hat Hyperconverged Infrastructure Installation.
 ```
-cd /etc/ansible/
-git clone https://github.com/openshift/openshift-ansible
-git checkout release-3.7
+ansible-playbook -e@vault_pass.yml playbooks/rhhi.yaml
 ```
 
-Step2 : Create the VM template in RHV-M using the below command. 
+Step3 : Manually configure the RHV-M Hosted Engine per the deployment guide.
+
+
+Step4 : Create the VM template in RHV-M using the below command. 
 
 This will create a template which will be used to clone and deploy VMs for OpenShift installation.
 ``` 
-ansible-playbook -i /etc/ansible/hpe-solutions-openshift/hosts /etc/ansible/hpe-solutions-openshift/synergy/scalable/3par/tasks/Ovirt-template/deploy-template.yaml --ask-vault-pass -e@/etc/ansible/hpe-solutions-openshift/group_vars/vault_pass.yml
+ansible-playbook -e@vault_pass.yml playbooks/deployTemplate.yaml
 ```
 
-Step3 : Deploy VMs from the template.
+Step5 : Deploy VMs from the template.
 
 Run the following command on the Ansible Engine to create VMs for Master, ETCD, Infra and LB nodes for OpenShift
 ```
-ansible-playbook -i /etc/ansible/hpe-solutions-openshift/hosts /etc/ansible/hpe-solutions-openshift/synergy/scalable/3par/tasks/Ovirt-VM-Deploy/deploy-vm.yaml --ask-vault-pass -e@/etc/ansible/hpe-solutions-openshift/group_vars/vault_pass.yml
+ansible-playbook -e@vault_pass.yml playbooks/deployVM.yml
 ```
 
-Step4: Add Hosts to the Known Host File
+Step6 : Install the OpenShift prerequsites on the virtual machines.
 
 Run the following shell script to add host details of the know_hosts file in the Ansible engine. 
 ```
-/etc/ansible/hpe-solutions-openshift/scripts/update-known_hosts.sh
+ansible-playbook -e@vault_pass.yml playbooks/hostPrepare.yml
 ```
 
-Step5: Install Prerequisites on VMs and Physical Hosts for OpenShift Installation
+Step7 : Manually configure host device passthrough in RHV-M Hosted Engine for OpenShift Container Storage per the deployment guide.
+
+Step8 : Check for required prerequisites on VMs prior to OpenShift installation
 
 Run the following Ansible play on the Ansible Engine host to install and configure prerequisites for OpenShift installation.
 ```
-ansible-playbook -i /etc/ansible/hpe-solutions-openshift/hosts /etc/ansible/hpe-solutions-openshift/synergy/scalable/3par/tasks/Host-Preparation/host-prepare.yaml --ask-vault-pass -e@/etc/ansible/hpe-solutions-openshift/group_vars/vault_pass.yml 
+ansible-playbook -e@vault_pass.yml /usr/share/ansible/openshift-ansible/playbooks/prerequisites.yml
 ```
 
-Step6: Deploy OpenShift
+Step9 : Deploy OpenShift
 
 Run the following command to install OpenShift to the nodes specified in the host file.
 ```
-ansible-playbook -i /etc/ansible/hpe-solutions-openshift/hosts /etc/ansible/openshift-ansible/playbooks/byo/config.yml
+ansible-playbook -e@vault_pass.yml /usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml
 ```
 ________________________________________
 ## Summary ##
@@ -137,6 +142,5 @@ Red Hat Virtualization Manager 4.2
 
 Red Hat Ansible Engine 2.5
 
-Red Hat OpenShift Container Platform 3.7
-
+Red Hat OpenShift Container Platform 3.10
 

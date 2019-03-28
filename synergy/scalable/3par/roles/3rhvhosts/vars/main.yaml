@@ -1,0 +1,8 @@
+---
+
+dns: "10.0.1.254"
+ifname1: bond1
+ifname2: bond2
+bondname1: Bond connection bond1
+bondname2: Bond connection bond2
+gateway: 10.0.1.1
