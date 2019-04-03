@@ -32,6 +32,9 @@ The latest release (v 2.0, March 12, 2019) features a number of updates to the p
 
 - The reference configuration (linked above) includes an updated Bill of Materials to reflect the increase in the number of workers within the solution. 
 
+v2.0.2, April 3, 2019 Adds
+- Altered the section around power configuration on RHVH hosts to make it easier to follow.
+
 ________________________________________
 ## About ##
 ________________________________________
