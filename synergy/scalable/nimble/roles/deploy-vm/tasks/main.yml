@@ -176,7 +176,7 @@
 #      - ninfra02.{{ public_hosted_zone }}
 #      - netcd03.{{ public_hosted_zone }}
     hosts:
-      - "{{ fqdnrhv3 }}"
+      - "{{ fqdnrhv1 }}"
 #      - nrhvh01.{{ public_hosted_zone }}
 
 
@@ -201,7 +201,7 @@
 #      - netcd02.{{ public_hosted_zone }}
 #      - nlb01.{{ public_hosted_zone }}
     hosts:
-      - "{{ fqdnrhv3 }}"
+      - "{{ fqdnrhv2 }}"
 #      - nrhvh02.{{ public_hosted_zone }}
 
 
