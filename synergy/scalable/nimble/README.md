@@ -35,6 +35,12 @@ The latest release (v 2.0, March 12, 2019) features a number of updates to the p
 v2.0.2, April 3, 2019 Adds
 - Altered the section around power configuration on RHVH hosts to make it easier to follow.
 
+v2.0.3, April 5, 2019 Adds
+- Revised the power management section for the RHVH hosts to provide clarity around implementation steps.
+
+- Introduced a change tracking table inline to make it easier to locate changes within the document.
+
+- Added Appendix D which introduces the concept of virtual worker nodes to the design.
 ________________________________________
 ## About ##
 ________________________________________
