@@ -1,0 +1,10 @@
+kmem_cache_t *kmem_cache_create(const char *name, size_t size,
+size_t offset,
+unsigned long flags,
+void(*constructor)(void *, kmem_cache_t *,
+unsigned long flags),
+void (*destructor)(void *, kmem_cache_t *,
+unsigned long flags));
+
+This is slab allocator.
+It creates cache to host memory
