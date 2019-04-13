@@ -1,0 +1,10 @@
+int remap_pfn_range(struc vm_area_struc *vma,
+unsigned long virt_addr, unsigned long pfn,
+unsigned lòng size, pgprot_t prot);
+int io_remap_page_range(struc vm_area_struc * vma,
+unsigned long virt_addr, unsigned long phys_addr,
+unsigned long size, pgprot_t_prot);
+
+using remap_pfn_range
+to map a range of physical addresses
+
