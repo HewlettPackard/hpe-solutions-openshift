@@ -11,7 +11,7 @@ ________________________________________
 ## What's New? ##
 ________________________________________
 
-The latest release (v 2.0, March 29, 2019) features a number of updates to the prior release.
+The latest release branch (v 2.0, March 29, 2019) features a number of updates to the prior release.
 
 -   We are now deploying Red Hat OpenShift Container Platform 3.10.
 
@@ -36,6 +36,12 @@ v2.0.1, April 5, 2019
 - Revised the power management section for the RHVH hosts to provide clarity around implementation steps.
 
 - Introduced a change tracking table inline to make it easier to locate changes within the document.
+
+v2.0.2, April 19, 2019
+
+- Revised wording in places to improve readability.
+
+- Altered git clone instructions to fix an error with the path.
 
 About
 
