@@ -23,8 +23,7 @@
     mode: 0755
 
 - name: Download the qcow image
-  hosts: rhvm
-  get_url:
+    get_url:
     url: "{{ qcow_url }}"
     dest: "{{ image_path }}"
     force: "{{ not image_cache_download }}"
@@ -36,7 +35,6 @@
   command: "/usr/bin/file {{ image_path | quote }}"
   changed_when: false
   register: filetype
-  msg: "{{ filetype }}"
   tags:
    - ovirt-template-image
 
