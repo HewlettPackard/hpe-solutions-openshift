@@ -41,6 +41,22 @@ v2.0.3, April 5, 2019 Adds
 - Introduced a change tracking table inline to make it easier to locate changes within the document.
 
 - Added Appendix D which introduces the concept of virtual worker nodes to the design.
+
+v2.0.4, April 9, 2019 Adds
+- Amended Appendix D to note the need to edit the host file
+
+v2.0.5, Aprill 11, 2019 Adds
+- Amended the listing of plays available under the Nimble worker section to reflect the latest updates
+
+v2.0.6, May 17, 2019 Adds
+- Some command changes to the worker node playbooks
+
+- General quality control fixes
+
+v2.0.7, June 21, 2019 Adds
+- Minor command changes
+
+- General quality control fixes
 ________________________________________
 ## About ##
 ________________________________________
