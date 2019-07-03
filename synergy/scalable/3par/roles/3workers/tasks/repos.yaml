@@ -25,11 +25,11 @@
 - name: enabled RHEL 7 Server extras
   command: "subscription-manager repos --enable=rhel-7-server-extras-rpms"
 
-- name: enable OSE 3.10 repos
-  command: "subscription-manager repos --enable=rhel-7-server-ose-3.10-rpms"
+- name: enable OSE 3.11 repos
+  command: "subscription-manager repos --enable=rhel-7-server-ose-3.11-rpms"
 
 - name: enable fast-datapath repo
   command: "subscription-manager repos --enable=rhel-7-fast-datapath-rpms"
 
 - name: enable the Ansible repo
-  command: "subscription-manager repos --enable=rhel-7-server-ansible-2.5-rpms"
+  command: "subscription-manager repos --enable=rhel-7-server-ansible-2.6-rpms"

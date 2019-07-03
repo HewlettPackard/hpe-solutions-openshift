@@ -26,8 +26,8 @@
     name: '*'
     state: latest
 
-- name: restart the host
-  command: /sbin/shutdown -r +1
-  async: 0
-  poll: 0
-  ignore_errors: true
+#- name: restart the host
+#  command: /sbin/shutdown -r +1
+#  async: 0
+#  poll: 0
+#  ignore_errors: true

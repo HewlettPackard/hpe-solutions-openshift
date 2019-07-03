@@ -1,0 +1,87 @@
+###
+# Copyright 2018-19 Hewlett Packard Enterprise Development LP
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# You may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+###
+
+---
+- name: Creating Worker VMs for OCP deployment
+  hosts: localhost
+  gather_facts: false
+  connection: local
+
+  tasks:
+    - name: Include VM variables
+      include_vars: VirtualMachineVars.yml
+
+    - name: Creating the Worker VMs
+      vmware_guest:
+        validate_certs: false
+        folder: /
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        cluster: "{{ worker_cluster_name }}"
+        datacenter: "{{ datacenter_name }}"
+        name: "{{ item.value.name }}"
+        template: "{{ vmtemplate }}"
+        disk:
+          - size_gb: "{{ item.value.disk_size | default(50) }}"
+            type: "{{ disk_type }}"
+            datastore: "{{ datastore_name }}"
+          - size_gb: "{{ item.value.disk_size | default(50) }}"
+            type: "{{ disk_type }}"
+            datastore: "{{ datastore_name }}"
+        networks:
+        - name: "{{ item.value.network }}"
+          ip: "{{ item.value.ip }}"
+          netmask: "{{ item.value.netmask }}"
+          gateway: "{{ item.value.gateway }}"
+          dns_servers: "{{ item.value.dns_server }}"
+          domain: "{{ item.value.domain }}"
+          device_type: "{{ vm_type }}"
+          start_connected: True
+          type: static
+        - name: "{{ item.value.network }}"
+          ip: "{{ item.value.ip2 }}"
+          netmask: "{{ item.value.netmask }}"
+          gateway: "{{ item.value.gateway }}"
+          dns_servers: "{{ item.value.dns_server }}"
+          domain: "{{ item.value.domain }}"
+          device_type: "{{ vm_type }}"
+          start_connected: True
+          type: static
+        - name: "{{ item.value.network }}"
+          ip: "{{ item.value.ip3 }}"
+          netmask: "{{ item.value.netmask }}"
+          gateway: "{{ item.value.gateway }}"
+          dns_servers: "{{ item.value.dns_server }}"
+          domain: "{{ item.value.domain }}"
+          device_type: "{{ vm_type }}"
+          start_connected: True
+          type: static
+        hardware:
+          memory_mb: "{{ item.value.mem }}"
+          num_cpus: "{{ item.value.cpu }}"
+        customization:
+          hostname: "{{ item.key }}"
+          dns_servers: "{{ item.value.dns_server }}"
+        wait_for_ip_address: True
+        state: poweredon
+      register: "{{ item.value.name }}"
+      with_dict: "{{ worker_vms }}"
+      
+
+
+
+

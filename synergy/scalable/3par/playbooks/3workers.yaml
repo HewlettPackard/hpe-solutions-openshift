@@ -16,9 +16,9 @@
 
 ---
 
-- name: workers role 
+- name: 3workers role 
   hosts: 
     - 3workerhosts
  
   roles: 
-    - ./roles/3workers
+    - ../roles/3workers

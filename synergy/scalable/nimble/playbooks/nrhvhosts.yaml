@@ -18,6 +18,8 @@
 
 - name: Finalize the configuration of the Nimble RHV hosts and disconnect them from PXE
   hosts: 
-    - nrhvh
+    - rhv
+  vars_files:
+    - ../vault_pass.yml
   roles: 
     - ./roles/nrhvhosts

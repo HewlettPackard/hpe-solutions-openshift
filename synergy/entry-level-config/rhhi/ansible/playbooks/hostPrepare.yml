@@ -2,10 +2,8 @@
 
 - name: prepare hosts
   hosts:
-    - masters
-    - infra
-    - apps
-    - lb
+    - physical-nodes
+    - virtual-nodes
   gather_facts: true
   remote_user: root
   roles:

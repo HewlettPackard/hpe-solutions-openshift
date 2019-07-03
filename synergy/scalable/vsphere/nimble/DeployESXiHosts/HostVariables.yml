@@ -1,0 +1,28 @@
+---
+deployment_network_name: 
+management_network_name: 
+datacenter_network_name: 
+iSCSi_A_network_name: 
+iSCSi_B_network_name: 
+
+dns_ip: 
+gateway: 
+subnet_mask: 
+domain_name: 
+
+enclosure_group_name: 
+deployment_plan_name: 
+server_profile_template_name: 
+
+########################### No need to change the below parameters ###########################
+
+server_hardware_name: "{{ inventory_hostname }}"
+server_hardware_type: "{{ hostvars[inventory_hostname].type }}"
+config: "{{ playbook_dir }}/OneViewConfig.json"
+esxi_ip: "{{ hostvars[inventory_hostname].ip }}"
+esxi_hostname: "{{ hostvars[inventory_hostname].hostname }}"
+server_profile_name: "{{ hostvars[inventory_hostname].name }}"
+server_profile_template_file: "{{ playbook_dir }}/Templates/ServerProfileTemplateFile.yml"
+server_profile_file: "{{ playbook_dir }}/Templates/ServerProfileFile.yml"
+
+

@@ -29,4 +29,4 @@
     password: "{{ vault_rhsub_pass }}"
     force_register: yes
     pool_ids:
-       "{{ pool_ids_rhel }}"
+       "{{ pool_ids_physical_rhel }}"

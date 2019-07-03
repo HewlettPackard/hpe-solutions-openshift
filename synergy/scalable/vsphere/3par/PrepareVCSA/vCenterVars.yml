@@ -1,0 +1,28 @@
+---
+vcenter_hostname: 
+vcenter_username: 
+vcenter_password: 
+datacenter_name: 
+cluster_name: 
+
+esxi_01: 
+esxi_02: 
+esxi_03: 
+esxi_uname: 
+esxi_pwd: 
+
+#set path if using virtual environment & need to use "-i hosts" when hosts=localhost
+#ansible_python_interpreter: /path/to/python/exe/within/virtual/env
+
+################## No Need To Modify ##################
+
+esxi_hosts:
+  "{{ esxi_01 }}":
+    esxi_username: "{{ esxi_uname }}"
+    esxi_password: "{{ esxi_pwd }}"
+  "{{ esxi_02 }}":
+    esxi_username: "{{ esxi_uname }}"
+    esxi_password: "{{ esxi_pwd }}"
+  "{{ esxi_03 }}":
+    esxi_username: "{{ esxi_uname }}"
+    esxi_password: "{{ esxi_pwd }}"

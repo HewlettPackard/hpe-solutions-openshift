@@ -18,6 +18,6 @@
 
 - name: Finalize the configuration of the Nimble RHV hosts and disconnect them from PXE
   hosts: 
-    - 3rhvh
+    - rhv
   roles: 
-    - ./roles/3rhvhosts
+    - ../roles/3rhvhosts

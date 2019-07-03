@@ -17,7 +17,7 @@
 ---
     - name: Create Storage Class Yaml file to Master servers
       copy:
-        src: sc_example.yml
+        src: var-nimble-reg-sc.yaml
         dest: /tmp/var-reg-sc.yaml
         backup: yes
         force: yes

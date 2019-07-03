@@ -31,8 +31,8 @@
      regexp: '^ONBOOT=yes'
      line: 'ONBOOT=no'
   
-- name: start the primary bond
-  command: "nmcli con up '{{ bondname1 }}'"
+#- name: start the primary bond
+#  command: "nmcli con up '{{ bondname1 }}'"
 
 - name: start the secondary bond
   command: "nmcli con up '{{ bondname2 }}'"
@@ -49,3 +49,9 @@
   async: 0
   poll: 0
   ignore_errors: true
+
+- name: Wait for host to boot up
+  wait_for_connection:
+    delay: 60
+    timeout: 300
+

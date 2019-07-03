@@ -5,7 +5,7 @@
 ## You may not use this file except in compliance with the License.
 ## You may obtain a copy of the License at
 ##
-## http://www.apache.org/licenses/LICENSE-2.0
+## http://www.apache.org/licenses/LICENSE-2.0
 ##
 ## Unless required by applicable law or agreed to in writing, software
 ## distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,7 +21,7 @@ engine_cafile: '/etc/pki/ovirt-engine/ca.pem'
 datacenter: Default
 cluster: Default
 network: 'ovirtmgmt'
-vmtemplate: rhel7-template_7.5_2d-50G
+vmtemplate: rhel7-template_7.6_2d-50G
 mgmt_gateway: 10.0.1.1
 mgmt_mask: 255.255.0.0
 mgmt_dns: 10.0.1.254
@@ -43,6 +43,9 @@ fqdninfra2: oshift-fc-infra2.tennet.local
 fqdninfra3: oshift-fc-infra3.tennet.local
 fqdnlb1: oshift-fc-nlb1.tennet.local
 fqdnlb2: oshift-fc-nlb2.tennet.local
+#fqdnworker4: 3worker04.tennet.local
+#fqdnworker5: 3worker05.tennet.local
+#fqdnworker6: 3worker06.tennet.local
 
 #fqdn of RHVH cluster where the VMs are getting deployed
 fqdnrhv1: 3rhvh01.tennet.local
@@ -51,24 +54,32 @@ fqdnrhv3: 3rhvh03.tennet.local
 
 storage_mask: 255.255.0.0
 
-master01_ip: 10.0.8.134
-master02_ip: 10.0.8.135
-master03_ip: 10.0.8.136
+nmaster01_ip: 10.0.8.134
+nmaster02_ip: 10.0.8.135
+nmaster03_ip: 10.0.8.136
 
-lb01_ip: 10.0.8.143
-lb02_ip: 10.0.8.144
+nlb01_ip: 10.0.8.143
+nlb01_ip2: 20.0.10.40
 
-infra01_ip: 10.0.8.140
-infra02_ip: 10.0.8.141
-infra03_ip: 10.0.8.142
+nlb02_ip: 10.0.8.144
+nlb02_ip2: 20.0.10.41
+#nlb02_ip2: 20.0.20.41
 
-etcd01_ip : 10.0.8.145
-etcd02_ip : 10.0.8.146
-etcd03_ip : 10.0.8.147
+ninfra01_ip: 10.0.8.140
+ninfra02_ip: 10.0.8.141
+ninfra03_ip: 10.0.8.142
+
+netcd01_ip : 10.0.8.145
+netcd02_ip : 10.0.8.146
+netcd03_ip : 10.0.8.147
+
+
+
+######################  No Need to modify the below section #############################################
 
 vms:
-  oshift-fc-etcd1.tennet.local:
-    ip: "{{etcd01_ip}}"
+  "{{ fqdnetcd1 }}":
+    ip: "{{netcd01_ip}}"
     mask: "{{mgmt_mask}}"
     gateway: "{{mgmt_gateway}}"
     nameserver: "{{mgmt_dns}}"
@@ -76,9 +87,8 @@ vms:
 #    domainsearch: "{{private_hosted_zone}}"
     cpu: 4
     mem: 16GiB
-
-  oshift-fc-etcd2.tennet.local:
-    ip: "{{etcd02_ip}}"
+  "{{ fqdnetcd2 }}":
+    ip: "{{netcd02_ip}}"
     mask: "{{mgmt_mask}}"
     gateway: "{{mgmt_gateway}}"
     nameserver: "{{mgmt_dns}}"
@@ -86,9 +96,8 @@ vms:
 #    domainsearch: "{{private_hosted_zone}}"
     cpu: 4
     mem: 16GiB
-
-  oshift-fc-etcd3.tennet.local:
-    ip: "{{etcd03_ip}}"
+  "{{ fqdnetcd3 }}":
+    ip: "{{netcd03_ip}}"
     mask: "{{mgmt_mask}}"
     gateway: "{{mgmt_gateway}}"
     nameserver: "{{mgmt_dns}}"
@@ -96,88 +105,93 @@ vms:
 #    domainsearch: "{{private_hosted_zone}}"
     cpu: 4
     mem: 16GiB
+  "{{ fqdninfra1 }}":
+    ip: "{{ninfra01_ip}}"
+    mask: "{{mgmt_mask}}"
+    gateway: "{{mgmt_gateway}}"
+    nameserver: "{{mgmt_dns}}"
+#    domainsearch: "{{private_hosted_zone}}"
+    domainsearch: "{{public_hosted_zone}}"
+    cpu: 4
+    mem: 16GiB    
+  "{{ fqdninfra2 }}":
+    ip: "{{ninfra02_ip}}"
+    mask: "{{mgmt_mask}}"
+    gateway: "{{mgmt_gateway}}"
+    nameserver: "{{mgmt_dns}}"
+#    domainsearch: "{{private_hosted_zone}}"
+    domainsearch: "{{public_hosted_zone}}"
+    cpu: 4
+    mem: 16GiB    
+  "{{ fqdninfra3 }}":
+    ip: "{{ninfra03_ip}}"
+    mask: "{{mgmt_mask}}"
+    gateway: "{{mgmt_gateway}}"
+    nameserver: "{{mgmt_dns}}"
+#    domainsearch: "{{private_hosted_zone}}"
+    domainsearch: "{{public_hosted_zone}}"
+    cpu: 4
+    mem: 16GiB
+  "{{ fqdnmaster1 }}":
+    ip: "{{nmaster01_ip}}"
+    mask: "{{mgmt_mask}}"
+    gateway: "{{mgmt_gateway}}"
+    nameserver: "{{mgmt_dns}}"
+#    domainsearch: "{{private_hosted_zone}}"
+    domainsearch: "{{public_hosted_zone}}"
+    cpu: 4
+    mem: 16GiB
+  "{{ fqdnmaster2 }}":
+    ip: "{{nmaster02_ip}}"
+    mask: "{{mgmt_mask}}"
+    gateway: "{{mgmt_gateway}}"
+    nameserver: "{{mgmt_dns}}"
+#    domainsearch: "{{private_hosted_zone}}"
+    domainsearch: "{{public_hosted_zone}}"
+    cpu: 4
+    mem: 16GiB
+  "{{ fqdnmaster3 }}":
+    ip: "{{nmaster03_ip}}"
+    mask: "{{mgmt_mask}}"
+    gateway: "{{mgmt_gateway}}"
+    nameserver: "{{mgmt_dns}}"
+#    domainsearch: "{{private_hosted_zone}}"
+    domainsearch: "{{public_hosted_zone}}"
+    cpu: 4
+    mem: 16GiB
+   
 
-#vms_2nics:
-
-  oshift-fc-nlb1.tennet.local:
-    ip: "{{lb01_ip}}"
+vms_2nics:
+  "{{ fqdnlb1 }}":
+    ip: "{{nlb01_ip}}"
     mask: "{{mgmt_mask}}"
     gateway: "{{mgmt_gateway}}"
     nameserver: "{{mgmt_dns}}"
     domainsearch: "{{public_hosted_zone}}"
 #    domainsearch: "{{private_hosted_zone}}"
+#    ip2: "{{nlb01_ip2}}"
+#    mask2: "{{pub_mask}}"
+#    gateway2: "{{pub_gateway}}"
+#    nameserver2: "{{pub_dns}}"
+#    domainsearch2: "{{public_hosted_zone}}"
     cpu: 2
     mem: 8GiB
 
-  oshift-fc-nlb2.tennet.local:
-    ip: "{{lb02_ip}}"
+  "{{ fqdnlb2 }}":
+    ip: "{{nlb02_ip}}"
     mask: "{{mgmt_mask}}"
     gateway: "{{mgmt_gateway}}"
     nameserver: "{{mgmt_dns}}"
     domainsearch: "{{public_hosted_zone}}"
 #    domainsearch: "{{private_hosted_zone}}"
+#    ip2: "{{nlb02_ip2}}"
+#    mask2: "{{pub_mask}}"
+#    gateway2: "{{pub_gateway}}"
+#    nameserver2: "{{pub_dns}}"
+#    domainsearch2: "{{public_hosted_zone}}"
     cpu: 2
     mem: 8GiB
 
 
-  oshift-fc-infra1.tennet.local:
-    ip: "{{infra01_ip}}"
-    mask: "{{mgmt_mask}}"
-    gateway: "{{mgmt_gateway}}"
-    nameserver: "{{mgmt_dns}}"
-#    domainsearch: "{{private_hosted_zone}}"
-    domainsearch: "{{public_hosted_zone}}"
-    cpu: 4
-    mem: 16GiB
-
-  oshift-fc-infra2.tennet.local:
-    ip: "{{infra02_ip}}"
-    mask: "{{mgmt_mask}}"
-    gateway: "{{mgmt_gateway}}"
-    nameserver: "{{mgmt_dns}}"
-#    domainsearch: "{{private_hosted_zone}}"
-    domainsearch: "{{public_hosted_zone}}"
-    cpu: 4
-    mem: 16GiB
-
-  oshift-fc-infra3.tennet.local:
-    ip: "{{infra03_ip}}"
-    mask: "{{mgmt_mask}}"
-    gateway: "{{mgmt_gateway}}"
-    nameserver: "{{mgmt_dns}}"
-#    domainsearch: "{{private_hosted_zone}}"
-    domainsearch: "{{public_hosted_zone}}"
-    cpu: 4
-    mem: 16GiB
-
-  oshift-fc-m1.tennet.local:
-    ip: "{{master01_ip}}"
-    mask: "{{mgmt_mask}}"
-    gateway: "{{mgmt_gateway}}"
-    nameserver: "{{mgmt_dns}}"
-#    domainsearch: "{{private_hosted_zone}}"
-    domainsearch: "{{public_hosted_zone}}"
-    cpu: 4
-    mem: 16GiB
-
-  oshift-fc-m2.tennet.local:
-    ip: "{{master02_ip}}"
-    mask: "{{mgmt_mask}}"
-    gateway: "{{mgmt_gateway}}"
-    nameserver: "{{mgmt_dns}}"
-#    domainsearch: "{{private_hosted_zone}}"
-    domainsearch: "{{public_hosted_zone}}"
-    cpu: 4
-    mem: 16GiB
-
-  oshift-fc-m3.tennet.local:
-    ip: "{{master03_ip}}"
-    mask: "{{mgmt_mask}}"
-    gateway: "{{mgmt_gateway}}"
-    nameserver: "{{mgmt_dns}}"
-#    domainsearch: "{{private_hosted_zone}}"
-    domainsearch: "{{public_hosted_zone}}"
-    cpu: 4
-    mem: 16GiB
-
+  
 

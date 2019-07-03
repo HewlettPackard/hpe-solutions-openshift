@@ -2,7 +2,7 @@
 
 Prior to using the instructions in this README.md file it is recommended that you read and understand the deployment guide found in the root of this folder. Instructions found in the deployment guide will take precedence over instructions in README.md files.
 
-This guide is accompanied by a Reference Configuration. The Reference Configuration highlights business value and provides a bill of material for the tested configuration. It can be download from https://h20195.www2.hpe.com/V2/GetDocument.aspx?docname=a00060153enw.
+This guide is accompanied by a Reference Configuration. The Reference Configuration highlights business value and provides a bill of material for the tested configuration. It can be download from https://h20195.www2.hpe.com/V2/GetDocument.aspx?docname=a00056101enw.
 
 ________________________________________
 ## About ##
@@ -48,7 +48,7 @@ ________________________________________
 ## Custom Attributes\Variable Files  ##
 ________________________________________
 	
-This variable file needs to be edited by the installer according to the installerâ€™s environment.
+This variable file needs to be edited by the installer according to the installer’s environment.
 
 In the root of the repository, the hosts file is the ansible inventory file and the vault_pass.yml is an encrypted file used to store senstive variables. The variable specified in these files must be modified to reflect the customers environment.
 **hosts**

@@ -22,127 +22,199 @@ datacenter: Default
 cluster: Default
 network: 'ovirtmgmt'
 vmtemplate: rhel7-template_7.5_2d-50G
-mgmt_gateway: 192.168.1.3
-mgmt_mask: 255.255.255.0
-mgmt_dns: 192.168.1.101
-public_hosted_zone: ocp.local
-pub_mask: 255.255.255.0
-pub_gateway: 192.168.50.1
-master0_ip: 192.168.1.180
-master1_ip: 192.168.1.181
-master2_ip: 192.168.1.182
-lb0_ip: 192.168.1.190
-infra0_ip: 192.168.1.184
-infra0_ip2: 192.168.50.30
-infra1_ip: 192.168.1.185
-infra1_ip2: 192.168.50.31
-infra2_ip: 192.168.1.186
-infra2_ip2: 192.168.50.32
-app0_ip: 192.168.1.187
-app1_ip: 192.168.1.188
-app2_ip: 192.168.1.189
+mgmt_gateway: 10.0.1.1
+mgmt_mask: 255.255.0.0
+mgmt_dns: 10.0.1.254
+#private_hosted_zone: tennet.local
+
+public_hosted_zone: tennet.local
+#pub_mask: 255.0.0.0
+#pub_gateway: 20.1.1.1
+#pub_dns: 20.1.1.254
+
+storage_mask: 255.255.0.0
+
+nmaster01_ip: 10.0.10.10
+nmaster01_ip2: 30.0.10.7
+nmaster01_ip3: 40.0.10.7
+
+nmaster02_ip: 10.0.10.11
+nmaster02_ip2: 30.0.10.7
+nmaster02_ip3: 40.0.10.7
+
+nmaster03_ip: 10.0.10.12
+nmaster03_ip2: 30.0.10.7
+nmaster03_ip3: 40.0.10.7
+
+nlb01_ip: 10.0.10.40
+#nlb01_ip2: 20.0.10.40
+
+nlb02_ip: 10.0.10.41
+#nlb02_ip2: 20.0.10.41
+
+ninfra01_ip: 10.0.10.30
+ninfra01_ip2: 30.0.10.30
+ninfra01_ip3: 40.0.10.30
+
+ninfra02_ip: 10.0.10.31
+ninfra02_ip2: 30.0.10.31
+ninfra02_ip3: 40.0.10.31
+
+ninfra03_ip: 10.0.10.32
+ninfra03_ip2: 30.0.10.32
+ninfra03_ip3: 40.0.10.32
+
+netcd01_ip : 10.0.10.20
+netcd02_ip : 10.0.10.21
+netcd03_ip : 10.0.10.22
 
 vms:
-  master0.ocp.local:
-    ip: "{{master0_ip}}"
+  netcd01.tennet.local:
+    ip: "{{netcd01_ip}}"
     mask: "{{mgmt_mask}}"
     gateway: "{{mgmt_gateway}}"
     nameserver: "{{mgmt_dns}}"
     domainsearch: "{{public_hosted_zone}}"
+#    domainsearch: "{{private_hosted_zone}}"
     cpu: 4
     mem: 16GiB
 
-  master1.ocp.local:
-    ip: "{{master1_ip}}"
+  netcd02.tennet.local:
+    ip: "{{netcd02_ip}}"
     mask: "{{mgmt_mask}}"
     gateway: "{{mgmt_gateway}}"
     nameserver: "{{mgmt_dns}}"
     domainsearch: "{{public_hosted_zone}}"
+#    domainsearch: "{{private_hosted_zone}}"
     cpu: 4
     mem: 16GiB
 
-  master2.ocp.local:
-    ip: "{{master2_ip}}"
+  netcd03.tennet.local:
+    ip: "{{netcd03_ip}}"
     mask: "{{mgmt_mask}}"
     gateway: "{{mgmt_gateway}}"
     nameserver: "{{mgmt_dns}}"
     domainsearch: "{{public_hosted_zone}}"
+#    domainsearch: "{{private_hosted_zone}}"
     cpu: 4
     mem: 16GiB
-   
-  lb0.ocp.local:
-    ip: "{{lb0_ip}}"
+
+#vms_2nics:
+
+  nlb01.tennet.local:
+    ip: "{{nlb01_ip}}"
     mask: "{{mgmt_mask}}"
     gateway: "{{mgmt_gateway}}"
     nameserver: "{{mgmt_dns}}"
     domainsearch: "{{public_hosted_zone}}"
+#    domainsearch: "{{private_hosted_zone}}"
+#    ip2: "{{nlb01_ip2}}"
+#    mask2: "{{pub_mask}}"
+#    gateway2: "{{pub_gateway}}"
+#    nameserver2: "{{pub_dns}}"
+#    domainsearch2: "{{public_hosted_zone}}"
     cpu: 2
     mem: 8GiB
 
-  app0.ocp.local:
-    ip: "{{app0_ip}}"
+  nlb02.tennet.local:
+    ip: "{{nlb02_ip}}"
     mask: "{{mgmt_mask}}"
     gateway: "{{mgmt_gateway}}"
     nameserver: "{{mgmt_dns}}"
     domainsearch: "{{public_hosted_zone}}"
-    cpu: 4
-    mem: 16GiB
+#    domainsearch: "{{private_hosted_zone}}"
+#    ip2: "{{nlb02_ip2}}"
+#    mask2: "{{pub_mask}}"
+#    gateway2: "{{pub_gateway}}"
+#    nameserver2: "{{pub_dns}}"
+#    domainsearch2: "{{public_hosted_zone}}"
+    cpu: 2
+    mem: 8GiB
 
-  app1.ocp.local:
-    ip: "{{app1_ip}}"
+vms_3nics:
+
+  ninfra01.tennet.local:
+    ip: "{{ninfra01_ip}}"
     mask: "{{mgmt_mask}}"
     gateway: "{{mgmt_gateway}}"
     nameserver: "{{mgmt_dns}}"
+#    domainsearch: "{{private_hosted_zone}}"
     domainsearch: "{{public_hosted_zone}}"
     cpu: 4
     mem: 16GiB
+    ip2: "{{ninfra01_ip2}}"
+    mask2: "{{storage_mask}}"
+    ip3: "{{ninfra01_ip3}}"
+    mask3: "{{storage_mask}}"    
 
-  app2.ocp.local:
-    ip: "{{app2_ip}}"
+  ninfra02.tennet.local:
+    ip: "{{ninfra02_ip}}"
     mask: "{{mgmt_mask}}"
     gateway: "{{mgmt_gateway}}"
     nameserver: "{{mgmt_dns}}"
+#    domainsearch: "{{private_hosted_zone}}"
     domainsearch: "{{public_hosted_zone}}"
     cpu: 4
     mem: 16GiB
+    ip2: "{{ninfra02_ip2}}"
+    mask2: "{{storage_mask}}"
+    ip3: "{{ninfra02_ip3}}"
+    mask3: "{{storage_mask}}"
 
-vms_2nics:
-
-  infra0.ocp.local:
-    ip: "{{infra0_ip}}"
+  ninfra03.tennet.local:
+    ip: "{{ninfra03_ip}}"
     mask: "{{mgmt_mask}}"
     gateway: "{{mgmt_gateway}}"
     nameserver: "{{mgmt_dns}}"
+#    domainsearch: "{{private_hosted_zone}}"
     domainsearch: "{{public_hosted_zone}}"
     cpu: 4
     mem: 16GiB
-    ip2: "{{infra0_ip2}}"
-    mask2: "{{pub_mask}}"
-    gateway2: "{{pub_gateway}}"
+    ip2: "{{ninfra03_ip2}}"
+    mask2: "{{storage_mask}}"
+    ip3: "{{ninfra03_ip3}}"
+    mask3: "{{storage_mask}}"
 
-  infra1.ocp.local:
-    ip: "{{infra1_ip}}"
+  nmaster01.tennet.local:
+    ip: "{{nmaster01_ip}}"
     mask: "{{mgmt_mask}}"
     gateway: "{{mgmt_gateway}}"
     nameserver: "{{mgmt_dns}}"
+#    domainsearch: "{{private_hosted_zone}}"
     domainsearch: "{{public_hosted_zone}}"
     cpu: 4
     mem: 16GiB
-    ip2: "{{infra1_ip2}}"
-    mask2: "{{pub_mask}}"
-    gateway2: "{{pub_gateway}}"
-  
-  infra2.ocp.local:
-    ip: "{{infra2_ip}}"
+    ip2: "{{nmaster01_ip2}}"
+    mask2: "{{storage_mask}}"
+    ip3: "{{nmaster01_ip3}}"
+    mask3: "{{storage_mask}}"
+
+  nmaster02.tennet.local:
+    ip: "{{nmaster02_ip}}"
     mask: "{{mgmt_mask}}"
     gateway: "{{mgmt_gateway}}"
     nameserver: "{{mgmt_dns}}"
+#    domainsearch: "{{private_hosted_zone}}"
     domainsearch: "{{public_hosted_zone}}"
     cpu: 4
     mem: 16GiB
-    ip2: "{{infra2_ip2}}"
-    mask2: "{{pub_mask}}"
-    gateway2: "{{pub_gateway}}"
+    ip2: "{{nmaster02_ip2}}"
+    mask2: "{{storage_mask}}"
+    ip3: "{{nmaster02_ip3}}"
+    mask3: "{{storage_mask}}"
 
+  nmaster03.tennet.local:
+    ip: "{{nmaster03_ip}}"
+    mask: "{{mgmt_mask}}"
+    gateway: "{{mgmt_gateway}}"
+    nameserver: "{{mgmt_dns}}"
+#    domainsearch: "{{private_hosted_zone}}"
+    domainsearch: "{{public_hosted_zone}}"
+    cpu: 4
+    mem: 16GiB
+    ip2: "{{nmaster03_ip2}}"
+    mask2: "{{storage_mask}}"
+    ip3: "{{nmaster03_ip3}}"
+    mask3: "{{storage_mask}}"
 
 

@@ -1,0 +1,351 @@
+---
+vcenter_hostname: 
+vcenter_username: 
+vcenter_password: 
+management_cluster_name: 
+worker_cluster_name:
+datacenter_name: 
+datastore_name: 
+vmtemplate: 
+
+# Disk size in GB/GiB
+master_disk_size: 
+infra_disk_size: 
+etcd_disk_size: 
+lb_disk_size: 
+worker_disk_size: 
+
+# number of CPUs
+master_cpu_size: 
+infra_cpu_size: 
+etcd_cpu_size: 
+lb_cpu_size: 
+worker_cpu_size: 
+
+# Memory size in MB/MiB
+master_memory_size: 
+infra_memory_size: 
+etcd_memory_size: 
+lb_memory_size: 
+worker_memory_size: 
+
+master01_ip: 
+master02_ip: 
+master03_ip: 
+infra01_ip: 
+infra02_ip: 
+infra03_ip: 
+etcd01_ip: 
+etcd02_ip: 
+etcd03_ip: 
+lb01_ip: 
+lb02_ip: 
+worker01_ip: 
+worker02_ip: 
+worker03_ip: 
+
+master01_ip2: 
+master02_ip2: 
+master03_ip2: 
+infra01_ip2: 
+infra02_ip2: 
+infra03_ip2: 
+etcd01_ip2: 
+etcd02_ip2: 
+etcd03_ip2: 
+lb01_ip2: 
+lb02_ip2: 
+worker01_ip2: 
+worker02_ip2: 
+worker03_ip2: 
+
+master01_ip3: 
+master02_ip3: 
+master03_ip3: 
+infra01_ip3: 
+infra02_ip3: 
+infra03_ip3: 
+etcd01_ip3: 
+etcd02_ip3: 
+etcd03_ip3: 
+lb01_ip3: 
+lb02_ip3: 
+worker01_ip3: 
+worker02_ip3: 
+worker03_ip3: 
+
+master01_fqdn: 
+master02_fqdn: 
+master03_fqdn: 
+etcd01_fqdn: 
+etcd02_fqdn: 
+etcd03_fqdn: 
+infra01_fqdn: 
+infra02_fqdn: 
+infra03_fqdn: 
+lb01_fqdn: 
+lb02_fqdn: 
+worker01_fqdn: 
+worker02_fqdn: 
+worker03_fqdn: 
+
+master01_name: 
+master02_name: 
+master03_name: 
+etcd01_name: 
+etcd02_name: 
+etcd03_name: 
+infra01_name: 
+infra02_name: 
+infra03_name: 
+lb01_name: 
+lb02_name: 
+worker01_name: 
+worker02_name:
+worker03_name: 
+
+subnet_mask: 
+gateway_address: 
+dns_server_address: 
+domain_name: ""
+network_name: ""
+
+######################### No Need To Change #########################
+dumpfacts: False
+vm_type: vmxnet3
+disk_type: thin
+
+management_vms:
+  "{{ master01_fqdn }}":
+    ip: "{{ master01_ip }}"
+    ip2: "{{ master01_ip2 }}" 
+    ip3: "{{ master01_ip3 }}"
+    name: "{{ master01_name }}"
+    cpu: "{{ master_cpu_size }}"
+    mem: "{{ master_memory_size }}"
+    disk_size: "{{ master_disk_size }}"
+    netmask: "{{ subnet_mask }}"
+    gateway: "{{ gateway_address }}"
+    dns_server: "{{ dns_server_address }}"
+    domain: "{{ domain_name }}"
+    network: "{{ network_name }}"
+
+  "{{ master02_fqdn }}":
+    ip: "{{ master02_ip }}"
+    ip2: "{{ master02_ip2 }}" 
+    ip3: "{{ master02_ip3 }}"
+    name: "{{ master02_name }}"
+    cpu: "{{ master_cpu_size }}"
+    mem: "{{ master_memory_size }}"
+    disk_size: "{{ master_disk_size }}"
+    netmask: "{{ subnet_mask }}"
+    gateway: "{{ gateway_address }}"
+    dns_server: "{{ dns_server_address }}"
+    domain: "{{ domain_name }}"
+    network: "{{ network_name }}"
+
+  "{{ master03_fqdn }}":
+    ip: "{{ master03_ip }}"
+    ip2: "{{ master03_ip2 }}" 
+    ip3: "{{ master03_ip3 }}"
+    name: "{{ master03_name }}"
+    cpu: "{{ master_cpu_size }}"
+    mem: "{{ master_memory_size }}"
+    disk_size: "{{ master_disk_size }}"
+    netmask: "{{ subnet_mask }}"
+    gateway: "{{ gateway_address }}"
+    dns_server: "{{ dns_server_address }}"
+    domain: "{{ domain_name }}"
+    network: "{{ network_name }}"
+
+  "{{ infra01_fqdn }}":
+    ip: "{{ infra01_ip }}"
+    ip2: "{{ infra01_ip2 }}"
+    ip3: "{{ infra01_ip3 }}"
+    name: "{{ infra01_name }}"
+    cpu: "{{ infra_cpu_size }}"
+    mem: "{{ infra_memory_size }}"
+    disk_size: "{{ infra_disk_size }}"
+    netmask: "{{ subnet_mask }}"
+    gateway: "{{ gateway_address }}"
+    dns_server: "{{ dns_server_address }}"
+    domain: "{{ domain_name }}"
+    network: "{{ network_name }}"
+
+  "{{ infra02_fqdn }}":
+    ip: "{{ infra02_ip }}"
+    ip2: "{{ infra02_ip2 }}"
+    ip3: "{{ infra02_ip3 }}"
+    name: "{{ infra02_name }}"
+    cpu: "{{ infra_cpu_size }}"
+    mem: "{{ infra_memory_size }}"
+    disk_size: "{{ infra_disk_size }}"
+    netmask: "{{ subnet_mask }}"
+    gateway: "{{ gateway_address }}"
+    dns_server: "{{ dns_server_address }}"
+    domain: "{{ domain_name }}"
+    network: "{{ network_name }}"
+
+  "{{ infra03_fqdn }}":
+    ip: "{{ infra03_ip }}"
+    ip2: "{{ infra03_ip2 }}"
+    ip3: "{{ infra03_ip3 }}"
+    name: "{{ infra03_name }}"
+    cpu: "{{ infra_cpu_size }}"
+    mem: "{{ infra_memory_size }}"
+    disk_size: "{{ infra_disk_size }}"
+    netmask: "{{ subnet_mask }}"
+    gateway: "{{ gateway_address }}"
+    dns_server: "{{ dns_server_address }}"
+    domain: "{{ domain_name }}"
+    network: "{{ network_name }}"
+
+  "{{ etcd01_fqdn }}":
+    ip: "{{ etcd01_ip }}"
+    ip2: "{{ etcd01_ip2 }}"
+    ip3: "{{ etcd01_ip3 }}"
+    name: "{{ etcd01_name }}"
+    cpu: "{{ etcd_cpu_size }}"
+    mem: "{{ etcd_memory_size }}"
+    disk_size: "{{ etcd_disk_size }}"
+    netmask: "{{ subnet_mask }}"
+    gateway: "{{ gateway_address }}"
+    dns_server: "{{ dns_server_address }}"
+    domain: "{{ domain_name }}"
+    network: "{{ network_name }}"
+
+  "{{ etcd02_fqdn }}":
+    ip: "{{ etcd02_ip }}"
+    ip2: "{{ etcd02_ip2 }}"
+    ip3: "{{ etcd02_ip3 }}"
+    name: "{{ etcd02_name }}"
+    cpu: "{{ etcd_cpu_size }}"
+    mem: "{{ etcd_memory_size }}"
+    disk_size: "{{ etcd_disk_size }}"
+    netmask: "{{ subnet_mask }}"
+    gateway: "{{ gateway_address }}"
+    dns_server: "{{ dns_server_address }}"
+    domain: "{{ domain_name }}"
+    network: "{{ network_name }}"
+
+  "{{ etcd03_fqdn }}":
+    ip: "{{ etcd03_ip }}"
+    ip2: "{{ etcd03_ip2 }}"
+    ip3: "{{ etcd03_ip3 }}"
+    name: "{{ etcd03_name }}"
+    cpu: "{{ etcd_cpu_size }}"
+    mem: "{{ etcd_memory_size }}"
+    disk_size: "{{ etcd_disk_size }}"
+    netmask: "{{ subnet_mask }}"
+    gateway: "{{ gateway_address }}"
+    dns_server: "{{ dns_server_address }}"
+    domain: "{{ domain_name }}"
+    network: "{{ network_name }}"
+
+  "{{ lb01_fqdn }}":
+    ip: "{{ lb01_ip }}"
+    ip2: "{{ lb01_ip2 }}"
+    ip3: "{{ lb01_ip3 }}"
+    name: "{{ lb01_name }}"
+    cpu: "{{ lb_cpu_size }}"
+    mem: "{{ lb_memory_size }}"
+    disk_size: "{{ lb_disk_size }}"
+    netmask: "{{ subnet_mask }}"
+    gateway: "{{ gateway_address }}"
+    dns_server: "{{ dns_server_address }}"
+    domain: "{{ domain_name }}"
+    network: "{{ network_name }}"
+
+  "{{ lb02_fqdn }}":
+    ip: "{{ lb02_ip }}"
+    ip2: "{{ lb02_ip2 }}"
+    ip3: "{{ lb02_ip3 }}"
+    name: "{{ lb02_name }}"
+    cpu: "{{ lb_cpu_size }}"
+    mem: "{{ lb_memory_size }}"
+    disk_size: "{{ lb_disk_size }}"
+    netmask: "{{ subnet_mask }}"
+    gateway: "{{ gateway_address }}"
+    dns_server: "{{ dns_server_address }}"
+    domain: "{{ domain_name }}"
+    network: "{{ network_name }}"
+
+worker_vms:
+  "{{ worker01_fqdn }}":
+    ip: "{{ worker01_ip }}"
+    ip2: "{{ worker01_ip2 }}"
+    ip3: "{{ worker01_ip3 }}"
+    name: "{{ worker01_name }}"
+    cpu: "{{ worker_cpu_size }}"
+    mem: "{{ worker_memory_size }}"
+    disk_size: "{{ worker_disk_size }}"
+    netmask: "{{ subnet_mask }}"
+    gateway: "{{ gateway_address }}"
+    dns_server: "{{ dns_server_address }}"
+    domain: "{{ domain_name }}"
+    network: "{{ network_name }}"
+
+  "{{ worker02_fqdn }}":
+    ip: "{{ worker02_ip }}"
+    ip2: "{{ worker02_ip2 }}"
+    ip3: "{{ worker02_ip3 }}"
+    name: "{{ worker02_name }}"
+    cpu: "{{ worker_cpu_size }}"
+    mem: "{{ worker_memory_size }}"
+    disk_size: "{{ worker_disk_size }}"
+    netmask: "{{ subnet_mask }}"
+    gateway: "{{ gateway_address }}"
+    dns_server: "{{ dns_server_address }}"
+    domain: "{{ domain_name }}"
+    network: "{{ network_name }}"
+
+  "{{ worker03_fqdn }}":
+    ip: "{{ worker03_ip }}"
+    ip2: "{{ worker03_ip2 }}"
+    ip3: "{{ worker03_ip3 }}"
+    name: "{{ worker03_name }}"
+    cpu: "{{ worker_cpu_size }}"
+    mem: "{{ worker_memory_size }}"
+    disk_size: "{{ worker_disk_size }}"
+    netmask: "{{ subnet_mask }}"
+    gateway: "{{ gateway_address }}"
+    dns_server: "{{ dns_server_address }}"
+    domain: "{{ domain_name }}"
+    network: "{{ network_name }}"
+
+management_vm_names:
+  - "{{ master01_name }}"
+  - "{{ master02_name }}"
+  - "{{ master03_name }}"
+  - "{{ etcd01_name1 }}"
+  - "{{ etcd02_name }}"
+  - "{{ etcd03_name }}"
+  - "{{ infra01_name }}"
+  - "{{ infra02_name }}"
+  - "{{ infra03_name }}"
+  - "{{ lb01_name }}"
+  - "{{ lb02_name }}"
+
+worker_vm_names:
+  - "{{ worker01_name }}"
+  - "{{ worker02_name }}"
+  - "{{ worker03_name }}"
+
+vm_names:
+  - "{{ master01_name }}"
+  - "{{ master02_name }}"
+  - "{{ master03_name }}"
+  - "{{ etcd01_name1 }}"
+  - "{{ etcd02_name }}"
+  - "{{ etcd03_name }}"
+  - "{{ infra01_name }}"
+  - "{{ infra02_name }}"
+  - "{{ infra03_name }}"
+  - "{{ lb01_name }}"
+  - "{{ lb02_name }}"
+  - "{{ worker01_name }}"
+  - "{{ worker02_name }}"
+  - "{{ worker03_name }}"
+  - "{{ worker01_name }}"
+  - "{{ worker02_name }}"
+  - "{{ worker03_name }}"

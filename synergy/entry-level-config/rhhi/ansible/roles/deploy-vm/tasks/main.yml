@@ -45,11 +45,11 @@
     auth: "{{ ovirt_auth }}"
     name: "{{ cluster }}"
     data_center: "{{ datacenter }}"
-    description: "Default Cluster 1"
-    cpu_type: "Intel Haswell-noTSX Family"
+#    description: "Default Cluster 1"
+#    cpu_type: "Intel Haswell-noTSX Family"
     switch_type: legacy
     compatibility_version: 4.2
-    gluster: true
+    gluster: false
     ballooning: false
     ha_reservation: true
     memory_policy: server
@@ -106,7 +106,51 @@
   with_dict: "{{ vms }}"
 
 
-- name: Create Ovirt VM for infra nodes
+#- name: Create Ovirt VM for LB  nodes
+#  ovirt_vms:
+#    auth: "{{ ovirt_auth }}"
+#    name: "{{ item.key }}"
+#    template: "{{ vmtemplate }}"
+#    type: server
+#    cluster: "{{ cluster }}"
+#    memory: "{{ item.value.mem }}"
+#    memory_guaranteed: "{{ item.value.mem }}"
+#    operating_system: rhel_7x64
+#    state: running
+#    cloud_init_nics:
+#       - nic_name: eth0
+#         nic_boot_protocol: static
+#         nic_ip_address: "{{ item.value.ip }}"
+#         nic_netmask: "{{ item.value.mask }}"
+#         nic_gateway: "{{ item.value.gateway }}"
+#         nic_on_boot: true
+#       - nic_name: eth3
+#         nic_boot_protocol: static
+#         nic_ip_address: "{{ item.value.ip2 }}"
+#         nic_netmask: "{{ item.value.mask2 }}"
+#         nic_gateway: "{{ item.value.gateway2 }}"
+#         nic_on_boot: true
+#    cloud_init:
+#      dns_servers: "{{item.value.nameserver}} {{item.value.nameserver2}}"
+#      dns_search: "{{item.value.domainsearch}} {{item.value.domainsearch2}}"
+#      nic_on_boot: true
+#      host_name: "{{ item.key }}"
+#      user_name: root
+#      root_password: "{{ ansible_ssh_pass }}"
+#      custom_script: |
+#         write_files:
+#         - content: |
+#              network: {config: disabled}
+#           path: /etc/cloud/cloud.cfg.d/10_miq_cloud.cfg
+#           content: |
+#              sed -i '/nameserver 192.168.122.1/d' /etc/resolv.conf
+#           path: /tmp/resol.sh
+#           permissions: '0755'
+#         runcmd:
+#           - /tmp/resol.sh
+#  with_dict: "{{ vms_2nics  }}"
+
+- name: Create Ovirt Master and Infra  nodes
   ovirt_vms:
     auth: "{{ ovirt_auth }}"
     name: "{{ item.key }}"
@@ -128,8 +172,13 @@
          nic_boot_protocol: static
          nic_ip_address: "{{ item.value.ip2 }}"
          nic_netmask: "{{ item.value.mask2 }}"
-         nic_gateway: "{{ item.value.gateway2 }}"
          nic_on_boot: true
+       - nic_name: eth2
+         nic_boot_protocol: static
+         nic_ip_address: "{{ item.value.ip3 }}"
+         nic_netmask: "{{ item.value.mask3 }}"
+         nic_on_boot: true
+
     cloud_init:
       dns_servers: "{{item.value.nameserver}}"
       dns_search: "{{item.value.domainsearch}}"
@@ -148,7 +197,7 @@
            permissions: '0755'
          runcmd:
            - /tmp/resol.sh
-  with_dict: "{{ vms_2nics  }}"
+  with_dict: "{{ vms_3nics  }}"
 
 
 
@@ -165,11 +214,11 @@
     host_enforcing: false
     host_rule: positive
     vms:
-      - master0.{{ public_hosted_zone }}
-      - infra0.{{ public_hosted_zone }}
-      - app0.{{ public_hosted_zone }}
+      - nmaster01.{{ public_hosted_zone }}
+      - ninfra02.{{ public_hosted_zone }}
+      - netcd03.{{ public_hosted_zone }}
     hosts:
-      - rhhi1.{{ public_hosted_zone }}
+      - nrhvh03.{{ public_hosted_zone }}
 
 
 - name: set affinity groupB
@@ -182,11 +231,12 @@
     host_enforcing: false
     host_rule: positive
     vms:
-      - master1.{{ public_hosted_zone }}
-      - infra1.{{ public_hosted_zone }}
-      - app1.{{ public_hosted_zone }}
+      - nmaster02.{{ public_hosted_zone }}
+      - ninfra02.{{ public_hosted_zone }}
+      - netcd02.{{ public_hosted_zone }}
+      - nlb01.{{ public_hosted_zone }}
     hosts:
-      - rhhi2.{{ public_hosted_zone }}
+      - nrhvh03.{{ public_hosted_zone }}
 
 
 - name: set affinity groupC
@@ -199,14 +249,12 @@
     host_enforcing: false
     host_rule: positive
     vms:
-      - master2.{{ public_hosted_zone }}
-      - infra2.{{ public_hosted_zone }}
-      - app2.{{ public_hosted_zone }}
+      - nmaster03.{{ public_hosted_zone }}
+      - ninfra03.{{ public_hosted_zone }}
+      - netcd03.{{ public_hosted_zone }}
+      - nlb02.{{ public_hosted_zone }}
     hosts:
-      - rhhi3.{{ public_hosted_zone }}
-
-
-
+      - nrhvh03.{{ public_hosted_zone }}
 
 
 #  post_tasks:

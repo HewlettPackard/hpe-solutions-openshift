@@ -18,5 +18,9 @@
 ---
 # vars file for host-prepare
 
-pool_ids_vms_1: "{{ vault_rhsub_pool }}"
+#pool_ids_vms: 
+#            "{{ vault_rhsub_pool }}"
+
+second_disk_physical: /dev/mapper/mpatha
+
 

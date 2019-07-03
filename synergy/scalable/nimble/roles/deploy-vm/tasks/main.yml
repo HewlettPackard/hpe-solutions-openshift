@@ -36,7 +36,7 @@
     auth: "{{ ovirt_auth }}"
     name: "{{ datacenter }}"
     comment: "Our primary DC"
-    compatibility_version: 4.2
+#    compatibility_version: 4.2
     quota_mode: disabled
     local: False
 
@@ -46,7 +46,7 @@
     name: "{{ cluster }}"
     data_center: "{{ datacenter }}"
     switch_type: legacy
-    compatibility_version: 4.2
+#    compatibility_version: 4.2
     gluster: false
     ballooning: false
     ha_reservation: true
@@ -153,7 +153,58 @@
            - /tmp/resol.sh
   with_dict: "{{ vms_3nics  }}"
 
+- name: Create Ovirt Worker VMs if defined
+  ovirt_vms:
+    auth: "{{ ovirt_auth }}"
+    name: "{{ item.key }}"
+    template: "{{ vmtemplate }}"
+    type: server
+    cluster: "{{ cluster }}"
+    memory: "{{ item.value.mem }}"
+    memory_guaranteed: "{{ item.value.mem }}"
+    operating_system: rhel_7x64
+    state: running
+    cloud_init_nics:
+       - nic_name: eth0
+         nic_boot_protocol: static
+         nic_ip_address: "{{ item.value.ip }}"
+         nic_netmask: "{{ item.value.mask }}"
+         nic_gateway: "{{ item.value.gateway }}"
+         nic_on_boot: true
+       - nic_name: eth1
+         nic_boot_protocol: static
+         nic_ip_address: "{{ item.value.ip2 }}"
+         nic_netmask: "{{ item.value.mask2 }}"
+         nic_on_boot: true
+       - nic_name: eth2
+         nic_boot_protocol: static
+         nic_ip_address: "{{ item.value.ip3 }}"
+         nic_netmask: "{{ item.value.mask3 }}"
+         nic_on_boot: true
 
+    cloud_init:
+      dns_servers: "{{item.value.nameserver}}"
+      dns_search: "{{item.value.domainsearch}}"
+      nic_on_boot: true
+      host_name: "{{ item.key }}"
+      user_name: root
+      root_password: "{{ ansible_ssh_pass }}"
+      custom_script: |
+         write_files:
+         - content: |
+              network: {config: disabled}
+           path: /etc/cloud/cloud.cfg.d/10_miq_cloud.cfg
+           content: |
+              sed -i '/nameserver 192.168.122.1/d' /etc/resolv.conf
+           path: /tmp/resol.sh
+           permissions: '0755'
+         runcmd:
+           - /tmp/resol.sh
+  with_dict: "{{ vms_3nics_worker  }}"
+  when: 
+     - fqdnworker1 != None or fqdnworker2 != None or fqdnworker3 != None
+     - nworker01_ip != None or nworker02_ip != None or nworker03_ip != None
+  ignore_errors: yes
 
 
 # set affinity groups
@@ -172,13 +223,10 @@
       - "{{ fqdninfra1 }}"
       - "{{ fqdnetcd1 }}"
       - "{{ fqdnlb1 }}"
-#      - nmaster01.{{ public_hosted_zone }}
-#      - ninfra02.{{ public_hosted_zone }}
-#      - netcd03.{{ public_hosted_zone }}
     hosts:
       - "{{ fqdnrhv1 }}"
-#      - nrhvh01.{{ public_hosted_zone }}
-
+  when:
+    - fqdnrhv1 is defined
 
 - name: set affinity groupB
   ovirt_affinity_group:
@@ -195,14 +243,10 @@
       - "{{ fqdninfra2 }}"
       - "{{ fqdnetcd2 }}"
       - "{{ fqdnlb2 }}"
-
-#      - nmaster02.{{ public_hosted_zone }}
-#      - ninfra02.{{ public_hosted_zone }}
-#      - netcd02.{{ public_hosted_zone }}
-#      - nlb01.{{ public_hosted_zone }}
     hosts:
       - "{{ fqdnrhv2 }}"
-#      - nrhvh02.{{ public_hosted_zone }}
+  when:
+    - fqdnrhv2 is defined
 
 
 - name: set affinity groupC
@@ -219,17 +263,14 @@
       - "{{ fqdnmaster3 }}"
       - "{{ fqdninfra3 }}"
       - "{{ fqdnetcd3 }}"
-
-#      - nmaster03.{{ public_hosted_zone }}
-#      - ninfra03.{{ public_hosted_zone }}
-#      - netcd03.{{ public_hosted_zone }}
-#      - nlb02.{{ public_hosted_zone }}
     hosts:
       - "{{ fqdnrhv3 }}"
-#      - nrhvh03.{{ public_hosted_zone }}
+  when:
+    - fqdnrhv3 is defined
 
+- name: Wait for Seconds before proceeding
+  wait_for: timeout=120
 
-#  post_tasks:
 - name: Logout from oVirt
   ovirt_auth:
     state: absent

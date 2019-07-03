@@ -19,6 +19,7 @@
 - name: nworkers role 
   hosts: 
     - nworkerhosts
- 
+  vars_files:
+    - ../vault_pass.yml
   roles: 
     - ./roles/nworkers

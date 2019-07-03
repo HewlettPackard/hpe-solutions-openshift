@@ -5,5 +5,8 @@
     - rhvm
   gather_facts: true
   remote_user: root
+  vars_files:
+   - ../roles/deploy-vm/tasks/vm-ips.yml
+   - ../vault_pass.yml
   roles:
    - ../roles/deploy-vm

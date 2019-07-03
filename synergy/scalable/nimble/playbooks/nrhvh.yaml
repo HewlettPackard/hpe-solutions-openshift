@@ -19,5 +19,8 @@
 - name: nrhvh
   hosts: 
     - nrhvh
+  vars_files:
+    - ../vault_pass.yml
+
   roles: 
-    - ./roles/nrhvh
+    - ../roles/nrhvh

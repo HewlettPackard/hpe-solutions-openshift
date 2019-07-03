@@ -4,3 +4,4 @@
 - import_tasks: hostreg.yaml
 - import_tasks: repos.yaml
 - import_tasks: yumtasks.yaml
+- import_tasks: mgbond.yaml

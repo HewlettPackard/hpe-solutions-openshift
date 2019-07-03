@@ -20,4 +20,4 @@
   hosts: 
     - 3rhvh
   roles: 
-    - ./roles/3rhvh
+    - ../roles/3rhvh

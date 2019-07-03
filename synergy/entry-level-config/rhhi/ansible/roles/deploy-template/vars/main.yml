@@ -21,10 +21,10 @@ engine_cafile: '/etc/pki/ovirt-engine/ca.pem'
 datacenter: Default
 cluster: Default
 network: 'ovirtmgmt'
-disk_storage_domain: vmstore
-template_disk_storage: vmstore
-qcow_url: http://192.168.1.101/qcow/rhel75.qcow2
-#qcow_url: "https://access.cdn.redhat.com//content/origin/files/sha256/67/67d22decd6e962036ad4869b45140986263b18a36ed661add868f548feb314b3/rhel-server-7.5-update-3-x86_64-kvm.qcow2?_auth_=<auth code>"
+disk_storage_domain: NimbleRHVHCluster
+template_disk_storage: NimbleRHVHCluster
+#qcow_url: http://192.168.1.101/qcow/rhel75.qcow2
+qcow_url: "https://access.cdn.redhat.com//content/origin/files/sha256/3b/3b356c54d6927a7c16b10862e7b09f0d7ed0071a53f90c9f411f4e255c24f918/rhel-server-7.6-x86_64-kvm.qcow2?user=66b0b7cbb69893080beed34034f928cc&_auth_=1542885113_8c629753556379c54808e573398d1194"
 image_path: '/var/images/rhel-server-7.5-50G'
 template_name: rhel7-template_7.5_2d-50G
 vm_name: rhel7_5-template_vm
@@ -39,6 +39,12 @@ template_nics:
     profile_name: ovirtmgmt
     interface: virtio
   - name: nic2
+    profile_name: iscsi_a
+    interface: virtio
+  - name: nic3
+    profile_name: iscsi_b
+    interface: virtio
+  - name: nic4
     profile_name: Public
     interface: virtio
 template_operating_system: rhel_7x64

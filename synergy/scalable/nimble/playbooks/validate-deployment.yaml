@@ -19,7 +19,8 @@
 - name: Deploy Docker Registry with persistent storage role
   hosts:
    - masters
-   
+  vars_files:
+   - ../vault_pass.yml
   roles:
    - ./roles/validate-deployment
 

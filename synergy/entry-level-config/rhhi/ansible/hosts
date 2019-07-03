@@ -14,23 +14,40 @@
 ## limitations under the License.
 ####
 
-
-
 [rhv]
-192.168.10.170
-192.168.10.171
-192.168.10.172
+nrhvh01.tennet.local
+#nrhvh02.tennet.local
+#nrhvh03.tennet.local
 
 [rhvm]
-ovirteng.ocp.local
+ovirtnim.tennet.local
 
 [master]
 192.168.10.170 hostname=rhhi1.ocp.local bond0=192.168.1.170
 
-[rhhi]
-192.168.10.170 hostname=rhhi1.ocp.local mgmt_ip=192.168.1.170 pub_ip=192.168.50.170 storage_ip=192.168.20.170
-192.168.10.171 hostname=rhhi2.ocp.local mgmt_ip=192.168.1.171 pub_ip=192.168.50.171 storage_ip=192.168.20.171
-192.168.10.172 hostname=rhhi3.ocp.local mgmt_ip=192.168.1.172 pub_ip=192.168.50.172 storage_ip=192.168.20.172
+#[rhhi]
+#192.168.10.170 hostname=rhhi1.ocp.local mgmt_ip=192.168.1.170 pub_ip=192.168.50.170 storage_ip=192.168.20.170
+#192.168.10.171 hostname=rhhi2.ocp.local mgmt_ip=192.168.1.171 pub_ip=192.168.50.171 storage_ip=192.168.20.171
+#192.168.10.172 hostname=rhhi3.ocp.local mgmt_ip=192.168.1.172 pub_ip=192.168.50.172 storage_ip=192.168.20.172
+
+[virtual-nodes]
+nmaster01.tennet.local
+nmaster02.tennet.local
+nmaster03.tennet.local
+netcd01.tennet.local
+netcd02.tennet.local
+netcd03.tennet.local
+ninfra01.tennet.local
+ninfra02.tennet.local
+ninfra03.tennet.local
+nlb01.tennet.local
+nlb02.tennet.local
+
+[physical-nodes]
+#nworker01.tennet.local
+nworker02.tennet.local
+##nworker03.tennet.local
+#
 
 
 [OSEv3:children]
@@ -38,33 +55,44 @@ masters
 nodes
 etcd
 lb
-glusterfs
-glusterfs_registry
-apps
+#apps
+infra
 
 [OSEv3:vars]
+ansible_ssh_user=oshiftuser
+ansible_become=true
 openshift_deployment_type=openshift-enterprise
+#openshift_install_examples=false
+openshift_router_selector='region=infra'
+openshift_registry_selector='region=infra'
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login':'true', 'challenge': 'true','kind': 'HTPasswdPasswordIdentityProvider',}]
-openshift_master_htpasswd_users={'myuser': '$apr1$zAhyA9Ko$rBxBOwAwwtRuuaw8OtCwH0'}
-app_dns_prefix=apps
-public_hosted_zone=ocp.local
-load_balancer_hostname=lb0.{{public_hosted_zone}}
-openshift_master_cluster_hostname="{{ load_balancer_hostname }}"
-openshift_master_cluster_public_hostname=openshift-master.{{ public_hosted_zone }}
-openshift_master_default_subdomain="{{ app_dns_prefix }}.{{ public_hosted_zone }}"
-openshift_public_hostname="{{openshift_master_cluster_public_hostname}}"
+openshift_master_htpasswd_file=/etc/oshift-hash-pass.htpasswd
+#openshift_master_htpasswd_users={'myuser': '$apr1$zAhyA9Ko$rBxBOwAwwtRuuaw8OtCwH0'}
+#app_dns_prefix=nlb
+public_hosted_zone=tennet.local
+load_balancer_hostname=nlb01.tennet.local
+openshift_master_cluster_hostname=nlb01.tennet.local
+openshift_master_cluster_public_hostname=nlb01.tennet.local
+#openshift_master_default_subdomain=nlb01.twentynet.local
+openshift_public_hostname=nlb01.tennet.local
 #oreg_url="registry.access.redhat.com/openshift3/ose-${component}:${version}"
 #openshift_examples_modify_imagestreams=true
+openshift_master_bootstrap_auto_approve=true
+openshift_master_bootstrap_auto_approver_node_selector={"node-role.kubernetes.io/compute":"true"}
 openshift_master_cluster_method=native
 openshift_enable_service_catalog=False
-os_sdn_network_plugin_name=redhat/openshift-ovs-networkpolicy
-   
+openshift_use_openshift_sdn=true
+osm_cluster_network_cidr=12.0.0.0/8
+osm_host_subnet_length=9
+
+#openshift_disable_check=docker_storage
+#os_sdn_network_plugin_name=redhat/openshift-ovs-networkpolicy
 #[OSEv3:vars]
 # registry
-openshift_hosted_registry_storage_kind=glusterfs
-openshift_hosted_registry_storage_volume_size=10Gi
+#openshift_hosted_registry_storage_kind=glusterfs
+#openshift_hosted_registry_storage_volume_size=10Gi
 openshift_hosted_registry_selector="node-role.kubernetes.io/infra=true"
-openshift_master_dynamic_provisioning_enabled=true   
+#openshift_master_dynamic_provisioning_enabled=true   
 # logging
 #openshift_logging_install_logging=true
 #openshift_logging_es_pvc_dynamic=true
@@ -85,77 +113,78 @@ openshift_master_dynamic_provisioning_enabled=true
 #openshift_metrics_heapster_nodeselector={"node-role.kubernetes.io/infra": "true"}
    
 # Container image to use for glusterfs pods
-openshift_storage_glusterfs_image="registry.access.redhat.com/rhgs3/rhgs-server-rhel7:v3.9"
+#openshift_storage_glusterfs_image="registry.access.redhat.com/rhgs3/rhgs-server-rhel7:v3.9"
   
 # Container image to use for glusterblock-provisioner pod
-openshift_storage_glusterfs_block_image="registry.access.redhat.com/rhgs3/rhgs-gluster-block-prov-rhel7:v3.9"
+#openshift_storage_glusterfs_block_image="registry.access.redhat.com/rhgs3/rhgs-gluster-block-prov-rhel7:v3.9"
 
   
 # Container image to use for heketi pods
-openshift_storage_glusterfs_heketi_image="registry.access.redhat.com/rhgs3/rhgs-volmanager-rhel7:v3.9"
+#openshift_storage_glusterfs_heketi_image="registry.access.redhat.com/rhgs3/rhgs-volmanager-rhel7:v3.9"
     
 # CNS storage cluster
-openshift_storage_glusterfs_namespace=app-storage
-openshift_storage_glusterfs_storageclass=true
-openshift_storage_glusterfs_storageclass_default=false
-openshift_storage_glusterfs_block_deploy=false
-openshift_storage_glusterfs_block_host_vol_create=false
-openshift_storage_glusterfs_block_host_vol_size=100
-openshift_storage_glusterfs_block_storageclass=false
-openshift_storage_glusterfs_block_storageclass_default=false
+#openshift_storage_glusterfs_namespace=app-storage
+#openshift_storage_glusterfs_storageclass=true
+#openshift_storage_glusterfs_storageclass_default=false
+#openshift_storage_glusterfs_block_deploy=false
+#openshift_storage_glusterfs_block_host_vol_create=false
+#openshift_storage_glusterfs_block_host_vol_size=100
+#openshift_storage_glusterfs_block_storageclass=false
+#openshift_storage_glusterfs_block_storageclass_default=false
   
 # CNS storage for OpenShift infrastructure
-openshift_storage_glusterfs_registry_namespace=infra-storage
-openshift_storage_glusterfs_registry_storageclass=false
-openshift_storage_glusterfs_registry_block_deploy=true
-openshift_storage_glusterfs_registry_block_host_vol_create=true
-openshift_storage_glusterfs_registry_block_host_vol_size=26
-openshift_storage_glusterfs_registry_block_storageclass=true
-openshift_storage_glusterfs_registry_block_storageclass_default=false
+#openshift_storage_glusterfs_registry_namespace=infra-storage
+#openshift_storage_glusterfs_registry_storageclass=false
+#openshift_storage_glusterfs_registry_block_deploy=true
+#openshift_storage_glusterfs_registry_block_host_vol_create=true
+#openshift_storage_glusterfs_registry_block_host_vol_size=26
+#openshift_storage_glusterfs_registry_block_storageclass=true
+#openshift_storage_glusterfs_registry_block_storageclass_default=false
    
-[glusterfs]
-app0.ocp.local glusterfs_zone=1 glusterfs_devices='["/dev/sda"]'
-app1.ocp.local glusterfs_zone=2 glusterfs_devices='["/dev/sda"]'
-app2.ocp.local glusterfs_zone=3 glusterfs_devices='["/dev/sda"]'
+#[glusterfs]
+#app0.ocp.local glusterfs_zone=1 glusterfs_devices='["/dev/sda"]'
+#app1.ocp.local glusterfs_zone=2 glusterfs_devices='["/dev/sda"]'
+#app2.ocp.local glusterfs_zone=3 glusterfs_devices='["/dev/sda"]'
   
-[glusterfs_registry]
-infra0.ocp.local glusterfs_zone=1 glusterfs_devices='["/dev/sda"]'
-infra1.ocp.local glusterfs_zone=2 glusterfs_devices='["/dev/sda"]'
-infra2.ocp.local glusterfs_zone=3 glusterfs_devices='["/dev/sda"]'
-
+#[glusterfs_registry]
+#infra0.ocp.local glusterfs_zone=1 glusterfs_devices='["/dev/sda"]'
+#infra1.ocp.local glusterfs_zone=2 glusterfs_devices='["/dev/sda"]'
+#infra2.ocp.local glusterfs_zone=3 glusterfs_devices='["/dev/sda"]'
+#
 
 
 [masters]
-master0.ocp.local master0_ip=192.168.1.180
-master1.ocp.local master1_ip=192.168.1.181
-master2.ocp.local master2_ip=192.168.1.182
+nmaster01.tennet.local # master0_ip=192.168.1.180
+nmaster02.tennet.local #master1_ip=192.168.1.181
+nmaster03.tennet.local #master2_ip=192.168.1.182
 
 [etcd]
-master0.ocp.local
-master1.ocp.local
-master2.ocp.local
+netcd01.tennet.local
+netcd02.tennet.local
+netcd03.tennet.local
 
 [lb]
-lb0.ocp.local lb0_ip=192.168.1.190
+nlb01.tennet.local #lb0_ip=192.168.1.190
+nlb02.tennet.local
 
 [infra]
-infra0.ocp.local infra0_ip=192.168.1.184
-infra1.ocp.local infra1_ip=192.168.1.185
-infra2.ocp.local infra2_ip=192.168.1.186
+ninfra01.tennet.local #infra0_ip=192.168.1.184
+ninfra02.tennet.local #infra1_ip=192.168.1.185
+ninfra03.tennet.local #infra2_ip=192.168.1.186
 
-[apps]
-app0.ocp.local app0_ip=192.168.1.187
-app1.ocp.local app1_ip=192.168.1.188
-app2.ocp.local app2_ip=192.168.1.189
+#[apps]
+#nworker01.tennet.local #app0_ip=192.168.1.187
+#nworker02.tennet.local #app1_ip=192.168.1.188
+#nworker03.tennet.local #app2_ip=192.168.1.189
 
 [nodes]
-master0.ocp.local openshift_node_group_name='node-config-master' 
-master1.ocp.local openshift_node_group_name='node-config-master'
-master2.ocp.local openshift_node_group_name='node-config-master'
-infra0.ocp.local openshift_node_group_name='node-config-infra'
-infra1.ocp.local openshift_node_group_name='node-config-infra'
-infra2.ocp.local openshift_node_group_name='node-config-infra'
-app0.ocp.local openshift_node_group_name='node-config-compute'
-app1.ocp.local openshift_node_group_name='node-config-compute'
-app2.ocp.local openshift_node_group_name='node-config-compute'
+nmaster01.tennet.local openshift_node_group_name='node-config-master' 
+nmaster02.tennet.local openshift_node_group_name='node-config-master' 
+nmaster03.tennet.local openshift_node_group_name='node-config-master' 
+ninfra01.tennet.local openshift_node_group_name='node-config-infra'
+ninfra02.tennet.local openshift_node_group_name='node-config-infra'
+ninfra03.tennet.local openshift_node_group_name='node-config-infra'
+#nworker01.tennet.local openshift_node_group_name='node-config-compute'
+nworker02.tennet.local openshift_node_group_name='node-config-compute'
+#nworker03.tennet.local openshift_node_group_name='node-config-compute'
 

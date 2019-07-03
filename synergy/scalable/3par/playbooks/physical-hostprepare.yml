@@ -1,0 +1,9 @@
+---
+
+- name: prepare hosts
+  hosts:
+    - physical-nodes
+  gather_facts: true
+  remote_user: root
+  roles:
+   - ../roles/physical-host-prepare

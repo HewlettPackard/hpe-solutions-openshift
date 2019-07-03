@@ -1,0 +1,5 @@
+[servers]
+"serial_number, bay_number" name="" ip="" hostname="" type=""
+
+[server_profile_template]
+"serial_number, bay_number" type=""

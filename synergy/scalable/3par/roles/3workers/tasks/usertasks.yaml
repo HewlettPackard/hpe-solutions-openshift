@@ -38,12 +38,12 @@
     line: '%wheel     ALL=(ALL)     NOPASSWD: ALL'
     validate: 'visudo -cf %s'
 
-- name: Upload the SSH public key
-  authorized_key:
-    user: oshiftuser
-    state: present
-    manage_dir: yes
-    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+#- name: Upload the SSH public key
+#  authorized_key:
+#    user: oshiftuser
+#    state: present
+#    manage_dir: yes
+#    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
 - name: Add DNS entry to the resolv.conf
   lineinfile:

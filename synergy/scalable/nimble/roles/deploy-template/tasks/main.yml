@@ -23,7 +23,7 @@
     mode: 0755
 
 - name: Download the qcow image
-    get_url:
+  get_url:
     url: "{{ qcow_url }}"
     dest: "{{ image_path }}"
     force: "{{ not image_cache_download }}"
@@ -52,7 +52,7 @@
 - block:
   - name: Login to oVirt
     ovirt_auth:
-      url: "{{ engine_url | default(omit) }}"
+      url: "{{ vault_engine_url | default(omit) }}"
       username: "{{ vault_engine_user | default(omit) }}"
       password: "{{ vault_engine_password | default(omit) }}"
       ca_file: "{{ engine_cafile | default(omit) }}"
@@ -188,6 +188,7 @@
       tags:
         - ovirt-template-image
 
+     
     - name: Logout from oVirt
       ovirt_auth:
         state: absent
@@ -195,5 +196,6 @@
       tags:
         - always
 
-
+#  - name: Wait for Seconds before proceeding
+#    wait_for: timeout=120
 

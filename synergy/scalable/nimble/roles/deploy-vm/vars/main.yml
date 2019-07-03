@@ -5,7 +5,7 @@
 ## You may not use this file except in compliance with the License.
 ## You may obtain a copy of the License at
 ##
-## http://www.apache.org/licenses/LICENSE-2.0
+## http://www.apache.org/licenses/LICENSE-2.0
 ##
 ## Unless required by applicable law or agreed to in writing, software
 ## distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,222 +16,114 @@
 
 
 ---
-# vars file for deploy-vm
-engine_cafile: '/etc/pki/ovirt-engine/ca.pem'
-datacenter: Default
-cluster: Default
-network: 'ovirtmgmt'
-vmtemplate: rhel7-template_7.5_2d-50G
-mgmt_gateway: 10.0.1.1
+#Variables used for Virtual Machine deployment for OCP instllation
+engine_cafile: '/etc/pki/ovirt-engine/ca.pem'     #RHV-M cafile location. Default location is /etc/pki/ovirt-engine/ca.pem
+datacenter: Default                               #RHV-M datacenter to be used for VM deployment
+cluster: Default                                  #RHV-M cluster  to be used for template deployment
+network: 'ovirtmgmt'                              #Network label for VM
+#vmtemplate: rhel7-template_7.6_2d-50G             #emplate for Vm deployment
+vmtemplate: rhel7-template_7.5_2d-50G             #emplate for Vm deployment
+
+#Management Network details
+mgmt_gateway: 10.0.1.1                            
 mgmt_mask: 255.255.0.0
 mgmt_dns: 10.0.1.254
 #private_hosted_zone: tennet.local
 
+#
 public_hosted_zone: tennet.local
 #pub_mask: 255.0.0.0
 #pub_gateway: 20.1.1.1
 #pub_dns: 20.1.1.254
 
-fqdnmaster1: nmaster01.tennet.local
-fqdnmaster2: nmaster02.tennet.local
-fqdnmaster3: nmaster03.tennet.local
-fqdnetcd1: netcd01.tennet.local
-fqdnetcd2: netcd02.tennet.local
-fqdnetcd3: netcd03.tennet.local
-fqdninfra1: ninfra01.tennet.local
-fqdninfra2: ninfra02.tennet.local
-fqdninfra3: ninfra03.tennet.local
-fqdnlb1: nlb01.tennet.local
-fqdnlb2: nlb02.tennet.local
+#Virtual Machine FQDN details
+fqdnmaster1: hm-master01.tennet.local
+fqdnmaster2: hm-master02.tennet.local
+fqdnmaster3: hm-master03.tennet.local
+fqdnetcd1: hm-etcd01.tennet.local
+fqdnetcd2: hm-etcd02.tennet.local
+fqdnetcd3: hm-etcd03.tennet.local
+fqdninfra1: hm-infra01.tennet.local
+fqdninfra2: hm-infra02.tennet.local
+fqdninfra3: hm-infra03.tennet.local
+fqdnlb1: hm-lb01.tennet.local
+fqdnlb2: hm-lb02.tennet.local
+fqdnworker1: hm-worker01.tennet.local
+fqdnworker2:   #hm-worker02.tennet.local
+fqdnworker3:   #hm-worker03.tennet.local
 
-#fqdn of RHVH cluster where the VMs are getting deployed
+#RHVH host FQDN where the VMs get deployed 
 fqdnrhv1: nrhvh01.tennet.local
-fqdnrhv2: nrhvh02.tennet.local
+#fqdnrhv2: nrhvh02.tennet.local
 fqdnrhv3: nrhvh03.tennet.local
 
+master_cpu: 4
+master_mem: 16GiB
+
+infra_cpu: 4
+infra_mem: 24GiB
+
+etcd_cpu: 4
+etcd_mem: 16GiB
+
+vir_worker_cpu: 4
+vir_worker_mem: 16GiB
+
+lb_cpu: 2
+lb_mem: 8GiB
+
+
+#Subnet Mask for the storage network
 storage_mask: 255.255.0.0
 
-nmaster01_ip: 10.0.140.10
-nmaster01_ip2: 30.0.10.7
-nmaster01_ip3: 40.0.10.7
+#IP detaild of the Master Nodes
+nmaster01_ip: 10.0.140.30
+nmaster01_ip2: 30.0.140.30
+nmaster01_ip3: 40.0.140.30
 
-nmaster02_ip: 10.0.140.11
-nmaster02_ip2: 30.0.10.7
-nmaster02_ip3: 40.0.10.7
+nmaster02_ip: 10.0.140.31
+nmaster02_ip2: 30.0.140.31
+nmaster02_ip3: 40.0.140.31
 
-nmaster03_ip: 10.0.140.12
-nmaster03_ip2: 30.0.10.7
-nmaster03_ip3: 40.0.10.7
+nmaster03_ip: 10.0.140.32
+nmaster03_ip2: 30.0.140.32
+nmaster03_ip3: 40.0.140.32
 
-nlb01_ip: 10.0.170.10
+#IP details of the Load balancer Nodes
+nlb01_ip: 10.0.140.60
 #nlb01_ip2: 20.0.10.40
 
-nlb02_ip: 10.0.170.11
+nlb02_ip: 10.0.140.61
 #nlb02_ip2: 20.0.10.41
 
-ninfra01_ip: 10.0.160.10
-ninfra01_ip2: 30.0.10.30
-ninfra01_ip3: 40.0.10.30
+# Ip details of the Infra Nodes
+ninfra01_ip: 10.0.140.50
+ninfra01_ip2: 30.0.140.50
+ninfra01_ip3: 40.0.140.50
 
-ninfra02_ip: 10.0.160.11
-ninfra02_ip2: 30.0.10.31
-ninfra02_ip3: 40.0.10.31
+ninfra02_ip: 10.0.140.51
+ninfra02_ip2: 30.0.140.51
+ninfra02_ip3: 40.0.140.51
 
-ninfra03_ip: 10.0.160.12
-ninfra03_ip2: 30.0.10.32
-ninfra03_ip3: 40.0.10.32
+ninfra03_ip: 10.0.140.52
+ninfra03_ip2: 30.0.140.52
+ninfra03_ip3: 40.0.140.52
 
-netcd01_ip : 10.0.150.10
-netcd02_ip : 10.0.150.11
-netcd03_ip : 10.0.150.12
+#IP details of the ETCD Nodes
+netcd01_ip : 10.0.140.40
+netcd02_ip : 10.0.140.41
+netcd03_ip : 10.0.140.42
 
-vms:
-  netcd01.tennet.local:
-    ip: "{{netcd01_ip}}"
-    mask: "{{mgmt_mask}}"
-    gateway: "{{mgmt_gateway}}"
-    nameserver: "{{mgmt_dns}}"
-    domainsearch: "{{public_hosted_zone}}"
-#    domainsearch: "{{private_hosted_zone}}"
-    cpu: 4
-    mem: 16GiB
 
-  netcd02.tennet.local:
-    ip: "{{netcd02_ip}}"
-    mask: "{{mgmt_mask}}"
-    gateway: "{{mgmt_gateway}}"
-    nameserver: "{{mgmt_dns}}"
-    domainsearch: "{{public_hosted_zone}}"
-#    domainsearch: "{{private_hosted_zone}}"
-    cpu: 4
-    mem: 16GiB
+nworker01_ip: 10.0.140.70
+nworker01_ip2: 30.0.140.70
+nworker01_ip3: 40.0.140.70
 
-  netcd03.tennet.local:
-    ip: "{{netcd03_ip}}"
-    mask: "{{mgmt_mask}}"
-    gateway: "{{mgmt_gateway}}"
-    nameserver: "{{mgmt_dns}}"
-    domainsearch: "{{public_hosted_zone}}"
-#    domainsearch: "{{private_hosted_zone}}"
-    cpu: 4
-    mem: 16GiB
+nworker02_ip: #10.0.140.71
+nworker02_ip2: 30.0.140.71
+nworker02_ip3: 40.0.140.71
 
-#vms_2nics:
-
-  nlb01.tennet.local:
-    ip: "{{nlb01_ip}}"
-    mask: "{{mgmt_mask}}"
-    gateway: "{{mgmt_gateway}}"
-    nameserver: "{{mgmt_dns}}"
-    domainsearch: "{{public_hosted_zone}}"
-#    domainsearch: "{{private_hosted_zone}}"
-#    ip2: "{{nlb01_ip2}}"
-#    mask2: "{{pub_mask}}"
-#    gateway2: "{{pub_gateway}}"
-#    nameserver2: "{{pub_dns}}"
-#    domainsearch2: "{{public_hosted_zone}}"
-    cpu: 2
-    mem: 8GiB
-
-  nlb02.tennet.local:
-    ip: "{{nlb02_ip}}"
-    mask: "{{mgmt_mask}}"
-    gateway: "{{mgmt_gateway}}"
-    nameserver: "{{mgmt_dns}}"
-    domainsearch: "{{public_hosted_zone}}"
-#    domainsearch: "{{private_hosted_zone}}"
-#    ip2: "{{nlb02_ip2}}"
-#    mask2: "{{pub_mask}}"
-#    gateway2: "{{pub_gateway}}"
-#    nameserver2: "{{pub_dns}}"
-#    domainsearch2: "{{public_hosted_zone}}"
-    cpu: 2
-    mem: 8GiB
-
-vms_3nics:
-
-  ninfra01.tennet.local:
-    ip: "{{ninfra01_ip}}"
-    mask: "{{mgmt_mask}}"
-    gateway: "{{mgmt_gateway}}"
-    nameserver: "{{mgmt_dns}}"
-#    domainsearch: "{{private_hosted_zone}}"
-    domainsearch: "{{public_hosted_zone}}"
-    cpu: 4
-    mem: 16GiB
-    ip2: "{{ninfra01_ip2}}"
-    mask2: "{{storage_mask}}"
-    ip3: "{{ninfra01_ip3}}"
-    mask3: "{{storage_mask}}"    
-
-  ninfra02.tennet.local:
-    ip: "{{ninfra02_ip}}"
-    mask: "{{mgmt_mask}}"
-    gateway: "{{mgmt_gateway}}"
-    nameserver: "{{mgmt_dns}}"
-#    domainsearch: "{{private_hosted_zone}}"
-    domainsearch: "{{public_hosted_zone}}"
-    cpu: 4
-    mem: 16GiB
-    ip2: "{{ninfra02_ip2}}"
-    mask2: "{{storage_mask}}"
-    ip3: "{{ninfra02_ip3}}"
-    mask3: "{{storage_mask}}"
-
-  ninfra03.tennet.local:
-    ip: "{{ninfra03_ip}}"
-    mask: "{{mgmt_mask}}"
-    gateway: "{{mgmt_gateway}}"
-    nameserver: "{{mgmt_dns}}"
-#    domainsearch: "{{private_hosted_zone}}"
-    domainsearch: "{{public_hosted_zone}}"
-    cpu: 4
-    mem: 16GiB
-    ip2: "{{ninfra03_ip2}}"
-    mask2: "{{storage_mask}}"
-    ip3: "{{ninfra03_ip3}}"
-    mask3: "{{storage_mask}}"
-
-  nmaster01.tennet.local:
-    ip: "{{nmaster01_ip}}"
-    mask: "{{mgmt_mask}}"
-    gateway: "{{mgmt_gateway}}"
-    nameserver: "{{mgmt_dns}}"
-#    domainsearch: "{{private_hosted_zone}}"
-    domainsearch: "{{public_hosted_zone}}"
-    cpu: 4
-    mem: 16GiB
-    ip2: "{{nmaster01_ip2}}"
-    mask2: "{{storage_mask}}"
-    ip3: "{{nmaster01_ip3}}"
-    mask3: "{{storage_mask}}"
-
-  nmaster02.tennet.local:
-    ip: "{{nmaster02_ip}}"
-    mask: "{{mgmt_mask}}"
-    gateway: "{{mgmt_gateway}}"
-    nameserver: "{{mgmt_dns}}"
-#    domainsearch: "{{private_hosted_zone}}"
-    domainsearch: "{{public_hosted_zone}}"
-    cpu: 4
-    mem: 16GiB
-    ip2: "{{nmaster02_ip2}}"
-    mask2: "{{storage_mask}}"
-    ip3: "{{nmaster02_ip3}}"
-    mask3: "{{storage_mask}}"
-
-  nmaster03.tennet.local:
-    ip: "{{nmaster03_ip}}"
-    mask: "{{mgmt_mask}}"
-    gateway: "{{mgmt_gateway}}"
-    nameserver: "{{mgmt_dns}}"
-#    domainsearch: "{{private_hosted_zone}}"
-    domainsearch: "{{public_hosted_zone}}"
-    cpu: 4
-    mem: 16GiB
-    ip2: "{{nmaster03_ip2}}"
-    mask2: "{{storage_mask}}"
-    ip3: "{{nmaster03_ip3}}"
-    mask3: "{{storage_mask}}"
-
+nworker03_ip: #10.0.140.72
+nworker03_ip2: 30.0.140.72
+nworker03_ip3: 40.0.140.72
 

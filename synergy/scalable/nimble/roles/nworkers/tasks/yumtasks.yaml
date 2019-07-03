@@ -50,8 +50,8 @@
     - atomic
 
 
-- name: Reboot the host prior to running next play
-  command: /sbin/shutdown -r +1
-  async: 0
-  poll: 0
-  ignore_errors: true
+#- name: Reboot the host prior to running next play
+#  command: /sbin/shutdown -r +1
+#  async: 0
+#  poll: 0
+#  ignore_errors: true

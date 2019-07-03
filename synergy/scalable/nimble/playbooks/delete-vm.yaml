@@ -22,6 +22,9 @@
     - etcd
     - lb
   gather_facts: false
+
+  vars_files:
+    - ../vault_pass.yml
   
   tasks: 
   - name: Unregister VMs 
@@ -34,6 +37,8 @@
  
   vars_files: 
     - ../roles/deploy-vm/vars/main.yml
+    - ../roles/deploy-vm/tasks/vm-ips.yml
+    - ../vault_pass.yml
   
   tasks: 
   - name: Log in to oVirt 

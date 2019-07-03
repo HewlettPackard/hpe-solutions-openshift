@@ -14,47 +14,58 @@
 ## limitations under the License.
 ####
 
+#RedHat Virtualization Host details 
 [rhv]
-nrhvh01.tennet.local  
-nrhvh02.tennet.local  
-nrhvh03.tennet.local  
+hmrhvh01.tennet.local  bondip2=20.0.140.8 iscsiaip=30.0.140.8 iscsibip=40.0.140.8 name=hmrhvh01 iqnstring=hmrhvh01 fqdn=hmrhvh01.tennet.local
+#nrhvh01.tennet.local  
+#nrhvh02.tennet.local  
+#nrhvh03.tennet.local  
 
+#RedHat Virtualization Manager/Ovirt Engine FQDN
 [rhvm]
 ovirtnim.tennet.local
 
-
+#RHEL 7.6 Physical worker node details
 [nworkerhosts]
-nworker01.tennet.local iscsiaip=30.0.9.1 iscsibip=40.0.9.1  team1ip=20.0.9.1 iqnstring=nworker01 
-nworker02.tennet.local iscsiaip=30.0.9.2 iscsibip=40.0.9.2  team1ip=20.0.9.2 iqnstring=nworker02 
-nworker03.tennet.local iscsiaip=30.0.9.3 iscsibip=40.0.9.3  team1ip=20.0.9.3 iqnstring=nworker03 
-nworker04.tennet.local iscsiaip=30.0.9.4 iscsibip=40.0.9.4  team1ip=20.0.9.4 iqnstring=nworker04
-nworker05.tennet.local iscsiaip=30.0.9.5 iscsibip=40.0.9.5  team1ip=20.0.9.5 iqnstring=nworker05
+#nworker01.tennet.local iscsiaip=30.0.9.1 iscsibip=40.0.9.1  team1ip=20.0.9.1 iqnstring=nworker01 
+#nworker02.tennet.local iscsiaip=30.0.9.2 iscsibip=40.0.9.2  team1ip=20.0.9.2 iqnstring=nworker02 
+#nworker03.tennet.local iscsiaip=30.0.9.3 iscsibip=40.0.9.3  team1ip=20.0.9.3 iqnstring=nworker03 
+#nworker04.tennet.local iscsiaip=30.0.9.4 iscsibip=40.0.9.4  team1ip=20.0.9.4 iqnstring=nworker04
+#nimworker05.tennet.local iscsiaip=30.0.9.5 iscsibip=40.0.9.5  team1ip=20.0.9.5 iqnstring=nimworker05
+nimworker01.tennet.local iscsiaip=30.0.9.101 iscsibip=40.0.9.101 team1ip=20.0.9.5 iqnstring=nimworker01
 
-
+#RedHat Virtualization Host for PXE network boot and network bond configuration
 [nrhvh]
-192.168.3.161 fqdn=nrhvh01.tennet.local bondip1=10.0.9.7 bondip2=20.0.9.7 iscsiaip=30.0.9.7 iscsibip=40.0.9.7 name=nrhvh01 iqnstring=nrhvh01
-192.168.3.162 fqdn=nrhvh02.tennet.local bondip1=10.0.9.8 bondip2=20.0.9.8 iscsiaip=30.0.9.8 iscsibip=40.0.9.8 name=nrhvh02 iqnstring=nrhvh02
-192.168.3.163 fqdn=nrhvh03.tennet.local bondip1=10.0.9.9 bondip2=20.0.9.9 iscsiaip=30.0.9.9 iscsibip=40.0.9.9 name=nrhvh03 iqnstring=nrhvh03
+192.168.4.188 fqdn=hmrhvh01.tennet.local bondip1=10.0.140.8 fqdn=hmrhvh01.tennet.local name=hmrhvh01
+#192.168.3.161 fqdn=nrhvh01.tennet.local bondip1=10.0.9.7 bondip2=20.0.9.7 iscsiaip=30.0.9.7 iscsibip=40.0.9.7 name=nrhvh01 iqnstring=nrhvh01
+#192.168.3.162 fqdn=nrhvh02.tennet.local bondip1=10.0.9.8 bondip2=20.0.9.8 iscsiaip=30.0.9.8 iscsibip=40.0.9.8 name=nrhvh02 iqnstring=nrhvh02
+#192.168.3.163 fqdn=nrhvh03.tennet.local bondip1=10.0.9.9 bondip2=20.0.9.9 iscsiaip=30.0.9.9 iscsibip=40.0.9.9 name=nrhvh03 iqnstring=nrhvh03
 
+# FQDN of the Virtual RHEL 7.6 Machines used for the OCP Management nodes
 [virtual-nodes]
-nmaster01.tennet.local   
-nmaster02.tennet.local   
-nmaster03.tennet.local   
-netcd01.tennet.local    
-netcd02.tennet.local   
-netcd03.tennet.local   
-ninfra01.tennet.local   
-ninfra02.tennet.local  
-ninfra03.tennet.local 
-nlb01.tennet.local   
-nlb02.tennet.local  
+hm-master01.tennet.local   
+hm-master02.tennet.local   
+hm-master03.tennet.local   
+hm-etcd01.tennet.local    
+hm-etcd02.tennet.local   
+hm-etcd03.tennet.local   
+hm-infra01.tennet.local   
+hm-infra02.tennet.local  
+hm-infra03.tennet.local 
+hm-lb01.tennet.local   
+hm-lb02.tennet.local  
+hm-worker01.tennet.local
+hm-worker02.tennet.local
+hm-worker03.tennet.local
 
+#FQDN of the Physical RHEL 7.6 used for the OCP Worker Nodes
 [physical-nodes]
-nworker01.tennet.local
-nworker02.tennet.local
-nworker03.tennet.local
-nworker04.tennet.local
-nworker05.tennet.local
+#nworker01.tennet.local
+#nworker02.tennet.local
+#nworker03.tennet.local
+#nworker04.tennet.local
+#nimworker05.tennet.local
+nimworker01.tennet.local
 
 
 [OSEv3:children]
@@ -64,59 +75,89 @@ etcd
 lb
 infra
 
+#Variables used for OCP 3.11 installation
 [OSEv3:vars]
-ansible_ssh_user=oshiftuser
-ansible_become=true
-openshift_release="3.10"
+ansible_ssh_user=oshiftuser                           #user used for OCP installation
+ansible_become=true                                   
+openshift_release="3.11"
+oreg_auth_user="{{ vault_rhsub_user }}"               
+oreg_auth_password="{{ vault_rhsub_pass }}"
 openshift_deployment_type=openshift-enterprise
-openshift_router_selector='region=infra'
-openshift_registry_selector='region=infra'
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login':'true', 'challenge': 'true','kind': 'HTPasswdPasswordIdentityProvider',}]
-openshift_master_htpasswd_file=/etc/oshift-hash-pass.htpasswd
+openshift_master_htpasswd_users={'admin': '$apr1$.2z6VpLB$nzgma7hGC54MF06OujRtw.'}
+#openshift_master_htpasswd_file=/etc/oshift-hash-pass.htpasswd         #location of the hashed htpasswd file
 public_hosted_zone=tennet.local
-load_balancer_hostname=nlb01.tennet.local
-openshift_master_cluster_hostname=nlb01.tennet.local
-openshift_master_cluster_public_hostname=nlb01.tennet.local
-openshift_public_hostname=nlb01.tennet.local
-openshift_install_examples=false
+load_balancer_hostname=hm-lb01.tennet.local
+openshift_master_cluster_hostname=hm-lb01.tennet.local
+openshift_master_cluster_public_hostname=hm-lb01.tennet.local
+openshift_public_hostname=hm-lb01.tennet.local
 openshift_master_cluster_method=native
 openshift_use_openshift_sdn=true
-osm_cluster_network_cidr=12.0.0.0/8
+osm_cluster_network_cidr=12.0.0.0/8                     #Internal Pod network 
 osm_host_subnet_length=9
 openshift_registry_selector='node-role.kubernetes.io/infra=true'
 openshift_router_selector='node-role.kubernetes.io/infra=true'
-openshift_enable_service_catalog=False
+openshift_enable_service_catalog=true
+
+# To Enable Logging for OCP 3.11 , uncomment the following section
+#openshift_logging_install_logging=true
+#openshift_logging_es_pvc_dynamic=true
+#openshift_logging_es_pvc_size=200Gi                    #PVC size for Elasticsearch, change the size depending on the environment 
+#openshift_logging_elasticsearch_storage_type=pvc      
+#openshift_logging_es_pvc_prefix=oc-efk-log
+#openshift_logging_es_cluster_size=3
+#openshift_logging_es_nodeselector={"node-role.kubernetes.io/infra": "true"}
+#openshift_logging_kibana_nodeselector={"node-role.kubernetes.io/infra": "true"}
+#openshift_logging_curator_nodeselector={"node-role.kubernetes.io/infra": "true"}
+#openshift_logging_fluentd_nodeselector={"node-role.kubernetes.io/infra": "true"}
+#openshift_logging_es_number_of_replicas=3
+#openshift_logging_es_allow_external=true
+#openshift_logging_es_hostname=es.router.tennet.local
+#openshift_logging_kibana_hostname=kibana.router.tennet.local   #Kibana hostname/URL for EFK Logging dashboard
+
+
+#To Enable Monitoring for OCP 3.11, uncomment the following section
+#openshift_cluster_monitoring_operator_install=true
+#openshift_cluster_monitoring_operator_node_selector={"node-role.kubernetes.io/infra": "true"}
+#openshift_cluster_monitoring_operator_prometheus_storage_enabled=true
+#openshift_cluster_monitoring_operator_alertmanager_storage_enabled=true
+#openshift_cluster_monitoring_operator_prometheus_storage_capacity=100Gi  #PVC size for Prometheus, change the size depending on the environment
+#openshift_cluster_monitoring_operator_alertmanager_storage_capacity=20Gi #PVC size for Alertmanager, change the size depending on the environment
+#openshift_cluster_monitoring_operator_prometheus_storage_enabled=true
+#openshift_cluster_monitoring_operator_alertmanager_storage_enabled=true
 
 
 [masters]
-nmaster01.tennet.local 
-nmaster02.tennet.local 
-nmaster03.tennet.local 
+hm-master01.tennet.local 
+hm-master02.tennet.local 
+hm-master03.tennet.local 
 
 [etcd]
-netcd01.tennet.local
-netcd02.tennet.local
-netcd03.tennet.local
+hm-etcd01.tennet.local
+hm-etcd02.tennet.local
+hm-etcd03.tennet.local
 
 [lb]
-nlb01.tennet.local 
-nlb02.tennet.local
+hm-lb01.tennet.local 
+hm-lb02.tennet.local
 
 [infra]
-ninfra01.tennet.local 
-ninfra02.tennet.local 
-ninfra03.tennet.local
+hm-infra01.tennet.local 
+hm-infra02.tennet.local 
+hm-infra03.tennet.local
 
 [nodes]
-nmaster01.tennet.local openshift_node_group_name='node-config-master' 
-nmaster02.tennet.local openshift_node_group_name='node-config-master' 
-nmaster03.tennet.local openshift_node_group_name='node-config-master' 
-ninfra01.tennet.local openshift_node_group_name='node-config-infra'
-ninfra02.tennet.local openshift_node_group_name='node-config-infra'
-ninfra03.tennet.local openshift_node_group_name='node-config-infra'
-nworker01.tennet.local openshift_node_group_name='node-config-compute'
-nworker02.tennet.local openshift_node_group_name='node-config-compute'
-nworker03.tennet.local openshift_node_group_name='node-config-compute'
-nworker04.tennet.local openshift_node_group_name='node-config-compute'
-nworker05.tennet.local openshift_node_group_name='node-config-compute'
+hm-master01.tennet.local openshift_node_group_name='node-config-master' 
+hm-master02.tennet.local openshift_node_group_name='node-config-master' 
+hm-master03.tennet.local openshift_node_group_name='node-config-master' 
+hm-infra01.tennet.local openshift_node_group_name='node-config-infra'
+hm-infra02.tennet.local openshift_node_group_name='node-config-infra'
+hm-infra03.tennet.local openshift_node_group_name='node-config-infra'
+nimworker01.tennet.local openshift_node_group_name='node-config-compute'
+#nimworker02.tennet.local openshift_node_group_name='node-config-compute'
+#nimworker03.tennet.local openshift_node_group_name='node-config-compute'
+#nimworker04.tennet.local openshift_node_group_name='node-config-compute'
+hm-worker01.tennet.local openshift_node_group_name='node-config-compute'
+hm-worker02.tennet.local openshift_node_group_name='node-config-compute'
+hm-worker03.tennet.local openshift_node_group_name='node-config-compute'
 

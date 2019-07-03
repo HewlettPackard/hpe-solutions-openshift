@@ -36,7 +36,7 @@
     auth: "{{ ovirt_auth }}"
     name: "{{ datacenter }}"
     comment: "Our primary DC"
-    compatibility_version: 4.2
+#    compatibility_version: 4.2
     quota_mode: disabled
     local: False
 
@@ -46,7 +46,7 @@
     name: "{{ cluster }}"
     data_center: "{{ datacenter }}"
     switch_type: legacy
-    compatibility_version: 4.2
+#    compatibility_version: 4.2
     gluster: false
     ballooning: false
     ha_reservation: true
@@ -103,6 +103,49 @@
          runcmd:
   with_dict: "{{ vms }}"
 
+
+- name: Create Ovirt Master and Infra  nodes
+  ovirt_vms:
+    auth: "{{ ovirt_auth }}"
+    name: "{{ item.key }}"
+    template: "{{ vmtemplate }}"
+    type: server
+    cluster: "{{ cluster }}"
+    memory: "{{ item.value.mem }}"
+    memory_guaranteed: "{{ item.value.mem }}"
+    operating_system: rhel_7x64
+    state: running
+    cloud_init_nics:
+       - nic_name: eth0
+         nic_boot_protocol: static
+         nic_ip_address: "{{ item.value.ip }}"
+         nic_netmask: "{{ item.value.mask }}"
+         nic_gateway: "{{ item.value.gateway }}"
+         nic_on_boot: true
+      
+    cloud_init:
+      dns_servers: "{{item.value.nameserver}}"
+      dns_search: "{{item.value.domainsearch}}"
+      nic_on_boot: true
+      host_name: "{{ item.key }}"
+      user_name: root
+      root_password: "{{ ansible_ssh_pass }}"
+      custom_script: |
+         write_files:
+         - content: |
+              network: {config: disabled}
+           path: /etc/cloud/cloud.cfg.d/10_miq_cloud.cfg
+           content: |
+              sed -i '/nameserver 192.168.122.1/d' /etc/resolv.conf
+           path: /tmp/resol.sh
+           permissions: '0755'
+         runcmd:
+           - /tmp/resol.sh
+  with_dict: "{{ vms_2nics  }}"
+
+
+
+
 # set affinity groups
 
 - name: set affinity groupA
@@ -121,7 +164,8 @@
       - "{{ fqdnlb1 }}"
     hosts:
       - "{{ fqdnrhv1 }}"
-
+  when:
+    - fqdnrhv1 is defined
 
 - name: set affinity groupB
   ovirt_affinity_group:
@@ -140,6 +184,8 @@
       - "{{ fqdnlb2 }}"
     hosts:
       - "{{ fqdnrhv2 }}"
+  when:
+    - fqdnrhv2 is defined
 
 
 - name: set affinity groupC
@@ -158,9 +204,9 @@
       - "{{ fqdnetcd3 }}"
     hosts:
       - "{{ fqdnrhv3 }}"
+  when:
+    - fqdnrhv3 is defined
 
-
-#  post_tasks:
 - name: Logout from oVirt
   ovirt_auth:
     state: absent

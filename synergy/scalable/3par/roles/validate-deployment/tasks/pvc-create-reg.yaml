@@ -17,7 +17,7 @@
 ---
     - name: Copy Persistent Volume claim Yaml file to Mster Node
       copy:
-        src: pvc_example.yml
+        src: var-nimble-iscsi-claim-reg.yaml
         dest: /tmp/nimble-iscsi-claim-reg.yaml
         backup: yes
         force: yes

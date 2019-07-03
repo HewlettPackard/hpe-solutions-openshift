@@ -1,0 +1,9 @@
+---
+
+- name: prepare hosts
+  hosts:
+    - virtual-nodes
+  gather_facts: true
+#  remote_user: root
+  roles:
+   - ../roles/virtual-host-prepare

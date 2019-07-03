@@ -21,5 +21,5 @@
    - masters
    
   roles:
-   - ./roles/validate-deployment
+   - ../roles/validate-deployment
 

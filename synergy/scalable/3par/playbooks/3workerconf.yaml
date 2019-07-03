@@ -16,8 +16,8 @@
 
 ---
 
-- name: workerconf role 
+- name: 3workerconf role 
   hosts: 
     - 3workerhosts
   roles: 
-    - ./roles/3workerconf
+    - ../roles/3workerconf
