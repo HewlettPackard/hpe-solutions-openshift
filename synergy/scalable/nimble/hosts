@@ -31,7 +31,7 @@ nworker02.tennet.local iscsiaip=30.0.9.2 iscsibip=40.0.9.2  team1ip=20.0.9.2 iqn
 nworker03.tennet.local iscsiaip=30.0.9.3 iscsibip=40.0.9.3  team1ip=20.0.9.3 iqnstring=nworker03 
 nworker04.tennet.local iscsiaip=30.0.9.4 iscsibip=40.0.9.4  team1ip=20.0.9.4 iqnstring=nworker04
 nimworker05.tennet.local iscsiaip=30.0.9.5 iscsibip=40.0.9.5  team1ip=20.0.9.5 iqnstring=nimworker05
-nimworker01.tennet.local iscsiaip=30.0.9.101 iscsibip=40.0.9.101 team1ip=20.0.9.5 iqnstring=nimworker01
+nimworker01.tennet.local iscsiaip=30.0.9.101 iscsibip=40.0.9.101 team1ip=20.0.9.101 iqnstring=nimworker01
 
 #RedHat Virtualization Host for PXE network boot and network bond configuration
 [nrhvh]
