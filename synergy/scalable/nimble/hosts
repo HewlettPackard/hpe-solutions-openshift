@@ -17,9 +17,8 @@
 #RedHat Virtualization Host details 
 [rhv]
 hmrhvh01.tennet.local  bondip2=20.0.140.8 iscsiaip=30.0.140.8 iscsibip=40.0.140.8 name=hmrhvh01 iqnstring=hmrhvh01 fqdn=hmrhvh01.tennet.local
-#nrhvh01.tennet.local  
-#nrhvh02.tennet.local  
-#nrhvh03.tennet.local  
+hmrhvh02.tennet.local  bondip2=20.0.140.9 iscsiaip=30.0.140.9 iscsibip=40.0.140.9 name=hmrhvh02 iqnstring=hmrhvh02 fqdn=hmrhvh02.tennet.local
+hmrhvh03.tennet.local  bondip2=20.0.140.10 iscsiaip=30.0.140.10 iscsibip=40.0.140.10 name=hmrhvh03 iqnstring=hmrhvh03 fqdn=hmrhvh03.tennet.local
 
 #RedHat Virtualization Manager/Ovirt Engine FQDN
 [rhvm]
@@ -27,19 +26,18 @@ ovirtnim.tennet.local
 
 #RHEL 7.6 Physical worker node details
 [nworkerhosts]
-#nworker01.tennet.local iscsiaip=30.0.9.1 iscsibip=40.0.9.1  team1ip=20.0.9.1 iqnstring=nworker01 
-#nworker02.tennet.local iscsiaip=30.0.9.2 iscsibip=40.0.9.2  team1ip=20.0.9.2 iqnstring=nworker02 
-#nworker03.tennet.local iscsiaip=30.0.9.3 iscsibip=40.0.9.3  team1ip=20.0.9.3 iqnstring=nworker03 
-#nworker04.tennet.local iscsiaip=30.0.9.4 iscsibip=40.0.9.4  team1ip=20.0.9.4 iqnstring=nworker04
-#nimworker05.tennet.local iscsiaip=30.0.9.5 iscsibip=40.0.9.5  team1ip=20.0.9.5 iqnstring=nimworker05
-nimworker01.tennet.local iscsiaip=30.0.9.101 iscsibip=40.0.9.101 team1ip=20.0.9.5 iqnstring=nimworker01
+nworker06.tennet.local iscsiaip=30.0.9.1 iscsibip=40.0.9.1  team1ip=20.0.9.1 iqnstring=nworker06 
+nworker02.tennet.local iscsiaip=30.0.9.2 iscsibip=40.0.9.2  team1ip=20.0.9.2 iqnstring=nworker02 
+nworker03.tennet.local iscsiaip=30.0.9.3 iscsibip=40.0.9.3  team1ip=20.0.9.3 iqnstring=nworker03 
+nworker04.tennet.local iscsiaip=30.0.9.4 iscsibip=40.0.9.4  team1ip=20.0.9.4 iqnstring=nworker04
+nimworker05.tennet.local iscsiaip=30.0.9.5 iscsibip=40.0.9.5  team1ip=20.0.9.5 iqnstring=nimworker05
+nimworker01.tennet.local iscsiaip=30.0.9.101 iscsibip=40.0.9.101 team1ip=20.0.9.101 iqnstring=nimworker01
 
 #RedHat Virtualization Host for PXE network boot and network bond configuration
 [nrhvh]
 192.168.4.188 fqdn=hmrhvh01.tennet.local bondip1=10.0.140.8 fqdn=hmrhvh01.tennet.local name=hmrhvh01
-#192.168.3.161 fqdn=nrhvh01.tennet.local bondip1=10.0.9.7 bondip2=20.0.9.7 iscsiaip=30.0.9.7 iscsibip=40.0.9.7 name=nrhvh01 iqnstring=nrhvh01
-#192.168.3.162 fqdn=nrhvh02.tennet.local bondip1=10.0.9.8 bondip2=20.0.9.8 iscsiaip=30.0.9.8 iscsibip=40.0.9.8 name=nrhvh02 iqnstring=nrhvh02
-#192.168.3.163 fqdn=nrhvh03.tennet.local bondip1=10.0.9.9 bondip2=20.0.9.9 iscsiaip=30.0.9.9 iscsibip=40.0.9.9 name=nrhvh03 iqnstring=nrhvh03
+192.168.4.189 fqdn=hmrhvh02.tennet.local bondip1=10.0.140.9 fqdn=hmrhvh02.tennet.local name=hmrhvh02
+192.168.4.190 fqdn=hmrhvh03.tennet.local bondip1=10.0.140.10 fqdn=hmrhvh03.tennet.local name=hmrhvh03
 
 # FQDN of the Virtual RHEL 7.6 Machines used for the OCP Management nodes
 [virtual-nodes]
@@ -163,7 +161,6 @@ hm-infra03.tennet.local openshift_node_group_name='node-config-infra'
 nimworker01.tennet.local openshift_node_group_name='node-config-compute'
 #nimworker02.tennet.local openshift_node_group_name='node-config-compute'
 #nimworker03.tennet.local openshift_node_group_name='node-config-compute'
-#nimworker04.tennet.local openshift_node_group_name='node-config-compute'
 hm-worker01.tennet.local openshift_node_group_name='node-config-compute'
 hm-worker02.tennet.local openshift_node_group_name='node-config-compute'
 hm-worker03.tennet.local openshift_node_group_name='node-config-compute'
