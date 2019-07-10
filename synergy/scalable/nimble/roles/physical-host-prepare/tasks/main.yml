@@ -52,7 +52,7 @@
      user: oshiftuser
      state: present
      manage_dir: yes
-     key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+     key: "{{ lookup('file', '/var/id_rsa.pub') }}"
 
 
 - name: Is the host already registered?
