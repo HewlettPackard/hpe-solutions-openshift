@@ -20,4 +20,5 @@ ________________________________________
 ________________________________________
 
 v1.0.0 - July 3rd, 2019 - Initial release.
+
 v1.0.1 - July 10th, 2019 - Minor formatting changes and editorial improvements. 
