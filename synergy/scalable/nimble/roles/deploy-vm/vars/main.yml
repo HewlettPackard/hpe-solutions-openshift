@@ -115,6 +115,7 @@ netcd02_ip : 10.0.140.41
 netcd03_ip : 10.0.140.42
 
 #IP details of the Worker Nodes
+
 nworker01_ip: 10.0.140.70
 nworker01_ip2: 30.0.140.70
 nworker01_ip3: 40.0.140.70
@@ -126,4 +127,3 @@ nworker02_ip3: 40.0.140.71
 nworker03_ip: #10.0.140.72
 nworker03_ip2: 30.0.140.72
 nworker03_ip3: 40.0.140.72
-
