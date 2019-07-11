@@ -21,8 +21,7 @@ engine_cafile: '/etc/pki/ovirt-engine/ca.pem'     #RHV-M cafile location. Defaul
 datacenter: Default                               #RHV-M datacenter to be used for VM deployment
 cluster: Default                                  #RHV-M cluster  to be used for template deployment
 network: 'ovirtmgmt'                              #Network label for VM
-#vmtemplate: rhel7-template_7.6_2d-50G             #emplate for Vm deployment
-vmtemplate: rhel7-template_7.5_2d-50G             #emplate for Vm deployment
+vmtemplate: rhel7-template_7.6_2d-50G             #emplate for Vm deployment
 
 #Management Network details
 mgmt_gateway: 10.0.1.1                            
@@ -49,8 +48,8 @@ fqdninfra3: hm-infra03.tennet.local
 fqdnlb1: hm-lb01.tennet.local
 fqdnlb2: hm-lb02.tennet.local
 fqdnworker1: hm-worker01.tennet.local
-fqdnworker2:   #hm-worker02.tennet.local
-fqdnworker3:   #hm-worker03.tennet.local
+fqdnworker2: hm-worker02.tennet.local
+fqdnworker3: hm-worker03.tennet.local
 
 #RHVH host FQDN where the VMs get deployed 
 fqdnrhv1: nrhvh01.tennet.local
@@ -120,11 +119,10 @@ nworker01_ip: 10.0.140.70
 nworker01_ip2: 30.0.140.70
 nworker01_ip3: 40.0.140.70
 
-nworker02_ip: #10.0.140.71
+nworker02_ip: 10.0.140.71
 nworker02_ip2: 30.0.140.71
 nworker02_ip3: 40.0.140.71
 
-nworker03_ip: #10.0.140.72
+nworker03_ip: 10.0.140.72
 nworker03_ip2: 30.0.140.72
 nworker03_ip3: 40.0.140.72
-
