@@ -31,7 +31,7 @@
 - name: Create a Sudo user for OpenShift Installation
   user:
      name: oshiftuser
-     comment: "User used for UpenShift Installtion"
+     comment: "User used for OpenShift Installtion"
      shell: /bin/bash
      groups: wheel
      append: yes
@@ -60,20 +60,6 @@
   register: physubscribed
   ignore_errors: yes
 
-#- name: Register virtual machines to RHSM
-#  redhat_subscription:
-#     state: present
-#     username: "{{ vault_rhsub_user }}"
-#     password: "{{ vault_rhsub_pass }}"
-#     force_register: yes
-#     pool_ids:
-#        "{{ pool_ids_vms }}"
-#  when:
-#     - pool_ids_physical_rhel is defined
-#     - physubscribed.stdout != 'Current'
-#     - "'virtual-nodes' in {{ group_names }}"
-#  ignore_errors: yes
-
 - name: Register Physical worker nodes to RHSM
   redhat_subscription:
      state: present
@@ -85,7 +71,6 @@
   when:
      - pool_ids_physical is defined
      - physubscribed.stdout != 'Current'
-#     - "'physical-nodes' in {{ group_names }}"
   ignore_errors: yes
 
 - name: Disable all repos
@@ -158,19 +143,6 @@
     group: root
     mode: 0644
 
-#- name: Edit docker-storage-setup file to add the second disk for Docker local volume for Virtual Machines
-#  lineinfile:
-#    path: /etc/sysconfig/docker-storage-setup
-#    state: present
-#    line: "{{ item }}"
-#  with_items:
-#    - DEVS=/dev/vdb
-#    - VG=docker-vg
-#    - STORAGE_DRIVER=devicemapper
-#  when:
-#    - "'virtual-nodes' in {{ group_names }}"
-
-
 - name: Edit docker-storage-setup file to add the second disk for Docker local volume for Physical worker nodes
   lineinfile:
      path: /etc/sysconfig/docker-storage-setup
@@ -180,9 +152,6 @@
     - STORAGE_DRIVER=devicemapper
     - DEVS={{ second_disk_physical }}
     - VG=docker-vg
-#  when:
-#    - "'physical-nodes' in {{ group_names }}"
-
 
 - name: Start and Enable docker service
   service:
@@ -200,7 +169,3 @@
   with_items:
       - firewalld
 
-#- name: Disable Cloudinit
-#  command: "touch /etc/cloud/cloud-init.disabled"
-#  when:
-#       - "'virtual-nodes' in {{ group_names }}"

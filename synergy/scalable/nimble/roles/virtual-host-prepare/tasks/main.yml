@@ -71,22 +71,7 @@
   when:
      - pool_ids_vms_rhel is defined
      - vmsubscribed.stdout != 'Current'
-#     - "'virtual-nodes' in {{ group_names }}"
   ignore_errors: yes
-
-#- name: Register Physical worker nodes to RHSM
-#  redhat_subscription:
-#     state: present
-#     username: "{{ vault_rhsub_user }}"
-#     password: "{{ vault_rhsub_pass }}"
-#     force_register: yes
-#     pool_ids:
-#        "{{ pool_ids_physical }}"
-#  when:
-#     - pool_ids_physical is defined
-#     - vmsubscribed.stdout != 'Current'
-#     - "'physical-nodes' in {{ group_names }}"
-#  ignore_errors: yes
 
 - name: Disable all repos
   command: 'subscription-manager repos --disable=*'
@@ -167,22 +152,6 @@
     - DEVS={{ second_disk_vms  }}
     - VG=docker-vg
     - STORAGE_DRIVER=devicemapper
-#  when:
-#    - "'virtual-nodes' in {{ group_names }}"
-
-
-#- name: Edit docker-storage-setup file to add the second disk for Docker local volume for Physical worker nodes
-#  lineinfile:
-#     path: /etc/sysconfig/docker-storage-setup
-#     state: present
-#     line: "{{ item }}"
-#  with_items:
-#    - STORAGE_DRIVER=devicemapper
-#    - DEVS={{ second_disk_physical }}
-#    - VG=docker-vg
-#  when:
-#    - "'physical-nodes' in {{ group_names }}"
-
 
 - name: Start and Enable docker service
   service:
@@ -202,5 +171,4 @@
 
 - name: Disable Cloudinit
   command: "touch /etc/cloud/cloud-init.disabled"
-#  when:
-#       - "'virtual-nodes' in {{ group_names }}"
+

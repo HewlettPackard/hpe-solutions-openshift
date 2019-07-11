@@ -83,9 +83,10 @@ oreg_auth_user="{{ vault_rhsub_user }}"
 oreg_auth_password="{{ vault_rhsub_pass }}"
 openshift_deployment_type=openshift-enterprise
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login':'true', 'challenge': 'true','kind': 'HTPasswdPasswordIdentityProvider',}]
-openshift_master_htpasswd_users={'admin': '$apr1$.2z6VpLB$nzgma7hGC54MF06OujRtw.'}
 #location of the hashed htpasswd file
-#openshift_master_htpasswd_file=/etc/oshift-hash-pass.htpasswd         
+openshift_master_htpasswd_file=/etc/oshift-hash-pass.htpasswd         
+#location of the hashed htpasswd file
+openshift_master_htpasswd_file=/etc/oshift-hash-pass.htpasswd         
 public_hosted_zone=tennet.local
 load_balancer_hostname=hm-lb01.tennet.local
 openshift_master_cluster_hostname=hm-lb01.tennet.local
