@@ -30,3 +30,10 @@ Red Hat Virtualization Manager 4.2
 Red Hat Ansible Engine 2.7
 
 Red Hat OpenShift Container Platform 3.11
+
+________________________________________
+## Change Tracker ##
+________________________________________
+v 3.0 - July 3rd, 2019 - Initial release
+
+v 3.0.1 - July 11th, 2019 - Updated document, fixed formatting issues, minor grammar fixes
