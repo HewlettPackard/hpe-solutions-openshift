@@ -1,8 +1,7 @@
 <span style="font-family: Arial">
-# HPE Red Hat OpenShift Solution for HPE Synergy
 
+## HPE Red Hat OpenShift Container Platform solution for HPE Synergy
 ###  Differentiated HPE solution experience for enterprise grade container workloads in partnership with Red Hat OpenShift Container Platform
-
 
 Features of this solution
 
