@@ -19,6 +19,7 @@ Features of this solution
 | Backup and Recovery with HPE 3PAR StoreServ Storage | [Backup and Recovery Guide for 3PAR](https://github.com/HewlettPackard/hpe-solutions-openshift/tree/master/synergy/scalable/backup_and_recovery/ocp-3par) |
 | Backup and Recovery with HPE Nimble Storage | [Backup and Recovery Guide for Nimble](https://github.com/HewlettPackard/hpe-solutions-openshift/tree/master/synergy/scalable/backup_and_recovery/ocp-3par) |
 | Announcement Blog | [Blog](https://community.hpe.com/t5/Infrastructure-Insights/Automate-and-scale-Red-Hat-OpenShift-deployment-with-HPE-Synergy/ba-p/7044580) |
+| Solution Overview Video | [Video](https://h22168.www2.hpe.com/videos/redhat/OpenShift_on_Synergy.mp4)|
 
 
 
