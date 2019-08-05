@@ -70,7 +70,7 @@
         "{{ pool_ids_vms_rhel }}"
   when:
      - pool_ids_vms_rhel is defined
-     - vmsubscribed.stdout != 'Current'
+     - vmsubscribed.stdout.find('Current') == -1
   ignore_errors: yes
 
 - name: Disable all repos
@@ -171,4 +171,3 @@
 
 - name: Disable Cloudinit
   command: "touch /etc/cloud/cloud-init.disabled"
-

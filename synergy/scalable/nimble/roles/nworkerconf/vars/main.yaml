@@ -1,12 +1,4 @@
 ---
 
-dns: 10.0.1.254
-san_a_ip: 30.0.2.96
-san_b_ip: 40.0.2.96
-ifname1: bond1
-ifname2: bond2
-bondname1: bond1
-bondname2: bond2
-gateway: 10.0.1.1
 iscsia: iscsia
 iscsib: iscsib

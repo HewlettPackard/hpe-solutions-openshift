@@ -31,7 +31,7 @@
 - name: Create a Sudo user for OpenShift Installation
   user:
      name: oshiftuser
-     comment: "User used for OpenShift Installtion"
+     comment: "User used for UpenShift Installtion"
      shell: /bin/bash
      groups: wheel
      append: yes
@@ -70,7 +70,7 @@
         "{{ pool_ids_physical_rhel }}"
   when:
      - pool_ids_physical is defined
-     - physubscribed.stdout != 'Current'
+     - physubscribed.stdout.find('Current') == -1
   ignore_errors: yes
 
 - name: Disable all repos
@@ -152,6 +152,7 @@
     - STORAGE_DRIVER=devicemapper
     - DEVS={{ second_disk_physical }}
     - VG=docker-vg
+
 
 - name: Start and Enable docker service
   service:
