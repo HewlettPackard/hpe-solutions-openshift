@@ -16,6 +16,18 @@
 
 ---
 
+- name: Add DNS entry to the resolv.conf
+  lineinfile:
+    path: /etc/resolv.conf
+    state: present
+    regexp: '^#%nameserver'
+    insertafter: EOF
+    line: "nameserver {{ dns1 }} {{ dns2 }}"
+
+- name: Change hostname with FQDN
+  shell: cat /etc/hosts |awk 'FNR == 3 {print $2}' > /etc/hostname
+
+
 - name: Make sure that a group named wheel exists
   group:
     name: wheel
@@ -45,14 +57,23 @@
     manage_dir: yes
     key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
+- name: Remove values from resolve.conf
+  shell: $null > /etc/resolv.conf
+
+- name: Add search domain to the resolv.conf
+  lineinfile:
+    path: /etc/resolv.conf
+    state: present
+    regexp: '^%search'
+    line: "search {{ domain1 }} {{ domain2 }}"
+
+
 - name: Add DNS entry to the resolv.conf
   lineinfile:
     path: /etc/resolv.conf
     state: present
-    regexp: '^#%nameserver'
+    regexp: '^%nameserver'
     line: "nameserver {{ dns1 }} {{ dns2 }}"
 
-- name: Restart network service
-  service:
-    name: network
-    state: restarted
+
+

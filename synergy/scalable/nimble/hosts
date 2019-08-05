@@ -26,12 +26,12 @@ ovirtnim.tennet.local
 
 #RHEL 7.6 Physical worker node details
 [nworkerhosts]
-nworker06.tennet.local iscsiaip=30.0.9.1 iscsibip=40.0.9.1  team1ip=20.0.9.1 iqnstring=nworker06 
-nworker02.tennet.local iscsiaip=30.0.9.2 iscsibip=40.0.9.2  team1ip=20.0.9.2 iqnstring=nworker02 
-nworker03.tennet.local iscsiaip=30.0.9.3 iscsibip=40.0.9.3  team1ip=20.0.9.3 iqnstring=nworker03 
-nworker04.tennet.local iscsiaip=30.0.9.4 iscsibip=40.0.9.4  team1ip=20.0.9.4 iqnstring=nworker04
-nimworker05.tennet.local iscsiaip=30.0.9.5 iscsibip=40.0.9.5  team1ip=20.0.9.5 iqnstring=nimworker05
-nimworker01.tennet.local iscsiaip=30.0.9.101 iscsibip=40.0.9.101 team1ip=20.0.9.101 iqnstring=nimworker01
+nworker06.tennet.local iscsiaip=30.0.9.1 iscsibip=40.0.9.1  iqnstring=nworker06 
+nworker02.tennet.local iscsiaip=30.0.9.2 iscsibip=40.0.9.2  iqnstring=nworker02 
+nworker03.tennet.local iscsiaip=30.0.9.3 iscsibip=40.0.9.3  iqnstring=nworker03 
+nworker04.tennet.local iscsiaip=30.0.9.4 iscsibip=40.0.9.4  iqnstring=nworker04
+nimworker05.tennet.local iscsiaip=30.0.9.5 iscsibip=40.0.9.5  iqnstring=nimworker05
+nimworker01.tennet.local iscsiaip=30.0.9.101 iscsibip=40.0.9.101 iqnstring=nimworker01
 
 #RedHat Virtualization Host for PXE network boot and network bond configuration
 [nrhvh]
@@ -76,7 +76,7 @@ infra
 #Variables used for OCP 3.11 installation
 [OSEv3:vars]
 #user used for OCP installation
-ansible_ssh_user=oshiftuser                           
+ansible_ssh_user=oshiftuser
 ansible_become=true                                   
 openshift_release="3.11"
 oreg_auth_user="{{ vault_rhsub_user }}"               
@@ -84,9 +84,7 @@ oreg_auth_password="{{ vault_rhsub_pass }}"
 openshift_deployment_type=openshift-enterprise
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login':'true', 'challenge': 'true','kind': 'HTPasswdPasswordIdentityProvider',}]
 #location of the hashed htpasswd file
-openshift_master_htpasswd_file=/etc/oshift-hash-pass.htpasswd         
-#location of the hashed htpasswd file
-openshift_master_htpasswd_file=/etc/oshift-hash-pass.htpasswd         
+openshift_master_htpasswd_file=/etc/oshift-hash-pass.htpasswd  
 public_hosted_zone=tennet.local
 load_balancer_hostname=hm-lb01.tennet.local
 openshift_master_cluster_hostname=hm-lb01.tennet.local
@@ -94,8 +92,8 @@ openshift_master_cluster_public_hostname=hm-lb01.tennet.local
 openshift_public_hostname=hm-lb01.tennet.local
 openshift_master_cluster_method=native
 openshift_use_openshift_sdn=true
-#Internal Pod network 
-osm_cluster_network_cidr=12.0.0.0/8                     
+#Internal Pod network
+osm_cluster_network_cidr=12.0.0.0/8                      
 osm_host_subnet_length=9
 openshift_registry_selector='node-role.kubernetes.io/infra=true'
 openshift_router_selector='node-role.kubernetes.io/infra=true'
@@ -104,8 +102,8 @@ openshift_enable_service_catalog=true
 # To Enable Logging for OCP 3.11 , uncomment the following section
 #openshift_logging_install_logging=true
 #openshift_logging_es_pvc_dynamic=true
-#PVC size for Elasticsearch, change the size depending on the environment 
-#openshift_logging_es_pvc_size=200Gi                    
+#PVC size for Elasticsearch, change the size depending on the environment
+#openshift_logging_es_pvc_size=200Gi                     
 #openshift_logging_elasticsearch_storage_type=pvc      
 #openshift_logging_es_pvc_prefix=oc-efk-log
 #openshift_logging_es_cluster_size=3
@@ -162,6 +160,7 @@ hm-infra03.tennet.local openshift_node_group_name='node-config-infra'
 nimworker01.tennet.local openshift_node_group_name='node-config-compute'
 #nimworker02.tennet.local openshift_node_group_name='node-config-compute'
 #nimworker03.tennet.local openshift_node_group_name='node-config-compute'
+#nimworker04.tennet.local openshift_node_group_name='node-config-compute'
 hm-worker01.tennet.local openshift_node_group_name='node-config-compute'
 hm-worker02.tennet.local openshift_node_group_name='node-config-compute'
 hm-worker03.tennet.local openshift_node_group_name='node-config-compute'

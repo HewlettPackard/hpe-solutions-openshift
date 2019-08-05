@@ -21,10 +21,10 @@
     name: python-perf
     state: latest
 
-#- name: Perform a full system update
-#  yum:
-#    name: '*'
-#    state: latest
+- name: Perform a full system update
+  yum:
+    name: '*'
+    state: latest
 
 #- name: restart the host
 #  command: /sbin/shutdown -r +1
