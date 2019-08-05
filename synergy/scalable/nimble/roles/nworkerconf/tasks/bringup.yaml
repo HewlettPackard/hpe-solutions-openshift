@@ -16,12 +16,6 @@
 
 ---
 
-- name: start the iscsi a side adapter
-  command: "nmcli con up {{ iscsia }}"
-
-- name: start the iscsi b side adapter
-  command: "nmcli con up {{ iscsib }}"
-
 - name: restart the host
   command: /sbin/shutdown -r +1
   async: 0

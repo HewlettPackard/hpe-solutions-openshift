@@ -16,8 +16,6 @@
 
 ---
 
-- name: Remove default Docker-storage-setup configuration
-  shell: $null > /etc/sysconfig/docker-storage-setup
 
 - name: Replace daemon.json insecure registry
   copy:

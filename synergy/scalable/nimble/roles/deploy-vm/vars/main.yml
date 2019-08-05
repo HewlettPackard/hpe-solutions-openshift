@@ -1,41 +1,40 @@
+opyright (2018) Hewlett Packard Enterprise Development LP
+##
+### Licensed under the Apache License, Version 2.0 (the "License");
+### You may not use this file except in compliance with the License.
+### You may obtain a copy of the License at
 ###
-## Copyright (2018) Hewlett Packard Enterprise Development LP
-##
-## Licensed under the Apache License, Version 2.0 (the "License");
-## You may not use this file except in compliance with the License.
-## You may obtain a copy of the License at
-##
-## http://www.apache.org/licenses/LICENSE-2.0
-##
-## Unless required by applicable law or agreed to in writing, software
-## distributed under the License is distributed on an "AS IS" BASIS,
-## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-## See the License for the specific language governing permissions and
-## limitations under the License.
-####
-
-
----
-#Variables used for Virtual Machine deployment for OCP instllation
+### http://www.apache.org/licenses/LICENSE-2.0
+###
+### Unless required by applicable law or agreed to in writing, software
+### distributed under the License is distributed on an "AS IS" BASIS,
+### WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+### See the License for the specific language governing permissions and
+### limitations under the License.
+#####
+#
+#
+#---
+##Variables used for Virtual Machine deployment for OCP instllation
 engine_cafile: '/etc/pki/ovirt-engine/ca.pem'     #RHV-M cafile location. Default location is /etc/pki/ovirt-engine/ca.pem
 datacenter: Default                               #RHV-M datacenter to be used for VM deployment
 cluster: Default                                  #RHV-M cluster  to be used for template deployment
 network: 'ovirtmgmt'                              #Network label for VM
 vmtemplate: rhel7-template_7.6_2d-50G             #emplate for Vm deployment
-
-#Management Network details
+#
+##Management Network details
 mgmt_gateway: 10.0.1.1                            
 mgmt_mask: 255.255.0.0
 mgmt_dns: 10.0.1.254
 #private_hosted_zone: tennet.local
-
 #
+##
 public_hosted_zone: tennet.local
 #pub_mask: 255.0.0.0
 #pub_gateway: 20.1.1.1
 #pub_dns: 20.1.1.254
-
-#Virtual Machine FQDN details
+#
+##Virtual Machine FQDN details
 fqdnmaster1: hm-master01.tennet.local
 fqdnmaster2: hm-master02.tennet.local
 fqdnmaster3: hm-master03.tennet.local
@@ -48,12 +47,12 @@ fqdninfra3: hm-infra03.tennet.local
 fqdnlb1: hm-lb01.tennet.local
 fqdnlb2: hm-lb02.tennet.local
 fqdnworker1: hm-worker01.tennet.local
-fqdnworker2: hm-worker02.tennet.local
-fqdnworker3: hm-worker03.tennet.local
-
-#RHVH host FQDN where the VMs get deployed 
+fqdnworker2:   hm-worker02.tennet.local
+fqdnworker3:   hm-worker03.tennet.local
+#
+##RHVH host FQDN where the VMs get deployed 
 fqdnrhv1: nrhvh01.tennet.local
-#fqdnrhv2: nrhvh02.tennet.local
+fqdnrhv2: nrhvh02.tennet.local
 fqdnrhv3: nrhvh03.tennet.local
 
 master_cpu: 4
@@ -88,12 +87,12 @@ nmaster03_ip: 10.0.140.32
 nmaster03_ip2: 30.0.140.32
 nmaster03_ip3: 40.0.140.32
 
-#IP details of the Load balancer Nodes
+##IP details of the Load balancer Nodes
 nlb01_ip: 10.0.140.60
 #nlb01_ip2: 20.0.10.40
 
 nlb02_ip: 10.0.140.61
-#nlb02_ip2: 20.0.10.41
+##nlb02_ip2: 20.0.10.41
 
 # Ip details of the Infra Nodes
 ninfra01_ip: 10.0.140.50
@@ -114,7 +113,6 @@ netcd02_ip : 10.0.140.41
 netcd03_ip : 10.0.140.42
 
 #IP details of the Worker Nodes
-
 nworker01_ip: 10.0.140.70
 nworker01_ip2: 30.0.140.70
 nworker01_ip3: 40.0.140.70
@@ -126,3 +124,4 @@ nworker02_ip3: 40.0.140.71
 nworker03_ip: 10.0.140.72
 nworker03_ip2: 30.0.140.72
 nworker03_ip3: 40.0.140.72
+
