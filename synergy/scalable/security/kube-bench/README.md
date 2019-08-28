@@ -1,6 +1,6 @@
 # HPE deployment guide for integrating Aquasecurity's open-source tool kube-bench with the Red Hat OpenShift Container Platform on the HPE Synergy
 
-Prior to using the instructions in this README.md file it is recommended that you read and understand the deployment guide found at https://github.hpe.com/Solutions/Openshift-Synergy-RA/tree/master/synergy/scalable/nimble. Instructions found in the deployment guide will take precedence over instructions in README.md files.
+Prior to using the instructions in this README.md file it is recommended that you read and understand the deployment guide found at https://github.com/hewlettpackard/hpe-solutions-openshift/tree/master/synergy/scalable/nimble. Instructions found in the deployment guide will take precedence over instructions in README.md files.
 
 ________________________________________
 ## About ##
