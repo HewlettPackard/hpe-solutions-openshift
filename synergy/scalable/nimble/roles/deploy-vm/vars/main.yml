@@ -20,7 +20,7 @@ engine_cafile: '/etc/pki/ovirt-engine/ca.pem'     #RHV-M cafile location. Defaul
 datacenter: Default                               #RHV-M datacenter to be used for VM deployment
 cluster: Default                                  #RHV-M cluster  to be used for template deployment
 network: 'ovirtmgmt'                              #Network label for VM
-vmtemplate: rhel7-template_7.6_2d-50G             #emplate for Vm deployment
+vmtemplate: rhel7-template_7.6_2d-50G             #template for VM deployment
 #
 ##Management Network details
 mgmt_gateway: 10.0.1.1                            
@@ -55,6 +55,7 @@ fqdnrhv1: nrhvh01.tennet.local
 fqdnrhv2: nrhvh02.tennet.local
 fqdnrhv3: nrhvh03.tennet.local
 
+# CPU and Memory configuration for the Virtual Nodes
 master_cpu: 4
 master_mem: 16GiB
 
@@ -74,7 +75,7 @@ lb_mem: 8GiB
 #Subnet Mask for the storage network
 storage_mask: 255.255.0.0
 
-#IP detaild of the Master Nodes
+#IP details of the Master Nodes
 nmaster01_ip: 10.0.140.30
 nmaster01_ip2: 30.0.140.30
 nmaster01_ip3: 40.0.140.30
