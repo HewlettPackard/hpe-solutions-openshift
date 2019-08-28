@@ -17,11 +17,19 @@
 
 ---
 # vars file for deploy-vm
+
+# location of the RHV-M cafile certificate
 engine_cafile: '/etc/pki/ovirt-engine/ca.pem'
+
+# Name of the datacenter, cluster and the management network
 datacenter: Default
 cluster: Default
 network: 'ovirtmgmt'
+
+# Name of the RHEL VM Template 
 vmtemplate: rhel7-template_7.6_2d-50G
+
+# Management Network configuration - gateway, subnet mask and DNS server IP address
 mgmt_gateway: 10.0.1.1
 mgmt_mask: 255.255.0.0
 mgmt_dns: 10.0.1.254
@@ -32,6 +40,7 @@ public_hosted_zone: tennet.local
 #pub_gateway: 20.1.1.1
 #pub_dns: 20.1.1.254
 
+# Fully qualified domain name of the VMs
 fqdnmaster1: oshift-fc-m1.tennet.local
 fqdnmaster2: oshift-fc-m2.tennet.local
 fqdnmaster3: oshift-fc-m3.tennet.local
@@ -43,9 +52,9 @@ fqdninfra2: oshift-fc-infra2.tennet.local
 fqdninfra3: oshift-fc-infra3.tennet.local
 fqdnlb1: oshift-fc-nlb1.tennet.local
 fqdnlb2: oshift-fc-nlb2.tennet.local
-#fqdnworker4: 3worker04.tennet.local
-#fqdnworker5: 3worker05.tennet.local
-#fqdnworker6: 3worker06.tennet.local
+fqdnworker4: 3worker04.tennet.local
+fqdnworker5: 3worker05.tennet.local
+fqdnworker6: 3worker06.tennet.local
 
 #fqdn of RHVH cluster where the VMs are getting deployed
 fqdnrhv1: 3rhvh01.tennet.local
@@ -54,6 +63,7 @@ fqdnrhv3: 3rhvh03.tennet.local
 
 storage_mask: 255.255.0.0
 
+# IP address of the management network
 nmaster01_ip: 10.0.8.134
 nmaster02_ip: 10.0.8.135
 nmaster03_ip: 10.0.8.136
