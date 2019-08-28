@@ -33,7 +33,7 @@
         password: "{{ vcenter_password }}"
         cluster: "{{ worker_cluster_name }}"
         datacenter: "{{ datacenter_name }}"
-        name: "{{ item.value.name }}"
+        name: "{{ item.key }}"
         template: "{{ vmtemplate }}"
         disk:
           - size_gb: "{{ item.value.disk_size | default(50) }}"
@@ -43,30 +43,24 @@
             type: "{{ disk_type }}"
             datastore: "{{ datastore_name }}"
         networks:
-        - name: "{{ item.value.network }}"
+        - name: "{{ management_network_name }}"
           ip: "{{ item.value.ip }}"
-          netmask: "{{ item.value.netmask }}"
-          gateway: "{{ item.value.gateway }}"
-          dns_servers: "{{ item.value.dns_server }}"
-          domain: "{{ item.value.domain }}"
+          netmask: "{{ netmask }}"
+          gateway: "{{ gateway }}"
+          dns_servers: "{{ dns_server }}"
+          domain: "{{ domain_name }}"
           device_type: "{{ vm_type }}"
           start_connected: True
           type: static
-        - name: "{{ item.value.network }}"
+        - name: "{{ iscsi_a_network_name }}"
           ip: "{{ item.value.ip2 }}"
-          netmask: "{{ item.value.netmask }}"
-          gateway: "{{ item.value.gateway }}"
-          dns_servers: "{{ item.value.dns_server }}"
-          domain: "{{ item.value.domain }}"
+          netmask: "{{ netmask }}"
           device_type: "{{ vm_type }}"
           start_connected: True
           type: static
-        - name: "{{ item.value.network }}"
+        - name: "{{ iscsi_b_network_name }}"
           ip: "{{ item.value.ip3 }}"
-          netmask: "{{ item.value.netmask }}"
-          gateway: "{{ item.value.gateway }}"
-          dns_servers: "{{ item.value.dns_server }}"
-          domain: "{{ item.value.domain }}"
+          netmask: "{{ netmask }}"
           device_type: "{{ vm_type }}"
           start_connected: True
           type: static
@@ -75,10 +69,10 @@
           num_cpus: "{{ item.value.cpu }}"
         customization:
           hostname: "{{ item.key }}"
-          dns_servers: "{{ item.value.dns_server }}"
+          dns_servers: "{{ dns_server }}"
         wait_for_ip_address: True
         state: poweredon
-      register: "{{ item.value.name }}"
+      register: "{{ item.key }}"
       with_dict: "{{ worker_vms }}"
       
 
