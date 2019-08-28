@@ -26,12 +26,12 @@ ovirtnim.tennet.local
 
 #RHEL 7.6 Physical worker node details
 [nworkerhosts]
-nworker06.tennet.local iscsiaip=30.0.9.1 iscsibip=40.0.9.1  iqnstring=nworker06 
+nimworker01.tennet.local iscsiaip=30.0.9.101 iscsibip=40.0.9.101 iqnstring=nimworker01
 nworker02.tennet.local iscsiaip=30.0.9.2 iscsibip=40.0.9.2  iqnstring=nworker02 
 nworker03.tennet.local iscsiaip=30.0.9.3 iscsibip=40.0.9.3  iqnstring=nworker03 
 nworker04.tennet.local iscsiaip=30.0.9.4 iscsibip=40.0.9.4  iqnstring=nworker04
 nimworker05.tennet.local iscsiaip=30.0.9.5 iscsibip=40.0.9.5  iqnstring=nimworker05
-nimworker01.tennet.local iscsiaip=30.0.9.101 iscsibip=40.0.9.101 iqnstring=nimworker01
+nworker06.tennet.local iscsiaip=30.0.9.1 iscsibip=40.0.9.1  iqnstring=nworker06 
 
 #RedHat Virtualization Host for PXE network boot and network bond configuration
 [nrhvh]
@@ -52,19 +52,21 @@ hm-infra02.tennet.local
 hm-infra03.tennet.local 
 hm-lb01.tennet.local   
 hm-lb02.tennet.local  
-hm-worker01.tennet.local
-hm-worker02.tennet.local
-hm-worker03.tennet.local
+#hm-worker01.tennet.local              # uncomment if using physical worker nodes
+#hm-worker02.tennet.local              # uncomment if using physical worker nodes
+#hm-worker03.tennet.local              # uncomment if using physical worker nodes
+#hm-worker04.tennet.local              # uncomment if using physical worker nodes
+#hm-worker05.tennet.local              # uncomment if using physical worker nodes
+#hm-worker06.tennet.local              # uncomment if using physical worker nodes
 
-#FQDN of the Physical RHEL 7.6 used for the OCP Worker Nodes
+#FQDN of the Physical RHEL 7.6 used for the OCP Worker Nodes , comment if using virtual worker nodes
 [physical-nodes]
-#nworker01.tennet.local
-#nworker02.tennet.local
-#nworker03.tennet.local
-#nworker04.tennet.local
-#nimworker05.tennet.local
-nimworker01.tennet.local
-
+nworker01.tennet.local
+nworker02.tennet.local
+nworker03.tennet.local
+nworker04.tennet.local
+nimworker05.tennet.local
+nimworker06.tennet.local
 
 [OSEv3:children]
 masters
@@ -81,22 +83,41 @@ ansible_become=true
 openshift_release="3.11"
 oreg_auth_user="{{ vault_rhsub_user }}"               
 oreg_auth_password="{{ vault_rhsub_pass }}"
+oreg_url=registry.redhat.io/openshift3/ose-${component}:${version}
+oreg_test_login=false
 openshift_deployment_type=openshift-enterprise
-openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login':'true', 'challenge': 'true','kind': 'HTPasswdPasswordIdentityProvider',}]
-#location of the hashed htpasswd file
-openshift_master_htpasswd_file=/etc/oshift-hash-pass.htpasswd  
+
+# Authenticating with the Active Directory, prerequisite to use the below option is a user created in the Active Directory. comment the below line in case htpasswd is use in cas
+openshift_master_identity_providers=[{'name': 'my_ldap_provider', 'challenge': 'true', 'login': 'true', 'kind': 'LDAPPasswordIdentityProvider', 'attributes': {'id': ['dn'], 'email': ['mail'], 'name': ['cn'], 'preferredUsername': ['uid']}, 'bindDN': '', 'bindPassword': '', 'insecure': 'false', 'url': 'ldap://ldap.example.com:389/ou=users,dc=example,dc=com?uid'}] 
+
+#location of the hashed htpasswd file : uncomment the below lines if using an htpasswd for authentication
+#openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login':'true', 'challenge': 'true','kind': 'HTPasswdPasswordIdentityProvider',}]
+#openshift_master_htpasswd_file=/etc/oshift-hash-pass.htpasswd  
+
 public_hosted_zone=tennet.local
+
+# Load balancer details
 load_balancer_hostname=hm-lb01.tennet.local
 openshift_master_cluster_hostname=hm-lb01.tennet.local
 openshift_master_cluster_public_hostname=hm-lb01.tennet.local
 openshift_public_hostname=hm-lb01.tennet.local
-openshift_master_cluster_method=native
-openshift_use_openshift_sdn=true
+# This variable defines the HA method when deploying multiple masters. Supports the native method.
+openshift_master_cluster_method=native   
+# Set to true to enable the OpenShift SDN plug-in. 
+openshift_use_openshift_sdn=true         
+
 #Internal Pod network
-osm_cluster_network_cidr=12.0.0.0/8                      
+# This variable overrides the SDN cluster network CIDR block. This is the network from which pod IPs are assigned. Specify a private block that does not conflict with existing network blocks in your infrastructure to which pods, nodes, or the master might require access. Defaults to 10.128.0.0/14 and cannot be arbitrarily re-configured after deployment
+osm_cluster_network_cidr=12.0.0.0/8 
+
+# This variable specifies the size of the per host subnet allocated for pod IPs by OpenShift Container Platform SDN. Defaults to 9 which means that a subnet of size /23 is allocated to each host; for example, given the default 10.128.0.0/14 cluster network, this will allocate 10.128.0.0/23, 10.128.2.0/23, 10.128.4.0/23, and so on. This cannot be re-configured after deployment.
+
 osm_host_subnet_length=9
+# Default node selector for automatically deploying registry pods
 openshift_registry_selector='node-role.kubernetes.io/infra=true'
+# Default node selector for automatically deploying router pods
 openshift_router_selector='node-role.kubernetes.io/infra=true'
+
 openshift_enable_service_catalog=true
 
 # To Enable Logging for OCP 3.11 , uncomment the following section
@@ -157,11 +178,9 @@ hm-master03.tennet.local openshift_node_group_name='node-config-master'
 hm-infra01.tennet.local openshift_node_group_name='node-config-infra'
 hm-infra02.tennet.local openshift_node_group_name='node-config-infra'
 hm-infra03.tennet.local openshift_node_group_name='node-config-infra'
-nimworker01.tennet.local openshift_node_group_name='node-config-compute'
-#nimworker02.tennet.local openshift_node_group_name='node-config-compute'
-#nimworker03.tennet.local openshift_node_group_name='node-config-compute'
-#nimworker04.tennet.local openshift_node_group_name='node-config-compute'
 hm-worker01.tennet.local openshift_node_group_name='node-config-compute'
 hm-worker02.tennet.local openshift_node_group_name='node-config-compute'
 hm-worker03.tennet.local openshift_node_group_name='node-config-compute'
-
+nimworker04.tennet.local openshift_node_group_name='node-config-compute'
+nimworker05.tennet.local openshift_node_group_name='node-config-compute'
+nimworker06.tennet.local openshift_node_group_name='node-config-compute'

@@ -1,6 +1,8 @@
 ---
-
+# DNS and Domain name for the management network
 dns1: 10.0.1.254
-dns2: 20.0.1.254
 domain1: tennet.local
+
+# DNS and Domain name for the datacenter network
+dns2: 20.0.1.254
 domain2: twnetynet.local
