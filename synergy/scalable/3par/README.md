@@ -39,3 +39,9 @@ ________________________________________
 v 3.0 - July 3rd, 2019 - Initial release
 
 v 3.0.1 - July 15th, 2019 - Updated document, fixed formatting issues, minor grammar fixes, addition of multiple appendices covering Ansible Tower, Prometheus, log aggregation with EFK and Kube-bench.
+
+v 3.0.2 - August 7th, 2019 - Substantial revision of the appendix focused on kube-bench.
+
+v 3.0.3 - August 20th, 2019 - Figure number changes, two figures replaced, small text changes.
+
+v 3.0.4 - September 5th, 2019 - Minor changes to instruction sets for clarity. Updated formatting for certain notes.
