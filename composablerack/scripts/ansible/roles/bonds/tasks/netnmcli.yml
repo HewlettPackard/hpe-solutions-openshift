@@ -1,0 +1,93 @@
+---
+
+###
+## Copyright (2018) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+####
+
+
+###### Working with all cloud nodes - Bonding
+
+ - name: replace bootp eno5
+   lineinfile:
+     path: /etc/sysconfig/network-scripts/ifcfg-eno5
+     regexp: '^BOOTPROTO='
+     line: BOOTPROTO=none
+     backrefs: yes
+     state: present
+
+ - name: add bond
+   nmcli:
+     type: bond
+     conn_name: '{{ item.conn_name }}'  
+     ip4: '{{ mgmt_ip }}' 
+     gw4: '{{ mgmt_gateway }}'
+     mode: '{{ item.mode }}'
+     state: present
+     dns4: '{{ item.dns4 }}'
+   with_items:
+     - '{{ nmcli_bond }}'
+  
+ - name: add bond-slave
+   nmcli:
+     type: bond-slave
+     conn_name: '{{ item.conn_name }}'
+     ifname: '{{ item.ifname }}'
+     master: '{{ item.master }}'
+     state: present
+   with_items:
+     - '{{ nmcli_bond_slave }}'
+
+ - name: replace bootp bond0
+   lineinfile:
+     path: /etc/sysconfig/network-scripts/ifcfg-bond0
+     regexp: '^BOOTPROTO='
+     line: BOOTPROTO=static
+     backrefs: yes
+     state: present
+
+ - name: replace PREFIX
+   lineinfile:
+     path: /etc/sysconfig/network-scripts/ifcfg-bond0
+     regexp: '^PREFIX='
+     line: PREFIX=24
+     backrefs: yes
+     state: present
+
+ - name: restart network
+   command: systemctl restart network
+   ignore_errors: yes
+ - name: wait for bonds
+   wait_for: timeout=60
+   delegate_to: localhost
+
+
+ - name: add vlan
+   command: nmcli con add type vlan con-name VLAN2001 dev bond0 id 2001 ip4 "{{pub_ip}}/{{pub_mask}}" gw4 {{pub_gateway}}
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
