@@ -1,0 +1,75 @@
+#~ Add all hosts Managed by Ansible for Openshift deployment  within this commented session , this will be used to update the known hostfile
+oshift-m1.tennet.local
+oshift-m2.tennet.local
+oshift-m3.tennet.local
+oshift-etcd1.tennet.local
+oshift-etcd2.tennet.local
+oshift-etcd3.tennet.local
+oshift-infra1.tennet.local
+oshift-infra2.tennet.local
+oshift-infra3.tennet.local
+oshift-nlb1.tennet.local
+oshift-nlb2.tennet.local
+rhvhost1.tennet.local 
+rhvhost2.tennet.local
+rhvm.tennet.com
+nimworker01.tennet.local
+nimworker02.tennet.local
+nimworker03.tennet.local
+workernode1.tennet.local
+workernode2.tennet.local
+workernode3.tennet.local
+#~ Do not make change to the format of the comment
+
+## RHV hosts to be listed here
+[rhv]
+rhvhost1.tennet.local 
+rhvhost2.tennet.local
+
+## RHEVM to be listed here
+[rhvm]
+rhvm.tennet.com
+
+## Standard openshift-ansible inventory
+[OSEv3:children]
+masters
+nodes
+etcd
+lb
+infra
+physical-nodes
+
+[masters]
+oshift-m1.tennet.local
+oshift-m2.tennet.local
+oshift-m3.tennet.local
+
+[etcd]
+oshift-etcd1.tennet.local
+oshift-etcd2.tennet.local
+oshift-etcd3.tennet.local
+
+[lb]
+oshift-nlb1.tennet.local
+oshift-nlb2.tennet.local
+
+[infra]
+oshift-infra1.tennet.local
+oshift-infra2.tennet.local
+oshift-infra3.tennet.local
+
+[physical-nodes]
+nimworker01.tennet.local
+nimworker02.tennet.local
+nimworker03.tennet.local
+
+[nodes]
+oshift-m1.tennet.local openshift_schedulable=False
+oshift-m2.tennet.local openshift_schedulable=False
+oshift-m3.tennet.local openshift_schedulable=False
+oshift-infra1.tennet.local openshift_schedulable=True openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+oshift-infra2.tennet.local openshift_schedulable=True openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+oshift-infra3.tennet.local openshift_schedulable=True openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+nimworker01.tennet.local openshift_node_labels="{'region': 'node'}"
+nimworker02.tennet.local openshift_node_labels="{'region': 'node'}"
+nimworker03.tennet.local openshift_node_labels="{'region': 'node'}"

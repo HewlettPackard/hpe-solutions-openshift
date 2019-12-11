@@ -1,0 +1,35 @@
+###
+## Copyright (2019) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+####
+---
+  - name: Updating the node configuration
+    shell: "echo 'vm.max_map_count = 262144' > /etc/sysctl.d/99-elasticsearch.conf"
+
+  - name: restart
+    shell: "sysctl vm.max_map_count=262144"
+
+  - name: Login to registry.redhat.io
+    docker_login:
+      registry: registry.redhat.io
+      username: "{{ vault_rhsub_user }}"
+      password: "{{ vault_rhsub_pass }}"
+      reauthorize: yes
+
+  - name: Copying /.docker/config.json file to the /var/lib/origin/.docker directory
+    copy:
+      src: /root/.docker/config.json
+      dest: /var/lib/origin/.docker
+      remote_src: yes
+      force: yes

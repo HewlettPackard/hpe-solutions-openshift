@@ -1,0 +1,8 @@
+---
+- name: Validating Deployments and Creating Storage Class, Persistant Volume
+  hosts:
+    - masters
+
+  roles:
+    - ../roles/deployment_validation
+

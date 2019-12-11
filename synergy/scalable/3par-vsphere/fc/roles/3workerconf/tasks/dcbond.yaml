@@ -1,0 +1,67 @@
+###
+## Copyright (2018) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+####
+
+---
+- name: adding dns to team0
+  command: "nmcli con mod team0 ipv4.dns 10.0.1.254"
+
+#- name: Create the team and set it to LACP 
+#  vars:
+#    lacp: '{"runner": {"name": "activebackup"}, "link_watch": {"name": "ethtool"}}'
+#  command: " nmcli con add type team con-name team1 ifname team1 config '{{ lacp }}' ipv4.method manual ipv4.never-default true ip4 {{ team1ip }}/8 connection.autoconnect yes "
+
+#- name: Add first adapter to team1
+#  command: "nmcli con add type team-slave con-name team1-port1 ifname ens3f4 master team1"
+
+#- name: Add second adapter to team1
+#  command: "nmcli con add type team-slave con-name team1-port2 ifname ens3f5 master team1"
+
+#- name: Activate first adapter
+#  command: 'nmcli con up team1-port1'
+
+#- name: Activate second adapter
+#  command: 'nmcli con up team1-port2'
+
+#- name: Bring up the team 
+#  command: 'nmcli con up team1'
+
+- name: Bring up the team0
+  command: 'nmcli con up team0'
+
+
+#- name: Connect disconnected NIC 1 used in this bond
+#  command: 'nmcli device connect ens3f2'
+
+#- name: Connect disconnected NIC 2 used in this bond
+#  command: 'nmcli device connect ens3f3'
+
+#- name: Set the con method for ens3f2 to disabled
+#  command: 'nmcli con mod ens3f2 ipv4.method disabled'
+
+#- name: Set the con method for ens3f3 to disabled
+#  command: 'nmcli con mod ens3f3 ipv4.method disabled'
+
+#- name: Create data center network bond and assign it an IP address
+#  command: "nmcli con add type bond con-name {{ bondname2 }} ifname {{ ifname2 }} mode 802.3ad ipv4.method manual ipv4.never-default true ip4 {{ bond2ip }}/8 connection.autoconnect yes"
+
+#- name: Add first NIC to the data center network bond
+#  command: "nmcli con add type bond-slave ifname ens3f2 master {{ bondname2 }}"
+
+#- name: Add second NIC to the data center network bond
+#  command: "nmcli con add type bond-slave ifname ens3f3 master {{ bondname2 }}"
+
+#- name: Bring the bond up
+#  command: "nmcli con up {{ bondname2 }}"

@@ -1,0 +1,58 @@
+###
+## Copyright (2018) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+####
+
+---
+
+- name: Make sure that a group named wheel exists
+  group:
+    name: wheel
+    state: present
+
+- name: Create a sudo user for installation tasks
+  user:
+    name: oshiftuser
+    comment: "User created for installation tasks"
+    shell: /bin/bash
+    groups: wheel
+    append: yes
+    generate_ssh_key: yes
+
+- name: Remove comment from line
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^#%wheel'
+    line: '%wheel     ALL=(ALL)     NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+
+#- name: Upload the SSH public key
+#  authorized_key:
+#    user: oshiftuser
+#    state: present
+#    manage_dir: yes
+#    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+- name: Add DNS entry to the resolv.conf
+  lineinfile:
+    path: /etc/resolv.conf
+    state: present
+    regexp: '^#%nameserver'
+    line: "nameserver {{ dns1 }} {{ dns2 }}"
+
+- name: Restart network service
+  service:
+    name: network
+    state: restarted

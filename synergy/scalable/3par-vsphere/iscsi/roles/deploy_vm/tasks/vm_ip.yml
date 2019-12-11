@@ -1,0 +1,167 @@
+###
+## Copyright (2019) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+####
+---
+# this file consists of customized allignment of the variable to create VMs
+############################ No Need To Change ############################
+
+management_vms_triple:
+  "{{ master01_name }}":
+    ip: "{{ master01_ip }}"
+    ip2: "{{ master01_ip2 }}" 
+    ip3: "{{ master01_ip3 }}"
+    cpu: "{{ master_cpu }}"
+    mem: "{{ master_memory }}"
+    disk: "{{ master_disk }}"
+
+  "{{ master02_name }}":
+    ip: "{{ master02_ip }}"
+    ip2: "{{ master02_ip2 }}" 
+    ip3: "{{ master02_ip3 }}"
+    cpu: "{{ master_cpu }}"
+    mem: "{{ master_memory }}"
+    disk: "{{ master_disk }}"
+
+  "{{ master03_name }}":
+    ip: "{{ master03_ip }}"
+    ip2: "{{ master03_ip2 }}" 
+    ip3: "{{ master03_ip3 }}"
+    cpu: "{{ master_cpu }}"
+    mem: "{{ master_memory }}"
+    disk: "{{ master_disk }}"
+
+  "{{ infra01_name }}":
+    ip: "{{ infra01_ip }}"
+    ip2: "{{ infra01_ip2 }}"
+    ip3: "{{ infra01_ip3 }}"
+    cpu: "{{ infra_cpu }}"
+    mem: "{{ infra_memory }}"
+    disk: "{{ infra_disk }}"
+
+  "{{ infra02_name }}":
+    ip: "{{ infra02_ip }}"
+    ip2: "{{ infra02_ip2 }}"
+    ip3: "{{ infra02_ip3 }}"
+    cpu: "{{ infra_cpu }}"
+    mem: "{{ infra_memory }}"
+    disk: "{{ infra_disk }}"
+
+  "{{ infra03_name }}":
+    ip: "{{ infra03_ip }}"
+    ip2: "{{ infra03_ip2 }}"
+    ip3: "{{ infra03_ip3 }}"
+    cpu: "{{ infra_cpu }}"
+    mem: "{{ infra_memory }}"
+    disk: "{{ infra_disk }}"
+
+management_vms_single:
+  "{{ lb01_name }}":
+    ip: "{{ lb01_ip }}"
+    cpu: "{{ lb_cpu }}"
+    mem: "{{ lb_memory }}"
+    disk: "{{ lb_disk }}"
+
+  "{{ lb02_name }}":
+    ip: "{{ lb02_ip }}"
+    cpu: "{{ lb_cpu }}"
+    mem: "{{ lb_memory }}"
+    disk: "{{ lb_disk }}"
+
+worker_vms:
+  "{{ worker01_name }}":
+    ip: "{{ worker01_ip }}"
+    ip2: "{{ worker01_ip2 }}"
+    ip3: "{{ worker01_ip3 }}"
+    cpu: "{{ worker_cpu }}"
+    mem: "{{ worker_memory }}"
+    disk: "{{ worker_disk }}"
+
+  "{{ worker02_name }}":
+    ip: "{{ worker02_ip }}"
+    ip2: "{{ worker02_ip2 }}"
+    ip3: "{{ worker02_ip3 }}"
+    cpu: "{{ worker_cpu }}"
+    mem: "{{ worker_memory }}"
+    disk: "{{ worker_disk }}"
+
+  "{{ worker03_name }}":
+    ip: "{{ worker03_ip }}"
+    ip2: "{{ worker03_ip2 }}"
+    ip3: "{{ worker03_ip3 }}"
+    cpu: "{{ worker_cpu }}"
+    mem: "{{ worker_memory }}"
+    disk: "{{ worker_disk }}"
+
+  "{{ worker04_name }}":
+    ip: "{{ worker04_ip }}"
+    ip2: "{{ worker04_ip2 }}"
+    ip3: "{{ worker04_ip3 }}"
+    cpu: "{{ worker_cpu }}"
+    mem: "{{ worker_memory }}"
+    disk: "{{ worker_disk }}"
+
+  "{{ worker05_name }}":
+    ip: "{{ worker05_ip }}"
+    ip2: "{{ worker05_ip2 }}"
+    ip3: "{{ worker05_ip3 }}"
+    cpu: "{{ worker_cpu }}"
+    mem: "{{ worker_memory }}"
+    disk: "{{ worker_disk }}"
+
+  "{{ worker06_name }}":
+    ip: "{{ worker06_ip }}"
+    ip2: "{{ worker06_ip2 }}"
+    ip3: "{{ worker06_ip3 }}"
+    cpu: "{{ worker_cpu }}"
+    mem: "{{ worker_memory }}"
+    disk: "{{ worker_disk }}"
+
+dumpfacts: False
+vm_type: vmxnet3
+disk_type: thin
+
+management_vm_names:
+  - "{{ master01_name }}"
+  - "{{ master02_name }}"
+  - "{{ master03_name }}"
+  - "{{ infra01_name }}"
+  - "{{ infra02_name }}"
+  - "{{ infra03_name }}"
+  - "{{ lb01_name }}"
+  - "{{ lb02_name }}"
+
+worker_vm_names:
+  - "{{ worker01_name }}"
+  - "{{ worker02_name }}"
+  - "{{ worker03_name }}"
+  - "{{ worker04_name }}"
+  - "{{ worker05_name }}"
+  - "{{ worker06_name }}"
+
+vm_names:
+  - "{{ master01_name }}"
+  - "{{ master02_name }}"
+  - "{{ master03_name }}"
+  - "{{ infra01_name }}"
+  - "{{ infra02_name }}"
+  - "{{ infra03_name }}"
+  - "{{ lb01_name }}"
+  - "{{ lb02_name }}"
+  - "{{ worker01_name }}"
+  - "{{ worker02_name }}"
+  - "{{ worker03_name }}"
+  - "{{ worker04_name }}"
+  - "{{ worker05_name }}"
+  - "{{ worker06_name }}"

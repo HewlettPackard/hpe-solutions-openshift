@@ -1,0 +1,17 @@
+[master]
+buramaster01.tennet.local
+buramaster02.tennet.local
+buramaster03.tennet.local
+
+[worker]
+buraworker01.tennet.local
+buraworker02.tennet.local
+buraworker03.tennet.local
+
+[nimble_vol_node]
+buramaster01.tennet.local
+
+
+
+
+
