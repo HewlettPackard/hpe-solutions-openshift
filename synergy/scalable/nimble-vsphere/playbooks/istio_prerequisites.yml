@@ -1,0 +1,9 @@
+---
+- name: Istio Prerequisities
+  hosts: 
+    - nodes
+  gather_facts: true
+  remote_user: root
+
+  roles:
+   - roles/istio_prerequisites

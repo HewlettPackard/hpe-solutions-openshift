@@ -1,0 +1,45 @@
+---
+###
+## Copyright (2019) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+####
+
+##### update the value for variables path_to_/ose.repo #####
+
+- hosts: 
+   - webserver
+   - virtual-nodes 
+   - registry
+#  remote_user: root
+#  gather_facts: true
+  become: yes
+  tasks:
+  - name: add a some lines into yum conf file
+    lineinfile: dest=/etc/yum.conf
+                line="{{ item }}"
+                state=present
+    with_items:
+     - 'distroverpkg=redhat-release'
+     - 'http_caching=packages'
+     - 'repo_gpgcheck=0'
+  - name: removing .repo file in all machines
+    command: rm -rf /etc/yum.repos.d/*
+  - name: copy ose.repo file into remote location
+    copy:
+      src: <path_to_/ose.repo>
+      dest: /etc/yum.repos.d/
+  - name: cleaning all repos and downloading the from the webserver
+    command: yum clean all
+  - name: downloading the packages
+    command: yum repolist

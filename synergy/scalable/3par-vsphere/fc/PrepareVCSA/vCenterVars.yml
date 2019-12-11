@@ -1,0 +1,32 @@
+---
+# vCenter credentials
+vcenter_hostname: 
+vcenter_username: 
+vcenter_password: 
+
+# datacenter name within vCenter
+datacenter_name: 
+# Cluster name within vCenter
+cluster_name: 
+
+# vsphere hostnames / IP address
+esxi_01: 
+esxi_02: 
+esxi_03: 
+
+# vsphere host credentials
+esxi_uname: 
+esxi_pwd: 
+
+################## No Need To Modify ##################
+
+esxi_hosts:
+  "{{ esxi_01 }}":
+    esxi_username: "{{ esxi_uname }}"
+    esxi_password: "{{ esxi_pwd }}"
+  "{{ esxi_02 }}":
+    esxi_username: "{{ esxi_uname }}"
+    esxi_password: "{{ esxi_pwd }}"
+  "{{ esxi_03 }}":
+    esxi_username: "{{ esxi_uname }}"
+    esxi_password: "{{ esxi_pwd }}"

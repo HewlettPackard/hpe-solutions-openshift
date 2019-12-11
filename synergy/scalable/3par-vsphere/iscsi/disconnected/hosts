@@ -1,0 +1,187 @@
+###
+## Copyright (2019) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+####
+
+[webserver]
+<ansible engine FQDN>
+
+[registry]
+registry.twentynet.local
+
+[virtual-nodes]
+master001.twentynet.local
+master002.twentynet.local
+master003.twentynet.local
+lb001.twentynet.local
+lb002.twentynet.local
+infra001.twentynet.local
+infra002.twentynet.local
+infra003.twentynet.local
+worker001.twentynet.local
+worker002.twentynet.local
+worker003.twentynet.local
+worker004.twentynet.local
+worker005.twentynet.local
+worker006.twentynet.local
+
+[OSEv3:children]
+masters
+etcd
+nodes
+lb
+infra
+
+#Variables used for OCP 3.11 installation
+[OSEv3:vars]
+#user used for OCP installation
+ansible_ssh_user=oshiftuser
+ansible_become=true    
+
+openshift_release="v3.11"
+ansible_service_broker_install=false
+
+openshift_deployment_type=openshift-enterprise
+public_hosted_zone=twentynet.local
+
+load_balancer_hostname=lb001.twentynet.local
+openshift_master_cluster_hostname=master001.twentynet.local
+openshift_master_cluster_public_hostname=lb001.twentynet.local
+openshift_public_hostname=lb001.twentynet.local
+
+openshift_master_cluster_method=native
+
+# if sdn is available, the internal pod network section below can be commented. 
+# if sdn is not available, update the openshift_use_openshift_sdn value as false and provide internal pod network details 
+openshift_use_openshift_sdn=true
+
+#Internal Pod network
+#osm_cluster_network_cidr=12.0.0.0/8                      
+#osm_host_subnet_length=9
+
+openshift_registry_selector='node-role.kubernetes.io/infra=true'
+openshift_router_selector='node-role.kubernetes.io/infra=true'
+openshift_enable_service_catalog=false
+openshift_service_catalog_image_version=v3.11
+openshift_service_catalog_image_prefix=openshift/ose-
+
+#deployment_subtype=registry
+openshift_hosted_infra_selector=""
+openshift_docker_additional_registries=registry.twentynet.local:5000
+osm_etcd_image=registry.twentynet.local:5000/rhel7/etcd:3.2.22
+openshift_web_console_prefix=registry.twentynet.local:5000/openshift3/ose-web-console:v3.11.129
+openshift_web_console_install=true
+
+# update the variable oreg_url the latest micro version.
+oreg_url=registry.twentynet.local:5000/openshift3/ose-${component}:${version}
+# example
+#oreg_url=registry.twentynet.local:5000/openshift3/ose-${component}:v3.11.129
+
+openshift_docker_insecure_registries=registry.twentynet.local:5000
+openshift_docker_blocked_registries=registry.access.redhat.com,docker.io,registry.redhat.io
+openshift_examples_modify_imagestreams=true
+openshift_cockpit_deployer_image='registry.twentynet.local:5000/openshift3/registry-console:v3.11.129'
+openshift_disable_check=disk_availability,memory_availability,docker_image_availability,docker_storage,package_availability,package_version
+
+# If utilizing LDAP for authentication, comment the below section
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
+openshift_master_htpasswd_file=<path_to/file_name.htpasswd>
+
+# if utilizing LDAP for authentication, uncomment the below line. It is essential to create a user in the LDAP/active directory
+#openshift_master_identity_providers=[{'name': 'my_ldap_provider', 'challenge': 'true', 'login': 'true', 'kind': 'LDAPPasswordIdentityProvider', 'attributes': {'id': ['dn'], 'email': ['super@tennet.local'], 'name': ['super'], 'preferredUsername': ['super']}, 'bindDN': 'cn=super,cn=users,dc=tennet,dc=local', 'bindPassword': 'Password!234', 'insecure': 'True', 'url': 'ldap://tennetdc.tennet.local/cn=users,dc=tennet,dc=local?uid'}]
+openshift_enable_docker_excluder=false
+
+#cluster console
+openshift_console_install=true
+openshift_console_hostname=master001.twentynet.local
+openshift_master_default_subdomain=master001.twentynet.local
+
+# metrics
+# if intended to utilize metrics, update the variable openshift_metrics_install_metrics as true
+openshift_metrics_install_metrics=false
+openshift_metrics_storage_kind=dynamic
+openshift_metrics_storage_volume_size=25Gi
+
+# logging
+# if intended to utilize logging, update the variable openshift_logging_install_logging as true
+openshift_logging_install_logging=false
+openshift_logging_es_pvc_dynamic=true
+openshift_logging_es_pvc_size=200Gi
+openshift_logging_elasticsearch_storage_type=pvc
+openshift_logging_es_pvc_storage_class_name=sc-es
+openshift_logging_es_pvc_prefix=oc-efk-log
+openshift_logging_es_cluster_size=3
+openshift_logging_es_nodeselector={"node-role.kubernetes.io/compute": "true"}
+openshift_logging_kibana_nodeselector={"node-role.kubernetes.io/compute": "true"}
+openshift_logging_curator_nodeselector={"node-role.kubernetes.io/compute": "true"}
+openshift_logging_fluentd_nodeselector={"node-role.kubernetes.io/compute": "true"}
+openshift_logging_es_number_of_replicas=3
+openshift_logging_es_allow_external=true
+openshift_logging_es_hostname=ses.router.tennet.local
+openshift_logging_kibana_hostname=3kibana.router.tennet.local
+logging_elasticsearch_rollout_override=true
+
+# Prometheus
+# if intended to utilize Prometheus, update the variable openshift_cluster_monitoring_operator_install as true
+openshift_cluster_monitoring_operator_install=false
+openshift_cluster_monitoring_operator_prometheus_storage_capacity=true
+openshift_cluster_monitoring_operator_alertmanager_storage_capacity=true
+openshift_cluster_monitoring_operator_alertmanager_config=true
+openshift_cluster_monitoring_operator_prometheus_storage_enabled=true
+openshift_cluster_monitoring_operator_alertmanager_storage_enabled=true
+openshift_cluster_monitoring_operator_install=true
+
+#Monitoring
+# if intended to utilize Monitoring, update the variable openshift_cluster_monitoring_operator_install as true
+openshift_cluster_monitoring_operator_install=false
+openshift_cluster_monitoring_operator_node_selector={"node-role.kubernetes.io/compute": "true"}
+openshift_cluster_monitoring_operator_prometheus_storage_enabled=true
+openshift_cluster_monitoring_operator_alertmanager_storage_enabled=true
+openshift_cluster_monitoring_operator_prometheus_storage_capacity=50Gi
+openshift_cluster_monitoring_operator_alertmanager_storage_capacity=20Gi
+openshift_cluster_monitoring_operator_prometheus_storage_enabled=true
+openshift_cluster_monitoring_operator_alertmanager_storage_enabled=true
+
+[masters]
+master001.twentynet.local
+master002.twentynet.local
+master003.twentynet.local
+
+[lb]
+lb001.twentynet.local
+lb002.twentynet.local
+
+[infra]
+infra001.twentynet.local
+infra002.twentynet.local
+infra003.twentynet.local
+
+[etcd]
+master001.twentynet.local openshift_ip=<master1-ip1>
+master002.twentynet.local openshift_ip=<master1-ip2>
+master003.twentynet.local openshift_ip=<master1-ip3>
+
+[nodes]
+master001.twentynet.local openshift_schedulable=true openshift_node_group_name='node-config-master-infra'
+master002.twentynet.local openshift_schedulable=true openshift_node_group_name='node-config-master-infra'
+master003.twentynet.local openshift_schedulable=true openshift_node_group_name='node-config-master-infra'
+infra001.twentynet.local openshift_node_group_name='node-config-infra' #openshift_schedulable=true
+infra002.twentynet.local openshift_node_group_name='node-config-infra' #openshift_schedulable=true
+infra003.twentynet.local openshift_node_group_name='node-config-infra' #openshift_schedulable=true
+worker001.twentynet.local openshift_node_group_name='node-config-compute' #openshift_schedulable=true
+worker002.twentynet.local openshift_node_group_name='node-config-compute' #openshift_schedulable=true
+worker003.twentynet.local openshift_node_group_name='node-config-compute' #openshift_schedulable=true
+worker004.twentynet.local openshift_node_group_name='node-config-compute' #openshift_schedulable=true
+worker005.twentynet.local openshift_node_group_name='node-config-compute' #openshift_schedulable=true
+worker006.twentynet.local openshift_node_group_name='node-config-compute' #openshift_schedulable=true

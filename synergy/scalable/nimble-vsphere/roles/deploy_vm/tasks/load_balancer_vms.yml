@@ -1,0 +1,55 @@
+###
+## Copyright (2019) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+####
+---
+- name: Creating the load balance VMs
+  vmware_guest:
+    validate_certs: false
+    folder: /
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    cluster: "{{ management_cluster_name }}"
+    datacenter: "{{ datacenter_name }}"
+    name: "{{ item.key }}"
+    template: "{{ vmtemplate }}"
+    disk:
+      - size_gb: "{{ item.value.disk | default(50) }}"
+        type: "{{ disk_type }}"
+        datastore: "{{ management_datastore_name }}"
+      - size_gb: "{{ item.value.disk | default(50) }}"
+        type: "{{ disk_type }}"
+        datastore: "{{ management_datastore_name }}"
+    networks:
+    - name: "{{ datacenter_network_name }}"
+      ip: "{{ item.value.ip }}"
+      netmask: "{{ netmask }}"
+      gateway: "{{ gateway }}"
+      dns_servers: "{{ dns_server }}"
+      domain: "{{ domain_name }}"
+      device_type: "{{ vm_type }}"
+      start_connected: True
+      type: static
+    hardware:
+      memory_mb: "{{ item.value.mem }}"
+      num_cpus: "{{ item.value.cpu }}"
+    customization:
+      hostname: "{{ item.key }}"
+      dns_servers: "{{ dns_server }}"
+      domain: "{{ domain_name }}"
+    wait_for_ip_address: True
+    state: poweredon
+  register: "{{ item.key }}"
+  with_dict: "{{ management_vms_single }}"      

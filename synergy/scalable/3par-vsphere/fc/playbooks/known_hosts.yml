@@ -1,0 +1,45 @@
+###
+## Copyright (2018) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+#### 
+---
+- name: Store known hosts of 'all' the hosts in the inventory file
+  hosts: localhost
+  connection: local
+
+  vars:
+    ssh_known_hosts_command: "ssh-keyscan -T 10"
+    ssh_known_hosts_file: "{{ lookup('env','HOME') + '/.ssh/known_hosts' }}"
+    ssh_known_hosts: "{{ groups['all'] }}"
+
+  tasks:
+
+  - name: remove hosts
+    shell: "ssh-keyscan -R {{ item }},`dig +short {{ item }}`"
+    with_items: "{{ ssh_known_hosts }}"
+    register: ssh_known_host_results
+    ignore_errors: yes
+
+  - name: For each host, scan for its ssh public key
+    shell: "ssh-keyscan {{ item }},`dig +short {{ item }}`"
+    with_items: "{{ ssh_known_hosts }}"
+    register: ssh_known_host_results
+    ignore_errors: yes
+
+  - name: Add/update the public key in the '{{ ssh_known_hosts_file }}'
+    known_hosts:
+      name: "{{ item.item }}"
+      key: "{{ item.stdout }}"
+      path: "{{ ssh_known_hosts_file }}"
+    with_items: "{{ ssh_known_host_results.results }}"
