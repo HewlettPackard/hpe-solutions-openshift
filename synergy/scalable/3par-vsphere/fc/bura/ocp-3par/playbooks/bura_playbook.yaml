@@ -1,7 +1,0 @@
-- name: Run Backup and Restore Script on all nodes in OpenShift Cluster
-  hosts:
-   - master
-   - worker
-   
-  roles:
-   - ./roles/bura

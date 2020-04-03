@@ -1,4 +1,11 @@
-This folder contains solution documents that support the deployment and configuration of Red Hat OpenShift Container Platform on HPE Synergy.
+This GitHub site contains deployment guides and resources for deploying Red Hat OpenShift on HPE platforms. 
 
-Scalable - This folder contains information on multi-frame configurations of Red Hat OpenShift Container Platform on HPE Synergy.
-Entry-level-config - This folder contains on information on single-frame configurations of Red Hat OpenShift Container Platform on HPE Synergy. 
+Corresponding Reference Configurations which address business value and provide bills of material for the solutions tested may be downloaded from:
+
+    HPE Reference Configuration for Red Hat OpenShift 4 on HPE Synergy 
+        <TBD>      
+    HPE Deployment Guide for Red Hat OpenShift 4 on HPE Synergy
+        <TBD>
+
+
+LICENSE - Referenced by content in this repository
