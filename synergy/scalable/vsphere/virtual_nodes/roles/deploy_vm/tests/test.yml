@@ -1,7 +1,0 @@
----
-- hosts: localhost
-  remote_user: <not_root_user>
-  becomes: true
-  roles:
-    - deploy-vm
-

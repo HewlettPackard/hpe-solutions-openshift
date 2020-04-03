@@ -1,6 +1,0 @@
----
-server_profile_name: "{{ hostvars[inventory_hostname].name }}"
-server_hardware: "{{ inventory_hostname }}"
-server_hardware_type: "{{ hostvars[inventory_hostname].type }}"
-
-

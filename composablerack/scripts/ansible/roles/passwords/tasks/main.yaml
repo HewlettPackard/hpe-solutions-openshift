@@ -1,3 +1,0 @@
----
-- include_vars: passwords.yml
-  no_log: false

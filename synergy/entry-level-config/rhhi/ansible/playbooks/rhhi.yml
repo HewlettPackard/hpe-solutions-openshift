@@ -1,9 +1,0 @@
----
-
-- name: rhhi
-  hosts:
-    - rhv
-  gather_facts: true
-  remote_user: root
-  roles:
-   - ../roles/rhhi
