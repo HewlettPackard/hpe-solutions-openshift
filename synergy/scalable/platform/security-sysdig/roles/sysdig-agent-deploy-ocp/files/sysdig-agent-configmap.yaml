@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sysdig-agent
+data:
+  dragent.yaml: |
+    ### Agent tags
+    # tags: linux:ubuntu,dept:dev,local:nyc
+    tags: cluster:openshift
+    log:
+      console_priority: debug
+      file_priority: debug
+
+    #### Sysdig Software related config ####
+
+    # Sysdig collector address
+    collector: collector.sysdigcloud.com
+
+    # Collector TCP port
+    collector_port: 80
+
+    # Whether collector accepts ssl
+    # ssl: true
+
+    # collector certificate validation
+    # ssl_verify_certificate: true
+
+    #######################################
+    new_k8s: true
+    k8s_cluster_name:  <replace_with_ocp_cluster_name>
