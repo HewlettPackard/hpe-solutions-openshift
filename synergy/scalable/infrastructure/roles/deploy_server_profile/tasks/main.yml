@@ -1,5 +1,5 @@
 ###
-## Copyright (2019) Hewlett Packard Enterprise Development LP
+## Copyright (2019, 2020) Hewlett Packard Enterprise Development LP
 ##
 ## Licensed under the Apache License, Version 2.0 (the "License");
 ## You may not use this file except in compliance with the License.
@@ -16,4 +16,8 @@
 ---
 # tasks file for deploy_vsphere
 - import_tasks: server_profile.yml
-- import_tasks: power_on.yml
+- import_tasks: power_cycle_server.yml
+- import_tasks: validate_firmware_versions.yml
+- import_tasks: validate_bios_settings.yml
+- import_tasks: validate_ilo_settings.yml
+

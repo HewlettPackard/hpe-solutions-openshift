@@ -13,36 +13,39 @@ Requirements
 Role Variables
 --------------
 ---
- vars file for deploy_vm
+# vars file for deploy_vm
 
- Name of the Datacenter 
+# Name of the Datacenter 
 - datacenter_name: <datacenter>
 
- Name of the compute clusters with the ESXi hosts for Management VMs
+# Name of the compute clusters with the ESXi hosts for Management VMs
 - management_cluster_name: <management-cluster>
 
- Name of the Datastore to store the VMs 
+# Name of the Datastore to store the VMs 
 - management_datastore_name: <management-datastore>
 
 # Name of the coreOS guest image
 guest_template: coreos64Guest 
 
- Disk size in GB/GiB
+# Disk size in GB/GiB
 - bootstrap_disk: 120
 - master_disk: 120
 - lb_disk: 50
 
- number of CPUs
+# number of CPUs
 - bootstrap_cpu: 4
 - master_cpu: 4
 - lb_cpu: 4
 
- Memory size in MB/MiB
+# Memory size in MB/MiB
 - bootstrap_memory: 16400
 - master_memory: 16400
 - lb_memory: 16400
 
- name of the master, bootstrap and lb nodes < short names, not the FQDN >
+- gateway: <replace_with_gateway_ip>
+- dns_server: <replace_with_dns_server_ip>
+
+# name of the master, bootstrap and lb nodes < short names, not the FQDN >
 - bootstrap01_name: <bootstrap01_fqdn_host_name>
 - master01_name: <master01_fqdn_host_name>
 - master02_name: <master02_fqdn_host_name>
@@ -51,10 +54,10 @@ guest_template: coreos64Guest
 
 - domain_name: "<sub_domain_fqdn>"
 
- Network names for the datacenter/management networks
+# Network names for the datacenter/management networks
 - datacenter_network_name: "<network_name>"
 
- vSphere affinity & anti-affinity rules
+# vSphere affinity & anti-affinity rules
 - affinity_rule_name: "vsphere-anti-affinty-rule"
 - anti_affinity_rule_name: "vsphere-affinty-rule"
 

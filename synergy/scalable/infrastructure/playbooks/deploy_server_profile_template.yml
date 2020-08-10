@@ -23,6 +23,7 @@
   vars_files:
    - ../secret.yml
    - ../inputs.yml
-   - ../roles/deploy_server_profile_template/tasks/server_profile_template_file.yml
+   - ../roles/deploy_server_profile_template/tasks/legacybios_server_profile_template_file.yml
+   - ../roles/deploy_server_profile_template/tasks/uefi_server_profile_template_file.yml
   roles:
    - ../roles/deploy_server_profile_template

@@ -1,5 +1,5 @@
 ###
-### Copyright (2019) Hewlett Packard Enterprise Development LP
+### Copyright (2019, 2020) Hewlett Packard Enterprise Development LP
 ###
 ### Licensed under the Apache License, Version 2.0 (the "License");
 ### You may not use this file except in compliance with the License.
@@ -23,6 +23,9 @@
   environment:
     KUBECONFIG: <replace_with_kubeconfig_path>
     PATH: <replace_with_ocp_installation_dir_path>:{{ ansible_env.PATH }}
+  
+  vars_files:
+   - ../secrets.yml
    
   roles:
    - ./roles/sysdig-agent-deploy-ocp

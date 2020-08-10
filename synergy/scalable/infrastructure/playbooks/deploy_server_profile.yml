@@ -1,5 +1,5 @@
 ###
-## Copyright (2019) Hewlett Packard Enterprise Development LP
+## Copyright (2019, 2020) Hewlett Packard Enterprise Development LP
 ##
 ## Licensed under the Apache License, Version 2.0 (the "License");
 ## You may not use this file except in compliance with the License.
@@ -23,6 +23,6 @@
   vars_files:
    - ../secret.yml
    - ../inputs.yml
-   - ../roles/deploy_server_profile/tasks/server_profile_file.yml
+   - ../fw_version_inputs.yml
   roles:
    - ../roles/deploy_server_profile

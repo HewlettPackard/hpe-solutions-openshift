@@ -48,8 +48,7 @@ lb_memory: 16400
 
 gateway: <replace_with_gateway_ip>
 dns_server: <replace_with_dns_server_ip>
-domain: <replace_with_domain_ip>
- 
+
 # name of the master, bootstrap and lb nodes < short names, not the FQDN >
 bootstrap01_name: <bootstrap01_fqdn_host_name>
 master01_name: <master01_fqdn_hostt_name>
@@ -63,5 +62,5 @@ domain_name: "<sub_domain_fqdn>"
 datacenter_network_name: "<network_name>"
 
 # vSphere affinity & anti-affinity rules
-affinity_rule_name: "vsphere-anti-affinty-rule"
-anti_affinity_rule_name: "vsphere-affinty-rule"
+affinity_rule_name: "vsphere-affinity-rule"
+anti_affinity_rule_name: "vsphere-anti-affinity-rule"

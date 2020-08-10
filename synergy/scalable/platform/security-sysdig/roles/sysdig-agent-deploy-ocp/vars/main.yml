@@ -1,5 +1,5 @@
 ###
-## Copyright (2018) Hewlett Packard Enterprise Development LP
+## Copyright (2019, 2020) Hewlett Packard Enterprise Development LP
 ##
 ## Licensed under the Apache License, Version 2.0 (the "License");
 ## You may not use this file except in compliance with the License.
@@ -16,19 +16,9 @@
 
 
 
-# Provide value of project name for sysdig integration with OCP
-# This project will be created in OpenShift.
-projectname: sysdig-agent-new
 # This is the default name "app" and serve as a key for application.
 # Do not rename "app" to anything else.
 appnamekey: app
 # This is the default name "access-key" and serve as a key for sysdig access token
 # Do not rename "access-key" to anything else.
 accesskeyname: access-key
-# Provide the access key/token value. This value you need to get from user setting
-# by logging into either sysdig secure or sysdig monitor GUI
-accesskeyval: <replace_with_sysdig_access_key>
-# Openshift username to login
-ocpuser: <replace_with_openshift_username>
-# Openshift password to login
-ocppassword: <replace_with_openshift_password>

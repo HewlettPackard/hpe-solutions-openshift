@@ -4,9 +4,9 @@ metadata:
   name: sysdig-agent
 data:
   dragent.yaml: |
+    configmap: true
     ### Agent tags
     # tags: linux:ubuntu,dept:dev,local:nyc
-    tags: cluster:openshift
     log:
       console_priority: debug
       file_priority: debug
@@ -14,10 +14,12 @@ data:
     #### Sysdig Software related config ####
 
     # Sysdig collector address
-    collector: collector.sysdigcloud.com
+    # Example: collector: collector.sysdigcloud.com
+    collector: <sysdig_saas_collector_address>
 
     # Collector TCP port
-    collector_port: 80
+    # Example: collector_port: 80
+    collector_port: <collector_port>
 
     # Whether collector accepts ssl
     # ssl: true
@@ -27,4 +29,8 @@ data:
 
     #######################################
     new_k8s: true
-    k8s_cluster_name:  <replace_with_ocp_cluster_name>
+    # Use command: "oc config view" to get the Openshift Cluster Name
+    k8s_cluster_name: <replace_with_ocp_cluster_name>
+    security:
+      k8s_audit_server_url: 0.0.0.0
+      k8s_audit_server_port: 7765
