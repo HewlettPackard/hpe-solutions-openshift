@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Validating OpenShift Container Platform deployment | RED HAT OPENSHIFT CONTAINER PLATFORM 4 ON HPE SYNERGY</title>
+    <meta name="description" content="">
+    <meta name="generator" content="VuePress 1.4.0">
+    
+    
+    <link rel="preload" href="/hpe-solutions-openshift/assets/css/0.styles.03110986.css" as="style"><link rel="preload" href="/hpe-solutions-openshift/assets/js/app.97ab5217.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/assets/js/2.7869ffdd.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/assets/js/24.5e6bc1df.js" as="script"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/10.eaca1b1f.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/11.e4a910b4.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/12.23c485d1.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/13.1dfc2227.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/14.6cfe7b83.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/15.396fb9b8.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/16.a35ed86c.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/17.821cf572.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/18.861062ec.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/19.790531fa.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/20.77410566.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/21.64fb4b9d.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/22.d1f7b188.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/23.47b1fcea.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/25.739eaeab.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/26.c868f3e2.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/3.df4c1f1d.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/4.4ba88d9e.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/5.bae94e2f.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/6.29d6f4db.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/7.1836f0b8.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/8.7912b669.js"><link rel="prefetch" href="/hpe-solutions-openshift/assets/js/9.9e7c1a91.js">
+    <link rel="stylesheet" href="/hpe-solutions-openshift/assets/css/0.styles.03110986.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/hpe-solutions-openshift/" class="home-link router-link-active"><!----> <span class="site-name">RED HAT OPENSHIFT CONTAINER PLATFORM 4 ON HPE SYNERGY</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/hpe-solutions-openshift/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/hpe-solutions-openshift/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/hpe-solutions-openshift/Introduction/Introduction.html" class="sidebar-link">Introduction</a></li><li><a href="/hpe-solutions-openshift/Solution overview/Solution-overview.html" class="sidebar-link">Solution overview</a></li><li><a href="/hpe-solutions-openshift/Solution components/Solution-components.html" class="sidebar-link">Solution components</a></li><li><a href="/hpe-solutions-openshift/Preparing the execution environment/Preparing-the-execution-environment.html" class="sidebar-link">Preparing the execution environment</a></li><li><a href="/hpe-solutions-openshift/Physical environment configuration/Physical-environment-configuration.html" class="sidebar-link">Physical environment configuration</a></li><li><a href="/hpe-solutions-openshift/Physical node configuration/Physical-node-configuration.html" class="sidebar-link">Physical node configuration</a></li><li><a href="/hpe-solutions-openshift/Virtual node configuration/Virtual-node-configuration.html" class="sidebar-link">Virtual node configuration</a></li><li><a href="/hpe-solutions-openshift/vSphere Provisioner/vSphere-Provisioner.html" class="sidebar-link">vSphere Provisioner</a></li><li><a href="/hpe-solutions-openshift/Operating system deployment/Operating-system-deployment.html" class="sidebar-link">Operating system deployment</a></li><li><a href="/hpe-solutions-openshift/Red Hat OpenShift Container Platform deployment/Red-Hat-OpenShift-Container-Platform-deployment.html" class="sidebar-link">Red Hat OpenShift Container Platform deployment</a></li><li><a href="/hpe-solutions-openshift/Red Hat Local Storage Operator/Red-Hat-Local-Storage-Operator.html" class="sidebar-link">Red Hat Local Storage Operator</a></li><li><a href="/hpe-solutions-openshift/Integration of HPE OneView with Prometheus/Integration-of-HPE-OneView-with-Prometheus.html" class="sidebar-link">Integration of HPE OneView with Prometheus</a></li><li><a href="/hpe-solutions-openshift/Storage/Storage.html" class="sidebar-link">Storage</a></li><li><a href="/hpe-solutions-openshift/HPE CSI drivers/HPE-CSI-drivers.html" class="sidebar-link">HPE CSI drivers</a></li><li><a href="/hpe-solutions-openshift/Securing Red Hat OpenShift Container Platform using Sysdig Secure and Sysdig Monitor/Securing-Red-Hat-OpenShift-Container-Platform-using-Sysdig-Secure-and-Sysdig-Monitor.html" class="sidebar-link">Securing Red Hat OpenShift Container Platform using Sysdig Secure and Sysdig Monitor</a></li><li><a href="/hpe-solutions-openshift/Physical worker node labeling in Red Hat OpenShift cluster/Physical-worker-node-labeling-in-Red-Hat-OpenShift-cluster.html" class="sidebar-link">Physical worker node labeling in Red Hat OpenShift cluster</a></li><li><a href="/hpe-solutions-openshift/OpenShift Operators/OpenShift-Operators.html" class="sidebar-link">OpenShift Operators</a></li><li><a href="/hpe-solutions-openshift/Validating OpenShift Container Platform deployment/Validating-OpenShift-Container-Platform-deployment.html" class="active sidebar-link">Validating OpenShift Container Platform deployment</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/hpe-solutions-openshift/Validating OpenShift Container Platform deployment/Validating-OpenShift-Container-Platform-deployment.html#deploying-mongodb-application" class="sidebar-link">Deploying MongoDB application</a></li><li class="sidebar-sub-header"><a href="/hpe-solutions-openshift/Validating OpenShift Container Platform deployment/Validating-OpenShift-Container-Platform-deployment.html#verifying-mongodb-deployment" class="sidebar-link">Verifying MongoDB deployment</a></li></ul></li><li><a href="/hpe-solutions-openshift/Resources and additional links/Resources-and-additional-links.html" class="sidebar-link">Resources and additional links</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="validating-openshift-container-platform-deployment"><a href="#validating-openshift-container-platform-deployment" class="header-anchor">#</a> Validating OpenShift Container Platform deployment</h1> <p>After the cluster is up and running with OpenShift Local Storage Operator, the cluster configuration is validated by deploying a MongoDB pod with persistent volume and Yahoo Cloud Service Benchmarking (YCSB). This section covers the steps to validate the OpenShift Container Platform deployment.</p> <div class="custom-block warning"><p class="custom-block-title">Prerequisites</p> <ol><li><p>OCP 4 cluster must be installed.</p></li> <li><p>Use local storage or OCS to claim persistent volume (PV).</p></li> <li><p>MongoDB instance will only support local file system storage or OCS file system.</p></li></ol></div> <div class="custom-block tip"><p class="custom-block-title">Note</p> <p>Block storage is not supported.</p></div> <h2 id="deploying-mongodb-application"><a href="#deploying-mongodb-application" class="header-anchor">#</a> Deploying MongoDB application</h2> <ol><li><p>Login to the installer VM as a non-root user.</p></li> <li><p>Use the following command to download the Red Hat scripts specific to the MongoDB application at <a href="https://github.com/red-hat-storage/SAWORF" target="_blank" rel="noopener noreferrer">https://github.com/red-hat-storage/SAWORF<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token function">sudo</span> <span class="token function">git</span> clone <span class="token operator">&lt;</span>https://github.com/red-hat-storage/SAWORF.git<span class="token operator">&gt;</span>  
+</code></pre></div></li> <li><p>From within the red-hat-storage repository, navigate to the folder SAWORF/OCS3/MongoDB/blog2.</p></li> <li><p>Update the <em>create_and_load.sh</em> script with <strong>local storage</strong>, <strong>OCS ,</strong> <strong>Nimble storage,</strong> and <strong>3PAR storage</strong> in place of <strong>glusterfs</strong> content. Example is as follows.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token assign-left variable">mongodb_ip</span><span class="token operator">=</span><span class="token punctuation">$(</span>oc get svc -n <span class="token variable">${PROJECT_NAME}</span> <span class="token operator">|</span> <span class="token function">grep</span> -v **local storage** <span class="token operator">|</span> <span class="token function">grep</span> mongodb <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print <span class="token variable">$3</span>}'</span>
+</code></pre></div></li> <li><p>Create MongoDB and YCSB pods and load the sample data. Update the following command with appropriate values for the command line parameters and execute the command to create the MongoDB and YCSB pods and also to load the sample data.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ ./create_and_load_mongodb <span class="token variable">$PROJECT_NAME</span> <span class="token variable">$OCP_TEMPLATE</span> <span class="token variable">$MONGODB_MEMORY_LIMIT</span> <span class="token variable">$PV_SIZE</span> <span class="token variable">$MONGODB_VERSION</span> <span class="token variable">$YCSB_WORKLOAD</span> <span class="token variable">$YCSB_DISTRIBUTION</span> <span class="token variable">$YCSB_RECORDCOUNT</span> <span class="token variable">$YCSB_OPERATIONCOUNT</span> <span class="token variable">$YCSB_THREADS</span> <span class="token variable">$LOG_DIR</span>
+</code></pre></div><p>Example command is shown as follows.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ ./create_and_load_mongodb dbtest mongodb-persistent 4Gi 10Gi <span class="token number">3.6</span> workloadb uniform <span class="token number">4000</span> <span class="token number">4000</span> <span class="token number">8</span> root /mnt/data/
+</code></pre></div><p>The output is as follows.</p> <div class="language- extra-class"><pre><code> &gt; Deploying template &quot;openshift/mongodb-persistent&quot; to project dbtest
+
+    MongoDB
+
+---------
+
+&gt; MongoDB database service, with persistent storage. For more information about using this template, including OpenShift considerations, see documentation in the upstream repository: &lt;https://github.com/sclorg/mongodb-container&gt;.   
+
+The following service(s) have been created in the project: mongodb.
+
+Username: redhat
+
+Password: redhat
+
+Database Name: redhatdb
+
+Connection URL: mongodb://redhat:redhat@mongodb/redhatdb
+
+For more information about using this template, including OpenShift considerations, see documentation in the upstream repository: &lt;https://github.com/sclorg/mongodb-container&gt;.
+
+With parameters:
+
+        * Memory Limit=4Gi
+
+        * Namespace=openshift
+
+        * Database Service Name=mongodb
+
+        * MongoDB Connection Username=redhat
+
+        * MongoDB Connection Password=redhat
+
+        * MongoDB Database Name=redhatdb
+
+        * MongoDB Admin Password=redhat
+
+        * Volume Capacity=10Gi
+
+        * Version of MongoDB Image=3.6
+
+&gt; Creating resources ...
+
+    secret &quot;mongodb&quot; created
+
+    service &quot;mongodb&quot; created
+
+    error: persistentvolumeclaims &quot;mongodb&quot; already exists
+
+    deploymentconfig.apps.openshift.io &quot;mongodb&quot; created
+
+&gt; Failed
+
+pod/ycsb-pod created
+</code></pre></div></li></ol> <div class="custom-block tip"><p class="custom-block-title">Note</p> <div class="language- extra-class"><pre><code>    Scaling to more than one replica is not supported. You must have persistent volume available in your cluster to use this template.
+</code></pre></div></div> <ol start="6"><li><p>Execute the following command to run the check_db_size script.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ ./check_db_size <span class="token variable">$PROJECT_NAME</span>
+</code></pre></div><p>The output is as follows.</p> <div class="language- extra-class"><pre><code>MongoDB shell version v3.6.12
+
+connecting to: mongodb://172.x.x.x:27017/redhatdb?gssapiServiceName=mongodb
+
+Implicit session: session {&quot;id&quot; : UUID(&quot;c0a76ddc-ea0b-4fc-88fd-045d0f98b2&quot;) }
+
+MongoDB server version: 3.6.3
+
+{
+
+              &quot;db&quot; : &quot;redhatdb&quot;,
+
+              &quot;collections&quot; : 1,
+
+              &quot;views&quot; : 0,
+
+              &quot;objects&quot; : 4000,
+
+              &quot;avgObjSize&quot; : 1167.877,
+
+              &quot;dataSize&quot; : 0.004350680857896805,
+
+              &quot;storageSize&quot; : 0.00446319580078125,
+
+              &quot;numExtents&quot; : 0,
+
+              &quot;indexes&quot; : 1,
+
+              &quot;indexSize&quot; : 0.0001068115234375,
+
+              &quot;fsUsedSize&quot; : 1.0311393737792969,
+
+              &quot;fsTotalSize&quot; : 99.951171875,
+
+              &quot;ok&quot; : 1
+
+}
+</code></pre></div></li></ol> <h2 id="verifying-mongodb-deployment"><a href="#verifying-mongodb-deployment" class="header-anchor">#</a> Verifying MongoDB deployment</h2> <ol><li><p>Execute the following command to verify the persistent volume associated with MongoDB pods.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ oc get <span class="token function">pv</span><span class="token operator">|</span><span class="token function">grep</span> mongodb
+</code></pre></div><p>The output is as follows.</p> <div class="language- extra-class"><pre><code>local-pv-e7f10f65 100Gi RWO Delete Bound dbtest/mongodb local-sc 26h
+</code></pre></div></li> <li><p>Execute the following command to verify the persistent volume claim (PVC) associated with MongoDB pods.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ oc get pvc 
+</code></pre></div><p>The output is as follows.</p> <div class="language- extra-class"><pre><code>local-pv-e7f10f65 100Gi RWO Delete Bound dbtest/mongodb local-sc 26h
+</code></pre></div></li> <li><p>Execute the following command to ensure MongoDB and YCSB pods are up and running.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ oc get pod
+</code></pre></div><p>The output is as follows.</p></li></ol> <div class="language- extra-class"><pre class="language-text"><code>  NAME               READY   STATUS      RESTARTS   AGE
+  
+  mongodb-1-deploy   0/1     Completed   0          3m40s
+  
+  mongodb-1-skbwq    1/1     Running     0          3m36s
+  
+  ycsb-pod           1/1     Running     0          3m41s
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">Note</p> <p>For more information about deploying MongoDB application along with YCSB, refer to the Red Hat documentation at <a href="https://www.redhat.com/en/blog/multitenant-deployment-mongodb-using-openshift-container-storage-and-using-ycsb-test-performance" target="_blank" rel="noopener noreferrer">https://www.redhat.com/en/blog/multitenant-deployment-mongodb-using-openshift-container-storage-and-using-ycsb-test-performance<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>.</p></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/hpe-solutions-openshift/OpenShift Operators/OpenShift-Operators.html" class="prev">
+        OpenShift Operators
+      </a></span> <span class="next"><a href="/hpe-solutions-openshift/Resources and additional links/Resources-and-additional-links.html">
+        Resources and additional links
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/hpe-solutions-openshift/assets/js/app.97ab5217.js" defer></script><script src="/hpe-solutions-openshift/assets/js/2.7869ffdd.js" defer></script><script src="/hpe-solutions-openshift/assets/js/24.5e6bc1df.js" defer></script>
+  </body>
+</html>
