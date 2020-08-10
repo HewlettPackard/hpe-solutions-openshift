@@ -1,5 +1,5 @@
 ###
-## Copyright (2019) Hewlett Packard Enterprise Development LP
+## Copyright (2019, 2020) Hewlett Packard Enterprise Development LP
 ##
 ## Licensed under the Apache License, Version 2.0 (the "License");
 ## You may not use this file except in compliance with the License.
@@ -14,18 +14,27 @@
 ## limitations under the License.
 ####
 ---
-- name: Get management network URI
-  oneview_ethernet_network_facts:
-    hostname: "{{ oneview_ip }}"
-    username: "{{ oneview_username }}"
-    password: "{{ oneview_password }}"
-    api_version: "{{ oneview_api_version }}"    
-    name: "{{ deployment_network_name }}"
-  delegate_to: localhost
-  run_once: true   
-      
-- set_fact: deployment_network_uri="{{ ethernet_networks.uri }}"
+- name: Initializing the local variables required by this playbook
+  set_fact:
+    server_profile_template_file: ""
+    is_coreos: "{{ os_is_coreos }}"
+    is_true: "true"
+    
+# For CoreOS installation on Synergy Bare Metal Compute using iPXE use LegacyBIOS as the boot mode
+# For template creation, the required template creation facts are stored in following file: "legacybios_server_profile_template_file.yml"
+- set_fact:
+    server_profile_template_file: "{{ legacybios_server_profile_template_file }}"
+  when: 
+    - is_coreos == is_true
 
+# For Virtual Media based OS installation on Synergy Compute Bare Metal it is recommended to use Boot Mode as "UEFI"
+# For template creation, the required template creation facts are stored in following file: "uefi_server_profile_template_file.yml"
+- set_fact:
+    server_profile_template_file: "{{ uefi_server_profile_template_file }}"
+  when: 
+    - is_coreos != is_true
+    
+# For template creation, the required template creation facts are stored in file "server_profile_template_file.yml"
 - name: Create a server profile template
   oneview_server_profile_template:
     hostname: "{{ oneview_ip }}"
@@ -33,8 +42,24 @@
     password: "{{ oneview_password }}"
     api_version: "{{ oneview_api_version }}" 
     state: present
-    data: "{{ server_profile_template }}"
+    data: "{{ server_profile_template_file }}"
     params:
       force: "True"
   delegate_to: localhost
+  register: result
+
+- name: Check template creation status
+  fail:
+    msg: "Server Profile Template creation or updation failed."
+  when: result.msg is defined and result.msg != "Server Profile Template created successfully." and result.msg != "Server Profile Template updated successfully."
+
+- name: Inform user if the server profile template creation is successful
+  debug:
+    msg: "Server Profile Template created successfully."
+  when: result.msg == "Server Profile Template created successfully." 
+
+- name: Inform user if the server profile template is updated successful
+  debug:
+    msg: "Server Profile Template existed and its updated successfully."
+  when: result.msg == "Server Profile Template updated successfully." 
 

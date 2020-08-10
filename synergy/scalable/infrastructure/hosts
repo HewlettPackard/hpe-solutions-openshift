@@ -16,14 +16,14 @@
 
 [server_profile_template]
 # "enclosure serial number, server bay number", type=<server hardware type>
-"Frame01, bay 2" type="SY 480 Gen10 1" 
+#"Frame01, bay 2" type="SY 480 Gen10 1" 
 
 [server_profile]
-# format "enclosure serial number, server bay number", type=<server hardware type> name=<server profile name>  
-#"Frame01, bay 2" type="SY 480 Gen10 1" name="master_01"
-#"Frame02, bay 3" type="SY 480 Gen10 3" name="master_02" 
-#"Frame02, bay 4" type="SY 480 Gen10 2" name="master_03" 
+# format "enclosure serial number, server bay number", type=<server hardware type> name=<server profile name> iloip=<ilo_ip_address>
+#"Frame01, bay 2" type="SY 480 Gen10 1" name="master_01" iloip="x.x.x.x"
+#"Frame02, bay 3" type="SY 480 Gen10 3" name="master_02" iloip="x.x.x.x"
+#"Frame02, bay 4" type="SY 480 Gen10 2" name="master_03" iloip="x.x.x.x"
  
-#"Frame01, bay 2" type="SY 480 Gen10 1" name="worker_01"
-#"Frame02, bay 3" type="SY 480 Gen10 3" name="worker_02" 
-#"Frame02, bay 4" type="SY 480 Gen10 2" name="worker_03" 
+#"Frame01, bay 2" type="SY 480 Gen10 1" name="worker_01" iloip="x.x.x.x"
+#"Frame02, bay 3" type="SY 480 Gen10 3" name="worker_02" iloip="x.x.x.x"
+#"Frame02, bay 4" type="SY 480 Gen10 2" name="worker_03" iloip="x.x.x.x"

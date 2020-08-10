@@ -11,6 +11,10 @@ This folder consists of ansible playbooks and shell scripts which aids in settin
     ```
     # cd /etc/ansible/hpe-solutions-openshift/synergy/scalable/installer/playbooks
     ```
+
+**NOTE **
+- The value for the constant “BASE_DIR” referred to in this deployment guide is /opt/hpe/solutions/ocp/hpe-solutions-openshift/synergy/scalable
+
 - Execute the following command to setup pre-requisite Python environment.
     ```
     # sudo sh python_env.sh
