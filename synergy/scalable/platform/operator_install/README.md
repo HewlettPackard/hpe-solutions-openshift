@@ -3,7 +3,7 @@
 
 ## Prerequisites
 
--   Red Hat OpenShift Container Platform 4.4.x console 
+-   Red Hat OpenShift Container Platform 4.6 console 
 -   Availability of any Storage Class (Nimble, 3PAR, Local Storage, and OCS) in OpenShift Container Platform.
 -   Python 3.6.x should be available on installer VM.
 -   'Ansible' and 'Requests' python modules.

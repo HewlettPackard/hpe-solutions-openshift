@@ -23,7 +23,7 @@ c.	After applying profile, if there are local storage/Interconnect errors, then 
 | Red Hat Enterprise Linux Server	| 7.6 |
 | VMware ESXi version | 6.7 |
 | VMware vCenter Server Appliance |	6.7 |
-| RedHat CoreOS |	4.4 |
+| RedHat CoreOS |	4.6 |
 
 ## Usage
 - Update the inventory(hosts), ansible vault(secret.yml), variable file(input.yml) and firmware version variable file (fw_version_inputs.yml) with the appropriate values.

@@ -37,7 +37,7 @@ server_profile_template_name: <Custom name for SPT>
 # These variable is required when user wants to upload a firmware bundle or firmware baseline for Compute Module of HPE Synergy to HPE OneView
 # Path on installer machine where the firmware bundle or firmware baseline for Compute Module of HPE Synergy is present. 
 # This path should end with "/" but it should not include firmware file name.
-# Example: fw_bundle_path: /etc/ansible/hpe-solutions-openshift/synergy/scalable/infrastructure/roles/upload_firmware_bundle/files/
+# Example: fw_bundle_path: /opt/hpe/solutions/ocp/hpe-solutions-openshift/synergy/scalable/infrastructure/roles/upload_firmware_bundle/files/
 fw_bundle_path: <Firmware Bundle file path>
 
 # Provide the firmware file name with extension
