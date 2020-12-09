@@ -25,7 +25,7 @@
 
     - name: copy profiles to back 
       copy:
-        src: /opt/hpe/solutions/ocp/hpe-solutions-openshift/synergy/scalable/os_deployment/deploy_rhcos/files/{{ item }}
+        src: "{{ varinfo.base_path }}/hpe-solutions-openshift/synergy/scalable/os_deployment/deploy_rhcos/files/{{ item }}"
         dest: /var/lib/matchbox/profiles/
         mode: 0775
         follow: yes
@@ -62,8 +62,8 @@
              "console=tty0",
              "console=ttyS0",
              "coreos.inst=yes",
-             "coreos.inst.install_dev=sda",
-             "coreos.inst.image_url=http://{{ varinfo.ansible_engine_ip }}:8080/assets/{{ varinfo.bios_uefi_name }}",
+             "coreos.inst.install_dev=/dev/sda",
+             "coreos.live.rootfs_url=http://{{ varinfo.ansible_engine_ip }}:8080/assets/{{ varinfo.bios_uefi_name }}",
              "coreos.inst.ignition_url=http://{{ varinfo.ansible_engine_ip }}:8080/ignition?mac=${mac:hexhyp}"
             ]
            }
@@ -102,8 +102,8 @@
              "console=tty0",
              "console=ttyS0",
              "coreos.inst=yes",
-             "coreos.inst.install_dev=sda",
-             "coreos.inst.image_url=http://{{ varinfo.ansible_engine_ip }}:8080/assets/{{ varinfo.bios_uefi_name }}",
+             "coreos.inst.install_dev=/dev/sda",
+             "coreos.live.rootfs_url=http://{{ varinfo.ansible_engine_ip }}:8080/assets/{{ varinfo.bios_uefi_name }}",
              "coreos.inst.ignition_url=http://{{ varinfo.ansible_engine_ip }}:8080/ignition?mac=${mac:hexhyp}"
             ]
            }
@@ -142,8 +142,8 @@
              "console=tty0",
              "console=ttyS0",
              "coreos.inst=yes",
-             "coreos.inst.install_dev=sda",
-             "coreos.inst.image_url=http://{{ varinfo.ansible_engine_ip }}:8080/assets/{{ varinfo.bios_uefi_name }}",
+             "coreos.inst.install_dev=/dev/sda",
+             "coreos.live.rootfs_url=http://{{ varinfo.ansible_engine_ip }}:8080/assets/{{ varinfo.bios_uefi_name }}",
              "coreos.inst.ignition_url=http://{{ varinfo.ansible_engine_ip }}:8080/ignition?mac=${mac:hexhyp}"
             ]
            }
@@ -162,12 +162,9 @@
         regexp: '^".'
         state: absent
 
-
-
     - name: change onwer to matchbox 
       command: chown -R matchbox:matchbox /var/lib/matchbox
-        
-   
+
     - name: Enable and start matchbox  service 
       service:
         name: matchbox

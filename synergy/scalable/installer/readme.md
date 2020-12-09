@@ -7,9 +7,9 @@ This folder consists of ansible playbooks and shell scripts which aids in settin
 - A server with RHEL 7.6 OS to be used as an installer.
 
 ## Usage
-- Change the directory to /etc/ansible/hpe-solutions-openshift/synergy/scalable/installer/playbooks
+- Change the directory to /opt/hpe/solutions/ocp/hpe-solutions-openshift/synergy/scalable/installer/playbooks
     ```
-    # cd /etc/ansible/hpe-solutions-openshift/synergy/scalable/installer/playbooks
+    # cd /opt/hpe/solutions/ocp/hpe-solutions-openshift/synergy/scalable/installer/playbooks
     ```
 
 **NOTE **
@@ -37,6 +37,6 @@ This folder consists of ansible playbooks and shell scripts which aids in settin
     ```
 - Execute the following command to set the environment variables.
     ```
-    # export ANSIBLE_LIBRARY=/etc/ansible/hpe-solutions-openshift/synergy/scalable/installer/library/oneview-ansible/library
-    # export ANSIBLE_MODULE_UTILS=/etc/ansible/hpe-solutions-openshift/synergy/scalable/installer/library/oneview-ansible/library/module_utils
+    # export ANSIBLE_LIBRARY=/opt/hpe/solutions/ocp/hpe-solutions-openshift/synergy/scalable/installer/library/oneview-ansible/library
+    # export ANSIBLE_MODULE_UTILS=/opt/hpe/solutions/ocp/hpe-solutions-openshift/synergy/scalable/installer/library/oneview-ansible/library/module_utils
     ```
