@@ -1,8 +1,8 @@
-# Welcome to the HPE Reference Configuration for Red Hat OpenShift Container Platform (OCP) on HPE Synergy
+﻿# Welcome to the HPE Reference Configuration for Red Hat OpenShift Container Platform (OCP) on HPE Synergy
 
-This Reference Configuration describes the deployment of a highly available and secure Red Hat OpenShift Container Platform 4 on HPE Synergy Composable Infrastructure. This also includes the details on the configuration of the environment. This document demonstrates how Red Hat OpenShift Container Platform 4 can be configured to take advantage of the HPE Synergy composable architecture and leverage HPE Synergy D3940 Storage. 
+This Reference Configuration describes the deployment of a highly available and secure Red Hat OpenShift Container Platform 4.6 on HPE Synergy Composable Infrastructure. This also includes the details on the configuration of the environment. This document demonstrates how Red Hat OpenShift Container Platform 4 can be configured to take advantage of the HPE Synergy composable architecture and leverage HPE Synergy D3940 Storage. 
 
-The Red Hat OpenShift Container Platform 4 deployment on HPE Synergy Composable Infrastructure configuration consists of the following: 
+The Red Hat OpenShift Container Platform 4.6 deployment on HPE Synergy Composable Infrastructure configuration consists of the following: 
 * Three (3) OpenShift Container Platform master nodes 
 * Three (3) OpenShift Container Platform worker nodes
 
