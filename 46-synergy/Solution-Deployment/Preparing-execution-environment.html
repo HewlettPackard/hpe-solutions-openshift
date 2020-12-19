@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Preparing the execution environment | OpenShift Container Platform 4.4 on Synergy</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="Hewlett Packard Enterprise">
+    
+    <link rel="preload" href="/hpe-solutions-openshift/46-synergy/assets/css/0.styles.bfdf2f8a.css" as="style"><link rel="preload" href="/hpe-solutions-openshift/46-synergy/assets/js/app.8d09024b.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/46-synergy/assets/js/2.117ef8fd.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/46-synergy/assets/js/35.5e384204.js" as="script"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/10.f2647a7a.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/11.eb22f408.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/12.c2b1bda3.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/13.b2721807.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/14.fbb5bfdd.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/15.076cb55f.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/16.086f907f.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/17.5044d63c.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/18.0138d6da.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/19.577c768d.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/20.5dab068a.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/21.ea4d33a2.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/22.23d6a92d.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/23.329f64c2.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/24.bad0d82d.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/25.2a05a77a.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/26.05687ea8.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/27.5f97f9ba.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/28.9f8648b2.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/29.ffe26d0e.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/3.643f6564.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/30.b6d944bc.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/31.b0b75d1f.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/32.4d1ff1fb.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/33.da67f8dd.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/34.78fab925.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/36.53dec668.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/37.e773d372.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/4.7110e26d.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/5.8d6b47a1.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/6.b3a62cb0.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/7.a921eaba.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/8.8b92de32.js"><link rel="prefetch" href="/hpe-solutions-openshift/46-synergy/assets/js/9.7e00b22b.js">
+    <link rel="stylesheet" href="/hpe-solutions-openshift/46-synergy/assets/css/0.styles.bfdf2f8a.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/hpe-solutions-openshift/46-synergy/" class="home-link router-link-active"><!----> <span class="site-name">OpenShift Container Platform 4.4 on Synergy</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/hpe-solutions-openshift/46-synergy/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/hpe-solutions-openshift/46-synergy/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Red Hat OpenShift Container Platform 4 on HPE Synergy</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Overview</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Components</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Solution Deployment</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/hpe-solutions-openshift/46-synergy/Solution-Deployment/Solution-Deployment-Flow.html" class="sidebar-link">Solution Deployment Flow</a></li><li><a href="/hpe-solutions-openshift/46-synergy/Solution-Deployment/Preparing-execution-environment.html" aria-current="page" class="active sidebar-link">Preparing the execution environment</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/hpe-solutions-openshift/46-synergy/Solution-Deployment/Preparing-execution-environment.html#installer-machine" class="sidebar-link">Installer machine</a></li><li class="sidebar-sub-header"><a href="/hpe-solutions-openshift/46-synergy/Solution-Deployment/Preparing-execution-environment.html#non-root-user-access" class="sidebar-link">Non-root user access</a></li><li class="sidebar-sub-header"><a href="/hpe-solutions-openshift/46-synergy/Solution-Deployment/Preparing-execution-environment.html#kubernetes-manifests-and-ignition-files" class="sidebar-link">Kubernetes manifests and ignition files</a></li></ul></li><li><a href="/hpe-solutions-openshift/46-synergy/Solution-Deployment/Server-Profiles.html" class="sidebar-link">Server Profiles</a></li><li><a href="/hpe-solutions-openshift/46-synergy/Solution-Deployment/Operating-system-deployment.html" class="sidebar-link">Operating system deployment</a></li><li><a href="/hpe-solutions-openshift/46-synergy/Solution-Deployment/User-provisioned-DNS-requirements.html" class="sidebar-link">User-provisioned DNS requirements</a></li><li><a href="/hpe-solutions-openshift/46-synergy/Solution-Deployment/Load-Balancer.html" class="sidebar-link">Load Balancer</a></li><li><a href="/hpe-solutions-openshift/46-synergy/Solution-Deployment/Bootstrap-node.html" class="sidebar-link">Bootstrap node</a></li><li><a href="/hpe-solutions-openshift/46-synergy/Solution-Deployment/Physical-node-configuration.html" class="sidebar-link">Physical node configuration</a></li><li><a href="/hpe-solutions-openshift/46-synergy/Solution-Deployment/Virtual-node-configuration.html" class="sidebar-link">Virtual node configuration</a></li><li><a href="/hpe-solutions-openshift/46-synergy/Solution-Deployment/OCP-Cluster-deployment.html" class="sidebar-link">Red Hat OpenShift Container Platform Cluster deployment</a></li><li><a href="/hpe-solutions-openshift/46-synergy/Solution-Deployment/worker-nodes.html" class="sidebar-link">Red Hat OCP worker nodes</a></li><li><a href="/hpe-solutions-openshift/46-synergy/Solution-Deployment/Deploying-OCP-on-VMware-vSphere.html" class="sidebar-link">Deploying OpenShift Container Platform 4.6 on VMware vSphere</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Additional Features and Functionality</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Resosurces and Additional Links</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="preparing-the-execution-environment"><a href="#preparing-the-execution-environment" class="header-anchor">#</a> Preparing the execution environment</h1> <p>This section provides a detailed overview and steps to configure the
+components deployed for this solution..</p> <h2 id="installer-machine"><a href="#installer-machine" class="header-anchor">#</a> Installer machine</h2> <p>This document assumes that a server running Red Hat Enterprise Linux
+(RHEL) 7.6 exists within the deployment environment and is accessible to
+the installation user to be used as an installer machine. This server
+must have internet connectivity. In this solution, a virtual machine is
+used to act as an installer machine and the same host is utilized as an
+Ansible Engine host.</p> <h2 id="non-root-user-access"><a href="#non-root-user-access" class="header-anchor">#</a> Non-root user access</h2> <p>The industry-wide security best practice is to avoid the use of root
+user account for administration of Linux-based servers. However, certain
+operations require root user privileges to perform tasks. In those
+cases, it is best to use the sudo command to obtain the necessary
+privilege escalation on a short-term basis. The sudo command allows
+programs and commands to be run with the security privileges of another
+user (Root is the default user) and can restrict the permission to
+specific groups, users, and individual commands.</p> <p>The root user is not active by default in RHCOS. Instead, log in as the
+core user.</p> <p>Use the following steps to create a non-root user for the OpenShift
+installation process:</p> <ul><li><p>Login to the installer VM as root. Refer to the section <a href="#installer-machine">Installer
+machine</a> in this document for more details about
+the installer VM.</p></li> <li><p>Execute the following command to create a non-root user.</p></li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> adduser openshift_admin
+</code></pre></div><ul><li>Execute the following command to set password for the non-root user.</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">passwd</span> openshift_admin
+</code></pre></div><ul><li>Add non-root user's group in sudoers file and use the following
+command to find non-root user's group.</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">id</span> -Gn openshift_admin
+  openshift_admin
+</code></pre></div><ul><li>Edit the sudoers file and use the following command to add the entry
+of non-root user's group in the sudoers file.</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> visudo
+</code></pre></div><ul><li>Add a non-root user's group entry in sudoers file as follows.</li></ul> <div class="language- extra-class"><pre class="language-text"><code># Allow the following commands to run anywhere in non-root user environment
+
+openshift_admin ALL=(ALL) NOPASSWD: /usr/bin/chmod, /usr/bin/yum,
+/usr/bin/yum-config-manager, /usr/sbin/subscription-manager,
+/usr/bin/git, /usr/bin/vi, /usr/bin/vim, /usr/bin/mkdir, /usr/bin/cat,
+/usr/bin/echo, /usr/bin/python, /usr/bin/sed, /usr/bin/chown,
+/usr/bin/sh, /usr/bin/cp, /usr/bin/ansible-vault, /usr/bin/scp,
+/usr/bin/rpm, /usr/sbin/chkconfig, /usr/bin/systemctl,
+/usr/bin/journalctl, /usr/bin/curl, /usr/bin/tar,
+/usr/bin/genisoimage, /usr/bin/mount, /usr/bin/umount, /usr/bin/rsync,
+/usr/bin/find, /usr/bin/mv, /usr/bin/nano, /usr/sbin/dnsmasq,
+/usr/sbin/setsebool
+</code></pre></div><ul><li>Execute the following command to change the user (non-root user).</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">su</span> openshift_admin
+</code></pre></div><ul><li>Register the host and execute the following command to attach the
+host pool with Red Hat.</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> yum -y <span class="token function">install</span> subscription-manager
+<span class="token operator">&gt;</span> <span class="token function">sudo</span> subscription-manager register --username<span class="token operator">=</span><span class="token operator">&lt;</span>username<span class="token operator">&gt;</span> --password<span class="token operator">=</span><span class="token operator">&lt;</span>password<span class="token operator">&gt;</span> --auto-attach
+<span class="token operator">&gt;</span> <span class="token function">sudo</span> subscription-manager attach --pool<span class="token operator">=</span><span class="token operator">&lt;</span>pool_id<span class="token operator">&gt;</span>
+</code></pre></div><ul><li>Disable all repositories and enable only the repositories required
+for the installer VM.</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> yum -y <span class="token function">install</span> yum-utils
+<span class="token operator">&gt;</span> <span class="token function">sudo</span> yum-config-manager --disable <span class="token punctuation">\</span>*
+<span class="token operator">&gt;</span> <span class="token function">sudo</span> subscription-manager repos --disable<span class="token operator">=</span><span class="token string">&quot;*&quot;</span> <span class="token punctuation">\</span>
+  --enable<span class="token operator">=</span><span class="token string">&quot;rhel-7-server-rpms&quot;</span> <span class="token punctuation">\</span>
+  --enable<span class="token operator">=</span><span class="token string">&quot;rhel-7-server-extras-rpms&quot;</span> <span class="token punctuation">\</span>
+  --enable<span class="token operator">=</span><span class="token string">&quot;rhel-7-server-optional-rpms&quot;</span> <span class="token punctuation">\</span>
+  --enable<span class="token operator">=</span><span class="token string">&quot;rhel-server-rhscl-7-rpms&quot;</span>
+</code></pre></div><ul><li>Use the following command to install Ansible.</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> yum -y <span class="token function">install</span> ansible
+</code></pre></div><ul><li>Install Git package on installer VM for performing Git- related
+operations.</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> yum -y <span class="token function">install</span> <span class="token function">git</span>
+</code></pre></div><ul><li>Execute the following commands to download the
+hpe-solutions-openshift repository.</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">mkdir</span> -p /opt/hpe/solutions/ocp
+<span class="token operator">&gt;</span> <span class="token builtin class-name">cd</span> /opt/hpe/solutions/ocp
+<span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">git</span> clone <span class="token operator">&lt;</span>https://github.com/HewlettPackard/hpe-solutions-openshift.git<span class="token operator">&gt;</span>
+<span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">chown</span> -R openshift_admin:openshift_admin /opt/hpe/solutions/ocp
+</code></pre></div><ul><li>Create an environment variable BASE_DIR and point it to the
+following path.</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable">BASE_DIR</span><span class="token operator">=</span>/ opt/hpe/solutions/ocp/hpe-solutions-openshift/synergy/scalable
+</code></pre></div><ul><li><p>After the hpe-solutions-openshift repository is downloaded, navigate
+to the path
+/opt/hpe/solutions/ocp*/hpe-solutions-openshift/synergy/scalable/installer/playbooks*.
+The scripts within this directory assists in configuring the
+prerequisites for the environment. The details of the scripts are as
+follows:</p> <ul><li>python_env.sh – this script installs Python 3.</li> <li>ansible_env.sh – this script creates a Python 3 virtual environment and installs Ansible within the virtual environment.</li> <li>download_oneview_packages.sh – this script installs the prerequisite modules such as HPE oneview-ansible, HPE oneview-python and VMware PyVmomi within the virtual environment.</li></ul></li> <li><p>Steps to configure the prerequisite environment are as follows:</p> <ul><li>Change the directory to  /opt/hpe/solutions/ocp/hpe-solutions-openshift/synergy/scalable/installer/playbooks</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">cd</span> <span class="token variable">$BASE_DIR</span>/installer/playbooks
+</code></pre></div><ul><li>Execute the following command to setup prerequisite Python environment.</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> yum -y <span class="token function">install</span> @development
+<span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">sh</span> python_env.sh
+</code></pre></div><ul><li>Execute the following command to enable Python 3.</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> scl <span class="token builtin class-name">enable</span> rh-python36 <span class="token function">bash</span>
+</code></pre></div><ul><li>Execute the following command to configure the Ansible environment.</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">sh</span> ansible_env.sh
+</code></pre></div><ul><li>Execute the following command to download the HPE OneView packages.</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">sh</span> download_oneview_packages.sh
+</code></pre></div><ul><li>Enable the virtual environment with the following command.</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">source</span> <span class="token punctuation">..</span>/ocp_venv/bin/activate
+</code></pre></div><ul><li>Execute the following command to set the environment variables.</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable">ANSIBLE_LIBRARY</span><span class="token operator">=</span><span class="token variable">$BASE_DIR</span>/installer/library/oneview-ansible/library
+
+<span class="token operator">&gt;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable">ANSIBLE_MODULE_UTILS</span><span class="token operator">=</span><span class="token variable">$BASE_DIR</span>/installer/library/oneview-ansible/library/module_utils
+</code></pre></div></li></ul> <h2 id="kubernetes-manifests-and-ignition-files"><a href="#kubernetes-manifests-and-ignition-files" class="header-anchor">#</a> Kubernetes manifests and ignition files</h2> <p>Manifests and ignition files define the master node and worker node
+configuration and are key components of the Red Hat OpenShift Container
+Platform 4 installation.</p> <p>Before creating the manifest files and ignition files, it is necessary
+to download the Red Hat OpenShift 4 packages. Execute the following
+command on the installer VM to download the required packages.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">cd</span> <span class="token variable">$BASE_DIR</span>/installer
+
+<span class="token operator">&gt;</span> ansible-playbook playbooks/download_ocp_package.yml
+</code></pre></div><p>The OpenShift packages downloaded after executing the
+<em>download_ocp_package.yml</em> playbook can be found on the installer VM at
+/opt/hpe/solutions/ocp/<em>hpe-solutions-openshift/synergy/scalable/installer/library/openshift_components</em>.
+To execute any OpenShift related adhoc commands, it is advised to
+execute them from within this folder.</p> <p>To create the manifest files and the ignition files, edit the
+<em>install-config.yaml</em> file provided in the directory
+/opt/hpe/solutions/ocp/<em>hpe-solutions-openshift/synergy/scalable/installer/ignitions</em>
+to include the following details:</p> <ul><li><p>baseDomain -- Base domain of the DNS which hosts Red Hat OpenShift
+Container Platform.</p></li> <li><p>name -- Name of the OpenShift cluster. This is same as the new
+domain created in DNS.</p></li> <li><p>replicas -- Update this field to reflect the corresponding number of
+master or worker instances required for the OpenShift cluster as per
+the installation environment requirements. It is recommended to have
+a minimum of 3 master nodes and 2 worker nodes per OpenShift
+cluster.</p></li> <li><p>clusterNetworks -- This field is pre-populated by Red Hat. Update
+this field only if a custom cluster network is to be used.</p></li> <li><p>pullSecret -- Update this field with the pull secret for the Red Hat
+account. Login to Red Hat account
+<a href="https://cloud.redhat.com/openshift/install/metal/user-provisioned" target="_blank" rel="noopener noreferrer">https://cloud.redhat.com/openshift/install/metal/user-provisioned<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>
+and retrieve the pull secret.</p></li> <li><p>sshKey -- Update this field with the sshKey of the installer VM and
+copy the SSH key in install-config.yaml file. Generate the SSH key
+with following command.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> ssh-keygen
+</code></pre></div></li></ul> <p>An example <em>install-config.yaml</em> file appears as follows. Update the fields to suit the installation environment.</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">baseDomain</span><span class="token punctuation">:</span> 'name of the base domain';
+<span class="token key atrule">compute</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">hyperthreading</span><span class="token punctuation">:</span> Enabled
+<span class="token key atrule">name</span><span class="token punctuation">:</span> worker
+<span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">2</span>
+<span class="token key atrule">controlPlane</span><span class="token punctuation">:</span>
+<span class="token key atrule">hyperthreading</span><span class="token punctuation">:</span> Enabled
+<span class="token key atrule">name</span><span class="token punctuation">:</span> master
+<span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">3</span>
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+<span class="token key atrule">name</span><span class="token punctuation">:</span> 'name of the cluster<span class="token punctuation">,</span> same as the new domain under the base domain created';
+<span class="token key atrule">networking</span><span class="token punctuation">:</span>
+<span class="token key atrule">clusterNetworks</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">cidr</span><span class="token punctuation">:</span> 12.128.0.0/14
+<span class="token key atrule">hostPrefix</span><span class="token punctuation">:</span> <span class="token number">23</span>
+<span class="token key atrule">networkType</span><span class="token punctuation">:</span> OpenShiftSDN
+<span class="token key atrule">serviceNetwork</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> 172.30.0.0/16
+<span class="token key atrule">platform</span><span class="token punctuation">:</span>
+<span class="token key atrule">none</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token key atrule">pullSecret</span><span class="token punctuation">:</span> ‘pull secret provided as per the Red Hat account’
+<span class="token key atrule">sshKey</span><span class="token punctuation">:</span> ‘ ssh key of the installer VM ’
+</code></pre></div><p>Execute the following command on the installer VM to create the
+manifest files and the ignition files required to install Red Hat
+OpenShift.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">cd</span> <span class="token variable">$BASE_DIR</span>/installer
+<span class="token operator">&gt;</span> ansible-playbook playbooks/create_manifest_ignitions.yml
+<span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">chmod</span> +r installer/igninitions/*.ign
+</code></pre></div><p>The ignition files are generated on the installer VM within the folder
+/opt/hpe/solutions/ocp/<em>hpe-solutions-openshift/synergy/scalable/installer/ignitions</em>.</p> <div class="custom-block tip"><p class="custom-block-title">NOTE</p> <p>The ignition files have a time-out period of 24 hours and it is critical
+that the clusters are created within 24 hours of generating the ignition
+files. If it crosses 24 hours, then regenerate the ignition files again
+by clearing up the files from the directory where the ignition files
+were saved.</p></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/hpe-solutions-openshift/46-synergy/Solution-Deployment/Solution-Deployment-Flow.html" class="prev">
+        Solution Deployment Flow
+      </a></span> <span class="next"><a href="/hpe-solutions-openshift/46-synergy/Solution-Deployment/Server-Profiles.html">
+        Server Profiles
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/hpe-solutions-openshift/46-synergy/assets/js/app.8d09024b.js" defer></script><script src="/hpe-solutions-openshift/46-synergy/assets/js/2.117ef8fd.js" defer></script><script src="/hpe-solutions-openshift/46-synergy/assets/js/35.5e384204.js" defer></script>
+  </body>
+</html>
