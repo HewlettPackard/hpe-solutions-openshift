@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Preparing the execution environment</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.3c72cb3e.css" as="style"><link rel="preload" href="/assets/js/app.6c1bb9d7.js" as="script"><link rel="preload" href="/assets/js/2.41475481.js" as="script"><link rel="preload" href="/assets/js/33.9b22325c.js" as="script"><link rel="prefetch" href="/assets/js/10.60e6f26c.js"><link rel="prefetch" href="/assets/js/11.e2568a46.js"><link rel="prefetch" href="/assets/js/12.e8a20512.js"><link rel="prefetch" href="/assets/js/13.24fe0aaa.js"><link rel="prefetch" href="/assets/js/14.a6af149a.js"><link rel="prefetch" href="/assets/js/15.561f307f.js"><link rel="prefetch" href="/assets/js/16.1b58705c.js"><link rel="prefetch" href="/assets/js/17.d99cf671.js"><link rel="prefetch" href="/assets/js/18.7d38c742.js"><link rel="prefetch" href="/assets/js/19.aaf54330.js"><link rel="prefetch" href="/assets/js/20.f13070be.js"><link rel="prefetch" href="/assets/js/21.9653edeb.js"><link rel="prefetch" href="/assets/js/22.1485b3f6.js"><link rel="prefetch" href="/assets/js/23.1db2bb05.js"><link rel="prefetch" href="/assets/js/24.98a40dda.js"><link rel="prefetch" href="/assets/js/25.fed3b70c.js"><link rel="prefetch" href="/assets/js/26.9fa44e0a.js"><link rel="prefetch" href="/assets/js/27.3b728ad7.js"><link rel="prefetch" href="/assets/js/28.39a8466c.js"><link rel="prefetch" href="/assets/js/29.56669789.js"><link rel="prefetch" href="/assets/js/3.356a20e7.js"><link rel="prefetch" href="/assets/js/30.36cb63bf.js"><link rel="prefetch" href="/assets/js/31.1b814f7d.js"><link rel="prefetch" href="/assets/js/32.5cc2658a.js"><link rel="prefetch" href="/assets/js/4.fadf857d.js"><link rel="prefetch" href="/assets/js/5.a355315e.js"><link rel="prefetch" href="/assets/js/6.b9418f75.js"><link rel="prefetch" href="/assets/js/7.b5fd1524.js"><link rel="prefetch" href="/assets/js/8.a6a83d33.js"><link rel="prefetch" href="/assets/js/9.22c6a3f6.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.3c72cb3e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="preparing-the-execution-environment"><a href="#preparing-the-execution-environment" class="header-anchor">#</a> Preparing the execution environment</h1> <p>This section provides a detailed overview and steps to configure the components deployed for this solution.</p> <h2 id="installer-machine"><a href="#installer-machine" class="header-anchor">#</a> Installer machine</h2> <p>This document assumes that a server running Red Hat Enterprise Linux (RHEL) 7.6 exists within the deployment environment and is accessible to the installation user to be used as an installer machine. This server must have internet connectivity. In this solution, a virtual machine is used to act as an installer machine and the same host is utilized as an Ansible Engine host.</p> <h2 id="non-root-user-access"><a href="#non-root-user-access" class="header-anchor">#</a> Non-root user access</h2> <p>The industry-wide security best practice is to avoid the use of root user account for administration of Linux-based servers. However, certain operations require root user privileges to perform tasks. In those cases, it is best to use the sudo command to obtain the necessary privilege escalation on a short-term basis. The sudo command allows programs and commands to be run with the security privileges of another user (Root is the default user) and can restrict the permission to specific groups, users, and individual commands.</p> <p>The root user is not active by default in RHCOS. Instead, log in as the core user.</p> <p>Use the following steps to create a non-root user for the OpenShift installation process:</p> <ol><li><p>Login to the installer VM as root. Refer to the <a href="#installer-machine">Installer machine</a> section  in this document for more details about the installer VM.</p></li> <li><p>Execute the following command to create a non-root user.</p></li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> adduser openshift_admin
+</code></pre></div><ol start="3"><li>Execute the following command to set password for the non-root user.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">passwd</span> openshift_admin
+</code></pre></div><ol start="4"><li>Add non-root user's group in sudoers file and use the following command to find non-root user's group.</li></ol> <div class="language- extra-class"><pre class="language-text"><code>&gt; id -Gn openshift_admin
+openshift_admin
+</code></pre></div><ol start="5"><li>Edit the sudoers file and use the following command to add the entry of non-root user's group in the sudoers file.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> visudo
+</code></pre></div><p>Add a non-root user's group entry in sudoers file as follows. Allow the following commands to run anywhere in non-root user environment</p> <div class="language-bash extra-class"><pre class="language-bash"><code>openshift_admin	<span class="token assign-left variable">ALL</span><span class="token operator">=</span><span class="token punctuation">(</span>ALL<span class="token punctuation">)</span> /usr/bin/chmod, /bin/yum, /usr/bin/yum-config-manager, /sbin/subscription-manager, /usr/bin/git, /bin/<span class="token operator">&gt;&gt;</span>vi, /bin/vim, /bin/mkdir, /usr/bin/cat, /usr/bin/echo, /usr/bin/python, /usr/bin/sed, /usr/bin/chown, /bin/sh, /bin/cp, /bin/ansible-vault, /usr/bin/scp, /usr/bin/rpm, /usr/sbin/chkconfig, /usr/bin/systemctl, /usr/bin/journalctl, /usr/bin/curl, /usr/bin/tar,  /usr/bin/genisoimage, /usr/bin/mount , /usr/bin/umount, /usr/bin/rsync, /usr/bin/find, /usr/bin/mv, /usr/bin/nano, /usr/sbin/dnsmasq, /usr/sbin/setsebool
+</code></pre></div><ol start="6"><li>Execute the following command to change the user (non-root user).</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">su</span> openshift_admin
+</code></pre></div><ol start="7"><li>Register the host and execute the following command to attach the host pool with Red Hat.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> yum -y <span class="token function">install</span> subscription-manager
+<span class="token operator">&gt;</span> <span class="token function">sudo</span> subscription-manager register --username<span class="token operator">=</span><span class="token operator">&lt;</span>username<span class="token operator">&gt;</span> --password<span class="token operator">=</span><span class="token operator">&lt;</span>password<span class="token operator">&gt;</span> --auto-attach
+<span class="token operator">&gt;</span> <span class="token function">sudo</span> subscription-manager attach --pool<span class="token operator">=</span><span class="token operator">&lt;</span>pool_id<span class="token operator">&gt;</span>
+</code></pre></div><ol start="8"><li>Disable all repositories and enable only the repositories required for the installer VM.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> yum -y <span class="token function">install</span> yum-utils
+<span class="token operator">&gt;</span> <span class="token function">sudo</span> yum-config-manager --disable *
+<span class="token operator">&gt;</span> <span class="token function">sudo</span> subscription-manager repos --disable<span class="token operator">=</span><span class="token string">&quot;*&quot;</span> 
+  --enable<span class="token operator">=</span><span class="token string">&quot;rhel-7-server-rpms&quot;</span> 
+  --enable<span class="token operator">=</span><span class="token string">&quot;rhel-7-server-extras-rpms&quot;</span> 
+  --enable<span class="token operator">=</span><span class="token string">&quot;rhel-7-server-optional-rpms&quot;</span> 
+  --enable<span class="token operator">=</span><span class="token string">&quot;--enable rhel-server-rhscl-7-rpms&quot;</span>
+</code></pre></div><ol start="9"><li>Use the following command to install Ansible.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> yum -y <span class="token function">install</span> ansible
+</code></pre></div><ol start="10"><li>Install Git package on installer VM for performing Git- related operations.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> yum -y <span class="token function">install</span> <span class="token function">git</span>
+</code></pre></div><ol start="11"><li>Execute the following commands to download the hpe-solutions-openshift repository.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">mkdir</span> -p /opt/hpe/solutions/ocp
+
+<span class="token operator">&gt;</span> <span class="token builtin class-name">cd</span> /opt/hpe/solutions/ocp
+
+<span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">git</span> clone <span class="token operator">&lt;</span>https://github.com/HewlettPackard/hpe-solutions-openshift.git<span class="token operator">&gt;</span>
+
+<span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">chown</span> -R openshift_admin:openshift_admin /opt/hpe/solutions/ocp
+</code></pre></div><ol start="12"><li>Create an environment variable BASE_DIR and point it to the following path.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable">BASE_DIR</span><span class="token operator">=</span>/opt/hpe/hpe-solutions-openshift/synergy/scalable
+</code></pre></div><ol start="13"><li>After the hpe-solutions-openshift repository is downloaded, navigate to the path <em>/etc/ansible/hpe-solutions-openshift/synergy/scalable/installer/playbooks</em>. The scripts within this directory assists in configuring the prerequisites for the environment. The details of the scripts are as follows:</li></ol> <div class="language- extra-class"><pre><code>-   python_env.sh : This script installs Python 3.
+
+-   ansible_env.sh : This script creates a Python 3 virtual environment and installs Ansible within the virtual environment.
+
+-   download_oneview_packages.sh : This script installs the prerequisite modules such as HPE oneview-ansible, HPE oneview-python and VMware pyVmomi within the virtual environment.
+</code></pre></div><ol start="14"><li>Steps to configure the prerequisite environment are as follows:</li></ol> <div class="language- extra-class"><pre><code>-   Change the directory to /etc/ansible/hpe-solutions-openshift/synergy/scalable/installer/playbooks
+
+    ```bash
+    $ cd $BASE_DIR/installer/playbooks
+    ```
+
+-   Execute the following command to setup prerequisite Python environment.
+
+    ```bash
+    $ yum -y install @development
+    $ sudo sh python_env.sh
+    ```
+
+-   Execute the following command to enable Python 3.
+
+    ```bash
+    $ scl enable rh-python36 bash
+    ```
+
+-   Execute the following command to configure the Ansible environment.
+
+    ```bash
+    $ sudo sh ansible_env.sh
+    ```
+
+-   Execute the following command to download the HPE OneView packages.
+
+    ```bash
+    $ sudo sh download_oneview_packages.sh
+    ```
+
+-   Enable the virtual environment with the following command.
+
+    ```bash
+    $ source ../ocp_venv/bin/activate
+    ```
+
+-   Execute the following command to set the environment variables.
+
+    ```bash
+    $ export ANSIBLE_LIBRARY=$BASE_DIR/installer/library/oneview-ansible/library
+
+    $ export ANSIBLE_MODULE_UTILS=$BASE_DIR/installer/library/oneview-ansible/library/module_utils
+    ```
+</code></pre></div><h2 id="kubernetes-manifests-and-ignition-files"><a href="#kubernetes-manifests-and-ignition-files" class="header-anchor">#</a> Kubernetes manifests and ignition files</h2> <p>Manifests and ignition files define the master node and worker node configuration and are key components of the Red Hat OpenShift Container Platform 4 installation.</p> <p>Before creating the manifest files and ignition files, it is necessary to download the Red Hat OpenShift 4 packages. Execute the following command on the installer VM to download the required packages.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token builtin class-name">cd</span> <span class="token variable">$BASE_DIR</span>/installer
+
+$ ansible-playbook playbooks/download_ocp_package.yml
+</code></pre></div><p>The OpenShift packages downloaded after executing the <em>download_ocp_package.yml</em> playbook can be found on the installer VM at <em>/etc/ansible/hpe-solutions-openshift/synergy/scalable/installer/library/openshift_components</em>. To execute any OpenShift related adhoc commands, it is advised to execute them from within this folder.</p> <p>To create the manifest files and the ignition files, edit the <em>install-config.yaml</em> file provided in the directory <em>/etc/ansible/hpe-solutions-openshift/synergy/scalable/installer/ignitions</em> to include the following details:</p> <ul><li><p>baseDomain : Base domain of the DNS which hosts Red Hat OpenShift Container Platform.</p></li> <li><p>name : Name of the OpenShift cluster. This is same as the new domain created in DNS.</p></li> <li><p>replicas : Update this field to reflect the corresponding number of master or worker instances required for the OpenShift cluster as per the installation environment requirements. It is recommended to have a minimum of 3 master nodes and 2 worker nodes per OpenShift cluster.</p></li> <li><p>clusterNetworks : This field is pre-populated by Red Hat. Update this field only if a custom cluster network is to be used.</p></li> <li><p>pullSecret : Update this field with the pull secret for the Red Hat account. Login to Red Hat account <a href="https://cloud.redhat.com/openshift/install/metal/user-provisioned" target="_blank" rel="noopener noreferrer">https://cloud.redhat.com/openshift/install/metal/user-provisioned<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> and retrieve the pull secret.</p></li> <li><p>sshKey : Update this field with the sshKey of the installer VM and copy the SSH key in install-config.yaml file. Generate the SSH key with following command.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ ssh-keygen
+</code></pre></div><p>A sample <em>install-config.yaml</em> file appears as follows. Update the fields to suit the installation environment.</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+
+<span class="token key atrule">baseDomain</span><span class="token punctuation">:</span> <span class="token important">&amp;lt;name</span> of the base domain<span class="token important">&amp;gt;</span>
+
+<span class="token key atrule">compute</span><span class="token punctuation">:</span>
+
+<span class="token punctuation">-</span> <span class="token key atrule">hyperthreading</span><span class="token punctuation">:</span> Enabled
+
+<span class="token key atrule">name</span><span class="token punctuation">:</span> worker
+
+<span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">2</span>
+
+<span class="token key atrule">controlPlane</span><span class="token punctuation">:</span>
+
+<span class="token key atrule">hyperthreading</span><span class="token punctuation">:</span> Enabled
+
+<span class="token key atrule">name</span><span class="token punctuation">:</span> master
+
+<span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">3</span>
+
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+
+<span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token important">&amp;lt;name</span> of the cluster<span class="token punctuation">,</span> same as the new domain under the base domain created<span class="token important">&amp;gt;</span>
+
+<span class="token key atrule">networking</span><span class="token punctuation">:</span>
+
+<span class="token key atrule">clusterNetworks</span><span class="token punctuation">:</span>
+
+<span class="token punctuation">-</span> <span class="token key atrule">cidr</span><span class="token punctuation">:</span> 12.128.0.0/14
+
+<span class="token key atrule">hostPrefix</span><span class="token punctuation">:</span> <span class="token number">23</span>
+
+<span class="token key atrule">networkType</span><span class="token punctuation">:</span> OpenShiftSDN
+
+<span class="token key atrule">serviceNetwork</span><span class="token punctuation">:</span>
+
+<span class="token punctuation">-</span> 172.30.0.0/16
+
+<span class="token key atrule">platform</span><span class="token punctuation">:</span>
+
+<span class="token key atrule">none</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token key atrule">pullSecret</span><span class="token punctuation">:</span> ‘pull secret provided as per the Red Hat account’
+
+<span class="token key atrule">sshKey</span><span class="token punctuation">:</span> ‘ ssh key of the installer VM ’
+
+</code></pre></div><p>Execute the following command on the installer VM to create the manifest files and the ignition files required to install Red Hat OpenShift.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token builtin class-name">cd</span> <span class="token variable">$BASE_DIR</span>/installer
+$ ansible-playbook playbooks/create_manifest_ignitions.yml
+$ <span class="token function">sudo</span> <span class="token function">chmod</span> +r installer/igninitions/*.ign
+</code></pre></div></li></ul> <p>The ignition files are generated on the installer VM within the folder <em>/etc/ansible/hpe-solutions-openshift/synergy/scalable/installer/ignitions</em>.</p> <div class="custom-block tip"><p class="custom-block-title">Note</p> <p>The ignition files have a time-out period of 24 hours and it is critical that the clusters are created within 24 hours of generating the ignition files. If it crosses 24 hours, then regenerate the ignition files again by clearing up the files from the directory where the ignition files were saved.</p></div> <h2 id="os-deployment"><a href="#os-deployment" class="header-anchor">#</a> OS deployment</h2> <h3 id="pxe-server"><a href="#pxe-server" class="header-anchor">#</a> PXE server</h3> <p>In this solution, a PXE server is used for OS deployment and is configured on CentOS (version: CentOS Linux release 7.6.1810 (Core)). The PXE server uses the FTP service for file distribution but can be altered to support HTTP or NFS.</p> <p>This section highlights the steps to configure a PXE server:</p> <ol><li><p>Login to the CentOS server to be configured as a PXE server as a user that can run commands as root via sudo.</p></li> <li><p>Install packages such as DHCP, TFTP server, vSFTPD (FTP server) and xinetd using the following command.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token function">sudo</span> yum <span class="token function">install</span> dhcp tftp tftp-server syslinux vsftpd xinetd
+</code></pre></div></li> <li><p>Update the DHCP configuration file at <em>/etc/dhcp/dhcpd.conf</em> with the MAC addresses, IP addresses, DNS, and routing details of the installation environment. Domain search is optional. A sample DHCP configuration file is shown as follows.</p> <div class="language- extra-class"><pre class="language-text"><code>ddns-update-style interim;
+ignore client-updates;
+authoritative;
+allow booting;
+allow bootp;
+
+# internal subnet for my DHCP Server
+subnet 20.0.x.x netmask 255.0.0.0 {
+range 20.0.x.x 20.0.x.x;
+deny unknown-clients;
+option domain-name-servers 20.x.x.x;
+option domain-name &quot;twentynet.local&quot;;
+option routers 20.x.x.x;
+option broadcast-address 20.255.255.255;
+default-lease-time 600;
+max-lease-time 7200;
+next-server 20.x.x.x;
+filename &quot;pxelinux.0&quot;;
+}
+
+#######################################
+host bootstrap {
+hardware ethernet 00:50:56:xx:98:df;
+fixed-address 20.0.x.x;
+}
+host master01 {
+hardware ethernet 00:50:56:95:xx:82;
+fixed-address 20.0.x.x;
+}
+host worker01 {
+hardware ethernet 00:50:56:xx:ab:82;
+fixed-address 20.0.x.x;
+}
+</code></pre></div></li> <li><p>Trivial File Transfer Protocol (TFTP) is used to transfer files from data server to clients without any kind of authentication. TFTP is used for ignition file loading in PXE based environments. To configure the TFTP server, edit the configuration file <em>/etc/xinetd.d/tftp</em>. Change the parameter ‘disable = yes’ to ‘disable = no’ and leave the other parameters as is. To edit the <em>/etc/xinetd.d/tftp</em> file, execute the following command.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token function">sudo</span> <span class="token function">vi</span>  /etc/xinetd.d/tftp
+</code></pre></div><p>The TFTP configuration file is shown below.</p> <div class="language- extra-class"><pre class="language-text"><code>service tftp
+   {
+
+        socket_type = dgram
+        protocol = udp
+        wait = yes
+        user = root
+        server = /usr/sbin/in.tftpd
+        server_args = -s /var/lib/tftpboot
+        disable = no
+        per_source = 11
+        cps = 100 2
+        flags = IPv4
+    }
+</code></pre></div><p>Network boot related files must be placed in the tftp root directory <em>/var/lib/tftpboot</em>. Run the following commands to copy the required network boot files to <em>/var/lib/tftpboot/</em>.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token function">sudo</span> <span class="token function">cp</span> –v /usr/share/syslinux/pxelinux.0 /var/lib/tftpboot
+
+$ <span class="token function">sudo</span> <span class="token function">cp</span> –v /usr/share/syslinux/menu.c32 /var/lib/tftpboot
+
+$ <span class="token function">sudo</span> <span class="token function">cp</span> –v /usr/share/syslinux/memdisk /var/lib/tftpboot
+
+$ <span class="token function">sudo</span> <span class="token function">cp</span> –v /usr/share/syslinux/mboot.c32 /var/lib/tftpboot
+
+$ <span class="token function">sudo</span> <span class="token function">cp</span> –v /usr/share/syslinux/chain.c32 /var/lib/tftpboot
+
+$ <span class="token function">sudo</span> <span class="token function">mkdir</span> /var/lib/tftpboot/pxelinux.cfg
+
+$ <span class="token function">sudo</span> <span class="token function">mkdir</span> /var/lib/tftpboot/networkboot
+</code></pre></div></li> <li><p>Copy the RHCOS 4 and RHEL 7.6 ISO files to the PXE server. Mount it to the <em>/mnt/</em> directory and then copy the contents of the ISO to the local FTP server using the following commands.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token function">sudo</span> <span class="token function">mount</span> –o loop <span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>OS <span class="token function">file</span> name<span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> /mnt/
+
+$ <span class="token builtin class-name">cd</span> /mnt/
+
+$ <span class="token function">sudo</span> <span class="token function">cp</span> –av * /var/ftp/pub/
+</code></pre></div></li> <li><p>Copy the kernel file (vmlinuz) and initrd file from <em>/mnt</em> to <em>/var/lib/tftpboot/networkboot/</em> using the following commands.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token function">sudo</span> <span class="token function">cp</span> /mnt/images/pxeboot/vmlinuz /var/lib/tftpboot/networkboot/
+
+$ <span class="token function">sudo</span> <span class="token function">cp</span> /mnt/images/pxeboot/initrd.img /var/lib/tftpboot/networkboot
+</code></pre></div></li> <li><p>Unmount the ISO files using the following command.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token function">sudo</span> unmount /mnt/
+</code></pre></div></li> <li><p>For RHEL nodes, create and utilize a new kickstart file under the folder <em>/var/ftp/pub</em> with the name “<em>rhel7.cfg</em>” using the following command.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token function">sudo</span> <span class="token function">vi</span> /var/ftp/pub/rhel7.cfg
+</code></pre></div><p>An example kickstart file is shown as follows. The installation user should create a kickstart file to meet the requirements of their installation environment.</p> <div class="language- extra-class"><pre class="language-text"><code>firewall --disabled
+# Install OS instead of upgrade
+install
+# Use FTP installation media
+url --url=&quot;ftp://&amp;lt;FTP_server_IP_address&amp;gt;/pub/rhel76/&quot;
+# Root password
+# root password can be plaintext as shown below
+# rootpw –plaintext &amp;lt;password&amp;gt;
+# root password is encrypted using the command “openssl passwd -1 &amp;lt;password&amp;gt;” and resultant output is provided for rootpw as shown below
+rootpw --iscrypted $6$uiq8l/7xEWsYXhrvaEgan4N21yhLa8K.U7UA12Th3PD11GOXvEcI40gp
+# System authorization information
+auth useshadow passalgo=sha512
+# Use graphical install
+graphical
+firstboot disable
+# System keyboard, timezone, language
+keyboard us
+timezone Europe/Amsterdam
+lang en_US
+# SELinux configuration
+selinux disabled
+# Installation logging level
+logging level=info
+# System bootloader configuration
+bootloader location=mbr
+clearpart --all --initlabel
+part swap --asprimary --fstype=&quot;swap&quot; --size=1
+part /boot --fstype xfs --size=300
+part pv.01 --size=1 --grow
+volgroup root_vg01 pv.01
+logvol / --fstype xfs --name=lv_01 --vgname=root_vg01 --size=1 --grow
+%packages
+@^minimal
+@core
+%end
+%addon com_redhat_kdump --disable --reserve-mb='auto'
+%end
+</code></pre></div></li> <li><p>Create a PXE menu.</p> <ul><li><p>Create a PXE menu file at the location <em>/var/lib/tftpboot/pxelinux.cfg/default</em> using the command.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token function">sudo</span> <span class="token function">vi</span> /var/lib/tftpboot/pxelinux.cfg/default
+</code></pre></div></li> <li><p>For each of the OS boot options, provide the following details:</p> <ul><li><p>MENU LABEL : Custom name of the respective menu label.</p></li> <li><p>KERNEL : Kernel details of the operating system.</p></li> <li><p>APPEND : Path of bootloader file along with path of cfg or ignition files (in case of RHCOS) or configuration file (in case of RHEL).</p></li></ul></li></ul> <p>A sample PXE menu is as follows.</p> <div class="language- extra-class"><pre class="language-text"><code>default menu.c32
+
+prompt 0
+
+timeout 30
+
+MENU TITLE LinuxTechi.com PXE Menu
+
+LABEL rhel76
+
+MENU LABEL RHEL76-Buedata
+
+KERNEL /rhel76/vmlinuz
+
+APPEND initrd=/rhel76/initrd.img inst.repo=ftp://&amp;lt;FTP_server_IP_address&amp;gt;/pub/rhel76 ks=ftp://&amp;lt;FTP_server_IP_address&amp;gt;/pub/rhel76-hcp.cfg
+
+LABEL rhcos-bootstrap
+
+MENU LABEL Install RHCOS4.3 sec-Bootstrap
+
+KERNEL /networkboot/rhcos-4.3.0-x86_64-installer-kernel
+
+APPEND ip=dhcp rd.neednet=1 initrd=/networkboot/rhcos-4.3.0-x86_64-installer-initramfs.img console=tty0 console=ttyS0 coreos.inst=yes coreos.inst.install_dev=sda coreos.inst.image_url= ftp://&amp;lt;FTP_server_IP_address&amp;gt;/pub/rhcos-4.3.0-x86_64-metal-bios.raw.gz coreos.inst.ignition_url= ftp://&amp;lt;FTP_server_IP_address&amp;gt;/pub/sec/bootstrap.ign
+
+LABEL rhcos-master
+
+MENU LABEL Install RHCOS4.2 sec-Master
+
+KERNEL /networkboot/rhcos-4.3.0-x86_64-installer-kernel
+
+APPEND ip=dhcp rd.neednet=1 initrd=/networkboot/rhcos-4.3.0-x86_64-installer-initramfs.img console=tty0 console=ttyS0 coreos.inst=yes coreos.inst.install_dev=sda coreos.inst.image_url= ftp://&amp;lt;FTP_server_IP_address&amp;gt;/pub/rhcos-4.3.0-x86_64-metal-bios.raw.gz coreos.inst.ignition_url=ftp://&amp;lt;FTP_server_IP_address&amp;gt;/pub/sec/master.ign
+
+LABEL rhcos-worker
+
+MENU LABEL Install RHCOS4.2 sec-Worker
+
+KERNEL /networkboot/rhcos-4.3.0-x86_64-installer-kernel
+
+APPEND ip=dhcp rd.neednet=1 initrd=/networkboot/rhcos-4.3.0-x86_64-installer-initramfs.img console=tty0 console=ttyS0 coreos.inst=yes coreos.inst.install_dev=sda coreos.inst.image_url= ftp://&amp;lt;FTP_server_IP_address&amp;gt;/pub/rhcos-4.3.0-x86_64-metal-bios.raw.gz coreos.inst.ignition_url=ftp://&amp;lt;FTP_server_IP_address&amp;gt;/pub/sec/worker.ign
+</code></pre></div></li> <li><p>Start and enable xinetd, dhcpd and vsftpd using the following commands.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>    $ <span class="token function">sudo</span> systemctl start xinetd
+
+    $ <span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> xinetd
+
+    $ <span class="token function">sudo</span> systemctl start dhcpd.service
+
+    $ <span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> dhcpd.service
+
+    $ <span class="token function">sudo</span> systemctl start vsftpd
+
+    $ <span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> vsftpd
+</code></pre></div></li> <li><p>Configure SELinux for FTP.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token function">sudo</span> setsebool –P allow_ftpd_full_access <span class="token number">1</span>
+</code></pre></div></li> <li><p>Open ports in the firewall using the following firewall-cmd commands.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token function">sudo</span> firewall-cmd --add-service-ftp --permanent
+
+$ <span class="token function">sudo</span> firewall-cmd --add-service-dhcp --permanent
+
+$ <span class="token function">sudo</span> firewall-cmd –reload
+</code></pre></div></li></ol> <div class="custom-block tip"><p class="custom-block-title">Note</p> <p>It is crucial to generate ignition files, copy them to the TFTP server, and update the path in the PXE default file. For more information about generating the ignition files, refer to the <a href="#Kubernetes-manifests-and-ignition-files">Kubernetes manifests and ignition files</a> section in this document.</p></div> <h3 id="ipxe"><a href="#ipxe" class="header-anchor">#</a> iPXE</h3> <p>This folder consists of scripts to deploy operating system over servers using virtual media.</p> <div class="custom-block warning"><p class="custom-block-title">Prerequisites</p> <p>Installer machine with the following:</p> <ol><li>Web server (preferably Nginx) is configured.</li></ol></div> <h2 id="installation"><a href="#installation" class="header-anchor">#</a> Installation</h2> <ol><li><p>Install the prerequisites.</p> <div class="language- extra-class"><pre class="language-text"><code>$ cd $BASE_DIR/os_deployment
+$ pip3 install requirements.txt
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">Note</p> <p><code>BASE_DIR</code> is defined in &quot;<a href="#installer-machine">Installer machine</a> section.</p></div></li> <li><p>Update the servers dictionary in deploy_os.py script with the server details on which the operating system is to be installed.</p> <p>Example value is as follows:</p> <div class="language- extra-class"><pre class="language-text"><code> server = [{
+     &quot;Server_serial_number&quot;  : &quot;MXQ920023X&quot;,
+     &quot;ILO_Address&quot;           : &quot;10.0.x.x&quot;,
+     &quot;ILO_Username&quot;          : &quot;admin&quot;,
+     &quot;ILO_Password&quot;          : &quot;password&quot;,
+     &quot;Hostname&quot;              : &quot;master.tennet.local&quot;,
+     &quot;Host_IP&quot;               : &quot;x.x.x.x&quot;,
+     &quot;Host_Username&quot;         : &quot;root&quot;,
+     &quot;Host_Password&quot;         : &quot;Password&quot;,
+     &quot;Host_Netmask&quot;          : &quot;255.255.0.0&quot;,
+     &quot;Host_Gateway&quot;          : &quot;10.0.x.x&quot;,
+     &quot;Host_DNS&quot;              : &quot;10.0.x.x&quot;,
+     &quot;OS_image_name&quot;         : &quot;rhel-server-7.6-x86_64-dvd.iso&quot;,
+     &quot;Web_server_address&quot;    : &quot;10.0.x.x&quot;
+ },
+ {
+     &quot;Server_serial_number&quot;  : &quot;MXQ93906KB&quot;,
+     &quot;ILO_Address&quot;           : &quot;10.0.x.x&quot;,
+     &quot;ILO_Username&quot;          : &quot;admin&quot;,
+     &quot;ILO_Password&quot;          : &quot;password&quot;,
+     &quot;Hostname&quot;              : &quot;worker.tennet.local&quot;,
+     &quot;Host_IP&quot;               : &quot;10.0.x.x&quot;,
+     &quot;Host_Username&quot;         : &quot;root&quot;,
+     &quot;Host_Password&quot;         : &quot;Password&quot;,
+     &quot;Host_Netmask&quot;          : &quot;255.255.0.0&quot;,
+     &quot;Host_Gateway&quot;          : &quot;10.0.x.x&quot;,
+     &quot;Host_DNS&quot;              : &quot;10.0.x.x&quot;,
+     &quot;OS_image_name&quot;         : &quot;rhel-server-7.6-x86_64-dvd.iso&quot;,
+     &quot;Web_server_address&quot;    : &quot;10.0.x.x&quot;
+ }]
+</code></pre></div></li> <li><p>Execute the script to deploy operating system.</p> <div class="language- extra-class"><pre class="language-text"><code>$ python3 deploy_os.py
+</code></pre></div></li></ol> <h2 id="esxi-deployment"><a href="#esxi-deployment" class="header-anchor">#</a> ESXi deployment</h2> <p>This section outlines the steps to programmatically deploy ESXi on all the bare metal nodes.</p> <div class="custom-block warning"><p class="custom-block-title">Prequisites</p> <ul><li><p>RHEL 7.6 Installer machine with the following configuration is essential to initiate the OS deployment process.</p></li> <li><p>ESXi ISO image is present in the HTTP file path within the installer machine.</p></li></ul></div> <h2 id="installation-2"><a href="#installation-2" class="header-anchor">#</a> Installation</h2> <ol><li><p>Enable Python 3 and Ansible environment as mentioned in &quot;installer machine&quot; section of deployment guide.</p></li> <li><p>Execute the following command on the installer VM to point to the esxi deployment directory.</p> <div class="language- extra-class"><pre class="language-text"><code>$ cd $BASE_DIR/os_deployment/deploy_esxi
+</code></pre></div></li> <li><p>Use the following command to install requirements.</p> <div class="language- extra-class"><pre class="language-text"><code>$ sudo sh setup.sh 
+</code></pre></div></li> <li><p>Edit input files using the following command.</p> <div class="language- extra-class"><pre class="language-text"><code>$ sudo ansible-vault edit input_files/config.yml
+$ Enter the password
+</code></pre></div></li></ol> <div class="custom-block tip"><p class="custom-block-title">Note</p> <p>The default password for the Ansible vault file is <code>changeme</code></p></div> <ol start="5"><li><p>Update the input_files/config.yml file with the details of web server and operating system to be installed.</p> <p>Example values for the input configuration is as follows:</p> <div class="language- extra-class"><pre class="language-text"><code>config:
+  HTTP_server_base_url: http://10.0.x.x/
+  HTTP_file_path: /usr/share/nginx/html/
+  OS_type: esxi67
+  OS_image_name: &lt;ISO_image_name&gt;.iso
+  base_kickstart_filepath: kickstart_files/ks_esxi67.cfg
+
+</code></pre></div></li></ol> <div class="custom-block tip"><p class="custom-block-title">Note</p> <p>Acceptable values for &quot;OS_type&quot; variable is &quot;esxi67&quot; for ESXi 6.7.</p></div> <ol start="6"><li><p>Update the input_files or server_details.yml file with the details of servers on which ESXi is to be installed.</p> <p>Example values for the input configuration for deploying ESXi 6.7 is as follows:</p> <div class="language- extra-class"><pre class="language-text"><code>servers:
+   -  Server_serial_number: MXxxxxxDP
+      ILO_Address: 10.0.x.x
+      ILO_Username: username
+      ILO_Password: password
+      Hostname: vsphere01.twentynet.local
+      Host_IP: 20.x.x.x
+      Host_Username: root
+      Host_Password: Password
+      Host_Netmask: 255.x.x.x
+      Host_Gateway: 20.x.x.x
+      Host_DNS: 20.x.x.x
+   - Server_serial_number: MXxxxxxDQ
+      ILO_Address: 10.0.x.x
+      ILO_Username: username
+      ILO_Password: password
+      Hostname: vsphere02.twentynet.local
+      Host_IP: 20.0.x.x
+      Host_Username: root
+      Host_Password: Password
+      Host_Netmask: 255.x.x.x
+      Host_Gateway: 20.x.x.x
+      Host_DNS: 20.x.x.x
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">Note</p> <ul><li>It is recommended to provide a complex password for the &quot;Host_Password&quot; variable.</li> <li>Provide administrative priviliged iLO account username and password.</li></ul></div></li></ol> <p>:::
+7. Running playbook to deploy ESXi.</p> <div class="language- extra-class"><pre class="language-text"><code>$ ansible-playbook deploy.yml --ask-vault-pass
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">Note</p> <ul><li><p>In the process of ESXi deployment, ISO image contents will be forcefully moved to inside <code>$BASE_DIR/deploy_esxi/files</code> folder and it needs to be deleted in case of space issues.</p></li> <li><p><code>BASE_DIR</code> is defined in <a href="#installer-machine">Installer machine</a> section.</p></li></ul></div> <div class="custom-block tip"><p class="custom-block-title">Note</p> <ol><li>Generic settings done as part of kickstart file for ESXi are as follows. It is recommended that the user reviews and modifies the kickstart file (kickstart_files/ks_esxi67.cfg) to suit their requirements.
+<ul><li>Accept End User License Agreement (EULA)</li> <li>clearpart --alldrives --overwritevmfs</li> <li>install --firstdisk --overwritevmfs</li> <li>%firstboot --interpreter=busybox</li> <li>One standard switch vswitch0 is created with uplinks vmnic0 and vmnic1. it is assigned with the Host_IP defined in the input_files/server_details.yml input file.</li> <li>NIC teaming is performed with vmnic0 being the active uplink and vmnic1 being the standby uplink.</li> <li>NIC failover policy is set to --failback yes --failure-detection link --load-balancing mac --notify-switches yes.</li></ul></li></ol></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6c1bb9d7.js" defer></script><script src="/assets/js/2.41475481.js" defer></script><script src="/assets/js/33.9b22325c.js" defer></script>
+  </body>
+</html>
