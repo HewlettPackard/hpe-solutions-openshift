@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>OpenShift operators</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.3c72cb3e.css" as="style"><link rel="preload" href="/assets/js/app.6c1bb9d7.js" as="script"><link rel="preload" href="/assets/js/2.41475481.js" as="script"><link rel="preload" href="/assets/js/8.a6a83d33.js" as="script"><link rel="prefetch" href="/assets/js/10.60e6f26c.js"><link rel="prefetch" href="/assets/js/11.e2568a46.js"><link rel="prefetch" href="/assets/js/12.e8a20512.js"><link rel="prefetch" href="/assets/js/13.24fe0aaa.js"><link rel="prefetch" href="/assets/js/14.a6af149a.js"><link rel="prefetch" href="/assets/js/15.561f307f.js"><link rel="prefetch" href="/assets/js/16.1b58705c.js"><link rel="prefetch" href="/assets/js/17.d99cf671.js"><link rel="prefetch" href="/assets/js/18.7d38c742.js"><link rel="prefetch" href="/assets/js/19.aaf54330.js"><link rel="prefetch" href="/assets/js/20.f13070be.js"><link rel="prefetch" href="/assets/js/21.9653edeb.js"><link rel="prefetch" href="/assets/js/22.1485b3f6.js"><link rel="prefetch" href="/assets/js/23.1db2bb05.js"><link rel="prefetch" href="/assets/js/24.98a40dda.js"><link rel="prefetch" href="/assets/js/25.fed3b70c.js"><link rel="prefetch" href="/assets/js/26.9fa44e0a.js"><link rel="prefetch" href="/assets/js/27.3b728ad7.js"><link rel="prefetch" href="/assets/js/28.39a8466c.js"><link rel="prefetch" href="/assets/js/29.56669789.js"><link rel="prefetch" href="/assets/js/3.356a20e7.js"><link rel="prefetch" href="/assets/js/30.36cb63bf.js"><link rel="prefetch" href="/assets/js/31.1b814f7d.js"><link rel="prefetch" href="/assets/js/32.5cc2658a.js"><link rel="prefetch" href="/assets/js/33.9b22325c.js"><link rel="prefetch" href="/assets/js/4.fadf857d.js"><link rel="prefetch" href="/assets/js/5.a355315e.js"><link rel="prefetch" href="/assets/js/6.b9418f75.js"><link rel="prefetch" href="/assets/js/7.b5fd1524.js"><link rel="prefetch" href="/assets/js/9.22c6a3f6.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.3c72cb3e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="openshift-operators"><a href="#openshift-operators" class="header-anchor">#</a> OpenShift operators</h1> <div class="custom-block warning"><p class="custom-block-title">Prerequisites</p> <ul><li>Red Hat OpenShift Container Platform 4.4.x console</li> <li>Availability of any Storage Class (Nimble, 3PAR, Local Storage, and OCS) in OpenShift Container Platform</li> <li>Python 3.6.x should be available on installer VM</li> <li>'Ansible' and 'Requests' python modules.</li></ul></div> <h2 id="introduction"><a href="#introduction" class="header-anchor">#</a> Introduction</h2> <p>Operators are pieces of software that ease the operational complexity of running other pieces of software. They act like an extension of the software vendor’s engineering team, watching over a Kubernetes environment (such as OpenShift Container Platform) and using the current state to make decisions in real-time. Any container implementation requires certain operators that need to be enabled for use by the end user. This requirement is satisfied by using a combination of Python and Shell scripts and their execution for automating the installation of these operators.</p> <p>Hewlett Packard Enterprise has deployed the following operators in an automated fashion:</p> <ul><li><p>Kiali Operator</p></li> <li><p>Jaeger Operator</p></li> <li><p>Red Hat OpenShift Service Mesh</p></li> <li><p>Prometheus Operator</p></li> <li><p>Grafana Operator</p></li> <li><p>Elasticsearch Operator</p></li> <li><p>Fluentd Operator (Cluster Logging)</p></li> <li><p>Kibana Operator (Cluster Logging)</p></li></ul> <h2 id="scripts-for-configuring-the-operators"><a href="#scripts-for-configuring-the-operators" class="header-anchor">#</a> Scripts for configuring the operators</h2> <div class="custom-block tip"><p class="custom-block-title">Note</p> <div class="language- extra-class"><pre><code>BASE_DIR is the directory path for all automated scripts and the path is /opt/hpe/solutions/ocp/hpe-solutions-openshift/synergy/scalable
+</code></pre></div></div> <p>This section provides details on the scripts developed to automate the installation of operators on the OpenShift Container Platform cluster. The scripts to install operators can be found in the installer VM at <em>BASE_DIR/platform/operator_install</em>.</p> <ul><li><p><strong>deploy_validate_operators.py</strong> : Main python script which installs and validates the required operators.</p></li> <li><p><strong>config.py</strong> : Python script to convert user input values into program variables for usage by the deploy_validate_operators.py script.</p></li> <li><p><strong>userinput.json</strong> : Input json file filled by the installation user.</p></li> <li><p><strong>config_secrets.json</strong> : Encrypted input json file filled by the installer user.</p></li></ul> <h2 id="installing-the-operators-on-the-openshift-container-platform-cluster"><a href="#installing-the-operators-on-the-openshift-container-platform-cluster" class="header-anchor">#</a> Installing the operators on the OpenShift Container Platform cluster</h2> <ol><li><p>Login to the Ansible Installer virtual machine as a non-root user and browse to Python virtual environment.</p></li> <li><p>Update the <em>config_secrets.json</em> file found at <em>$BASE_DIR/platform/operator_install</em> with the following setup configuration details:</p> <div class="language- extra-class"><pre class="language-text"><code># OPENSHIFT_USERNAME: &lt;OpenShift Container Platform cluster username&gt;
+# OPENSHIFT_PASSWORD: &lt;OpenShift Container Platform cluster password&gt;
+
+</code></pre></div></li> <li><p>Update the <em>userinput.json</em> file found at <em>$BASE_DIR/platform/operator_install</em> with the following setup configuration details:</p> <div class="language- extra-class"><pre class="language-text"><code># OPENSHIFT_DOMAIN: &lt;OpenShift Server sub domain fqdn (api.domain.base_domain)&gt; 
+# OPENSHIFT_PORT: &lt;OpenShift Server port number (OpenShift Container Platform runs on port 6443 by default)&gt;
+# OPENSHIFT_OPERATOR_LIST: [&quot;jaeger-product&quot;, &quot;kiali-ossm&quot;, &quot;servicemeshoperator&quot;,&quot;grafana-operator&quot;,&quot;prometheus&quot;,elasticsearch-operator&quot;,&quot;cluster-logging&quot;]
+# OPERATOR_CHANNEL_LIST: [&quot;stable&quot;, &quot;stable&quot;, &quot;1.0&quot;,&quot;alpha&quot;,&quot;beta&quot;,&quot;4.4&quot;,&quot;4.4&quot;]
+# OPERATOR_SOURCE_LIST: [&quot;redhat-operators&quot;,&quot;redhat-operators&quot;,&quot;redhat-operators&quot;,&quot;community-operators&quot;,&quot;community-operators&quot;,&quot;redhat-operators&quot;,&quot;redhat-operators&quot;]
+# OPERATOR_INSTALL_PLAN: [&quot;Automatic&quot;, &quot;Automatic&quot;, &quot;Automatic&quot;,&quot;Automatic&quot;,&quot;Automatic&quot;,&quot;Automatic&quot;,&quot;Automatic&quot;]
+# OPENSHIFT_PROJECT_NAME: &lt;OpenShift Project Name&gt;
+# OPENSHIFT_CLIENT_PATH: &lt; OpenShift OC client tool path (leave it empty if a path has been set)&gt;
+# OPENSHIFT_STORAGE_CLASS_NAME: &lt; provide the storage class name to be used by the cluster logging operator &gt;
+   
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">Note</p> <p>The operator list, channel details, operator source, and install plans can be used if the user wants to install additional operators. For the default installation of the required operators, the user should not modify these fields.</p></div></li> <li><p>Execute the following command to install the operators discussed in the Introduction section of this document.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token builtin class-name">cd</span> <span class="token variable">$BASE_DIR</span>/platform/operator_install
+
+$ python –W ignore deploy_validate_operators.py
+</code></pre></div></li></ol> <p>The output of the command is as follows:</p> <div class="language- extra-class"><pre><code>$ python -W ignore deploy_validate_operators.py
+    Enter key for encrypted variables:
+    Logging into your OpenShift Cluster
+    Successfully logged into the OpenShift Cluster
+    Token is generated
+    Creating Operators...
+    Creating Operator jaeger-product
+    Creating Operator kiali-ossm
+    Creating Operator servicemeshoperator
+    Creating Operator grafana-operator
+    Creating Operator prometheus
+    Creating Operator elasticsearch-operator
+    Creating Operator cluster-logging
+    Validating Operators...
+    The Required Operators have been Created
+
+    Deploying Service Mesh Control Plane..
+    Created Service Mesh Control Plane
+    Validating Control Plane Creation...
+    Control Plane is present and validated!
+
+    Deploying Service Mesh Member Roll...
+    Created Service Mesh Member Roll
+    Validating Member Roll Creation...
+    Member roll is present and validated!
+
+    Deploying Logging Cluster...
+    Created Logging instance
+    Validating Cluster Logging Instance Creation...
+    Cluster Logging Instance is present and validated!
+
+    AUTOMATION IS COMPLETE...
+    $   
+</code></pre></div><h2 id="validation-of-the-operator-installation"><a href="#validation-of-the-operator-installation" class="header-anchor">#</a> Validation of the operator installation</h2> <p>The required operators will be created after the execution of the script and they will be reflected in the OpenShift console. This section outlines the steps to verify the operators created through script and are reflected in the GUI:</p> <ol><li><p>Login to the <strong>OpenShift Console</strong> as the user with administrative privileges.</p></li> <li><p>Navigate to <strong>Operators</strong> -&gt; <strong>Installed</strong> <strong>Operators</strong> -&gt; select your project name.</p></li> <li><p>The operators will be displayed in the OpenShift web console as shown in Figure 19.</p></li></ol> <p><img src="/assets/img/figure90.9b316a3c.png" alt=""></p> <p><strong>Figure 19.</strong>  Installed Operators in the selected project.</p> <ol start="4"><li>To view the cluster-logging operator and its instance, navigate to &quot;openshift-logging&quot; project name.
+Figure 20 shows the cluster-logging operator in the OpenShift web console.</li></ol> <p><img src="/assets/img/figure91.c15e1cd2.png" alt=""></p> <p><strong>Figure 20.</strong> Cluster-logging operator in OpenShift web console</p> <ol start="5"><li><p>Steps to verify the installation of cluster-logging and EFK pods:</p> <ul><li><p>Navigate to the <strong>Workloads → Pods</strong> page ( inside the <strong>openshift-logging</strong> project).</p></li> <li><p>You should see several pods for cluster logging: Elasticsearch, Fluentd, and Kibana as shown in Figure 21.</p></li></ul></li></ol> <p><img src="/assets/img/figure92.145f77d7.png" alt=""></p> <p><strong>Figure 21.</strong> Cluster-logging and EFK pods in the openshift-logging project.</p> <h2 id="launch-kibana-dashboard-from-openshift-cluster"><a href="#launch-kibana-dashboard-from-openshift-cluster" class="header-anchor">#</a> Launch <strong>Kibana</strong> dashboard  from OpenShift cluster</h2> <ol><li><p>Switch to <strong>Networking</strong>. Select  Routes option , navigate to Location. Click Kibana URL to open a new tab in the browser as shown in Figure 22.</p> <p><img src="/assets/img/figure93.60fc6c80.png" alt=""></p> <p><strong>Figure 22.</strong> Launch Kibana dashboard</p></li> <li><p>Kibana dashboard appears as shown in Figure 23.</p> <p><img src="/assets/img/figure94.5c93e99d.png" alt=""></p> <p><strong>Figure 23.</strong> View of Kibana dashboard</p></li></ol></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6c1bb9d7.js" defer></script><script src="/assets/js/2.41475481.js" defer></script><script src="/assets/js/8.a6a83d33.js" defer></script>
+  </body>
+</html>
