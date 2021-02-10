@@ -1,5 +1,5 @@
 Role Name: deploy_vm
-=========
+============
 This role creates the management are required for the Red Hat OpenShift Container Platform deployment.
 At the end, There are 1 bootstrap, 3 masters and 1 load balance VMs created as part of this role.
 

@@ -1,4 +1,4 @@
-# HPE Deployment Guide for integrating Sysdig (sysdig SaaS model for secure and monitor) agents with Red Hat OpenShift Container Platform
+# HPE Deployment Guide for integrating Sysdig (sysdig SaaS model for secure and monitor) agents with Red Hat OpenShift Container Platform 4.6
 
 ##### Description
 

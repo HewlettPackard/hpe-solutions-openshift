@@ -1,4 +1,4 @@
-# HPE Deployment Guide for discovering the physical node properties in an OpenShift Container Platform 4.x deployment and advertising them through node labels.
+# HPE Deployment Guide for discovering the physical node properties in an OpenShift Container Platform 4.6 deployment and advertising them through node labels.
 
 ##### Description
 

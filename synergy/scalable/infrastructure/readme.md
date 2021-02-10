@@ -1,4 +1,4 @@
-# Red Hat OpenShift Container Platform 4 on HPE Synergy
+# Red Hat OpenShift Container Platform 4.6 on HPE Synergy
 
 ## Overview
 This folder consists of ansible playbooks developed to automate the tasks such as uploading firmware baseline iso package to OneView, creating server profile templatate & server profiles in HPE OneView and the scripts to create a virtual machine in VMware vCenter server. These playbooks are meant to be used in conjunction with the deployent guide for **Red Hat OpenShift Container Platform 4 on HPE Synergy**

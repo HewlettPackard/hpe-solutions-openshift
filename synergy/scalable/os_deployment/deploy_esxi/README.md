@@ -9,7 +9,7 @@ This folder consists of scripts to deploy ESXI over bare-metal servers using iLO
    3. 1 network interface with static IP address configured on same network as the management plane of the bare-metal servers and has access to internet.
    4. Python 3.6 or above is present and latest version associated pip is present.
    5. Ansible 2.9 should be installed 
-   6. ESXI ISO image is present in the HTTP file path within the installer machine.
+   6. ESXi ISO image is present in the HTTP file path within the installer machine.
 
 - DHCP service exisits on the management and production network to provides IP address leases on the corresponding network.
 

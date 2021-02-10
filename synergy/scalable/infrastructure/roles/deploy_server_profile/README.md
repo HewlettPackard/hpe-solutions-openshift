@@ -1,7 +1,7 @@
 ### Role Name: deploy_server_profile
 
 ##### Description: 
-This role consists of ansible playbooks developed to automate the task of creating and deploying the Server Profile on the Server Hardware in HPE OneView. It also automates the task of applying the firmware updates, iLO and BIOS settings on the Server Hardware. Lastly it automates the task of validating the firmware updates, iLO and BIOS settings available on server hardware are matching with firmware details available in the firmware baseline or firmware bundle and iLO and BIOS settings specified by user are matching with iLO and BIOS settings on the server hardware. These playbooks are meant to be used in conjunction with the deployent guide for **Red Hat OpenShift Container Platform 4 on HPE Synergy**
+This role consists of ansible playbooks developed to automate the task of creating and deploying the Server Profile on the Server Hardware in HPE OneView. It also automates the task of applying the firmware updates, iLO and BIOS settings on the Server Hardware. Lastly it automates the task of validating the firmware updates, iLO and BIOS settings available on server hardware are matching with firmware details available in the firmware baseline or firmware bundle and iLO and BIOS settings specified by user are matching with iLO and BIOS settings on the server hardware. These playbooks are meant to be used in conjunction with the deployent guide for **Red Hat OpenShift Container Platform 4.6 on HPE Synergy**
 
 ##### Prerequisites
 - Ansible engine with Ansible 2.9.x and Python  3.6.x
