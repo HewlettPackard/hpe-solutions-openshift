@@ -5,7 +5,7 @@ This folder consists of scripts to deploy operating system over servers using vi
 ## Prerequisites 
 Installer machine with the following:
 1. RHEL 7 installed and registered with valid repository. 
-2. Static ip on same network as the management plane of the servers.
+2. Static IP on same network as the management plane of the servers.
 3. Python 3.5 or above is present and latest version associated pip is present.
 4. Web server (preferably Nginx) is configured
 

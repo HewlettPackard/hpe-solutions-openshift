@@ -2,7 +2,7 @@
 
 ### Introduction 
 
-This document contains configuring Red Hat OpenShift Container Storage 4.4/4.5 (OCS) on existing Red Hat OpenShift Container Platform 4.6 (OCP) worker nodes on bare metal or virtual machines. The OpenShift Container Storage operator installation will be using Local Storage operator which will use file system storage of 10GB for monitoring purpose and block storage of 500GB for OSD (Object Storage Daemon) volumes. These OSDs are useful for configuring any application on top of OCS cluster.
+This document contains configuring Red Hat OpenShift Container Storage 4.4/4.5/4.6 (OCS) on existing Red Hat OpenShift Container Platform 4.6 (OCP) worker nodes on bare metal or virtual machines. The OpenShift Container Storage operator installation will be using Local Storage operator which will use file system storage of 10GB for monitoring purpose and block storage of 500GB for OSD (Object Storage Daemon) volumes. These OSDs are useful for configuring any application on top of OCS cluster.
 
 The below operators are required to create OCS cluster and deployed through automation fashion.
 

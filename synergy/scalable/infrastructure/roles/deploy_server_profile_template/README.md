@@ -1,7 +1,7 @@
 ### Role Name: deploy_server_profile_template
 
 ##### Description: 
-This role consists of ansible playbooks developed to automate the task of creating and deploying the Server Profile Template along with attaching the firmware baseline (firmware bundle for updating the firmwares on HPE Synergy compute module) with the profile template in HPE OneView and also updating the BIOS and iLO settings. These playbooks are meant to be used in conjunction with the deployent guide for **Red Hat OpenShift Container Platform 4 on HPE Synergy**
+This role consists of ansible playbooks developed to automate the task of creating and deploying the Server Profile Template along with attaching the firmware baseline (firmware bundle for updating the firmwares on HPE Synergy compute module) with the profile template in HPE OneView and also updating the BIOS and iLO settings. These playbooks are meant to be used in conjunction with the deployent guide for **Red Hat OpenShift Container Platform 4.6 on HPE Synergy**
 
 ##### Prerequisites
 - Ansible engine with Ansible 2.9.x and Python  3.6.x

@@ -1,5 +1,5 @@
 Role Name: deploy_vm
-=========
+============
 This role creates the bootstrap VM for the Red Hat OpenShift Container Platform deployment.
 
 Requirements

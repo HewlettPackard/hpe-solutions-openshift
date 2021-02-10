@@ -1,7 +1,7 @@
 ### Role Name: upload_firmware_bundle
 
 ##### Description: 
-This role consists of ansible playbooks developed to automate the task of uploading the firmware bundle or firmware baseline for Compute Module of HPE Synergy to HPE OneView. These playbooks are meant to be used in conjunction with the deployent guide for **Red Hat OpenShift Container Platform 4 on HPE Synergy**
+This role consists of ansible playbooks developed to automate the task of uploading the firmware bundle or firmware baseline for Compute Module of HPE Synergy to HPE OneView. These playbooks are meant to be used in conjunction with the deployent guide for **Red Hat OpenShift Container Platform 4.6 on HPE Synergy**
 
 ##### Prerequisites
 - Ansible engine with Ansible 2.9.x and Python  3.6.x

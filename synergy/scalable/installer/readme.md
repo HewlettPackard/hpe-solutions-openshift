@@ -1,7 +1,7 @@
 # Red Hat OpenShift Container Platform 4 on HPE Synergy
 
 ## Overview
-This folder consists of ansible playbooks and shell scripts which aids in setting up the installer machine with pre-requisites to deploy Red Hat OpenShift Container Platform on HPE Synergy. These playbooks are meant to be used in conjunction with the deployent guide for **Red Hat OpenShift Container Platform 4 on HPE Synergy**
+This folder consists of ansible playbooks and shell scripts which aids in setting up the installer machine with pre-requisites to deploy Red Hat OpenShift Container Platform on HPE Synergy. These playbooks are meant to be used in conjunction with the deployent guide for **Red Hat OpenShift Container Platform 4.6 on HPE Synergy**
 
 ## Prerequisites
 - A server with RHEL 7.6 OS to be used as an installer.
