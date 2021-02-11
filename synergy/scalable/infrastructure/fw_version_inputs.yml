@@ -1,0 +1,83 @@
+###
+## Copyright (2021) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+####
+---
+# Firmware version information in this file is derived from "content.html" file that comes as part of Service Pack for ProLiant(SPP) iso.
+# Refer to "content.html" file os the Service Pack for ProLiant iso that you wish to upload and being used for creating Server Profile Template.
+# Note: Most of th server firmware can be applied to a server platform using various Operating System like Linux, Windows, ESXi, etc and also using iLO.
+# So in "content.html", you will find some firmware availaible at multiple places. In such cases, when extracting the version information from 
+# "content.html", please make sure string "ROM Flash Firmware Package" is available
+#
+# Example: 
+# 1. Firmware - System 	Online ROM Flash Component for Windows x64 - Server Platform Services (SPS) Firmware for HPE Gen10 Servers 	04.01.04.339 
+# 2. Firmware - System 	Online ROM Flash for Linux - Server Platform Services (SPS) Firmware for HPE Gen10 Servers 	04.01.04.339 
+# 3. Firmware - System 	ROM Flash Firmware Package - Server Platform Services (SPS) Firmware for HPE Gen10 Servers 	04.01.04.339 
+#
+# From the above example, string of our interest is:
+# 3. Firmware - System 	ROM Flash Firmware Package - Server Platform Services (SPS) Firmware for HPE Gen10 Servers 	04.01.04.339
+#
+#
+# Variable1: innovationengine
+# In "contents.html", search for the following firmware details to identify the right version.
+# Note: Here version: 0.2.1.2 is an example version, it changes based on the SPP iso that the user is using.
+# Product Category: Firmware - System 	
+# Description: ROM Flash Firmware Package - HPE Gen10 Innovation Engine Firmware for HPE Gen10 Servers 	
+# Version: 0.2.1.2 
+# Example: innovationengine: 0.2.1.2
+innovationengine: < INNOVATION_ENGINE_VERSION >
+
+# Variable 2: systemrombios
+# In "contents.html", search for the following firmware details to identify the right version.
+# Note: Here version: 2.32 is an example version, it changes based on the SPP iso that the user is using.
+#
+# Note: BIOS version may have Date string ""2.32_03-09-2020" appended to it, exclude the date and take the version only as "2.32".
+#
+# Product Category: BIOS - System ROM 	
+# Description: ROM Flash Firmware Package - HPE Synergy 480 Gen10 (I42) Compute Module 	
+# Version: 2.32
+# Example: systemrombios: 2.32
+systemrombios: < SYSTEM_ROM_VERSION >
+
+# Variable 3: serverplatformservices
+# In "contents.html", search for the following firmware details to identify the right version.
+# Note: Here version: 4.1.4.339 is an example version, it changes based on the SPP iso that the user is using.
+#
+# Note: SPS version may have additional leading zeros like "04.01.04.339", exclude leading zeros and take the version string as "4.1.4.339"
+#
+# Product Category: Firmware - System 	
+# Description: ROM Flash Firmware Package - Server Platform Services (SPS) Firmware for HPE Gen10 Servers 	
+# Version: 04.01.04.339
+# Example: serverplatformservices: 4.1.4.339
+serverplatformservices: < SERVER_PLATFORM_SERVICES >
+
+# Variable 4: powermanagementcontroller
+# In "contents.html", search for the following firmware details to identify the right version.
+# Note: Here version: 1.0.4 is an example version, it changes based on the SPP iso that the user is using.
+#
+# Product Category: Firmware - Power Management 	
+# Description: ROM Flash Firmware Package - Advanced Power Capping Microcontroller Firmware for HPE Gen10 Servers  	
+# Version: 1.0.4
+# Example: powermanagementcontroller: 1.0.4
+powermanagementcontroller: < POWER_MANAGEMENT_CONTROLLER >
+
+# Variable 5: ilo5
+# In "contents.html", search for the following firmware details to identify the right version.
+# Note: Here version: 2.11 is an example version, it changes based on the SPP iso that the user is using.
+#
+# Product Category: Firmware - Lights-Out Management 	
+# Description: Online ROM Flash Firmware Package - HPE Integrated Lights-Out 5 	
+# Version: 2.11
+# Example: ilo5: 2.11
+ilo5: < iLO_5_VERSION >
