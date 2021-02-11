@@ -1,0 +1,11 @@
+---
+- name: Deploy Master, Bootstrap, and Load balancer VMs
+  hosts:
+    - localhost
+    #- nodes 
+  gather_facts: true
+  vars_files:
+   - ../roles/deploy_vm/tasks/vm_config.yml
+   - ../secret.yml
+  roles:
+   - ../roles/deploy_vm

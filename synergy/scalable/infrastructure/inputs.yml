@@ -1,0 +1,101 @@
+###
+## Copyright (2021) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+####
+---
+# Variables for creating the Server Profile and Server Profile Template as per the OneView onfiguration
+
+# Specify "true" if the Operating System is RedHat CoreOS, else specify "false"
+os_is_coreos: <true_or_false>
+
+# Example: enclosure_group: EG1
+enclosure_group: <Enclosure group name as per OneView> 
+
+# Example: deployment_network_name: TwentyNet
+deployment_network_name: <Deployment network name as per OneView>
+
+# Example: server_profile_template_name: ocptemplate
+server_profile_template_name: <Custom name for SPT>
+
+################################################################################################
+# The following 3 variables are required if user wish to update firmware for Synergy Compute Module using Server Profile.
+# 1. fw_bundle_path
+# 2. fw_bundle_file_name
+# 3. managefw
+#
+# These variable is required when user wants to upload a firmware bundle or firmware baseline for Compute Module of HPE Synergy to HPE OneView
+# Path on installer machine where the firmware bundle or firmware baseline for Compute Module of HPE Synergy is present. 
+# This path should end with "/" but it should not include firmware file name.
+# Example: fw_bundle_path: /opt/hpe/solutions/ocp/hpe-solutions-openshift/synergy/scalable/infrastructure/roles/upload_firmware_bundle/files/
+fw_bundle_path: <Firmware Bundle file path>
+
+# Provide the firmware file name with extension
+# fw_bundle_file_name: HPE_Synergy_Custom_SPP2019.12_20200326_Z7550-96866.iso
+fw_bundle_file_name: <Firmware file name with extension>
+#
+# Set this variable to "true" if firmware update is required to be performed on the HPE Synergy Compute Module using Server Profile Template
+managefw: <true_or_false>
+
+#################################################################################################
+# The following 2 variables are required if user wish to apply BIOS Security settings on Synergy Compute Module using Server Profile
+# 1. manageBios
+# 2. bioscomplianceControl
+#
+# Set this variable to "true" if BIOS security settings need to be updated on the HPE Synergy Compute Module using Server Profile Template
+manageBios: <true_or_false>
+#
+#
+# Set this variable to "Checked" if BIOS compliance control is required.
+# Values: Either "Checked" or "Unchecked"
+# Example: bioscomplianceControl: Checked
+bioscomplianceControl: <Checked_or_Unchecked>
+
+#################################################################################################
+# The following 2 variables are required if user wish to apply iLO settings on Synergy Compute Module using Server Profile
+# 1. manageilo
+# 2. ilocomplianceControl
+#
+# Set this variable to "true" if iLO settings need to be updated on the HPE Synergy Compute Module using Server Profile Template
+manageilo: <true_or_false>
+#
+#
+# Set this variable to "Checked" if iLO compliance control is required.
+# Values: Either "Checked" or "Unchecked"
+# Example: ilocomplianceControl: Checked
+ilocomplianceControl: <Checked_or_Unchecked>
+
+################################################################################################
+# Variables for creating the bootstrap VM, as per the vSphere host configuration within the vCenter
+datacenter_name: <name of datacenter within vcenter>
+cluster_name: <name of cluster within vcenter>
+datastore_name: <name of datastore within vcenter>
+network_name: <name of the network within vcenter>
+
+# Default values for creating the botstrap VM
+bootstrap_disk: 150
+bootstrap_cpu: 4
+bootstrap_memory: 16400
+bootstrap_name: Bootstrap
+
+############################## No need to change #############################
+#ansible python interpreter path
+ansible_python_interpreter: /opt/hpe/solutions/ocp/hpe-solutions-openshift/synergy/scalable/installer/ocp_venv/bin/python
+
+server_profile_name: "{{ hostvars[inventory_hostname].name }}"
+server_hardware: "{{ inventory_hostname }}"
+server_hardware_type: "{{ hostvars[inventory_hostname].type }}"
+
+dumpfacts: False
+vm_type: vmxnet3
+disk_type: thin
