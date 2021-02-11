@@ -49,7 +49,7 @@
    boot
    master
    worker
-</code></pre></div><ol start="4"><li>Execute the ansible playbook to configure HAProxy</li></ol> <div class="language- extra-class"><pre class="language-text"><code>&gt; ansible-playbook -i hosts haproxy.yaml
+</code></pre></div><ol start="4"><li>Execute the ansible playbook to configure HAProxy</li></ol> <div class="language- extra-class"><pre class="language-text"><code>&gt; ansible-playbook -i hosts haproxy.yml
 </code></pre></div><ol start="5"><li><p>The following entries are made in the haproxy.cfg file.</p> <p>Sample haproxy.cfg file</p></li></ol> <div class="language-yaml extra-class"><pre class="language-yaml"><code>    <span class="token comment">#---------------------------------------------------------------------</span>
     <span class="token comment"># static backend for serving up images, stylesheets and such</span>
     <span class="token comment">#---------------------------------------------------------------------</span>

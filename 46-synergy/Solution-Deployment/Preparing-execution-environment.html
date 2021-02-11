@@ -148,7 +148,7 @@ with following command.</p> <div class="language-bash extra-class"><pre class="l
 manifest files and the ignition files required to install Red Hat
 OpenShift.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">cd</span> <span class="token variable">$BASE_DIR</span>/installer
 <span class="token operator">&gt;</span> ansible-playbook playbooks/create_manifest_ignitions.yml
-<span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">chmod</span> +r installer/igninitions/*.ign
+<span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">chmod</span> +r installer/ignitions/*.ign
 </code></pre></div><p>The ignition files are generated on the installer VM within the folder
 /opt/hpe/solutions/ocp/<em>hpe-solutions-openshift/synergy/scalable/installer/ignitions</em>.</p> <div class="custom-block tip"><p class="custom-block-title">NOTE</p> <p>The ignition files have a time-out period of 24 hours and it is critical
 that the clusters are created within 24 hours of generating the ignition
