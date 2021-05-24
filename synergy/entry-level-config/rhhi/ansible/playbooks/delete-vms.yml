@@ -1,0 +1,22 @@
+---
+
+- name: Unregester VMs
+  hosts:
+    - masters
+    - etcd
+    - infra
+    - lb
+  gather_facts: true
+  remote_user: root
+  roles:
+    - delete-vm/tasks/unregister-vm.yml
+#import_tasks: roles/deploy-vm/tasks/unregister-vm.yml
+
+#- name: Delete VMs
+#  hosts:
+#    - rhvm
+#  gather_facts: true
+#  remote_user: root
+#  roles:
+#   - roles/deploy-vm/tasks/delete-vm.yml
+
