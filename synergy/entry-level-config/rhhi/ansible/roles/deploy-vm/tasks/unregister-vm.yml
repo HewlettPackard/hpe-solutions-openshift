@@ -1,4 +1,0 @@
----
-- name: Unregister VM Nodes (Master,etcd,Infra,LB)
-  redhat_subscription:
-    state: absent
