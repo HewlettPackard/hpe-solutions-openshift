@@ -1,0 +1,4 @@
+{
+	"kubeconfig_path": "replace_with_path_of_ocp_kubeconfig",
+	"oc_command_path": "replace_with_path_of_ocp_installation_dir"
+}

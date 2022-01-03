@@ -1,0 +1,48 @@
+###
+## Copyright (2019, 2020) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+####
+---
+- name: Create server profiles
+  oneview_server_profile:
+    hostname: "{{ oneview_ip }}"
+    username: "{{ oneview_username }}"
+    password: "{{ oneview_password }}"
+    api_version: "{{ oneview_api_version }}" 
+    state: present
+    data: 
+      serverProfileTemplateName: "{{ server_profile_template_name }}"
+      serverHardwareName: "{{ server_hardware }}"
+      name: "{{ server_profile_name }}"
+    auto_assign_server_hardware: false
+  delegate_to: localhost
+  register: result
+
+- name: Wait for Seconds before proceeding
+  wait_for: timeout=10  
+
+- debug: var={{ result }}
+
+- name: Check Server profile creation failure status
+  fail:
+    msg: "Server Profile creation failed. Error is {{ module_stderr }}"
+  when: result.msg is defined and result.msg != "Server Profile created." and result.module_stderr is defined
+
+- name: Inform user if the server profile creation is successful
+  debug:
+    msg: "Server Profile created successfully."
+  when: result.msg == "Server Profile created."
+
+- name: Wait time in seconds
+  wait_for: timeout=30

@@ -1,0 +1,105 @@
+###
+## Copyright (2020) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+####
+---
+- name: End the tasks for validation of BIOS settings.
+  debug:
+        msg: "End the tasks for validation of BIOS settings. Reason: User has chosen not to apply BIOS security settings via Server profile. In input.yml the value of varibale 'manageBios' is set to 'false'"
+  when: manageBios == false
+
+- block:
+    - name: Gather facts about the user specified Server Profiles
+      oneview_server_profile_facts:
+        hostname: "{{ oneview_ip }}"
+        username: "{{ oneview_username }}"
+        password: "{{ oneview_password }}"
+        api_version: "{{ oneview_api_version }}"
+        name: "{{ server_profile_name }}" 
+      delegate_to: localhost
+      register: result
+
+    - debug: var=server_profiles
+
+    - name: Inform user server profile creation failed in last step.
+      fail:
+        msg: "Server profile creation has failed for the server hardware {{ server_hardware }}"
+      with_indexed_items: "{{ result.ansible_facts.server_profiles }} "
+      when: item.1.state == "CreateFailed"
+
+    - name: Inform user server profile is not in normal state.
+      fail:
+        msg: "Server profile state is not normal for the server hardware {{ server_hardware }}"
+      with_indexed_items: "{{ result.ansible_facts.server_profiles }} "
+      when: item.1.state != "Normal"
+
+    # This task initializes the variables
+    - name: Initialize variables required by other tasks within this script.
+      set_fact:
+        bios_setting_match: []
+        all_expected_settings: ["{{ bios_ProcAes_id }}", "{{ bios_AssetTagProtection_id }}" , "{{ bios_SecStartBackupImage_id }}" , "{{ bios_AdvancedMemProtection_id }}" , "{{ bios_F11BootMenu_id }}" ]
+        bios_settings_mismatch: []
+
+    - name: Gather bios settings from the server hardware after applying server profile and bios settings
+      oneview_server_hardware_facts:
+        hostname: "{{ oneview_ip }}"
+        username: "{{ oneview_username }}"
+        password: "{{ oneview_password }}"
+        api_version: "{{ oneview_api_version }}" 
+        name : "{{ server_hardware }}"
+        options:
+          - bios
+      delegate_to: localhost
+      register: result
+
+    - name: Copy the bios setting details retrieved from the synergy compute module to a json file.
+      local_action: copy content="{{ result }}" dest="{{ role_path}}/files/{{ server_hardware }}_bios.json"
+
+    - name: Search if the bios security settings specified in the "secret.yml" is applied and available on server hardware.
+      set_fact:
+        bios_setting_match: "{{ bios_setting_match + [ item.1.id ] }}"
+      with_indexed_items: "{{ result.ansible_facts.server_hardware_bios.currentSettings }} "
+      when: 
+        - (bios_ProcAes_id in item.1.id and bios_ProcAes|string in item.1.value|string) or (bios_AssetTagProtection_id in item.1.id and bios_AssetTagProtection|string in item.1.value|string) or (bios_SecStartBackupImage_id in item.1.id and bios_SecStartBackupImage|string in item.1.value|string) or (bios_AdvancedMemProtection_id in item.1.id and bios_AdvancedMemProtection|string in item.1.value|string) or (bios_F11BootMenu_id in item.1.id and bios_F11BootMenu|string in item.1.value|string)
+      register: result
+
+    - debug: var=bios_setting_match
+
+    - debug: var=all_expected_settings
+
+    # The list "bios_settings_mismatch" will be updated with id of the bios settings that defer from the settings in secret.yml  with the actual setting on the server hardware.
+    - name: Compare the bios settings available in secret.yml with the bios security settings from the synergy compute module hardware
+      set_fact:
+        bios_settings_mismatch={{ bios_setting_match | symmetric_difference(all_expected_settings)}}
+      when:
+        - bios_setting_match | symmetric_difference(all_expected_settings)
+
+    # Find non updated bios security settings and notify the user.
+    - fail: 
+        msg: "Following bios security settings {{ bios_settings_mismatch }} are not matching with the bios settings on the server hardware. Check the user specified bios security settings from file secret.yml and compare with security settings available on the server hardware using file {{ role_path }}/files/{{ server_hardware }}_bios.json"
+      when:
+        - bios_settings_mismatch | length>0
+
+    - debug:
+        msg: "Bios security setting validation successful, all expected bios updates are applied to the server hardware"
+      when: 
+        - bios_settings_mismatch | length==0
+
+    - name: Wait time in seconds
+      wait_for: timeout=30
+
+  when: manageBios == true
+  always:
+     - debug:
+         msg: "If BIOS settings validation is succesful then value of bios_settings_mismatch is empty. Current value of bios_settings_mismatch is {{ bios_settings_mismatch }}"
