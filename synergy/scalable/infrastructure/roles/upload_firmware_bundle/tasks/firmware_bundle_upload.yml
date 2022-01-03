@@ -1,0 +1,92 @@
+###
+# Copyright (2020) Hewlett Packard Enterprise Development LP
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# You may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+###
+---
+- name: Initialize a variable
+  set_fact:
+    spp_name_oneview: ""
+
+# If a firmware baseline bundle (.iso file) that need to uploaded to OneView contains dot (.) at any place other than
+# the file extension, then OneView automatically replaces all instances except the file extension with underscore
+
+- name: Check if the SPP file that should be uploaded contains dot (.) in the file name, if yes replace with underscore
+  vars:
+    file_name: "{{ (fw_bundle_file_name | splitext)[0] }}"
+    file_ext: "{{ (fw_bundle_file_name | splitext)[1] }}"
+    update_name: "{{ ( file_name ) | replace('.','_') }}"
+  set_fact:
+    updated_fw_bundle_file_name="{{ update_name }}{{ file_ext }}"
+  when: update_name != file_name
+  delegate_to: localhost
+
+- name: Gather the information about all the firmware bundles that are available in OneView currently.
+  oneview_firmware_driver_facts:
+    hostname: "{{ oneview_ip }}"
+    username: "{{ oneview_username }}"
+    password: "{{ oneview_password }}"
+    api_version: "{{ oneview_api_version }}"
+  delegate_to: localhost
+  register: fw_facts
+
+- name: Abort play if not able to gather the information about currently available firmware bundle from OneView
+  debug:
+        msg: "Aborting the play. Reason: not able to gather facts about the firmware baseline bundle that script is trying to upload ."
+  when: fw_facts.ansible_facts is not defined
+
+- meta: end_play
+  when: fw_facts.ansible_facts is not defined
+
+- name: Check if the bundle that this script should load to OneView is already present or not
+  set_fact:
+    spp_name_oneview="{{ item.1.name }}"
+  with_indexed_items: "{{ fw_facts.ansible_facts.firmware_drivers }} "
+  when: item.1.isoFileName == updated_fw_bundle_file_name
+
+- name: Upload Firmware Bundle
+  oneview_firmware_bundle:
+    hostname: "{{ oneview_ip }}"
+    username: "{{ oneview_username }}"
+    password: "{{ oneview_password }}"
+    api_version: "{{ oneview_api_version }}" 
+    state: present
+    file_path: "{{ fw_bundle_path }}{{ fw_bundle_file_name }}"
+  when: spp_name_oneview == ""
+  delegate_to: localhost
+  register: result
+  run_once: true
+  ignore_errors: yes
+
+- name: Inform that the firmware bundle is already availaible in OneView.
+  debug:
+    msg: "User specified firmware bundle is availbale in OneView, so no upload operation performed."
+  when: spp_name_oneview != "" and result.ansible_facts is not defined
+
+- name: Inform user if return code from module is not 0
+  fail:
+    msg: '"Ensure that OneView is having sufficient space to accomodate a new firmware bundle. Actual error message is {{ result.module_stderr }}"'
+  when: spp_name_oneview == "" and result.ansible_facts is not defined and result.rc is defined
+
+- name: Abort play if error in uploading the firmware bundle
+  debug:
+    msg: "Aborting the play. Reason: Unable to upload firmware bundle."
+  when: spp_name_oneview == "" and result.ansible_facts is not defined and result.rc is defined
+
+- meta: end_play
+  when: spp_name_oneview == "" and result.ansible_facts is not defined
+
+- name: Inform user if the firmware bundle is uploaded successfully.
+  debug:
+    msg: "Firmware Bundle uploaded sucessfully."
+  when: result.msg=="Firmware Bundle uploaded sucessfully."

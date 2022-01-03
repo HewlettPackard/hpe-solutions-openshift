@@ -1,0 +1,29 @@
+servers:
+ - Server_serial_number  : MXQ01201G8
+   ILO_Address           : 10.0.40.61
+   ILO_Username          : <username_of_the_admin_priviliges_account>
+   ILO_Password          : <password_of_the_admin_priviliges_account>
+   Hostname              : worker1.*****.local
+   Host_Username         : root
+   Host_Password         : <hashed_value_of_complex_password>
+   Bonding_Interface1    : <interface to be bonded>
+   Bonding_Interface2    : <interface to be bonded>
+   Host_IP               : 20.0.**.**
+   Host_Netmask          : 255.**.**.**
+   Host_Gateway          : 20.**.**.**
+   Host_DNS              : 20.**.**.**
+    
+		   
+config:
+   HTTP_server_base_url: http://20.0.**.**:8080/assets/      #Installer machine ip address
+   HTTP_file_path: /var/lib/matchbox/assets/
+   OS_type: rhel7
+   OS_image_name: rhel-server-7.8-x86_64-dvd.iso
+   base_kickstart_filepath: <kickstart_file path>
+
+
+ocp_version: 4.X    ## OCP version 
+
+rhsub_username: <redhat subscription username>  
+rhsub_password: <redhat subscription password>
+

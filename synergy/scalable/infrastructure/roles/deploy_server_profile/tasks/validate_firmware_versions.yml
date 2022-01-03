@@ -1,0 +1,107 @@
+###
+## Copyright (2020) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+####
+---
+- name: End validation of firmware versions if user has selected not to manage firmware using server profile
+  debug:
+        msg: "Ending the tasks for validation of firmware versions. Reason: End validation of firmware versions if user has selected not to manage firmware using server profile. In input.yml the value of varibale 'managefw' is set to 'false'"
+  when: managefw == false
+
+- block:
+    - name: Gather facts about the user specified Server Profiles
+      oneview_server_profile_facts:
+        hostname: "{{ oneview_ip }}"
+        username: "{{ oneview_username }}"
+        password: "{{ oneview_password }}"
+        api_version: "{{ oneview_api_version }}"
+        name: "{{ server_profile_name }}" 
+      delegate_to: localhost
+      register: result
+
+    - debug: var=server_profiles
+
+    - name: Inform user server profile creation failed in last step.
+      fail:
+        msg: "Server profile creation has failed for the server hardware {{ server_hardware }}"
+      with_indexed_items: "{{ result.ansible_facts.server_profiles }} "
+      when: item.1.state == "CreateFailed"
+
+    - name: Inform user server profile is not in normal state.
+      fail:
+        msg: "Server profile state is not normal for the server hardware {{ server_hardware }}"
+      with_indexed_items: "{{ result.ansible_facts.server_profiles }} "
+      when: item.1.state != "Normal"
+
+    # This task initializes the variables
+    - name: Initialize variables required by other tasks within this script.
+      set_fact:
+        fw_match: []
+        all_expected_fw_names: ["{{ ie_fw_name }}", "{{ rom_fw_name }}" , "{{ sps_fw_name }}" , "{{ power_fw_name }}" , "{{ ilo5_fw_name }}" ]
+        fw_missing: []
+
+    - name: Gather firmware facts from the server hardware after applying server profile and firmware updates.
+      oneview_server_hardware_facts:
+        hostname: "{{ oneview_ip }}"
+        username: "{{ oneview_username }}"
+        password: "{{ oneview_password }}"
+        api_version: "{{ oneview_api_version }}" 
+        name : "{{ server_hardware }}"
+        options:
+          - firmware
+      delegate_to: localhost
+      register: result
+
+    - name: Copy the firmware details after firmware updates are applied, to a json file.
+      local_action: copy content="{{ result }}" dest="{{ role_path}}/files/{{ server_hardware }}.json"
+
+    # This task will create a list "fw_match". This list will be updated with the name of the firmware whose version matches the version mentioned in
+    # "fw_version_inputs.yml" with the firmware version derived directly from server hardware in the previous task (stored in variable result)
+    - name: Search if the firmware name specified in the "main.yml" (under roles directory "deploy_server_profile/vars" is available in the firmware_name string derived from server hardware firmware list.
+      set_fact:
+        fw_match: "{{ fw_match + [ item.1.componentName ] }}"
+      with_indexed_items: "{{ result.ansible_facts.server_hardware_firmware.components }} "
+      when: 
+        - (ie_fw_name in item.1.componentName and innovationengine|string in item.1.componentVersion|string) or (rom_fw_name in item.1.componentName and item.1.componentName != "Redundant System ROM" and systemrombios|string in item.1.componentVersion|string) or (sps_fw_name in item.1.componentName and serverplatformservices|string in item.1.componentVersion|string) or (power_fw_name in item.1.componentName and powermanagementcontroller|string in item.1.componentVersion|string) or (ilo5_fw_name in item.1.componentName and ilo5|string in item.1.componentVersion|string)
+      register: result
+
+    - debug: var=fw_match
+
+    - debug: var=all_expected_fw_names
+
+    # The list "fw_missing" will be updated with names of the firmware whose firmware version do not match with the firmware versions available in 
+    # "fw_version_inputs.yml" with fimrware version available on server hardware (stored in variable result)
+    - name: Compare the firmware versions available in SPP with the firmware versions from hardware
+      set_fact:
+        fw_missing={{ fw_match | symmetric_difference(all_expected_fw_names)}}
+      when:
+        - fw_match | symmetric_difference(all_expected_fw_names)
+
+    # Find non updated firmware versions and notify the user.
+    - fail: 
+        msg: "Following firmwares {{ fw_missing }} are not matching with the firmware version on the server hardware after applying the SPP. Check the user specified firmware version from file fw_versions_input.yml with firmware version available on the server hardware using file {{ role_path }}/files/{{ server_hardware }}.json"
+      when:
+        - fw_missing | length>0
+
+    - debug:
+        msg: "Firmware validation successful, all expected firmware updates are applied to the server hardware"
+      when: 
+        - fw_missing | length==0
+
+    - name: Wait time in seconds
+      wait_for: timeout=30
+  when: managefw == true
+  always:
+     - debug:
+         msg: "If firmware validation is succesful then value of fw_missing is empty. Current value of fw_missing is {{ fw_missing }}"

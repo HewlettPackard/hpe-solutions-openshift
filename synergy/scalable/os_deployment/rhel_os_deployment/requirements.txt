@@ -1,0 +1,9 @@
+future >= 0.15.2
+python-ilorest-library==3.1
+pyVmomi
+pyVim
+urlparse2
+jsonpatch
+jsonpath_rw
+ansible-vault
+
