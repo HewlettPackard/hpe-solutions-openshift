@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Preparing the execution environment | OpenShift Container Platform 4.9 on HPE DL380 and DL360 Gen10 Servers</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="Hewlett Packard Enterprise">
+    
+    <link rel="preload" href="/hpe-solutions-openshift/49-dl/assets/css/0.styles.b9906ffc.css" as="style"><link rel="preload" href="/hpe-solutions-openshift/49-dl/assets/js/app.3ab76ca9.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/49-dl/assets/js/2.692be357.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/49-dl/assets/js/32.1ad54211.js" as="script"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/10.d80efe23.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/11.34937674.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/12.cb2fa787.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/13.de116ec1.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/14.61bf774b.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/15.4c949536.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/16.e90f0158.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/17.1d47a547.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/18.23a9e026.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/19.a8595bd6.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/20.4e8d28b5.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/21.ee6fa1e2.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/22.d72bcd0d.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/23.b06cbde8.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/24.d16dfbc6.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/25.865e626b.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/26.61c365e8.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/27.b22ca90b.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/28.3a70d9c4.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/29.c47171c1.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/3.aac6da1f.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/30.437b3702.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/31.efe2a4fb.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/33.35dc4767.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/34.feb50123.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/35.851c39b1.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/4.08272df7.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/5.018be1c0.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/6.3bf3aab7.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/7.e24d64b3.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/8.2d9d3197.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-dl/assets/js/9.e5eeb283.js">
+    <link rel="stylesheet" href="/hpe-solutions-openshift/49-dl/assets/css/0.styles.b9906ffc.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/hpe-solutions-openshift/49-dl/" class="home-link router-link-active"><!----> <span class="site-name">OpenShift Container Platform 4.9 on HPE DL380 and DL360 Gen10 Servers</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/hpe-solutions-openshift/49-dl/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/hpe-solutions-openshift/49-dl/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Red Hat OpenShift Container Platform 4.9 on DL Servers</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Overview</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Components</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Solution Deployment</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/hpe-solutions-openshift/49-dl/Solution-Deployment/Solution-deployment-flow.html" class="sidebar-link">Solution Deployment Flow</a></li><li><a href="/hpe-solutions-openshift/49-dl/Solution-Deployment/Preparing-execution-environment.html" aria-current="page" class="active sidebar-link">Preparing the execution environment</a></li><li><a href="/hpe-solutions-openshift/49-dl/Solution-Deployment/Operating-system-deployment.html" class="sidebar-link">Operating system deployment</a></li><li><a href="/hpe-solutions-openshift/49-dl/Solution-Deployment/User-provisioned-DNS-requirements.html" class="sidebar-link">User-provisioned DNS requirements</a></li><li><a href="/hpe-solutions-openshift/49-dl/Solution-Deployment/Load-Balancer.html" class="sidebar-link">Load Balancer</a></li><li><a href="/hpe-solutions-openshift/49-dl/Solution-Deployment/Bootstrap-node.html" class="sidebar-link">Bootstrap node</a></li><li><a href="/hpe-solutions-openshift/49-dl/Solution-Deployment/Physical-node-configuration.html" class="sidebar-link">Physical node configuration</a></li><li><a href="/hpe-solutions-openshift/49-dl/Solution-Deployment/Virtual-node-configuration.html" class="sidebar-link">Virtual node configuration</a></li><li><a href="/hpe-solutions-openshift/49-dl/Solution-Deployment/OCP-Cluster-deployment.html" class="sidebar-link">Red Hat OpenShift Container Platform Cluster deployment</a></li><li><a href="/hpe-solutions-openshift/49-dl/Solution-Deployment/OCP-worker-nodes.html" class="sidebar-link">Red Hat OCP worker nodes</a></li><li><a href="/hpe-solutions-openshift/49-dl/Solution-Deployment/Deploying-OCP-on-VMware-vSphere.html" class="sidebar-link">Deploying OpenShift Container Platform 4.9 on VMware vSphere</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Additional Features and Functionality</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Resosurces and Additional Links</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="preparing-the-execution-environment"><a href="#preparing-the-execution-environment" class="header-anchor">#</a> Preparing the execution environment</h1> <p>This section provides a detailed overview and steps to configure the components deployed for this solution..</p> <h1 id="installer-machine"><a href="#installer-machine" class="header-anchor">#</a> Installer machine</h1> <p>This document assumes that a server running Red Hat Enterprise Linux (RHEL) 7.6 exists within the deployment environment and is accessible to the installation user to be used as an installer machine. This server must have internet connectivity. In this solution, a virtual machine is used to act as an installer machine and the same host is utilized as an Ansible Engine host.</p> <h1 id="non-root-user-access"><a href="#non-root-user-access" class="header-anchor">#</a> Non-root user access</h1> <p>The industry-wide security best practice is to avoid the use of root user account for administration of Linux-based servers. However, certain operations require root user privileges to perform tasks. In those cases, it is best to use the sudo command to obtain the necessary privilege escalation on a short-term basis. The sudo command allows programs and commands to be run with the security privileges of another user (Root is the default user) and can restrict the permission to specific groups, users, and individual commands.</p> <p>The root user is not active by default in RHCOS. Instead, log in as the core user.</p> <p>Use the following steps to create a non-root user for the OpenShift installation process:</p> <ol><li>Login to the installer VM as root. Refer to the section <a href="https://word-edit.officeapps.live.com/we/wordeditorframe.aspx?ui=en%2DUS&amp;rs=en%2DUS&amp;wopisrc=https%3A%2F%2Fhpe.sharepoint.com%2Fteams%2Fhpesolutionsopenshift%2F_vti_bin%2Fwopi.ashx%2Ffiles%2F8c0f30749eb3496e949feaf8cdebea2e&amp;wdpid=4c714d40&amp;wdenableroaming=1&amp;mscc=1&amp;hid=9519919F-B0E8-B000-0D0D-AFFBA82C8CDD&amp;wdorigin=Other&amp;jsapi=1&amp;jsapiver=v1&amp;newsession=1&amp;corrid=ea9a831c-f38b-45f5-b5d9-188d01e439d6&amp;usid=ea9a831c-f38b-45f5-b5d9-188d01e439d6&amp;sftc=1&amp;instantedit=1&amp;wopicomplete=1&amp;wdredirectionreason=Unified_SingleFlush&amp;rct=Medium&amp;ctp=LeastProtected#_Installer_machine" target="_blank" rel="noopener noreferrer">Installer machine<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>  in this document for more details about the installer VM.</li> <li>Execute the following command to create a non-root user.</li></ol> <p><em># adduser openshift_admin</em></p> <ul><li>Execute the following command to set password for the non-root user.</li></ul> <p><em># passwd openshift_admin</em></p> <ul><li>Add non-root user’s group in sudoers file and use the following command to find non-root user’s group.</li></ul> <div class="language- extra-class"><pre class="language-text"><code># id -Gn openshift_admin
+openshift_admin
+#
+​```
+
+- Edit the sudoers file and use the following command to add the entry of non-root user’s group in the sudoers file.
+
+*# visudo*
+
+- Add a non-root user’s group entry in sudoers file as follows. 
+
+\# Allow the following commands to run anywhere in non-root user environment  
+
+openshift_admin   ALL=(ALL) NOPASSWD: /usr/bin/chmod, /usr/bin/yum, /usr/bin/yum-config-manager, /usr/sbin/subscription-manager, /usr/bin/git, /usr/bin/vi, /usr/bin/vim, /usr/bin/mkdir, /usr/bin/cat, /usr/bin/echo, /usr/bin/python, /usr/bin/sed, /usr/bin/chown, /usr/bin/sh, /usr/bin/cp, /usr/bin/ansible-vault, /usr/bin/scp, /usr/bin/rpm, /usr/sbin/chkconfig, /usr/bin/systemctl, /usr/bin/journalctl, /usr/bin/curl, /usr/bin/tar, /usr/bin/genisoimage, /usr/bin/mount, /usr/bin/umount, /usr/bin/rsync, /usr/bin/find, /usr/bin/mv, /usr/bin/nano, /usr/sbin/dnsmasq, /usr/sbin/setsebool
+
+- Execute the following command to change the user (non-root user).
+
+*# su openshift_admin*
+
+- Register the host and execute the following command to attach the host pool with Red Hat.
+
+$ sudo yum -y install subscription-manager
+$ sudo subscription-manager register --username=&lt;username&gt; --password=&lt;password&gt; --auto-attach
+$ sudo subscription-manager attach --pool=&lt;pool_id&gt;
+
+- Disable all repositories and enable only the repositories required for the installer VM.
+$ sudo yum -y install yum-utils
+$ sudo yum-config-manager --disable \\*
+$ sudo subscription-manager repos --disable=&quot;\*&quot; \
+--enable=&quot;rhel-7-server-rpms&quot; \
+--enable=&quot;rhel-7-server-extras-rpms&quot; \
+--enable=&quot;rhel-7-server-optional-rpms&quot; \
+--enable=&quot;rhel-server-rhscl-7-rpms&quot;
+
+- Use the following command to install Ansible.
+
+</code></pre></div><p>$ sudo yum -y install ansible
+​```</p> <ul><li>Install Git package on installer VM for performing Git- related operations.</li></ul> <div class="language- extra-class"><pre class="language-text"><code>$ sudo yum -y install git
+​```
+- Execute the following commands to download the hpe-solutions-openshift repository.
+
+$ sudo mkdir -p /opt/hpe/solutions/ocp
+$ cd /opt/hpe/solutions/ocp
+$ sudo git clone &lt;https://github.com/HewlettPackard/hpe-solutions-openshift.git&gt;
+$ sudo chown -R openshift_admin:openshift_admin /opt/hpe/solutions/ocp
+
+- Create an environment variable BASE_DIR and point it to the following path.
+
+\```
+$ export BASE_DIR=/opt/hpe/solutions/ocp/hpe-solutions-openshift/DL/scalable
+​```
+- After the hpe-solutions-openshift repository is downloaded, navigate to the path /opt/hpe/solutions/ocp*/hpe-solutions-openshift/DL/scalable/installer/playbooks*. The scripts within this directory assists in configuring the prerequisites for the environment. The details of the scripts are as follows:
+
+-   python_env.sh – this script installs Python 3.
+
+-   ansible_env.sh – this script creates a Python 3 virtual environment and installs Ansible within the virtual environment.
+
+- Steps to configure the prerequisite environment are as follows:
+
+-   Change the directory to  /opt/hpe/solutions/ocp/hpe-solutions-openshift/DL/scalable/installer/playbooks
+
+    ````
+    `$ cd $BASE_DIR/installer/playbooks
+    ````
+
+-   Execute the following command to setup prerequisite Python environment.
+
+    ````
+    `$ yum -y install @development
+    `$ sudo sh python_env.sh
+    ````
+
+-   Execute the following command to enable Python 3.
+
+    ````
+    `$ scl enable rh-python36 bash
+    ````
+
+-   Execute the following command to configure the Ansible environment.
+
+    ````
+    `$ sudo sh ansible_env.sh
+    ````
+	
+-   Enable the virtual environment with the following command.
+
+    ````
+    `$ source ../ocp_venv/bin/activate
+    ````
+
+-   Execute the following command to set the environment variables.
+
+    ````
+    `$ export ANSIBLE_LIBRARY=$BASE_DIR/installer/library/oneview-ansible/library
+
+    `$ export ANSIBLE_MODULE_UTILS=$BASE_DIR/installer/library/oneview-ansible/library/module_utils
+    ````
+# Kubernetes manifests and ignition files
+Manifests and ignition files define the master node and worker node configuration and are key components of the Red Hat OpenShift Container Platform 4 installation.
+
+Before creating the manifest files and ignition files, it is necessary to download the Red Hat OpenShift 4 packages. Execute the following command on the installer VM to download the required packages.
+
+$ cd $BASE_DIR/installer
+
+$ ansible-playbook playbooks/download_ocp_package.yml
+
+The OpenShift packages downloaded after executing the *download_ocp_package.yml* playbook can be found on the installer VM at /opt/hpe/solutions/ocp/*hpe-solutions-openshift/DL/scalable/installer/library/openshift_components*. To execute any OpenShift related adhoc commands, it is advised to execute them from within this folder.
+
+To create the manifest files and the ignition files, edit the *install-config.yaml* file provided in the directory /opt/hpe/solutions/ocp/*hpe-solutions-openshift/DL/scalable/installer/ignitions* to include the following details:
+
+- baseDomain - Base domain of the DNS which hosts Red Hat OpenShift Container Platform.
+- name – Name of the OpenShift cluster. This is same as the new domain created in DNS.
+- replicas – Update this field to reflect the corresponding number of master or worker instances required for the OpenShift cluster as per the installation environment requirements. It is recommended to have a minimum of 3 master nodes and 2 worker nodes per OpenShift cluster.
+- clusterNetworks – This field is pre-populated by Red Hat. Update this field only if a custom cluster network is to be used.
+- pullSecret – Update this field with the pull secret for the Red Hat account. Login to Red Hat account &lt;https://cloud.redhat.com/openshift/install/metal/user-provisioned&gt; and retrieve the pull secret.
+- sshKey – Update this field with the sshKey of the installer VM and copy the SSH key in install-config.yaml file. Generate the SSH key with following command.
+
+  $ ssh-keygen
+
+  An example *install-config.yaml* file appears as follows. Update the fields to suit the installation environment.
+
+
+  apiVersion: v1
+
+  baseDomain: name of the base domain
+
+  compute:
+
+  - hyperthreading: Enabled
+
+  name: worker
+
+  replicas: 2
+
+  controlPlane:
+
+  hyperthreading: Enabled
+
+  name: master
+
+  replicas: 3
+
+  metadata:
+
+  name: name of the cluster, same as the new domain under the base domain created
+
+  networking:
+
+  clusterNetworks:
+
+  - cidr: 12.128.0.0/14
+
+  hostPrefix: 23
+
+  networkType: OpenShiftSDN
+
+  serviceNetwork:
+
+  - 172.30.0.0/16
+
+  platform:
+
+  none: {}
+
+  pullSecret: ‘pull secret provided as per the Red Hat account’
+
+  sshKey: ‘ ssh key of the installer VM ’
+
+  Execute the following command on the installer VM to create the manifest files and the ignition files required to install Red Hat OpenShift.
+
+  $ cd $BASE_DIR/installer
+  $ ansible-playbook playbooks/create_manifest_ignitions.yml
+  $ sudo chmod +r installer/igninitions/*.ign
+  
+
+The ignition files are generated on the installer VM within the folder /opt/hpe/solutions/ocp/hpe-solutions-openshift/DL/scalable/installer/ignitions.
+
+**NOTE**
+
+The ignition files have a time-out period of 24 hours and it is critical that the clusters are created within 24 hours of generating the ignition files. If it crosses 24 hours, then regenerate the ignition files again by clearing up the files from the directory where the ignition files were saved.
+
+
+
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/hpe-solutions-openshift/49-dl/Solution-Deployment/Solution-deployment-flow.html" class="prev">
+        Solution Deployment Flow
+      </a></span> <span class="next"><a href="/hpe-solutions-openshift/49-dl/Solution-Deployment/Operating-system-deployment.html">
+        Operating system deployment
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/hpe-solutions-openshift/49-dl/assets/js/app.3ab76ca9.js" defer></script><script src="/hpe-solutions-openshift/49-dl/assets/js/2.692be357.js" defer></script><script src="/hpe-solutions-openshift/49-dl/assets/js/32.1ad54211.js" defer></script>
+  </body>
+</html>
