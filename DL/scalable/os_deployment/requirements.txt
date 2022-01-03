@@ -1,7 +1,0 @@
-future >= 0.15.2
-python-ilorest-library==2.5.2
-pyVmomi
-pyVim
-urlparse2
-jsonpatch
-jsonpath_rw
