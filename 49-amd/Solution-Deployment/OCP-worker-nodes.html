@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Red Hat OCP worker nodes | OpenShift Container Platform 4.9 on HPE DL385 and DL325 Gen10 Plus v2 Servers</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="Hewlett Packard Enterprise">
+    
+    <link rel="preload" href="/hpe-solutions-openshift/49-amd/assets/css/0.styles.0a3f954d.css" as="style"><link rel="preload" href="/hpe-solutions-openshift/49-amd/assets/js/app.153f9dc8.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/49-amd/assets/js/2.ee1bbcc2.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/49-amd/assets/js/34.e4a3e1ce.js" as="script"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/10.ed70f5a9.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/11.2d23d470.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/12.35a13d27.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/13.0ecae9ef.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/14.fd3f2c68.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/15.50dcd2c9.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/16.205a163e.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/17.a51904e5.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/18.020639b4.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/19.0a6ed5fd.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/20.57113ac7.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/21.dfb5f568.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/22.99775e58.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/23.45b52d56.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/24.7f4b7e38.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/25.6c236d3f.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/26.e8a36a59.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/27.c13ced14.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/28.4aad636e.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/29.f7674a21.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/3.565e29bf.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/30.3e9c5b1c.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/31.3965f086.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/32.78b36fef.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/33.d3c510f2.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/35.ada77a13.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/36.9cad728f.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/37.b51db86c.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/38.8cb2a839.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/4.a313bb6e.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/5.cf091c0f.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/6.4d4ee23f.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/7.0ba8c1b5.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/8.60f1274b.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/9.f0b3e91e.js">
+    <link rel="stylesheet" href="/hpe-solutions-openshift/49-amd/assets/css/0.styles.0a3f954d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/hpe-solutions-openshift/49-amd/" class="home-link router-link-active"><!----> <span class="site-name">OpenShift Container Platform 4.9 on HPE DL385 and DL325 Gen10 Plus v2 Servers</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/hpe-solutions-openshift/49-amd/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/hpe-solutions-openshift/49-amd/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Red Hat OpenShift Container Platform 4.9 on DL Servers</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Overview</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Components</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Solution Deployment</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Solution-deployment-flow.html" class="sidebar-link">Solution Deployment Flow</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Preparing-execution-environment.html" class="sidebar-link">Preparing the execution environment</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Operating-system-deployment.html" class="sidebar-link">Operating system deployment</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/User-provisioned-DNS-requirements.html" class="sidebar-link">User-provisioned DNS requirements</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Load-Balancer.html" class="sidebar-link">Load Balancer</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Bootstrap-node.html" class="sidebar-link">Bootstrap node</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Physical-node-configuration.html" class="sidebar-link">Physical node configuration</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Virtual-node-configuration.html" class="sidebar-link">Virtual node configuration</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/OCP-Cluster-deployment.html" class="sidebar-link">Red Hat OpenShift Container Platform Cluster deployment</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/OCP-worker-nodes.html" aria-current="page" class="active sidebar-link">Red Hat OCP worker nodes</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/OCP-worker-nodes.html#adding-rhel-7-6-worker-nodes" class="sidebar-link">Adding RHEL 7.6 worker nodes</a></li></ul></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Deploying-OCP-on-VMware-vSphere.html" class="sidebar-link">Deploying OpenShift Container Platform 4.9 on VMware vSphere</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Additional Features and Functionality</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Resosurces and Additional Links</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="red-hat-ocp-worker-nodes"><a href="#red-hat-ocp-worker-nodes" class="header-anchor">#</a> Red Hat OCP worker nodes</h1> <p>This section covers the steps to add RHCOS worker nodes to an existing OpenShift Container Platform 4.9 cluster.</p> <div class="custom-block warning"><p class="custom-block-title">Prerequisites</p> <ol><li><p>A Red Hat OpenShift Container Platform 4 cluster is available within the deployment environment.</p></li> <li><p>A worker node ignition file is generated along with the bootstrap and master ignition files. Refer to the section <a href="./Preparing-execution-environment#kubernetes-manifests-and-ignition-files">Kubernetes manifests and ignition files</a> in this document for details on generating manifest and ignition files.</p></li></ol></div> <div class="custom-block tip"><p class="custom-block-title">NOTE</p> <p>It is important to use the <em>worker.ign</em> ignition file generated along with the <em>master.ign</em> file used to create the OpenShift cluster. If this is not the case, then &quot;certificate signing requests&quot; in OpenShift will not recognize these worker nodes.</p></div> <ol start="3"><li>A working node is available that needs to be attached to the existing OpenShift cluster and used as the worker node.</li></ol> <h3 id="procedure"><a href="#procedure" class="header-anchor">#</a> Procedure</h3> <ol><li><p>Login to the installer VM as non-root user.</p></li> <li><p>Execute the following command to get the nodes associated with the OpenShift cluster.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable">KUBECONFIG</span><span class="token operator">=</span><span class="token variable">$BASE_DIR</span>/installer/ignitions/auth/kubeconfig 
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">$BASE_DIR</span>/installer/library/openshift_components
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> oc get nodes
+</code></pre></div><p>The output is as follows.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>NAME STATUS ROLES AGE VERSION
+
+master1.ocp.twentynet.local Ready master,worker 5d v1.14.6+888f9c630
+
+master2.ocp.twentynet.local Ready master,worker 5d v1.14.6+888f9c630
+
+master3.ocp.twentynet.local Ready master,worker 5d v1.14.6+888f9c630
+</code></pre></div></li> <li><p>Since the worker node is booted with the existing worker ignition file, the node is recognized by the current OpenShift cluster. However, the certificate signing request is pending. Execute the following command to get the certificate signing requests.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> oc get csr
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>The output is as follows.
+
+NAME AGE REQUESTOR CONDITION
+
+csr-8pj6k 28m system:node:worker1.ocp.twentynet.local Pending
+
+csr-9pj7c 28m system:node:worker2.ocp.twentynet.local Pending
+
+csr-9pj1s 28m system:node:worker3.ocp.twentynet.local Pending
+</code></pre></div></li> <li><p>Execute the following command to approve all of the pending certificate signing requests and to add the worker nodes to the cluster.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> oc get csr <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print $1}'</span><span class="token operator">|</span> <span class="token keyword">while</span> <span class="token builtin class-name">read</span> line<span class="token punctuation">;</span> <span class="token keyword">do</span> ./oc adm certificate approve <span class="token variable">$line</span><span class="token punctuation">;</span> <span class="token keyword">done</span>
+</code></pre></div></li> <li><p>Verify that the certificate signing requests for the worker nodes are approved using the following command.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> oc get csr
+</code></pre></div><p>The output is as follows.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>NAME AGE REQUESTOR CONDITION
+
+csr-8pj6k 28m system:node:worker1.ocp.twentynet.local Approved,Issued
+
+csr-9pj7c 28m system:node:worker2.ocp.twentynet.local Approved,Issued
+
+csr-9pj1s 28m system:node:worker3.ocp.twentynet.local Approved,Issued
+</code></pre></div></li> <li><p>Verify that the worker nodes are added to the cluster using the following command.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> oc get nodes
+</code></pre></div><p>The output is as follows.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>NAME STATUS ROLES AGE VERSION
+
+master1.ocp.twentynet.local Ready master,worker 5d v1.14.6+888f9c630
+
+master2.ocp.twentynet.local Ready master,worker 5d v1.14.6+888f9c630
+
+master3.ocp.twentynet.local Ready master,worker 5d v1.14.6+888f9c630
+
+worker1.ocp.twentynet.local Ready worker 5d v1.14.6+888f9c630
+
+worker2.ocp.twentynet.local Ready worker 5d v1.14.6+888f9c630
+
+worker3.ocp.twentynet.local Ready worker 5d v1.14.6+888f9c630
+</code></pre></div></li> <li><p>Execute the following command to set the parameter <em>mastersSchedulable</em> parameter as <em>false</em>, so that master nodes will not be used to schedule pods.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> oc edit scheduler
+</code></pre></div><p>The output is as follows.</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code> <span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> config.openshift.io/v1 
+
+ <span class="token key atrule">kind</span><span class="token punctuation">:</span> Scheduler 
+
+ <span class="token key atrule">metadata</span><span class="token punctuation">:</span> 
+
+   creationTimestamp<span class="token punctuation">:</span> &quot;2019<span class="token punctuation">-</span>12<span class="token punctuation">-</span>13T10<span class="token punctuation">:</span>34<span class="token punctuation">:</span>48Z&quot; 
+
+   generation<span class="token punctuation">:</span> 2 
+
+   name<span class="token punctuation">:</span> cluster 
+
+   resourceVersion<span class="token punctuation">:</span> &quot;1748652&quot; 
+
+   selfLink<span class="token punctuation">:</span> /apis/config.openshift.io/v1/schedulers/cluster 
+
+   uid<span class="token punctuation">:</span> 30245db9<span class="token punctuation">-</span>1d94<span class="token punctuation">-</span>11ea<span class="token punctuation">-</span>8066<span class="token punctuation">-</span>000c29c3ee8e 
+
+ <span class="token key atrule">spec</span><span class="token punctuation">:</span> 
+
+   mastersSchedulable<span class="token punctuation">:</span> <span class="token boolean important">false</span>
+
+   policy<span class="token punctuation">:</span> 
+
+     name<span class="token punctuation">:</span> &quot;&quot; 
+
+ <span class="token key atrule">status</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre></div></li> <li><p>Execute the following command to verify the master roles have been reset.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> oc get nodes
+</code></pre></div><p>The output is as follows.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>NAME STATUS ROLES AGE VERSION
+
+master1.ocp.twentynet.local Ready master 5d v1.14.6+888f9c630
+
+master2.ocp.twentynet.local Ready master 5d v1.14.6+888f9c630
+
+master3.ocp.twentynet.local Ready master 5d v1.14.6+888f9c630
+
+worker1.ocp.twentynet.local Ready worker 5d v1.14.6+888f9c630
+
+worker2.ocp.twentynet.local Ready worker 5d v1.14.6+888f9c630
+
+worker3.ocp.twentynet.local Ready worker 5d v1.14.6+888f9c630
+</code></pre></div></li></ol> <h2 id="adding-rhel-7-6-worker-nodes"><a href="#adding-rhel-7-6-worker-nodes" class="header-anchor">#</a> Adding RHEL 7.6 worker nodes</h2> <p>This section covers the steps to add RHEL 7.6 worker nodes to an existing Red Hat OpenShift Container Platform 4 cluster.</p> <div class="custom-block warning"><p class="custom-block-title">Prerequisites</p> <ol><li><p>Ensure the required packages are installed and any necessary configuration is performed on the installer VM. Refer to the section <a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Preparing-execution-environment.html#installer-machine">Installer machine</a> of this document for details on the Prerequisites and configuration steps.</p></li> <li><p>RHEL nodes are prepared for installation. Refer to the section <a href="#adding-rhel-7.6-worker-nodes">Adding RHEL 7.6 worker nodes</a> of this document for details on preparing the RHEL 7.6 worker nodes.</p></li></ol></div> <h3 id="procedure-2"><a href="#procedure-2" class="header-anchor">#</a> Procedure</h3> <p>Perform the following steps on the installer VM:</p> <ol><li><p>Download the Red Hat OpenShift Container Platform 4 Ansible package to enable the addition of RHEL 7.6 worker nodes to an existing OpenShift cluster.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> yum <span class="token function">install</span> openshift-ansible openshift-clients jq
+</code></pre></div></li> <li><p>Create an Ansible inventory file exclusively for adding RHEL worker nodes that is named path/inventory/hosts* that defines your compute machine nodes and required variables as listed.</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>all<span class="token punctuation">:</span>vars<span class="token punctuation">]</span>
+
+    <span class="token comment"># Username that runs the Ansible tasks on the remote compute machines</span>
+
+    <span class="token comment"># ansible_user=root</span>
+
+    <span class="token comment"># If you do not specify root for the ansible_user,</span>
+
+    <span class="token comment"># you must set ansible_become to True and assign the user sudo permissions.</span>
+
+    ansible_become=True
+
+    <span class="token comment"># Path to the kubeconfig file for your cluster</span>
+
+    openshift_kubeconfig_path=&quot;~/.kube/config&quot;
+
+    <span class="token comment"># FQDN of each RHEL machine to add to the cluster</span>
+
+    <span class="token punctuation">[</span>new_workers<span class="token punctuation">]</span>
+
+    worker<span class="token punctuation">-</span>0.example.com
+
+    worker<span class="token punctuation">-</span>1.example.com
+</code></pre></div></li> <li><p>Execute the following commands to run the playbook which adds RHEL 7.6 worker nodes to the existing cluster.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">cd</span> /usr/share/ansible/openshift-ansible
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> ansible-playbook -i path to inventory hosts <span class="token function">file</span> playbooks/scaleup.yml
+</code></pre></div></li></ol> <h3 id="approving-the-certificate-signing-requests-for-your-machines"><a href="#approving-the-certificate-signing-requests-for-your-machines" class="header-anchor">#</a> Approving the certificate signing requests for your machines</h3> <p>When new machines are added to the cluster, pending certificate signing requests (CSRs) are generated for each machine that is added. Confirm these CSRs are approved. You can also approve the CSR if necessary.</p> <div class="custom-block warning"><p class="custom-block-title">Prerequisites</p> <ul><li>jq package is installed.</li></ul></div> <h3 id="procedure-3"><a href="#procedure-3" class="header-anchor">#</a> Procedure</h3> <ol><li><p>Confirm that the cluster recognizes the machines by executing the following command. The output lists all of the machines that have been created.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> oc get nodes
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>NAME STATUS ROLES AGE VERSION
+
+master-0 Ready master 63m v1.14.6+c4799753c
+
+master-1 Ready master 63m v1.14.6+c4799753c
+
+master-2 Ready master 64m v1.14.6+c4799753c
+
+worker-0 NotReady worker 76s v1.14.6+c4799753c
+
+worker-1 NotReady worker 70s v1.14.6+c4799753c
+</code></pre></div></li> <li><p>Review the pending CSRs and ensure that there is a client and server request with Pending or Approved status for each machine added to the cluster.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> oc get csr
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>NAME AGE REQUESTOR CONDITION
+
+csr-8b2br 15m system:serviceaccount:openshift-machine-config-operator:node-bootstrapper Pending
+
+csr-8vnps 15m system:serviceaccount:openshift-machine-config-operator:node-bootstrapper Pending
+
+csr-bfd72 5m26s system:node:ip-10-0-50-126.us-east-2.compute.internal Pending
+
+csr-c57lv 5m26s system:node:ip-10-0-95-157.us-east-2.compute.internal Pending
+</code></pre></div><p>Since the CSRs rotate automatically, it is important to approve the CSRs within an hour of adding the machines to the cluster. If the CSRs are not approved within an hour, the certificates will rotate, and more than two certificates will be present for each node. All certificates must be approved. After the initial CSRs are approved, the subsequent node client CSRs are automatically approved by the cluster kube-controller-manager.</p> <p>To approve CSRs individually, run the following command for each valid CSR. In this example &lt;csr_name&gt; is the name of a CSR from the list of current CSRs.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> oc adm certificate approve csr_name
+</code></pre></div><p>If all CSRs are valid, approve all of them by running the following command.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> oc get csr -ojson <span class="token operator">|</span> jq -r <span class="token string">'.items\[\] | select(.status == {} ) | .metadata.name'</span> <span class="token operator">|</span> <span class="token function">xargs</span> oc adm certificate approve
+</code></pre></div></li></ol></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/OCP-Cluster-deployment.html" class="prev">
+        Red Hat OpenShift Container Platform Cluster deployment
+      </a></span> <span class="next"><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Deploying-OCP-on-VMware-vSphere.html">
+        Deploying OpenShift Container Platform 4.9 on VMware vSphere
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/hpe-solutions-openshift/49-amd/assets/js/app.153f9dc8.js" defer></script><script src="/hpe-solutions-openshift/49-amd/assets/js/2.ee1bbcc2.js" defer></script><script src="/hpe-solutions-openshift/49-amd/assets/js/34.e4a3e1ce.js" defer></script>
+  </body>
+</html>
