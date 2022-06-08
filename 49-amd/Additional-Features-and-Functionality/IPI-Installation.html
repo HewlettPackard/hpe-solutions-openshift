@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>IPI deployment of OCP on Bare Metal | OpenShift Container Platform 4.9 on HPE DL385 and DL325 Gen10 Plus v2 Servers</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="Hewlett Packard Enterprise">
+    
+    <link rel="preload" href="/hpe-solutions-openshift/49-amd/assets/css/0.styles.154362c3.css" as="style"><link rel="preload" href="/hpe-solutions-openshift/49-amd/assets/js/app.e2741604.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/49-amd/assets/js/2.ee1bbcc2.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/49-amd/assets/js/7.d121c3e5.js" as="script"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/10.27fe9f24.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/11.94d468a3.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/12.9c9cf356.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/13.85fa0493.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/14.298c3014.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/15.28e11434.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/16.7f0dc006.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/17.a51904e5.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/18.d8708fbf.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/19.2325f469.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/20.2b65f2f3.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/21.1dfbe59a.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/22.90e2e9d5.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/23.9ebe1012.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/24.61e89012.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/25.0793b168.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/26.aa93b2d5.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/27.3efa9cae.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/28.78545f9e.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/29.f7674a21.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/3.fc4b9681.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/30.8ac7944d.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/31.7495b801.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/32.16a52ebd.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/33.287bc3f5.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/34.e4a3e1ce.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/35.3443e4db.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/36.7adf6fab.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/37.8d91a60c.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/38.c819faac.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/4.27177561.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/5.396a2f13.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/6.0e7b527f.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/8.9303ea64.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/9.b87a027a.js">
+    <link rel="stylesheet" href="/hpe-solutions-openshift/49-amd/assets/css/0.styles.154362c3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/hpe-solutions-openshift/49-amd/" class="home-link router-link-active"><!----> <span class="site-name">OpenShift Container Platform 4.9 on HPE DL385 and DL325 Gen10 Plus v2 Servers</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/hpe-solutions-openshift/49-amd/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/hpe-solutions-openshift/49-amd/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Red Hat OpenShift Container Platform 4.9 on DL Servers</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Overview</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Components</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Deployment</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Additional Features and Functionality</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/hpe-solutions-openshift/49-amd/Additional-Features-and-Functionality/Storage.html" class="sidebar-link">Storage</a></li><li><a href="/hpe-solutions-openshift/49-amd/Additional-Features-and-Functionality/IPI-Installation.html" aria-current="page" class="active sidebar-link">IPI deployment of OCP on Bare Metal</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/hpe-solutions-openshift/49-amd/Additional-Features-and-Functionality/IPI-Installation.html#introduction" class="sidebar-link">Introduction</a></li><li class="sidebar-sub-header"><a href="/hpe-solutions-openshift/49-amd/Additional-Features-and-Functionality/IPI-Installation.html#high-level-architecture" class="sidebar-link">High Level Architecture</a></li><li class="sidebar-sub-header"><a href="/hpe-solutions-openshift/49-amd/Additional-Features-and-Functionality/IPI-Installation.html#flow-diagram" class="sidebar-link">Flow Diagram</a></li><li class="sidebar-sub-header"><a href="/hpe-solutions-openshift/49-amd/Additional-Features-and-Functionality/IPI-Installation.html#deployment-process" class="sidebar-link">Deployment Process</a></li></ul></li><li><a href="/hpe-solutions-openshift/49-amd/Additional-Features-and-Functionality/air-gap-installation.html" class="sidebar-link">Red Hat OpenShift Container Platform installation in the restricted network environment</a></li><li><a href="/hpe-solutions-openshift/49-amd/Additional-Features-and-Functionality/OpenShift-operators.html" class="sidebar-link">OpenShift operators</a></li><li><a href="/hpe-solutions-openshift/49-amd/Additional-Features-and-Functionality/Advanced-Cluster-Management.html" class="sidebar-link">Red Hat Advanced Cluster Management for Kubernetes</a></li><li><a href="/hpe-solutions-openshift/49-amd/Additional-Features-and-Functionality/Install-and-Configure-Velero.html" class="sidebar-link">Install and Configure Velero</a></li><li><a href="/hpe-solutions-openshift/49-amd/Additional-Features-and-Functionality/Ceph-Storage-Setup-External-mode.html" class="sidebar-link">Red Hat Ceph Storage 4 Setup in External mode with ODF Integration</a></li><li><a href="/hpe-solutions-openshift/49-amd/Additional-Features-and-Functionality/OpenShift-Virtualization.html" class="sidebar-link">OpenShift Virtualization</a></li><li><a href="/hpe-solutions-openshift/49-amd/Additional-Features-and-Functionality/OpenShift-Container-Platform-at-the-edge.html" class="sidebar-link">OpenShift Container Platform at the edge</a></li><li><a href="/hpe-solutions-openshift/49-amd/Additional-Features-and-Functionality/Securing-OpenShift-Container-Platform-using-Sysdig.html" class="sidebar-link">Securing Red Hat OpenShift Container Platform using Sysdig Secure and Sysdig Monitor</a></li><li><a href="/hpe-solutions-openshift/49-amd/Additional-Features-and-Functionality/HPECP-Cluster-Integration-with-Nimble.html" class="sidebar-link">HPECP Cluster Integration with Nimble</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Resosurces and Additional Links</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="ipi-deployment-of-ocp-on-bare-metal"><a href="#ipi-deployment-of-ocp-on-bare-metal" class="header-anchor">#</a> IPI deployment of OCP on Bare Metal</h1> <h2 id="introduction"><a href="#introduction" class="header-anchor">#</a> Introduction</h2> <p>Installer-provisioned Infrastructure (IPI) provides a full-stack installation and setup of the Openshift container platform (OCP). It creates Bootstrapping node which will take care deploying the cluster.</p> <p>Installer-provisioned Infrastructure on bare metal creates a bootstrap VM on Provisioner node. The role of the bootstrap VM is to assist in the process of deploying an OpenShift Container Platform cluster. The bootstrap VM connects to the baremetal network via the network bridges.</p> <p>When the installation of OpenShift Container Platform control plane nodes is complete and fully operational, the installer destroys the bootstrap VM automatically and moves the virtual IP addresses (VIPs) to the appropriate nodes accordingly. The API VIP moves to the control plane nodes and the Ingress VIP moves to the worker nodes.</p> <h2 id="high-level-architecture"><a href="#high-level-architecture" class="header-anchor">#</a> High Level Architecture</h2> <p><img src="/hpe-solutions-openshift/49-amd/assets/img/figure63.980f3799.png" alt=""></p> <p><strong>Figure 13.</strong> High Level Architecture of Installer-provisioned Installation</p> <div class="custom-block warning"><p class="custom-block-title">Pre-requisites</p> <ul><li><p>One provisioner node with RHEL 8.1 installed.</p></li> <li><p>Three Control Plane nodes.</p></li> <li><p>At least two worker nodes.</p></li> <li><p>Baseboard Management Controller (BMC) access to each node.</p></li> <li><p>At least one network</p></li> <li><p>DNS and DHCP Setup</p></li></ul></div> <h2 id="flow-diagram"><a href="#flow-diagram" class="header-anchor">#</a> Flow Diagram</h2> <p><img src="/hpe-solutions-openshift/49-amd/assets/img/figure64.f6eb2028.png" alt=""></p> <p><strong>Figure 14</strong>. IPI Deployment of OCP Solution Flow Diagram</p> <h2 id="deployment-process"><a href="#deployment-process" class="header-anchor">#</a> Deployment Process</h2> <p>This section contains the IPI installation deployment process.</p> <h4 id="add-dns-records"><a href="#add-dns-records" class="header-anchor">#</a> Add DNS records</h4> <p>Create DNS records for api, ingressvip, master and worker nodes as shown below.</p> <p><img src="/hpe-solutions-openshift/49-amd/assets/img/figure65.2e07bbc2.png" alt=""></p> <h4 id="add-dhcp-records"><a href="#add-dhcp-records" class="header-anchor">#</a> Add DHCP records</h4> <p>Create DHCP records for provisioner, master and worker nodes with their MAC address</p> <p><img src="/hpe-solutions-openshift/49-amd/assets/img/figure66.b3281cfb.png" alt=""></p> <h4 id="preparing-the-provisioner-node"><a href="#preparing-the-provisioner-node" class="header-anchor">#</a> Preparing the provisioner node</h4> <p>Once the provisioner node is booted with RHEL 8.1, upgrade to latest. Perform below steps to make the node ready for OCP deployment</p> <h4 id="create-baremetal-bridge"><a href="#create-baremetal-bridge" class="header-anchor">#</a> Create baremetal bridge</h4> <p>IPI process of installation create bootstrap vm in provisioner node and hence we need a bridge network.</p> <p>We will be create bridge (baremetal) from existing ethernet (ens3f0) using cockpit</p> <ol><li><p>Enable cockpit on RHEL8</p> <p>systemctl enable --now cockpit.socket</p></li> <li><p>Now access the cockpit from browser</p> <p><img src="/hpe-solutions-openshift/49-amd/assets/img/figure67.768aaebd.png" alt=""></p></li> <li><p>On Networking menu and click on Add Bridge</p></li> <li><p>On pop window choose name &quot;baremetal&quot; and select relevant Ports on your OS</p> <p><img src="/hpe-solutions-openshift/49-amd/assets/img/figure68.3d3d0564.png" alt=""></p></li> <li><p>Click Apply and you will notice baremetal interface created</p> <p><img src="/hpe-solutions-openshift/49-amd/assets/img/figure69.13e36194.png" alt=""></p></li></ol> <h4 id="create-a-non-root-user-kni-with-sudo-privileges-and-generate-ssh-key"><a href="#create-a-non-root-user-kni-with-sudo-privileges-and-generate-ssh-key" class="header-anchor">#</a> Create a non-root user (kni) with sudo privileges and generate ssh key</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">useradd</span> kni
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">passwd</span> kni
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">echo</span> <span class="token string">&quot;kni ALL=(root) NOPASSWD:ALL&quot;</span> <span class="token operator">|</span> <span class="token function">tee</span> -a /etc/sudoers.d/kni
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">chmod</span> 0440 /etc/sudoers.d/kni
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">su</span> - kni -c <span class="token string">&quot;ssh-keygen -t rsa -f /home/kni/.ssh/id_rsa -N ''&quot;</span>
+</code></pre></div><h4 id="login-as-kni-and-perform-the-following-steps"><a href="#login-as-kni-and-perform-the-following-steps" class="header-anchor">#</a> Login as kni and perform the following steps</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">su</span> - kni
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> subscription-manager register --username<span class="token operator">=</span>ajayhpe --password<span class="token operator">=</span>Ring123. --auto-attach
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> subscription-manager repos --enable<span class="token operator">=</span>rhel-8-for-x86_64-appstream-rpms --enable<span class="token operator">=</span>rhel-8-for-x86_64-baseos-rpms
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> dnf <span class="token function">install</span> -y libvirt qemu-kvm <span class="token function">mkisofs</span> python3-devel jq ipmitool
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">usermod</span> --append --groups libvirt kni
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> firewall-cmd --zone<span class="token operator">=</span>public --add-service<span class="token operator">=</span>http --permanent
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> firewall-cmd --reload
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> systemctl start libvirtd
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> libvirtd --now
+</code></pre></div><h4 id="create-the-default-storage-pool-and-start-it"><a href="#create-the-default-storage-pool-and-start-it" class="header-anchor">#</a> Create the default storage pool and start it.</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">virsh</span> pool-define-as --name default --type <span class="token function">dir</span> --target /var/lib/libvirt/images
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">virsh</span> pool-start default
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">virsh</span> pool-autostart default
+</code></pre></div><h4 id="create-a-pull-secret-txt-file"><a href="#create-a-pull-secret-txt-file" class="header-anchor">#</a> Create a pull-secret.txt file</h4> <p>Copy pull secret from redhat website and paste the contents into the pull-secret.txt under kni user's home directory</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">vim</span> pull-secret.txt
+</code></pre></div><h3 id="retrieving-the-openshift-container-platform-installer"><a href="#retrieving-the-openshift-container-platform-installer" class="header-anchor">#</a> Retrieving the OpenShift Container Platform installer</h3> <h4 id="set-the-environment-variables"><a href="#set-the-environment-variables" class="header-anchor">#</a> Set the environment variables:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable">VERSION</span><span class="token operator">=</span>latest-4.9
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable">RELEASE_IMAGE</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> -s https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$VERSION/release.txt <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">'Pull From: quay.io'</span> <span class="token operator">|</span> <span class="token function">awk</span> -F <span class="token string">' '</span> <span class="token string">'{print $3}'</span><span class="token variable">)</span></span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">echo</span> <span class="token variable">$RELEASE_IMAGE</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable">cmd</span><span class="token operator">=</span>openshift-baremetal-install
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable">pullsecret_file</span><span class="token operator">=~</span>/pull-secret.txt
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable">extract_dir</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">pwd</span><span class="token variable">)</span></span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">echo</span> <span class="token variable">$cmd</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">echo</span> <span class="token variable">$pullsecret_file</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">echo</span> <span class="token variable">$extract_dir</span>
+</code></pre></div><h4 id="get-the-oc-binary"><a href="#get-the-oc-binary" class="header-anchor">#</a> Get the oc binary:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">curl</span> -s https://mirror.openshift.com/pub/openshift-v4/clients/ocp/<span class="token variable">$VERSION</span>/openshift-client-linux.tar.gz <span class="token operator">|</span> <span class="token function">tar</span> zxvf - oc
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">cp</span> oc /usr/local/bin
+</code></pre></div><h4 id="extract-the-installer"><a href="#extract-the-installer" class="header-anchor">#</a> Extract the installer</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> oc adm release extract --registry-config <span class="token string">&quot;<span class="token variable">${pullsecret_file}</span>&quot;</span> --command<span class="token operator">=</span><span class="token variable">$cmd</span> --to <span class="token string">&quot;<span class="token variable">${extract_dir}</span>&quot;</span> <span class="token variable">${RELEASE_IMAGE}</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">cp</span> openshift-baremetal-install /usr/local/bin/
+</code></pre></div><h3 id="creating-an-rhcos-images-cache"><a href="#creating-an-rhcos-images-cache" class="header-anchor">#</a> Creating an RHCOS images cache</h3> <h4 id="installing-podman-and-configuring-cache"><a href="#installing-podman-and-configuring-cache" class="header-anchor">#</a> Installing podman and configuring cache</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> dnf <span class="token function">install</span> -y podman
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> firewall-cmd --add-port<span class="token operator">=</span><span class="token number">8080</span>/tcp --zone<span class="token operator">=</span>public --permanent
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">mkdir</span> /home/kni/rhcos_image_cache
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> semanage fcontext -a -t httpd_sys_content_t <span class="token string">&quot;/home/kni/rhcos_image_cache(/.*)?&quot;</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> restorecon -Rv rhcos_image_cache/
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable">COMMIT_ID</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>/usr/local/bin/openshift-baremetal-install version <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">'built from commit'</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print $4}'</span><span class="token variable">)</span></span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable">RHCOS_OPENSTACK_URI</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> -s -S https://raw.githubusercontent.com/openshift/installer/$COMMIT_ID/data/data/rhcos.json  <span class="token operator">|</span> jq .images.openstack.path <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/&quot;//g'</span><span class="token variable">)</span></span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">echo</span> <span class="token variable">$COMMIT_ID</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">echo</span> <span class="token variable">$RHCOS_OPENSTACK_URI</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable">RHCOS_QEMU_URI</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> -s -S https://raw.githubusercontent.com/openshift/installer/$COMMIT_ID/data/data/rhcos.json  <span class="token operator">|</span> jq .images.qemu.path <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/&quot;//g'</span><span class="token variable">)</span></span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable">RHCOS_PATH</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> -s -S https://raw.githubusercontent.com/openshift/installer/$COMMIT_ID/data/data/rhcos.json <span class="token operator">|</span> jq .baseURI <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/&quot;//g'</span><span class="token variable">)</span></span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable">RHCOS_QEMU_SHA_UNCOMPRESSED</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> -s -S https://raw.githubusercontent.com/openshift/installer/$COMMIT_ID/data/data/rhcos.json  <span class="token operator">|</span> jq -r <span class="token string">'.images.qemu[&quot;uncompressed-sha256&quot;]'</span><span class="token variable">)</span></span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable">RHCOS_OPENSTACK_SHA_COMPRESSED</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> -s -S
+<span class="token operator">&lt;</span>https://raw.githubusercontent.com/openshift/installer/$COMMIT_ID/data/data/rhcos.json<span class="token operator">&gt;</span>
+<span class="token operator">|</span> jq -r <span class="token string">'.images.openstack.sha256'</span><span class="token variable">)</span></span>
+</code></pre></div><h4 id="download-the-images-and-place-them-in-the-home-kni-rhcos-image-cache-directory"><a href="#download-the-images-and-place-them-in-the-home-kni-rhcos-image-cache-directory" class="header-anchor">#</a> Download the images and place them in the /home/kni/rhcos_image_cache directory.</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">cd</span> /home/kni/rhcos_image_cache
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">wget</span> <span class="token variable">${RHCOS_PATH}</span><span class="token variable">${RHCOS_QEMU_URI}</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">wget</span> <span class="token variable">${RHCOS_PATH}</span><span class="token variable">${RHCOS_OPENSTACK_URI}</span>
+</code></pre></div><h4 id="confirm-selinux-type-is-of-httpd-sys-content-t-for-the-newly-created-files"><a href="#confirm-selinux-type-is-of-httpd-sys-content-t-for-the-newly-created-files" class="header-anchor">#</a> Confirm SELinux type is of httpd_sys_content_t for the newly created files.</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">ls</span> -Z /home/kni/rhcos_image_cache
+</code></pre></div><h4 id="create-the-pod-for-registries"><a href="#create-the-pod-for-registries" class="header-anchor">#</a> Create the pod for registries.</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> podman run -d --name rhcos_image_cache <span class="token punctuation">\</span>
+
+  -v /home/kni/rhcos_image_cache:/var/www/html <span class="token punctuation">\</span>
+
+  -p <span class="token number">8080</span>:8080/tcp <span class="token punctuation">\</span>
+
+  registry.centos.org/centos/httpd-24-centos7:latest
+</code></pre></div><h4 id="create-install-config-yaml-file"><a href="#create-install-config-yaml-file" class="header-anchor">#</a> Create install-config.yaml file</h4> <p>Update install-config.yaml file as per below</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">vi</span> install-config.yaml
+</code></pre></div><div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+
+<span class="token key atrule">baseDomain</span><span class="token punctuation">:</span> tennet.local
+
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> ipi
+
+<span class="token key atrule">networking</span><span class="token punctuation">:</span>
+
+  <span class="token key atrule">machineCIDR</span><span class="token punctuation">:</span> 10.0.0.0/16
+
+  <span class="token key atrule">networkType</span><span class="token punctuation">:</span> OVNKubernetes
+
+<span class="token key atrule">compute</span><span class="token punctuation">:</span>
+
+<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> worker
+
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">2</span>
+
+<span class="token key atrule">controlPlane</span><span class="token punctuation">:</span>
+
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> master
+
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">3</span>
+
+<span class="token key atrule">platform</span><span class="token punctuation">:</span>
+
+  <span class="token key atrule">baremetal</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token key atrule">platform</span><span class="token punctuation">:</span>
+
+  <span class="token key atrule">baremetal</span><span class="token punctuation">:</span>
+
+    <span class="token key atrule">apiVIP</span><span class="token punctuation">:</span> 10.0.26.61
+
+    <span class="token key atrule">ingressVIP</span><span class="token punctuation">:</span> 10.0.26.62
+
+    <span class="token key atrule">provisioningNetwork</span><span class="token punctuation">:</span> <span class="token string">&quot;Disabled&quot;</span>
+
+    <span class="token key atrule">provisioningHostIP</span><span class="token punctuation">:</span> 10.0.26.69
+
+    <span class="token key atrule">bootstrapProvisioningIP</span><span class="token punctuation">:</span> 10.0.26.68
+
+    <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
+
+     <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> ipimaster1
+
+       <span class="token key atrule">role</span><span class="token punctuation">:</span> master
+
+       <span class="token key atrule">bmc</span><span class="token punctuation">:</span>
+
+        <span class="token key atrule">address</span><span class="token punctuation">:</span> redfish<span class="token punctuation">-</span>virtualmedia<span class="token punctuation">:</span>//10.0.5.28/redfish/v1/Systems/1
+
+        <span class="token key atrule">username</span><span class="token punctuation">:</span> ajuser
+
+        <span class="token key atrule">password</span><span class="token punctuation">:</span> test123456
+
+        <span class="token key atrule">disableCertificateVerification</span><span class="token punctuation">:</span> <span class="token boolean important">True</span>
+
+       <span class="token key atrule">bootMACAddress</span><span class="token punctuation">:</span> AA<span class="token punctuation">:</span>5F<span class="token punctuation">:</span>88<span class="token punctuation">:</span>80<span class="token punctuation">:</span>00<span class="token punctuation">:</span>F4
+
+       <span class="token key atrule">rootDeviceHints</span><span class="token punctuation">:</span>
+
+        <span class="token key atrule">deviceName</span><span class="token punctuation">:</span> <span class="token string">&quot;/dev/sdb&quot;</span>
+
+       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> ipimaster2
+
+         <span class="token key atrule">role</span><span class="token punctuation">:</span> master
+
+         <span class="token key atrule">bmc</span><span class="token punctuation">:</span>
+
+          <span class="token key atrule">address</span><span class="token punctuation">:</span> redfish<span class="token punctuation">-</span>virtualmedia<span class="token punctuation">:</span>//10.0.5.32/redfish/v1/Systems/1
+
+          <span class="token key atrule">username</span><span class="token punctuation">:</span> ajuser
+
+          <span class="token key atrule">password</span><span class="token punctuation">:</span> test123456
+
+          <span class="token key atrule">disableCertificateVerification</span><span class="token punctuation">:</span> <span class="token boolean important">True</span>
+
+         <span class="token key atrule">bootMACAddress</span><span class="token punctuation">:</span> AA<span class="token punctuation">:</span>5F<span class="token punctuation">:</span>88<span class="token punctuation">:</span>80<span class="token punctuation">:</span>00<span class="token punctuation">:</span>E7
+
+         <span class="token key atrule">rootDeviceHints</span><span class="token punctuation">:</span>
+
+          <span class="token key atrule">deviceName</span><span class="token punctuation">:</span> <span class="token string">&quot;/dev/sdb&quot;</span>
+
+         <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> ipimaster3
+
+           <span class="token key atrule">role</span><span class="token punctuation">:</span> master
+
+           <span class="token key atrule">bmc</span><span class="token punctuation">:</span>
+
+            <span class="token key atrule">address</span><span class="token punctuation">:</span> redfish<span class="token punctuation">-</span>virtualmedia<span class="token punctuation">:</span>//10.0.5.35/redfish/v1/Systems/1
+
+            <span class="token key atrule">username</span><span class="token punctuation">:</span> ajuser
+ 
+            <span class="token key atrule">password</span><span class="token punctuation">:</span> test123456
+
+            <span class="token key atrule">disableCertificateVerification</span><span class="token punctuation">:</span> <span class="token boolean important">True</span>
+
+           <span class="token key atrule">bootMACAddress</span><span class="token punctuation">:</span> AA<span class="token punctuation">:</span>5F<span class="token punctuation">:</span>88<span class="token punctuation">:</span>80<span class="token punctuation">:</span>00<span class="token punctuation">:</span>E8
+
+           <span class="token key atrule">rootDeviceHints</span><span class="token punctuation">:</span>
+   
+            <span class="token key atrule">deviceName</span><span class="token punctuation">:</span> <span class="token string">&quot;/dev/sdb&quot;</span>
+
+         <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> ipiworker1
+
+           <span class="token key atrule">role</span><span class="token punctuation">:</span> worker
+
+           <span class="token key atrule">bmc</span><span class="token punctuation">:</span>
+
+            <span class="token key atrule">address</span><span class="token punctuation">:</span> redfish<span class="token punctuation">-</span>virtualmedia<span class="token punctuation">:</span>//10.0.5.26/redfish/v1/Systems/1
+
+            <span class="token key atrule">username</span><span class="token punctuation">:</span> ajuser
+
+            <span class="token key atrule">password</span><span class="token punctuation">:</span> test123456
+
+            <span class="token key atrule">disableCertificateVerification</span><span class="token punctuation">:</span> <span class="token boolean important">True</span>
+
+           <span class="token key atrule">bootMACAddress</span><span class="token punctuation">:</span> AA<span class="token punctuation">:</span>5F<span class="token punctuation">:</span>88<span class="token punctuation">:</span>80<span class="token punctuation">:</span>00<span class="token punctuation">:</span>EA
+
+           <span class="token key atrule">rootDeviceHints</span><span class="token punctuation">:</span>
+
+            <span class="token key atrule">deviceName</span><span class="token punctuation">:</span> <span class="token string">&quot;/dev/sdb&quot;</span>
+
+           <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> ipiworker2
+
+             <span class="token key atrule">role</span><span class="token punctuation">:</span> worker
+
+             <span class="token key atrule">bmc</span><span class="token punctuation">:</span>
+
+              <span class="token key atrule">address</span><span class="token punctuation">:</span> redfish<span class="token punctuation">-</span>virtualmedia<span class="token punctuation">:</span>//10.0.5.29/redfish/v1/Systems/1
+
+              <span class="token key atrule">username</span><span class="token punctuation">:</span> ajuser
+
+              <span class="token key atrule">password</span><span class="token punctuation">:</span> test123456
+
+              <span class="token key atrule">disableCertificateVerification</span><span class="token punctuation">:</span> <span class="token boolean important">True</span>
+
+             <span class="token key atrule">bootMACAddress</span><span class="token punctuation">:</span> AA<span class="token punctuation">:</span>5F<span class="token punctuation">:</span>88<span class="token punctuation">:</span>80<span class="token punctuation">:</span>00<span class="token punctuation">:</span>E9
+
+           <span class="token key atrule">rootDeviceHints</span><span class="token punctuation">:</span>
+
+             <span class="token key atrule">deviceName</span><span class="token punctuation">:</span> <span class="token string">&quot;/dev/sdb&quot;</span>
+
+<span class="token key atrule">pullSecret</span><span class="token punctuation">:</span> <span class="token string">''</span>
+
+<span class="token key atrule">sshKey</span><span class="token punctuation">:</span> <span class="token string">''</span>
+</code></pre></div><p>Following sections needs to be modified as required in install-config.yaml file</p> <p><strong>baseDomain</strong> : The domain name for the cluster. For example,example.com</p> <p><strong>metadata:</strong></p> <p><strong>name</strong>: The name to be given to the OpenShift Container Platform cluster. For example, openshift</p> <p><strong>networking:</strong></p> <p><strong>machineCIDR</strong>: The public CIDR of the external network. For example, 10.0.0.0/16.</p> <p><strong>apiVIP</strong>: The VIP to use for internal API communication. IP address of api. .&lt;clustername.clusterdomain&gt;</p> <p><strong>ingressVIP:</strong> The VIP to use for ingress traffic. Ex: IP address of test.apps.&lt;clustername.clusterdomain&gt;</p> <p><strong>bootstrapProvisioningIP:</strong> Set this value to an IP address that is available on the baremetal network</p> <p><strong>provisioningHostIP</strong>: Set this parameter to an available IP address on the baremetal network</p> <p><strong>bmc:</strong> Update with correct username, password and bootMACAddress of respective nodes</p> <h4 id="create-a-directory-to-store-cluster-configs"><a href="#create-a-directory-to-store-cluster-configs" class="header-anchor">#</a> Create a directory to store cluster configs</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">mkdir</span> ~/clusterconfigs
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">cp</span> install-config.yaml ~/clusterconfigs
+</code></pre></div><h4 id="create-the-ocp-manifests"><a href="#create-the-ocp-manifests" class="header-anchor">#</a> Create the OCP manifests</h4> <p>Run below command to generate manifests files</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> ./openshift-baremetal-install --dir ~/clusterconfigs create manifests
+</code></pre></div><h4 id="deploying-the-ocp-cluster"><a href="#deploying-the-ocp-cluster" class="header-anchor">#</a> Deploying the OCP cluster</h4> <p>Run below command to deploy the ocp cluster</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> ./openshift-baremetal-install --dir ~/clusterconfigs --log-level debug create cluster
+</code></pre></div><p><strong>Output</strong></p> <div class="language-bash extra-class"><pre class="language-bash"><code>DEBUG Still waiting <span class="token keyword">for</span> the cluster to initialize: Working towards <span class="token number">4.9</span>: <span class="token number">100</span>% complete
+
+DEBUG Still waiting <span class="token keyword">for</span> the cluster to initialize: Cluster operator authentication is reporting a failure: WellKnownReadyControllerDegraded: kube-apiserver oauth endpoint
+<span class="token operator">&lt;</span>https://10.0.26.60:6443/.well-known/oauth-authorization-server<span class="token operator">&gt;</span> is not yet served and authentication operator keeps waiting <span class="token punctuation">(</span>check kube-apiserver operator, and check that instances roll out successfully, <span class="token function">which</span> can take several minutes per instance<span class="token punctuation">)</span>
+
+DEBUG Cluster is initialized
+
+INFO Waiting up to 10m0s <span class="token keyword">for</span> the openshift-console route to be created<span class="token punctuation">..</span>.
+
+DEBUG Route found <span class="token keyword">in</span> openshift-console namespace: console
+
+DEBUG Route found <span class="token keyword">in</span> openshift-console namespace: downloads
+
+DEBUG OpenShift console route is created
+
+INFO Install complete<span class="token operator">!</span>
+
+INFO To access the cluster as the system:admin user when using <span class="token string">'oc'</span>, run <span class="token string">'export KUBECONFIG=/home/kni/clusterconfigs/auth/kubeconfig'</span>
+
+INFO Access the OpenShift web-console here: <span class="token operator">&lt;</span>https://console-openshift-console.apps.ipi.tennet.local<span class="token operator">&gt;</span>
+
+INFO Login to the console with user: <span class="token string">&quot;kubeadmin&quot;</span>, and password: <span class="token string">&quot;K3zqG-mw9oF-PtZGR-zbhIS&quot;</span>
+
+DEBUG Time elapsed per stage:
+
+DEBUG Infrastructure: 20m4s
+
+DEBUG Bootstrap Complete: 24m53s
+
+DEBUG Bootstrap Destroy: 11s
+
+DEBUG Cluster Operators: 43m44s
+
+INFO Time elapsed: 1h33m18s
+
+INFO Install complete<span class="token operator">!</span>
+</code></pre></div><h3 id="validation"><a href="#validation" class="header-anchor">#</a> Validation</h3> <p>Verify all nodes are available</p> <p><img src="/hpe-solutions-openshift/49-amd/assets/img/figure70.3a3b26e5.png" alt=""></p> <p>Verify all cluster operator are available</p> <p><img src="/hpe-solutions-openshift/49-amd/assets/img/figure71.e981c5e0.png" alt=""></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/hpe-solutions-openshift/49-amd/Additional-Features-and-Functionality/Storage.html" class="prev">
+        Storage
+      </a></span> <span class="next"><a href="/hpe-solutions-openshift/49-amd/Additional-Features-and-Functionality/air-gap-installation.html">
+        Red Hat OpenShift Container Platform installation in the restricted network environment
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/hpe-solutions-openshift/49-amd/assets/js/app.e2741604.js" defer></script><script src="/hpe-solutions-openshift/49-amd/assets/js/2.ee1bbcc2.js" defer></script><script src="/hpe-solutions-openshift/49-amd/assets/js/7.d121c3e5.js" defer></script>
+  </body>
+</html>

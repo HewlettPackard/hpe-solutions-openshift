@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Operating system deployment | OpenShift Container Platform 4.9 on HPE DL385 and DL325 Gen10 Plus v2 Servers</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="Hewlett Packard Enterprise">
+    
+    <link rel="preload" href="/hpe-solutions-openshift/49-amd/assets/css/0.styles.154362c3.css" as="style"><link rel="preload" href="/hpe-solutions-openshift/49-amd/assets/js/app.e2741604.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/49-amd/assets/js/2.ee1bbcc2.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/49-amd/assets/js/35.3443e4db.js" as="script"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/10.27fe9f24.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/11.94d468a3.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/12.9c9cf356.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/13.85fa0493.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/14.298c3014.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/15.28e11434.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/16.7f0dc006.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/17.a51904e5.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/18.d8708fbf.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/19.2325f469.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/20.2b65f2f3.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/21.1dfbe59a.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/22.90e2e9d5.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/23.9ebe1012.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/24.61e89012.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/25.0793b168.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/26.aa93b2d5.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/27.3efa9cae.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/28.78545f9e.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/29.f7674a21.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/3.fc4b9681.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/30.8ac7944d.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/31.7495b801.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/32.16a52ebd.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/33.287bc3f5.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/34.e4a3e1ce.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/36.7adf6fab.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/37.8d91a60c.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/38.c819faac.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/4.27177561.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/5.396a2f13.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/6.0e7b527f.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/7.d121c3e5.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/8.9303ea64.js"><link rel="prefetch" href="/hpe-solutions-openshift/49-amd/assets/js/9.b87a027a.js">
+    <link rel="stylesheet" href="/hpe-solutions-openshift/49-amd/assets/css/0.styles.154362c3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/hpe-solutions-openshift/49-amd/" class="home-link router-link-active"><!----> <span class="site-name">OpenShift Container Platform 4.9 on HPE DL385 and DL325 Gen10 Plus v2 Servers</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/hpe-solutions-openshift/49-amd/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/hpe-solutions-openshift/49-amd/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Red Hat OpenShift Container Platform 4.9 on DL Servers</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Overview</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Components</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Solution Deployment</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Solution-deployment-flow.html" class="sidebar-link">Solution Deployment Flow</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Preparing-execution-environment.html" class="sidebar-link">Preparing the execution environment</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Operating-system-deployment.html" aria-current="page" class="active sidebar-link">Operating system deployment</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Operating-system-deployment.html#esxi-deployment" class="sidebar-link">ESXi deployment</a></li><li class="sidebar-sub-header"><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Operating-system-deployment.html#red-hat-coreos-deployment-using-ipxe-server" class="sidebar-link">Red Hat CoreOS deployment using iPXE server</a></li><li class="sidebar-sub-header"><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Operating-system-deployment.html#rhel-deployment-using-pxe-server" class="sidebar-link">RHEL deployment using PXE Server</a></li></ul></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/User-provisioned-DNS-requirements.html" class="sidebar-link">User-provisioned DNS requirements</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Load-Balancer.html" class="sidebar-link">Load Balancer</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Bootstrap-node.html" class="sidebar-link">Bootstrap node</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Physical-node-configuration.html" class="sidebar-link">Physical node configuration</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Virtual-node-configuration.html" class="sidebar-link">Virtual node configuration</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/OCP-Cluster-deployment.html" class="sidebar-link">Red Hat OpenShift Container Platform Cluster deployment</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/OCP-worker-nodes.html" class="sidebar-link">Red Hat OCP worker nodes</a></li><li><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Deploying-OCP-on-VMware-vSphere.html" class="sidebar-link">Deploying OpenShift Container Platform 4.9 on VMware vSphere</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Additional Features and Functionality</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Resosurces and Additional Links</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="operating-system-deployment"><a href="#operating-system-deployment" class="header-anchor">#</a> Operating system deployment</h1> <p>This section includes,</p> <ul><li><p>Deploying ESXI on multiple machines in an automated fashion</p></li> <li><p>Deploying Red Hat CoreOS using iPXE server</p></li> <li><p>Deploying RHEL using PXE server</p></li></ul> <p>What is PXE boot?</p> <p>Preboot Execution Environment (PXE) is a client-server interface that allows computers in a network to be booted from the server before deploying the obtained OS image in local and remote offices, for PXE enabled clients. PXE network boot is performed using client-server protocols like DHCP (Dynamic Host Configuration Protocol) and TFTP (Trivial File Transfer Protocol).</p> <h2 id="esxi-deployment"><a href="#esxi-deployment" class="header-anchor">#</a> ESXi deployment</h2> <p>This section outlines the steps to programmatically deploy ESXi on all the bare-metal nodes.</p> <div class="custom-block warning"><p class="custom-block-title">Prerequisites</p> <ol><li><p>ESXi ISO image is present in the HTTP file path within the installer machine.</p></li> <li><p>iLO account with administrative privileges required on servers for configuring ESXi via automation.</p></li></ol></div> <h3 id="installation"><a href="#installation" class="header-anchor">#</a> Installation</h3> <ol><li><p>Enable Python 3 and Ansible environment as mentioned in <a href="./Preparing-execution-environment#installer-machine">Installer machine</a> section of deployment guide.</p></li> <li><p>Execute the following command on the installer VM to point to the ESXi deployment directory.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token variable">$BASE_DIR</span>/os_deployment/deploy_esxi
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">NOTE</p> <p><code>BASE_DIR</code> is defined in <a href="./Preparing-execution-environment#installer-machine">Installer machine</a> section in deployment guide.</p></div></li> <li><p>Installing requirements</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">sh</span> setup.sh 
+</code></pre></div></li> <li><p>Update the input_files/config.yml file with web server details for ESXi installation.</p></li> <li><p>Use the following command to edit input files/config.yml file.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> ansible-vault edit input_files/config.yml
+</code></pre></div></li> <li><p>Example values for the input configuration is as follows:</p> <div class="language-bash extra-class"><pre class="language-bash"><code> config:
+   HTTP_server_base_url: http://10.0.x.x/
+   HTTP_file_path: /usr/share/nginx/html/
+   OS_type: esxi67
+   OS_image_name: <span class="token operator">&lt;</span>ISO_image_name<span class="token operator">&gt;</span>.iso
+   base_kickstart_filepath: kickstart_files/ks_esxi67.cfg
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">NOTE</p> <p>The default password for the Ansible vault file is <code>changeme</code>.</p> <p>Acceptable values for &quot;OS_type&quot; variable is &quot;esxi67&quot; for ESXi 6.7.</p></div></li> <li><p>Update the input_files/server_details.yml file with server details for ESXi installation.</p></li> <li><p>Use the following command to edit input files/server_details.yml file.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> ansible-vault edit input_files/server_details.yml
+</code></pre></div></li> <li><p>Example values for the input configuration for deploying ESXi 6.7 is as follows:</p> <div class="language-bash extra-class"><pre class="language-bash"><code> servers:
+    -  Server_serial_number: MXxxxxxDP
+       ILO_Address: <span class="token number">10.0</span>.x.x
+       ILO_Username: username
+       ILO_Password: password
+       Hostname: vsphere01.twentynet.local
+       Host_IP: <span class="token number">20</span>.x.x.x
+       Host_Username: root
+       Host_Password: Password
+       Host_Netmask: <span class="token number">255</span>.x.x.x
+       Host_Gateway: <span class="token number">20</span>.x.x.x
+       Host_DNS: <span class="token number">20</span>.x.x.x
+    - Server_serial_number: MXxxxxxDQ
+       ILO_Address: <span class="token number">10.0</span>.x.x
+       ILO_Username: username
+       ILO_Password: password
+       Hostname: vsphere02.twentynet.local
+       Host_IP: <span class="token number">20.0</span>.x.x
+       Host_Username: root
+       Host_Password: Password
+       Host_Netmask: <span class="token number">255</span>.x.x.x
+       Host_Gateway: <span class="token number">20</span>.x.x.x
+       Host_DNS: <span class="token number">20</span>.x.x.x
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">NOTE</p> <p>The default password for the Ansible vault file is <code>changeme</code>.</p> <p>It is recommended to provide a complex password for the &quot;Host_Password&quot; variable.</p> <p>Provide administrative privileged iLO account username and password.</p></div></li> <li><p>Run playbook to deploy ESXi.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> ansible-playbook deploy.yml --ask-vault-pass
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">NOTE</p> <p>In the process of ESXi deployment, ISO image contents will be forcefully moved to <code>BASE_DIR/os_deployment/deploy_esxi/files</code> folder and it needs to be deleted in case of space issues.</p> <p><code>BASE_DIR</code> is defined in <a href="./Preparing-execution-environment#installer-machine">Installer machine</a> section in deployment guide.</p></div> <div class="custom-block tip"><p class="custom-block-title">NOTE</p> <p>Generic settings done as part of kickstart file for ESXi are as follows. It is recommended that the user reviews and modifies the kickstart file (kickstart_files/ks_esxi67.cfg) to suit their requirements.</p> <ul><li><p>Accept End User License Agreement (EULA).</p></li> <li><p>clearpart --alldrives --overwritevmfs</p></li> <li><p>install --firstdisk --overwritevmfs</p></li> <li><p>%firstboot --interpreter=busybox</p></li> <li><p>One standard switch vswitch0 is created with uplinks vmnic0 and vmnic1. it is assigned with the Host_IP defined in the input_files/server_details.yml input file.</p></li> <li><p>NIC teaming is performed with vmnic0 being the active uplink and vmnic1 being the standby uplink.</p></li> <li><p>NIC failover policy is set to --failback yes --failure-detection link --load-balancing mac --notify-switches yes.</p></li></ul></div></li></ol> <h2 id="red-hat-coreos-deployment-using-ipxe-server"><a href="#red-hat-coreos-deployment-using-ipxe-server" class="header-anchor">#</a> Red Hat CoreOS deployment using iPXE server</h2> <p>In this solution, an iPXE Server setup is used for Red Hat Enterprise Linux CoreOS (RHCOS) deployment. This section explains in detail the playbooks required to configure iPXE server on an RHEL 7.6 VM to perform an unattended installation of Red Hat Enterprise Linux CoreOS (RHCOS) for non-ESXi VMs and bare metal servers.</p> <div class="custom-block warning"><p class="custom-block-title">Prerequisites</p> <ol><li><p>RHEL Ansible engine VM with Ansible 2.9.x and Python 3.6.x.</p></li> <li><p>Ansible Engine is configured as mentioned in the <a href="./Preparing-execution-environment#installer-machine">Installer machine</a> section of this deployment guide.</p></li> <li><p>If the user wishes to setup the iPXE server on a separate RHEL 7.6 VM (other than the Ansible engine VM) preferably or could be bare metal server, they need to have the following minimum configuration:</p> <ul><li><p>At least 200 GB disk space</p></li> <li><p>Two (2) CPU cores</p></li> <li><p>8 GB RAM</p></li> <li><p>/var has at least 15 GB disk space allocated while partitioning</p></li> <li><p>Static IP on the same network as the RHCOS server</p></li> <li><p>Internet access</p></li></ul></li> <li><p>Disable Selinux using following steps:</p> <ul><li>Check the status of SELINUX using command /etc/selinux/config</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> $ getenforce
+</code></pre></div><ul><li>Disable SELINUX</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code>​<span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">sed</span> -i <span class="token string">'s/permissive/disabled/g'</span> /etc/selinux/config /etc/selinux/config
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">NOTE</p> <p>If the current state of &quot;selinux&quot; is &quot;enforcing,&quot; replace the keyword &quot;permissive&quot; in the above command with &quot;enforcing&quot; and then run it.</p></div> <ul><li><p>Reboot the RHEL machine.</p></li> <li><p>Check the status of SELINUX using command /etc/selinux/config</p></li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> getenforce
+</code></pre></div></li></ol></div> <h3 id="automated-installation-and-configuration-of-ipxe-server"><a href="#automated-installation-and-configuration-of-ipxe-server" class="header-anchor">#</a> Automated Installation and Configuration of iPXE Server</h3> <p>Perform the steps listed below to execute the playbooks for installing and configuring iPXE server</p> <ol><li><p>Browse to the following directory on the Ansible engine.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">cd</span> <span class="token variable">$BASE_DIR</span>/os_deployment/deploy_rhcos/ 
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">NOTE</p> <p>Refer to <a href="./Preparing-execution-environment#installer-machine">installer machine</a> section of this deployment guide to know the &quot;BASE_DIR&quot; path.</p></div></li> <li><p>Copy Red Hat OpenShift 4.x above install files to directory, preferably under /tmp/ Example: /tmp/image/</p></li> <li><p>Update the inventory file &quot;hosts&quot; with the RHEL machine IP on which the user is trying to setup the iPXE server.</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>ansible_host<span class="token punctuation">]</span>
+20.x.x.x
+</code></pre></div></li> <li><p>Update the secrets.yml file located in BASE_DIR/os_deployment/deploy_rhcos/secrets.yml.</p></li> <li><p>Use the following command to edit secrets.yml file.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> ansible-vault edit <span class="token variable">$BASE_DIR</span>/os_deployment/deploy_rhcos/secrets.yml 
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">NOTE</p> <p>Refer to <a href="./Preparing-execution-environment#installer-machine">Installer machine</a> section of this deployment guide to know the &quot;BASE_DIR&quot; .</p> <p>The default password for the Ansible vault file is <em>changeme.</em></p></div> <div class="language-yaml extra-class"><pre class="language-yaml"><code> <span class="token comment"># Details of Ansible User Credentials required to set-up the iPXE</span>
+
+ <span class="token comment">#Path to hpe-solutions-openshift Directory; Example: /home/openshift_admin (no trailing forwardslash required)</span>
+
+ <span class="token key atrule">base_path</span><span class="token punctuation">:</span> <span class="token string">'/home/openshift_admin'</span>
+
+ <span class="token comment">#Is Environment Airgapped; ('yes' or 'no'):</span>
+ <span class="token key atrule">is_environment_airgap</span><span class="token punctuation">:</span> <span class="token string">'yes'</span>
+
+ <span class="token comment">###Common Networking</span>
+ <span class="token comment"># Interface Name Example: interface_name: enp0s10f0</span>
+ <span class="token key atrule">interface_name</span><span class="token punctuation">:</span> &lt;interface_name<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># Ansible Host IP Example: ansible_engine_ip: 20.0.15.115</span>
+ <span class="token key atrule">ansible_engine_ip</span><span class="token punctuation">:</span> &lt;ansible_engine_ip<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># base DNS domain, Example: base_domain: ocp42.local</span>
+ <span class="token key atrule">base_domain</span><span class="token punctuation">:</span> &lt;base_domain<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># Openshift sub domain, Example:app_domain: apps.ocp42.local</span>
+ <span class="token key atrule">app_domain</span><span class="token punctuation">:</span> &lt;app_domain<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># Network router IP Example: gateway: 192.168.42.254</span>
+ <span class="token key atrule">gateway</span><span class="token punctuation">:</span> &lt;gateway<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># Network DNS server Example: dns_server: 192.168.42.252</span>
+ <span class="token key atrule">dns_server</span><span class="token punctuation">:</span> &lt;dns_server<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># DHCP range that is used for OCP nodes Example: dhcp_range: 192.168.42.204,192.168.42.210,24h</span>
+ <span class="token key atrule">dhcp_range</span><span class="token punctuation">:</span> &lt;dhcp_range<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># Subnet Mask Example: net_mask: 255.255.240.0</span>
+ <span class="token key atrule">net_mask</span><span class="token punctuation">:</span> &lt;net_mask<span class="token punctuation">&gt;</span>
+
+ <span class="token comment">## OpenShift node network</span>
+ <span class="token comment"># mac address of master node 1 Example: master1_mac: 08:00:27:36:0A:01</span>
+ <span class="token key atrule">master1_mac</span><span class="token punctuation">:</span> &lt;master1_mac<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># master node 1 IP address Example: master1_ip: 192.168.42.204</span>
+ <span class="token key atrule">master1_ip</span><span class="token punctuation">:</span> &lt;master1_ip<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># master node 2 mac address Example: master2_mac: 08:00:27:36:0A:02</span>
+ <span class="token key atrule">master2_mac</span><span class="token punctuation">:</span> &lt;master2_mac<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># master node 2 IP address Example: master2_ip: 192.168.42.205</span>
+ <span class="token key atrule">master2_ip</span><span class="token punctuation">:</span> &lt;master2_ip<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># master node 3 mac address Example: master3_mac: 08:00:27:36:0A:03</span>
+ <span class="token key atrule">master3_mac</span><span class="token punctuation">:</span> &lt;master3_mac<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># master node 3 IP address Example: master3_ip: 192.168.42.206</span>
+ <span class="token key atrule">master3_ip</span><span class="token punctuation">:</span> &lt;master3_ip<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># worker node 1 mac address Example: worker1_mac: 08:00:27:36:0A:04</span>
+ <span class="token key atrule">worker1_mac</span><span class="token punctuation">:</span> &lt;worker1_mac<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># worker node 1 IP address Example: worker1_ip: 192.168.42.207</span>
+ <span class="token key atrule">worker1_ip</span><span class="token punctuation">:</span> &lt;worker1_ip<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># worker node 2 mac address Example: worker2_mac: 08:00:27:36:0A:05</span>
+ <span class="token key atrule">worker2_mac</span><span class="token punctuation">:</span> &lt;worker2_mac<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># worker node 1 IP address Example: worker2_ip: 192.168.42.208</span>
+ <span class="token key atrule">worker2_ip</span><span class="token punctuation">:</span> &lt;worker2_ip<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># worker node 3 mac address Example: worker3_mac: 08:00:27:36:0A:06</span>
+ <span class="token key atrule">worker3_mac</span><span class="token punctuation">:</span> &lt;worker3_mac<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># worker node 3 IP address Example: worker3_ip: 192.168.42.209</span>
+ <span class="token key atrule">worker3_ip</span><span class="token punctuation">:</span> &lt;worker3_ip<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># bootstrap mac address Example: bootstrap_mac: 08:00:27:36:0A:08</span>
+ <span class="token key atrule">bootstrap_mac</span><span class="token punctuation">:</span> &lt;bootstrap_mac<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># bootstrap IP address Example: bootstrap_ip: 192.168.42.210</span>
+ <span class="token key atrule">bootstrap_ip</span><span class="token punctuation">:</span> &lt;bootstrap_ip<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># install media details Example: image_location: &quot;/tmp/image/&quot;</span>
+ <span class="token key atrule">image_location</span><span class="token punctuation">:</span> &lt;image_location<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># Example: rhcos-4.9.1-x86_64-live-initramfs.x86_64.img</span>
+ <span class="token key atrule">live_initramfs_name</span><span class="token punctuation">:</span> &lt;live_initramfs_name<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># Example: rhcos-4.9.1-x86_64-live-kernel-x86_64</span>
+ live_kernel_name<span class="token punctuation">:</span>&lt;live_kernel_name<span class="token punctuation">&gt;</span>
+
+ <span class="token comment"># Example: rhcos-4.9.1-x86_64-live-rootfs.x86_64.img</span>
+ <span class="token key atrule">live_rootfs_name</span><span class="token punctuation">:</span> &lt;live_rootfs_name<span class="token punctuation">&gt;</span>
+</code></pre></div></li> <li><p>Run the following Ansible playbook to configure the iPXE server.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> ansible-playbook -i hosts master.yml --ask-vault-pass
+</code></pre></div></li> <li><p>Test the setup with MAC address by running the following command</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">curl</span> http://localhost:8080/ipxe?mac<span class="token operator">=</span>08:00:27:36:0A:xx 
+</code></pre></div></li> <li><p>Copy the ignition files in &quot; /var/lib/matchbox/ignition &quot; and verify the status of ignition file by using MAC address of all nodes.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">curl</span> http://192.168.42.200:8080/ignition?mac<span class="token operator">=</span>08:00:27:36:0A:xx 
+</code></pre></div></li> <li><p>Boot the VM/Bare Metal using iPXE..</p></li></ol> <h2 id="rhel-deployment-using-pxe-server"><a href="#rhel-deployment-using-pxe-server" class="header-anchor">#</a> RHEL deployment using PXE Server</h2> <p>In this solution, a PXE Server is used for RHEL 7.x OS deployment and is configured on CentOS (version: CentOS Linux release 7.6.1810 (Core)). The PXE server uses the FTP service for file distribution but can be altered to support HTTP or NFS. This section highlights the steps to
+configure a PXE server.</p> <h3 id="procedure-for-setting-up-pxe-server-and-deploying-rhel-os"><a href="#procedure-for-setting-up-pxe-server-and-deploying-rhel-os" class="header-anchor">#</a> Procedure for setting up PXE server and deploying RHEL OS</h3> <ol><li><p>Login to the CentOS server to be configured as a PXE server as a user that can run commands as root via sudo.</p></li> <li><p>Install packages such as DHCP, TFTP-server, vSFTPD (FTP server), and xinetd using the following command.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> yum <span class="token function">install</span> dhcp tftp tftp-server syslinux vsftpd xinetd
+</code></pre></div></li> <li><p>Update the DHCP configuration file at <em>/etc/dhcp/dhcpd.conf</em> with the MAC addresses, IP addresses, DNS, and routing details of the installation environment. Domain search is optional. A sample DHCP</p> <p>configuration file is shown as follows.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>    ddns-update-style interim<span class="token punctuation">;</span>
+        ignore client-updates<span class="token punctuation">;</span>
+        authoritative<span class="token punctuation">;</span>
+        allow booting<span class="token punctuation">;</span>
+        allow bootp<span class="token punctuation">;</span>
+
+        <span class="token comment"># internal subnet for my DHCP Server</span>
+        subnet <span class="token number">20.0</span>.x.x netmask <span class="token number">255.0</span>.0.0 <span class="token punctuation">{</span>
+        range <span class="token number">20.0</span>.x.x <span class="token number">20.0</span>.x.x<span class="token punctuation">;</span>
+        deny unknown-clients<span class="token punctuation">;</span>
+        option domain-name-servers <span class="token number">20</span>.x.x.x<span class="token punctuation">;</span>
+        option domain-name <span class="token string">&quot;twentynet.local&quot;</span><span class="token punctuation">;</span>
+        option routers <span class="token number">20</span>.x.x.x<span class="token punctuation">;</span>
+        option broadcast-address <span class="token number">20.255</span>.255.255<span class="token punctuation">;</span>
+        default-lease-time <span class="token number">600</span><span class="token punctuation">;</span>
+        max-lease-time <span class="token number">7200</span><span class="token punctuation">;</span>
+        next-server <span class="token number">20</span>.x.x.x<span class="token punctuation">;</span>
+        filename <span class="token string">&quot;pxelinux.0&quot;</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">#######################################</span>
+        <span class="token function">host</span> bootstrap <span class="token punctuation">{</span>
+        hardware ethernet 00:50:56:xx:98:df<span class="token punctuation">;</span>
+        fixed-address <span class="token number">20.0</span>.x.x<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">host</span> master01 <span class="token punctuation">{</span>
+        hardware ethernet 00:50:56:95:xx:82<span class="token punctuation">;</span>
+        fixed-address <span class="token number">20.0</span>.x.x<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">host</span> worker01 <span class="token punctuation">{</span>
+        hardware ethernet 00:50:56:xx:ab:82<span class="token punctuation">;</span>
+        fixed-address <span class="token number">20.0</span>.x.x<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+</code></pre></div></li> <li><p>Trivial File Transfer Protocol (TFTP) is used to transfer files from data server to clients without any kind of authentication. TFTP is used for ignition file loading in PXE-based environment. To configure the TFTP server, edit the configuration file <em>/etc/xinetd.d/tftp</em>. Change the parameter 'disable = yes' to 'disable = no' and leave the other parameters as is. To edit the <em>/etc/xinetd.d/tftp</em> file, execute the following command.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">vi</span>  /etc/xinetd.d/tftp
+</code></pre></div><p>The TFTP configuration file is shown below.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>    <span class="token function">service</span> tftp
+       <span class="token punctuation">{</span>
+
+            socket_type <span class="token operator">=</span> dgram
+            protocol <span class="token operator">=</span> udp
+            <span class="token function">wait</span> <span class="token operator">=</span> <span class="token function">yes</span>
+            user <span class="token operator">=</span> root
+            server <span class="token operator">=</span> /usr/sbin/in.tftpd
+            server_args <span class="token operator">=</span> -s /var/lib/tftpboot
+            disable <span class="token operator">=</span> no
+            per_source <span class="token operator">=</span> <span class="token number">11</span>
+            cps <span class="token operator">=</span> <span class="token number">100</span> <span class="token number">2</span>
+            flags <span class="token operator">=</span> IPv4
+        <span class="token punctuation">}</span>
+</code></pre></div><p>Network boot related files must be placed in the tftp root directory <em>/var/lib/tftpboot</em>. Run the following commands to copy the required network boot files to <em>/var/lib/tftpboot/</em>.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">cp</span> –v /usr/share/syslinux/pxelinux.0 /var/lib/tftpboot
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">cp</span> –v /usr/share/syslinux/menu.c32 /var/lib/tftpboot
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">cp</span> –v /usr/share/syslinux/memdisk /var/lib/tftpboot
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">cp</span> –v /usr/share/syslinux/mboot.c32 /var/lib/tftpboot
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">cp</span> –v /usr/share/syslinux/chain.c32 /var/lib/tftpboot
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">mkdir</span> /var/lib/tftpboot/pxelinux.cfg
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">mkdir</span> /var/lib/tftpboot/networkboot
+</code></pre></div></li> <li><p>Copy the RHEL 7.6 (or above) ISO files to the PXE server. Mount it to the <em>/mnt/</em> directory and then copy the contents of the ISO to the local FTP server using the following commands.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">mount</span> –o loop OS <span class="token function">file</span> name /mnt/
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">cd</span> /mnt/
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">cp</span> –av * /var/ftp/pub/
+</code></pre></div></li> <li><p>Copy the kernel file (vmlinuz) and initrd file from <em>/mnt</em> to <em>/var/lib/tftpboot/networkboot/</em> using the following commands.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">cp</span> /mnt/images/pxeboot/vmlinuz /var/lib/tftpboot/networkboot/
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">cp</span> /mnt/images/pxeboot/initrd.img /var/lib/tftpboot/networkboot
+</code></pre></div></li> <li><p>Unmount the ISO files using the following command.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> unmount /mnt/
+</code></pre></div></li> <li><p>For RHEL nodes, create and utilize a new kickstart file under the folder <em>/var/ftp/pub</em> with the name &quot;<em>rhel7.cfg</em>&quot; using the following command.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">vi</span> /var/ftp/pub/rhel7.cfg
+</code></pre></div><p>A sample kickstart file is shown as follows. The installation user should create a kickstart file to meet the requirements of their installation environment.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>
+firewall --disabled
+<span class="token comment"># Install OS instead of upgrade</span>
+<span class="token function">install</span>
+<span class="token comment"># Use FTP installation media</span>
+url --url<span class="token operator">=</span><span class="token string">&quot;ftp://FTP_server_IP_address/pub/rhel76/&quot;</span>
+<span class="token comment"># Root password</span>
+<span class="token comment"># root password can be plaintext as shown below</span>
+<span class="token comment"># rootpw –plaintext password</span>
+<span class="token comment"># root password is encrypted using the command “openssl passwd -1 password” and resultant output is provided for rootpw as shown below</span>
+rootpw --iscrypted <span class="token variable">$6</span><span class="token variable">$uiq8l</span>/7xEWsYXhrvaEgan4N21yhLa8K.U7UA12Th3PD11GOXvEcI40gp
+<span class="token comment"># System authorization information</span>
+auth useshadow <span class="token assign-left variable">passalgo</span><span class="token operator">=</span>sha512
+<span class="token comment"># Use graphical install</span>
+graphical
+firstboot disable
+<span class="token comment"># System keyboard, timezone, language</span>
+keyboard us
+timezone Europe/Amsterdam
+lang en_US
+<span class="token comment"># SELinux configuration</span>
+selinux disabled
+<span class="token comment"># Installation logging level</span>
+logging <span class="token assign-left variable">level</span><span class="token operator">=</span>info
+<span class="token comment"># System bootloader configuration</span>
+bootloader <span class="token assign-left variable">location</span><span class="token operator">=</span>mbr
+clearpart --all --initlabel
+part swap --asprimary --fstype<span class="token operator">=</span><span class="token string">&quot;swap&quot;</span> --size<span class="token operator">=</span><span class="token number">1</span>
+part /boot --fstype xfs --size<span class="token operator">=</span><span class="token number">300</span>
+part pv.01 --size<span class="token operator">=</span><span class="token number">1</span> --grow
+volgroup root_vg01 pv.01
+logvol / --fstype xfs --name<span class="token operator">=</span>lv_01 --vgname<span class="token operator">=</span>root_vg01 --size<span class="token operator">=</span><span class="token number">1</span> --grow
+%packages
+@^minimal
+@core
+%end
+%addon com_redhat_kdump --disable --reserve-mb<span class="token operator">=</span><span class="token string">'auto'</span>
+%end
+</code></pre></div></li> <li><p>Create a PXE menu:</p> <ul><li><p>Create a PXE menu file at the location  <em>/var/lib/tftpboot/pxelinux.cfg/default</em> using the command.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">vi</span> /var/lib/tftpboot/pxelinux.cfg/default
+</code></pre></div></li> <li><p>For each of the OS boot options, provide the following details:</p> <ul><li><p>MENU LABEL -- Custom name of the respective menu label.</p></li> <li><p>KERNEL -- Kernel details of the operating system.</p></li> <li><p>APPEND - Path of bootloader file along with path of cfg or
+configuration file (in case of RHEL).</p></li></ul></li> <li><p>A sample PXE menu is shown as follows.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>default menu.c32
+
+prompt <span class="token number">0</span>
+
+<span class="token function">timeout</span> <span class="token number">30</span>
+
+MENU TITLE LinuxTechi.com PXE Menu
+
+LABEL rhel76
+
+MENU LABEL RHEL76-Buedata
+
+KERNEL /rhel76/vmlinuz
+
+APPEND <span class="token assign-left variable">initrd</span><span class="token operator">=</span>/rhel76/initrd.img inst.repo<span class="token operator">=</span>ftp://FTP_server_IP_address/pub/rhel76 <span class="token assign-left variable">ks</span><span class="token operator">=</span>ftp://FTP_server_IP_address/pub/rhel76-hcp.cfg
+
+LABEL rhcos-bootstrap
+
+MENU LABEL Install RHCOS4.3 sec-Bootstrap
+
+KERNEL /networkboot/rhcos-4.3.0-x86_64-installer-kernel
+
+APPEND <span class="token assign-left variable">ip</span><span class="token operator">=</span>dhcp rd.neednet<span class="token operator">=</span><span class="token number">1</span> <span class="token assign-left variable">initrd</span><span class="token operator">=</span>/networkboot/rhcos-4.3.0-x86_64-installer-initramfs.img <span class="token assign-left variable">console</span><span class="token operator">=</span>tty0 <span class="token assign-left variable">console</span><span class="token operator">=</span>ttyS0 coreos.inst<span class="token operator">=</span>yes coreos.inst.install_dev<span class="token operator">=</span>sda coreos.inst.image_url<span class="token operator">=</span> ftp://FTP_server_IP_address/pub/rhcos-4.3.0-x86_64-metal-bios.raw.gz coreos.inst.ignition_url<span class="token operator">=</span> ftp://FTP_server_IP_address/pub/sec/bootstrap.ign
+
+LABEL rhcos-master
+
+MENU LABEL Install RHCOS4.2 sec-Master
+
+KERNEL /networkboot/rhcos-4.3.0-x86_64-installer-kernel
+
+APPEND <span class="token assign-left variable">ip</span><span class="token operator">=</span>dhcp rd.neednet<span class="token operator">=</span><span class="token number">1</span> <span class="token assign-left variable">initrd</span><span class="token operator">=</span>/networkboot/rhcos-4.3.0-x86_64-installer-initramfs.img <span class="token assign-left variable">console</span><span class="token operator">=</span>tty0 <span class="token assign-left variable">console</span><span class="token operator">=</span>ttyS0 coreos.inst<span class="token operator">=</span>yes coreos.inst.install_dev<span class="token operator">=</span>sda coreos.inst.image_url<span class="token operator">=</span> ftp://FTP_server_IP_address/pub/rhcos-4.3.0-x86_64-metal-bios.raw.gz coreos.inst.ignition_url<span class="token operator">=</span>ftp://FTP_server_IP_address/pub/sec/master.ign
+
+LABEL rhcos-worker
+
+MENU LABEL Install RHCOS4.2 sec-Worker
+
+KERNEL /networkboot/rhcos-4.3.0-x86_64-installer-kernel
+
+APPEND <span class="token assign-left variable">ip</span><span class="token operator">=</span>dhcp rd.neednet<span class="token operator">=</span><span class="token number">1</span> <span class="token assign-left variable">initrd</span><span class="token operator">=</span>/networkboot/rhcos-4.3.0-x86_64-installer-initramfs.img <span class="token assign-left variable">console</span><span class="token operator">=</span>tty0 <span class="token assign-left variable">console</span><span class="token operator">=</span>ttyS0 coreos.inst<span class="token operator">=</span>yes coreos.inst.install_dev<span class="token operator">=</span>sda coreos.inst.image_url<span class="token operator">=</span> ftp://FTP_server_IP_address/pub/rhcos-4.3.0-x86_64-metal-bios.raw.gz coreos.inst.ignition_url<span class="token operator">=</span>ftp://FTP_server_IP_address/pub/sec/worker.ign
+</code></pre></div></li></ul></li> <li><p>Start and enable xinetd, dhcpd and vsftpd using the following commands.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> systemctl start xinetd
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> xinetd
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> systemctl start dhcpd.service
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> dhcpd.service
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> systemctl start vsftpd
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> vsftpd
+</code></pre></div></li> <li><p>Configure SELinux for FTP.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> setsebool –P allow_ftpd_full_access <span class="token number">1</span>
+</code></pre></div></li> <li><p>Open ports in the firewall using the following firewall-cmd commands.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> firewall-cmd --add-service-ftp --permanent
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> firewall-cmd --add-service-dhcp --permanent
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token function">sudo</span> firewall-cmd –reload
+</code></pre></div></li></ol> <div class="custom-block tip"><p class="custom-block-title">NOTE</p> <p>It is crucial to generate ignition files, copy them to the TFTP server, and update the path in the PXE default file. For more information about generating the ignition files, refer to the section <a href="./preparing-execution-environment#kubernetes-manifests-and-ignition-files">Kubernetes manifests and ignition files</a> in this document.</p></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/Preparing-execution-environment.html" class="prev">
+        Preparing the execution environment
+      </a></span> <span class="next"><a href="/hpe-solutions-openshift/49-amd/Solution-Deployment/User-provisioned-DNS-requirements.html">
+        User-provisioned DNS requirements
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/hpe-solutions-openshift/49-amd/assets/js/app.e2741604.js" defer></script><script src="/hpe-solutions-openshift/49-amd/assets/js/2.ee1bbcc2.js" defer></script><script src="/hpe-solutions-openshift/49-amd/assets/js/35.3443e4db.js" defer></script>
+  </body>
+</html>
