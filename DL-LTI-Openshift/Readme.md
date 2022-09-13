@@ -1,4 +1,4 @@
-***Lite Touch Installation of OpenShift Platform using Ansible playbook***
+***Lite Touch Installation of RedHat OpenShift Platform using Ansible playbook***
 
 ### **Installer Machine Prerequisite:**
 
@@ -26,7 +26,7 @@ RHEL 8.5 Installer machine the following configurations.
 		 yum install -y git
 		 git clone https://github.com/HewlettPackard/hpe-solutions-openshift.git'
 
-7.  Setup the installer machine to configure the nginx, development tools and other python packages required for LTI installation. Navigate to the directory,    /opt/LTI-Openshift and run the below command.
+7.  Setup the installer machine to configure the nginx, development tools and other python packages required for LTI installation. Navigate to the directory,    /opt/hpe-solutions-openshift/DL-LTI-Openshift and run the below command.
 
          'sh setup.sh'
 
@@ -38,7 +38,7 @@ RHEL 8.5 Installer machine the following configurations.
 
 	**Input File Update:-**
 
-		1. User has to update the input.yaml file in /opt/ISV-Openshit/create_delete_logicaldrives directory to  execute the logical drive script.
+		1. User has to update the input.yaml file in /opt/hpe-solutions-openshift/DL-LTI-Openshift/create_delete_logicaldrives directory to  execute the logical drive script.
 		2. User needs to update all the details in the input.yaml file which include:-
 							
 				' ILOServers:
@@ -92,7 +92,7 @@ We can provide the input variables in any one of the below methods
 
 **Method 1**: Input.py : Automation way of taking input
 
-Through the input.py, go to the directory /opt/ISV-OpenShift and run the below command.
+Through the input.py, go to the directory /opt/hpe-solutions-openshift/DL-LTI-Openshift and run the below command.
              'python input.py'
 
 Here it will prompt for values for the fields enter one by one.
@@ -116,7 +116,7 @@ After execution of the command input.py it will generate input.yaml and hosts fi
 
 **Method 2**.  **Input.yaml: Manually editing input file**
 
-Go to the directory /opt/LTI-Openshift, here we will have input_sample.yaml and hosts_sample files
+Go to the directory /opt/hpe-solutions-openshift/DL-LTI-Openshift, here we will have input_sample.yaml and hosts_sample files
 
 Rename those two files as input.yaml and hosts and open the files and fill the values as per your setup.
 
@@ -147,7 +147,7 @@ A sample input.yaml file is as follows with a few filled parameters.
 					HTTP_file_path: /usr/share/nginx/html/    
 					OS_type: rhel8
 					OS_image_name: rhel-8.5-x86_64-dvd.iso
-					base_kickstart_filepath: /opt/LTI-Openshift-develop/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg'
+					base_kickstart_filepath: /opt/hpe-solutions-openshift/DL-LTI-Openshift/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg'
 
 A sample **hosts** files is as follows
 
@@ -178,7 +178,7 @@ A sample **hosts** files is as follows
 
 ### **Playbook execution** 
 
-1.  ISV Openshift Platform can be deployed by running site.yml or by running individual playbooks. Each playbook description can be found further in this document.
+1.  HPE Solution LTI for RedHat OpenShift Container Platform can be deployed by running site.yml or by running individual playbooks. Each playbook description can be found further in this document.
 
 2.  Run the below command to execute the Lite Touch Installation.
 
@@ -208,7 +208,7 @@ playbooks to be followed are:
 
 **site.yml**
 
--   This playbook contains the script to deploy ISV Openshift Container platform starting from the OS_deployment until cluster up.
+-   This playbook contains the script to deploy HPE Solution LTI  for RedHat OpenShift Container PlatformOpenshift Container platform starting from the OS_deployment until cluster up.
 
 **rhel8_os_deployment.yml**
 
@@ -286,16 +286,16 @@ Once the Bootstrap and master nodes are deployed with the RHCOS perform the foll
 
 2. Add the kubeconfig path in the environment variables as follows
 
-         '$ export KUBECONFIG=/opt/LTI-Openshift-develop/playbooks/roles/generate_ignition_files/ignitions/auth/kubeconfig'
+         '$ export KUBECONFIG=/opt/hpe-solutions-openshift/DL-LTI-Openshift/playbooks/roles/generate_ignition_files/ignitions/auth/kubeconfig'
 
 3.Now execute the following command.
 
-         '$ openshift-install wait-for install-complete --dir=/opt/LTI-Openshift-develop/playbooks/roles/generate_ignition_files/ignitions --log-level debug'
+         '$ openshift-install wait-for install-complete --dir=/opt/hpe-solutions-openshift/DL-LTI-Openshift/playbooks/roles/generate_ignition_files/ignitions --log-level debug'
 
 4.Execute the below command to complete the RedHat OpenShift Cluster
 installation.
 
-         '$ openshift-install wait-for install-complete --dir=/opt/LTI-Openshift-develop/playbooks/roles/generate_ignition_files/ignitions --log-level=debug'
+         '$ openshift-install wait-for install-complete --dir=/opt/hpe-solutions-openshift/DL-LTI-Openshift/playbooks/roles/generate_ignition_files/ignitions --log-level=debug'
 
 5.  After completion of install-complte check cluster status
 
@@ -307,13 +307,13 @@ This section covers the steps to add RHEL 8.5 worker nodes to an existing Red Ha
 
 1. Login to the Installer VM (that we created as a part of rhel7_installerVM.yml -- it would have created one KVM VM on one of the head nodes)
 
-2. Navigate to the directory /opt/LTI-Openshift-develop/worker_nodes/
+2. Navigate to the directory /opt/hpe-solutions-openshift/DL-LTI-Openshift/worker_nodes/
 
 3. Here we can find input.yaml and inventory/hosts file , enter the values as per your setup.
 
 4. Copy Rhel8.5 DVD ISO to /usr/share/nginx/html/ 
 
-5. Navigate to the directory,    /opt/LTI-Openshift-develop/worker_nodes and run the below command.
+5. Navigate to the directory,    /opt/hpe-solutions-openshift/DL-LTI-Openshift/worker_nodes and run the below command.
 
          'sh setup.sh' 
 
