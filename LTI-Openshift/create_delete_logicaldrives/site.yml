@@ -1,0 +1,7 @@
+---
+ 
+  - import_playbook: playbooks/download_ilorest_utility.yml
+  - import_playbook: playbooks/delete_logicaldrives.yml
+  - import_playbook: playbooks/create_logicaldrives.yml
+       
+

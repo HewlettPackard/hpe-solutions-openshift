@@ -1,0 +1,57 @@
+---
+    - name: Checking if the host is already registered?
+      shell: subscription-manager status | grep -e "Current"|awk '{print $3}'
+      register: issubscribed
+      ignore_errors: yes
+
+    - name: Registering hosts to Red Hat Subscription Manager
+      redhat_subscription:
+          state: present
+          username: "{{ rhsub_username }}"
+          password: "{{ rhsub_password }}"
+          pool_ids: "{{ pool_id }}"
+          force_register: yes
+          auto_attach: yes
+      when:
+          - issubscribed.stdout.find('Current') == -1
+      ignore_errors: yes
+
+    - name: Enable the repositories required by OpenShift Container Platform 4.10
+      shell: subscription-manager repos --enable="rhel-7-server-rpms"  --enable="rhel-7-server-extras-rpms" --enable="rhel-7-server-ansible-2.9-rpms"  --enable="rhel-7-server-ose-4.10-rpms"
+
+    - name: Install the required packages, including openshift-ansible
+      shell: yum -y install openshift-ansible openshift-clients jq
+
+    - name: Copy openshift-ansible folder to current directory
+      copy:
+        remote_src: yes
+        src: /usr/share/ansible/openshift-ansible
+        dest: "{{ base_path }}/worker_nodes/"
+        owner: root
+        group: root
+
+    - name: create nginx.repo file
+      file:
+        path: "/etc/yum.repos.d/nginx.repo"
+        state: touch
+
+    - name: create nginx repo
+      copy:
+        dest: "/etc/yum.repos.d/nginx.repo"
+        content: |
+          [nginx]
+          name=nginx repo
+          baseurl=http://nginx.org/packages/mainline/rhel/7/$basearch/
+          gpgcheck=0
+          enabled=1
+
+    - name: Install nginx
+      shell: yum -y install nginx
+
+    - name: Enable nginx
+      shell: systemctl enable nginx
+
+    - name: Start nginx
+      shell: systemctl start nginx
+
+

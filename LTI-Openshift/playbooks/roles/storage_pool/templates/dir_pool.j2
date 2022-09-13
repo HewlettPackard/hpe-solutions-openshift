@@ -1,0 +1,11 @@
+<pool type='dir'>
+  <name>{{ virt_dir_storage_pool_vg }}_{{ virt_dir_storage_pool_lv}}</name>
+  <target>
+    <path>/mnt/{{ virt_dir_storage_pool_vg }}_{{ virt_dir_storage_pool_lv}}</path>
+    <permissions>
+      <mode>0755</mode>
+      <owner>0</owner>
+      <group>0</group>
+    </permissions>
+  </target>
+</pool>
