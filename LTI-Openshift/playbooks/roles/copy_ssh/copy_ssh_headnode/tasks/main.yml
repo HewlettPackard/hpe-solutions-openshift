@@ -1,0 +1,43 @@
+---
+   - name: download sshpass package
+     shell: wget http://sourceforge.net/projects/sshpass/files/latest/download -O sshpass.tar.gz
+     args:
+       chdir: /tmp/
+
+   - name: Extract the package
+     shell: tar -xvf sshpass.tar.gz
+     args:
+       chdir: /tmp/
+   
+   - name: "Find sshpass directory"
+     find:
+       paths: "/tmp/"
+       use_regex: yes
+       patterns: "sshpass-*"
+       file_type: "directory"
+     register: var
+
+   - debug:
+       msg: "{{ var.files[0].path }}"
+  
+   - name: Configure sshpass
+     shell: ./configure
+     args:
+       chdir: "{{ var.files[0].path }}/"
+  
+   - name: Install sshpass
+     shell: make install
+     args:
+       chdir: "{{ var.files[0].path }}/"
+
+   - name: Copy ssh keys to head nodes
+     shell: "sshpass -p '{{ servers[0].Host_Password }}' ssh-copy-id -o StrictHostKeyChecking=no root@{{ servers[0].Host_IP }}"
+  
+   - name: Copy ssh keys to head nodes
+     shell: "sshpass -p '{{ servers[1].Host_Password }}' ssh-copy-id  -o StrictHostKeyChecking=no root@{{ servers[1].Host_IP }}"
+   
+   - name: Copy ssh keys to head nodes
+     shell: "sshpass -p '{{ servers[2].Host_Password }}' ssh-copy-id  -o StrictHostKeyChecking=no root@{{ servers[2].Host_IP }}"
+  
+     
+

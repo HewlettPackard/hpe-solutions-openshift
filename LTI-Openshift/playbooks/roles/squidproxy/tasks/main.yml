@@ -1,0 +1,51 @@
+---
+- name: squid installed
+  ansible.builtin.yum:
+    name: squid
+    state: latest
+
+- name: squid configuration
+  ansible.builtin.template:
+    src: "templates/squid.conf.j2"
+    dest: "/etc/squid/squid.conf"
+
+- name: squid service enabled
+  ansible.builtin.service:
+    name: squid
+    enabled: true
+    state: started
+
+- name: add port to firewall
+  firewalld:
+    port: "{{ squid_port }}/tcp"
+    state: enabled
+    immediate: true
+    permanent: true
+
+- name: edit /etc/environment file
+  ansible.builtin.template:
+    src: "templates/environment.conf.j2"
+    dest: "/etc/environment"
+
+- name: source environment file
+  shell: source /etc/environment
+
+- name: edit keepalive config file
+  blockinfile:
+    insertafter: EOF
+    path: /etc/keepalived/keepalived.conf
+    block: "{{ lookup('template', 'templates/keepalived.conf.j2') }}"
+
+- name: Restart Keepalived Service
+  service:
+    name: keepalived
+    state: restarted
+    enabled: true
+
+- name: Restart Squid Service
+  service:
+    name: squid
+    state: restarted
+    enabled: true
+
+

@@ -1,0 +1,8 @@
+---
+- name: Copy OC tools and kubeconfig file to head nodes
+  hosts: kvm_nodes:rhel7_installerVM
+  gather_facts: no
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/copy_ocp_tool
