@@ -1,4 +1,4 @@
-**Lite touch Installation of OpenShift Platform using Ansible playbook**
+***Lite Touch Installation of OpenShift Platform using Ansible playbook***
 
 ### **Installer Machine Prerequisite:**
 
@@ -72,16 +72,16 @@ RHEL 8.5 Installer machine the following configurations.
 		2. To find the PhysicalDrives login to the respective ILO -> System Information -> Storage tab inside Unconfigured Drives where under Location you can deduce PhysicalDrives based on these information:
 				
 				' # Slot: 12:Port=1I:Box=1:Bay=1
-				# Example - 1I:1:1 ('Port:Box:Bay')
+				  # Example - 1I:1:1 ('Port:Box:Bay')
 
-				# Slot: 12:Port=1I:Box=1:Bay=2
-				# Example - 1I:1:2 ('Port:Box:Bay') '
+				  # Slot: 12:Port=1I:Box=1:Bay=2
+				  # Example - 1I:1:2 ('Port:Box:Bay') '
 								
 	**Playbook Execution:-**
 
 		To delete all the existing logical drives in the server in case if any and to create new logical drives named 'RHEL Boot Volume' in respective ILO servers run the site.yml playbook inside create_delete_logicaldrives directory with the below mentioned command                   
 
-					' # ansible-playbook site.yml '
+				' # ansible-playbook site.yml '
 
 
 ### **Input files**
@@ -90,52 +90,29 @@ RHEL 8.5 Installer machine the following configurations.
 
 We can provide the input variables in any one of the below methods
 
-**Method 1**.  **Input.py : Automation way of taking input**
+**Method 1**: Input.py : Automation way of taking input
 
-This method will parse the inputs from json files generated from SCID tool. 
+Through the input.py, go to the directory /opt/ISV-OpenShift and run the below command.
+             'python input.py'
 
-1. Copy base-Configuration.json and ocp.json to working directory (/opt/LTI-Openshift)
+Here it will prompt for values for the fields enter one by one.
 
-2. Go to the directory /opt/LTI-Openshift and run the below command.
+A sample input collection through input.py is as follows.
 
-         'python ocpParser.py'
+			'Enter server serial number for the first head node server ( Example: 2M2210020X )
+			2M205107TH
+			Enter ILO address for the first head node server ( Example: 192.28.201.5 )
+			172.28.201.13
+			Enter ILO username for the first head node server ( Example: admin )
+			admin
+			Enter ILO password for the first head node server ( Example: Password )
+			Password
+			Enter Host FQDN for the first head node server ( Example: kvm1.xyz.local )
+			headnode1.isv.local
+			etc ...............................'
 
-Here it will prompt for values which are not obtained from SCID json files.
+After execution of the command input.py it will generate input.yaml and hosts file in the same location.
 
-A sample input collection through ocpParser.py is as follows.
-
-       'Name of the file: input.yaml
-		Enter HTTP_server_base_url with installer IP ( Example: http://InstallerIP/ ): http://172.28.*.*/
-		Enter HTTP_file_path : /usr/share/nginx/html/
-		Enter Operating System type : rhel8
-		Enter Operating System Image name : rhel-8.5-x86_64-dvd.iso
-		Enter Base Kickstart file path : /opt/LTI-Openshift/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg
-
-		Enter RedHat Subscription Details
-		Enter Valid Redhat Subscription Username : ******
-		Enter Valid  Redhat Subscription Password : *******
-		Enter Pool ID for Redhat OpenShift Container Platform : 8a******
-
-		Enter common details
-		Enter DNS reverse zone ( Example: 230.28.192.in-addr.arpa ) : 230.28.192.in-addr.arpa
-		Enter the customer forwarder DNS fqdn ( Example: resolver.companycorp.net ) : resolver.companycorp.net
-		Enter worker node ip used as installer ( Example: 192.28.230.16 ) : 192.28.230.16
-
-		Enter Upstream DNS Forwarder Details
-		Enter the customer's first upstream DNS forwarder ip : 16.153.*.*
-		Enter the customer's second upstream DNS forwarder ip : 16.53.*.*
-
-		Enter the ocp version : 4.10.16
-		Enter redhat pull secret & Installer machine public key
-		Enter Redhat pull secret in single quotes (Login to the RedHat Portal and get the pull secret):
-		Enter the Installer machine public key in single quotes (Generate using 'ssh-keygen' and provide the pub key):
-		Enter base path Directory
-		Enter base path in single quotes ( Example: '/opt/LTI-Openshift' ): /opt/LTI-Openshift
-		Enter dhcp range that is used for OCP nodes
-		Enter comma separated values of dhcp range that is used for OCP nodes ( Example: 192.28.230.10,192.28.230.24 ) : 192.28.230.10,192.28.230.24
-		Name of the file: hosts'
-		  
-   After execution of ocpParser.py, it will generate input.yaml and hosts file in the same location.
 
 **Method 2**.  **Input.yaml: Manually editing input file**
 
@@ -174,30 +151,30 @@ A sample input.yaml file is as follows with a few filled parameters.
 
 A sample **hosts** files is as follows
 
-			   '[kvm_nodes]
-				172.28.*.*
-				172.28.*.*
-				172.28.*.*
+				   '[kvm_nodes]
+					172.28.*.*
+					172.28.*.*
+					172.28.*.*
 
-				[ansible_host]
-				172.28.*.*
+					[ansible_host]
+					172.28.*.*
 
-				[rhel7_installerVM]
-				172.28.*.*
+					[rhel7_installerVM]
+					172.28.*.*
 
-				[binddns_masters]
-				172.28.*.*
+					[binddns_masters]
+					172.28.*.*
 
-				[binddns_slaves]
-				172.28.*.*
-				172.28.*.*
+					[binddns_slaves]
+					172.28.*.*
+					172.28.*.*
 
-				[masters_info]
-				master1 ip=172.28.*.* hostname=headnode1
+					[masters_info]
+					master1 ip=172.28.*.* hostname=headnode1
 
-				[slaves_info]
-				slave1 ip=172.28.*.* hostname=headnode2
-				slave2 ip=172.28.*.* hostname=headnode3'
+					[slaves_info]
+					slave1 ip=172.28.*.* hostname=headnode2
+					slave2 ip=172.28.*.* hostname=headnode3'
 
 ### **Playbook execution** 
 
