@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Deploying Squid proxy on head nodes | OpenShift Container Platform 4.10 on HPE DL365 Gen10 Plus Servers</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="Hewlett Packard Enterprise">
+    
+    <link rel="preload" href="/hpe-solutions-openshift/4.10-dl/assets/css/0.styles.379df3e1.css" as="style"><link rel="preload" href="/hpe-solutions-openshift/4.10-dl/assets/js/app.d2994e5a.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/4.10-dl/assets/js/2.7c26c33b.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/4.10-dl/assets/js/23.d0cfcce9.js" as="script"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/10.48334563.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/11.0f6dbf5f.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/12.35ff5ce7.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/13.20e31dc2.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/14.0e9a44bf.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/15.380107f7.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/16.d786a800.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/17.15c44ee1.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/18.0a61828a.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/19.44696c60.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/20.38456837.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/21.6ef7e0da.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/22.735e9f37.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/24.e4cc79dc.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/25.8d86fdbd.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/26.4341c805.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/3.f5d7d4b1.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/4.37a7e22b.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/5.e7dabacf.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/6.67c17003.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/7.268c772b.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/8.0063cc8c.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-dl/assets/js/9.251f34c2.js">
+    <link rel="stylesheet" href="/hpe-solutions-openshift/4.10-dl/assets/css/0.styles.379df3e1.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/hpe-solutions-openshift/4.10-dl/" class="home-link router-link-active"><!----> <span class="site-name">OpenShift Container Platform 4.10 on HPE DL365 Gen10 Plus Servers</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/hpe-solutions-openshift/4.10-dl/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/hpe-solutions-openshift/4.10-dl/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Red Hat OpenShift Container Platform 4.10 on DL Servers</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Overview</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Components</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Deployment</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Additional Features and Functionality</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Troubleshooing by Using Manual Processes</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/hpe-solutions-openshift/4.10-dl/Troubleshooting-Using-Manual-Processes/Preparing-execution-environment.html" class="sidebar-link">Preparing the execution environment for RHOCP worker3 node</a></li><li><a href="/hpe-solutions-openshift/4.10-dl/Troubleshooting-Using-Manual-Processes/Deploying-OS-on-Head-Nodes.html" class="sidebar-link">Deploying RHEL 8.5 OS on the head nodes</a></li><li><a href="/hpe-solutions-openshift/4.10-dl/Troubleshooting-Using-Manual-Processes/Installing-and-Configuring-Bind-DNS.html" class="sidebar-link">Installing and configuring master/slave Bind DNS on head nodes</a></li><li><a href="/hpe-solutions-openshift/4.10-dl/Troubleshooting-Using-Manual-Processes/Configuring-Squid-Proxy.html" aria-current="page" class="active sidebar-link">Deploying Squid proxy on head nodes</a></li><li><a href="/hpe-solutions-openshift/4.10-dl/Troubleshooting-Using-Manual-Processes/OCP-Cluster-Deployment.html" class="sidebar-link">OCP Cluster Deployment</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Resosurces and Additional Links</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="deploying-squid-proxy-on-head-nodes"><a href="#deploying-squid-proxy-on-head-nodes" class="header-anchor">#</a> Deploying Squid proxy on head nodes</h1> <p>Squid is a proxy server that caches content to reduce bandwidth and load web pages more quickly. This section describes how to set up Squid as a proxy for HTTP, HTTPS, and FTP protocol, as well as authentication and restricting access.</p> <p>Prerequisites:</p> <ul><li>The Keepalived service must be available.</li></ul> <p>To deploy Squid proxy server on head nodes:</p> <ol><li>Install the Squid package on all head nodes.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># yum install squid </span>
+</code></pre></div><ol start="2"><li>Edit /etc/squid/squid.conf configuration file.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># Recommended minimum configuration: </span>
+
+<span class="token comment"># Example rule allowing access from your local networks. </span>
+
+<span class="token comment"># Adapt to list your (internal) IP networks from where browsing </span>
+
+<span class="token comment"># should be allowed  </span>
+
+acl localnet src <span class="token number">172.0</span>.0.0/8   <span class="token comment"># RFC1918 possible internal network </span>
+
+acl localnet src <span class="token punctuation">{</span><span class="token punctuation">{</span> localnet <span class="token punctuation">}</span><span class="token punctuation">}</span>        <span class="token comment"># RFC1918 possible internal network </span>
+
+<span class="token comment">#acl localnet src 192.168.0.0/16        # RFC1918 possible internal network </span>
+
+acl localnet src fc00::/7       <span class="token comment"># RFC 4193 local private network range </span>
+
+acl localnet src fe80::/10      <span class="token comment"># RFC 4291 link-local (directly plugged) machines </span>
+
+acl SSL<span class="token punctuation">\</span>_ports port <span class="token number">443</span> 
+
+acl Safe<span class="token punctuation">\</span>_ports port <span class="token number">210</span>         <span class="token comment"># wais </span>
+
+acl Safe<span class="token punctuation">\</span>_ports port <span class="token number">1025</span>-65535  <span class="token comment"># unregistered ports </span>
+
+acl Safe<span class="token punctuation">\</span>_ports port <span class="token number">280</span>         <span class="token comment"># http-mgmt </span>
+
+acl Safe<span class="token punctuation">\</span>_ports port <span class="token number">488</span>         <span class="token comment"># gss-http </span>
+
+acl Safe<span class="token punctuation">\</span>_ports port <span class="token number">591</span>         <span class="token comment"># filemaker </span>
+
+acl Safe<span class="token punctuation">\</span>_ports port <span class="token number">777</span>         <span class="token comment"># multiling http </span>
+
+acl CONNECT method CONNECT 
+
+<span class="token comment"># Recommended minimum Access Permission configuration: </span>
+
+<span class="token comment"># </span>
+
+
+
+<span class="token comment"># Only allow cachemgr access from localhost </span>
+
+http<span class="token punctuation">\</span>_access allow localhost manager 
+
+http<span class="token punctuation">\</span>_access deny manager 
+
+
+
+<span class="token comment"># Deny requests to certain unsafe ports </span>
+
+http<span class="token punctuation">\</span>_access deny <span class="token operator">!</span>Safe<span class="token punctuation">\</span>_ports 
+
+
+
+<span class="token comment"># Deny CONNECT to other than secure SSL ports </span>
+
+http<span class="token punctuation">\</span>_access deny CONNECT <span class="token operator">!</span>SSL<span class="token punctuation">\</span>_ports 
+
+
+
+<span class="token comment"># We strongly recommend the following be uncommented to protect innocent </span>
+
+<span class="token comment"># web applications running on the proxy server who think the only </span>
+
+<span class="token comment"># one who can access services on &quot;localhost&quot; is a local user </span>
+
+<span class="token comment">#http\_access deny to\_localhost </span>
+
+
+
+<span class="token comment"># </span>
+
+<span class="token comment"># INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS </span>
+
+<span class="token comment"># </span>
+
+
+
+<span class="token comment"># Example rule allowing access from your local networks. </span>
+
+<span class="token comment"># Adapt localnet in the ACL section to list your (internal) IP networks </span>
+
+<span class="token comment"># from where browsing should be allowed </span>
+
+http<span class="token punctuation">\</span>_access allow localnet 
+
+http<span class="token punctuation">\</span>_access allow localhost 
+
+
+
+<span class="token comment"># And finally deny all other access to this proxy </span>
+
+cache<span class="token punctuation">\</span>_peer <span class="token punctuation">{</span><span class="token punctuation">{</span> corporate<span class="token punctuation">\</span>_proxy <span class="token punctuation">}</span><span class="token punctuation">}</span> parent <span class="token punctuation">{</span><span class="token punctuation">{</span> corporate<span class="token punctuation">\</span>_proxy<span class="token punctuation">\</span>_port <span class="token punctuation">}</span><span class="token punctuation">}</span> <span class="token number">0</span> no-query default 
+
+acl all src all 
+
+http<span class="token punctuation">\</span>_access allow localhost 
+
+never<span class="token punctuation">\</span>_direct allow all 
+
+
+
+<span class="token comment"># Squid normally listens to port 3128 </span>
+
+http<span class="token punctuation">\</span>_port <span class="token punctuation">{</span><span class="token punctuation">{</span> squid<span class="token punctuation">\</span>_port <span class="token punctuation">}</span><span class="token punctuation">}</span> 
+
+
+
+<span class="token comment"># Uncomment the line below to enable disk caching - path format is /cygdrive/&lt;full path to cache folder&gt;, i.e. </span>
+
+<span class="token comment">#cache\_dir aufs /cygdrive/d/squid/cache 3000 16 256 </span>
+
+
+
+<span class="token comment"># Leave coredumps in the first cache dir </span>
+
+coredump<span class="token punctuation">\</span>_dir /var/cache/squid 
+
+
+
+<span class="token comment"># Add any of your own refresh\_pattern entries above these. </span>
+
+refresh<span class="token punctuation">\</span>_pattern ^ftp:           <span class="token number">1440</span>    <span class="token number">20</span>%     <span class="token number">10080</span> 
+
+refresh<span class="token punctuation">\</span>_pattern ^gopher:        <span class="token number">1440</span>    <span class="token number">0</span>%      <span class="token number">1440</span> 
+
+refresh<span class="token punctuation">\</span>_pattern <span class="token parameter variable">-i</span> <span class="token punctuation">(</span>/cgi-bin/<span class="token operator">|</span><span class="token punctuation">\</span>?<span class="token punctuation">)</span> <span class="token number">0</span>     <span class="token number">0</span>%      <span class="token number">0</span> 
+
+refresh<span class="token punctuation">\</span>_pattern <span class="token builtin class-name">.</span>               <span class="token number">0</span>       <span class="token number">20</span>%     <span class="token number">4320</span> 
+
+
+
+dns<span class="token punctuation">\</span>_nameservers <span class="token punctuation">{</span><span class="token punctuation">{</span> master<span class="token punctuation">\</span>_dns <span class="token punctuation">}</span><span class="token punctuation">}</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> slave1<span class="token punctuation">\</span>_dns <span class="token punctuation">}</span><span class="token punctuation">}</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> slave2<span class="token punctuation">\</span>_dns <span class="token punctuation">}</span><span class="token punctuation">}</span> 
+
+
+
+max<span class="token punctuation">\</span>_filedescriptors <span class="token number">3200</span> 
+
+<span class="token punctuation">\</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span> 
+
+
+
+acl Safe<span class="token punctuation">\</span>_ports port <span class="token number">1025</span>-65535  <span class="token comment"># unregistered ports </span>
+
+acl Safe<span class="token punctuation">\</span>_ports port <span class="token number">280</span>         <span class="token comment"># http-mgmt </span>
+
+acl Safe<span class="token punctuation">\</span>_ports port <span class="token number">488</span>         <span class="token comment"># gss-http </span>
+
+acl Safe<span class="token punctuation">\</span>_ports port <span class="token number">591</span>         <span class="token comment"># filemaker </span>
+
+acl Safe<span class="token punctuation">\</span>_ports port <span class="token number">777</span>         <span class="token comment"># multiling http </span>
+
+acl CONNECT method CONNECT 
+
+<span class="token comment"># Recommended minimum Access Permission configuration: </span>
+
+<span class="token comment"># Only allow cachemgr access from localhost </span>
+
+http<span class="token punctuation">\</span>_access allow localhost manager 
+
+http<span class="token punctuation">\</span>_access deny manager 
+
+<span class="token comment"># Deny requests to certain unsafe ports </span>
+
+http<span class="token punctuation">\</span>_access deny <span class="token operator">!</span>Safe<span class="token punctuation">\</span>_ports  
+
+<span class="token comment"># Deny CONNECT to other than secure SSL ports </span>
+
+http<span class="token punctuation">\</span>_access deny CONNECT <span class="token operator">!</span>SSL<span class="token punctuation">\</span>_ports  
+
+<span class="token comment"># We strongly recommend the following be uncommented to protect innocent </span>
+
+<span class="token comment"># web applications running on the proxy server who think the only </span>
+
+<span class="token comment"># one who can access services on &quot;localhost&quot; is a local user </span>
+
+<span class="token comment">#http\_access deny to\_localhost </span>
+
+<span class="token comment"># INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS </span>
+
+<span class="token comment"># Example rule allowing access from your local networks. </span>
+
+<span class="token comment"># Adapt localnet in the ACL section to list your (internal) IP networks </span>
+
+<span class="token comment"># from where browsing should be allowed </span>
+
+http<span class="token punctuation">\</span>_access allow localnet 
+
+http<span class="token punctuation">\</span>_access allow localhost  
+
+<span class="token comment"># And finally deny all other access to this proxy </span>
+
+cache<span class="token punctuation">\</span>_peer <span class="token punctuation">{</span><span class="token punctuation">{</span> corporate<span class="token punctuation">\</span>_proxy <span class="token punctuation">}</span><span class="token punctuation">}</span> parent <span class="token punctuation">{</span><span class="token punctuation">{</span> corporate<span class="token punctuation">\</span>_proxy<span class="token punctuation">\</span>_port <span class="token punctuation">}</span><span class="token punctuation">}</span> <span class="token number">0</span> no-query default 
+
+acl all src all 
+
+http<span class="token punctuation">\</span>_access allow localhost 
+
+never<span class="token punctuation">\</span>_direct allow all  
+
+<span class="token comment"># Squid normally listens to port 3128 </span>
+
+http<span class="token punctuation">\</span>_port <span class="token punctuation">{</span><span class="token punctuation">{</span> squid<span class="token punctuation">\</span>_port <span class="token punctuation">}</span><span class="token punctuation">}</span>  
+
+<span class="token comment"># Uncomment the line below to enable disk caching - path format is /cygdrive/&lt;full path to cache folder&gt;, i.e. </span>
+
+<span class="token comment">#cache\_dir aufs /cygdrive/d/squid/cache 3000 16 256 </span>
+
+
+
+<span class="token comment"># Leave coredumps in the first cache dir </span>
+
+coredump<span class="token punctuation">\</span>_dir /var/cache/squid 
+
+
+
+<span class="token comment"># Add any of your own refresh\_pattern entries above these. </span>
+
+refresh<span class="token punctuation">\</span>_pattern ^ftp:           <span class="token number">1440</span>    <span class="token number">20</span>%     <span class="token number">10080</span> 
+
+refresh<span class="token punctuation">\</span>_pattern ^gopher:        <span class="token number">1440</span>    <span class="token number">0</span>%      <span class="token number">1440</span> 
+
+refresh<span class="token punctuation">\</span>_pattern <span class="token parameter variable">-i</span> <span class="token punctuation">(</span>/cgi-bin/<span class="token operator">|</span><span class="token punctuation">\</span>?<span class="token punctuation">)</span> <span class="token number">0</span>     <span class="token number">0</span>%      <span class="token number">0</span> 
+
+refresh<span class="token punctuation">\</span>_pattern <span class="token builtin class-name">.</span>               <span class="token number">0</span>       <span class="token number">20</span>%     <span class="token number">4320</span> 
+
+
+
+dns<span class="token punctuation">\</span>_nameservers <span class="token punctuation">{</span><span class="token punctuation">{</span> master<span class="token punctuation">\</span>_dns <span class="token punctuation">}</span><span class="token punctuation">}</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> slave1<span class="token punctuation">\</span>_dns <span class="token punctuation">}</span><span class="token punctuation">}</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> slave2<span class="token punctuation">\</span>_dns <span class="token punctuation">}</span><span class="token punctuation">}</span> 
+
+
+
+max<span class="token punctuation">\</span>_filedescriptors <span class="token number">3200</span> 
+</code></pre></div><ol start="3"><li>Enable and start the Squid service.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># systemctl enable --now squid </span>
+</code></pre></div><ol start="4"><li>Open port 3128 in the firewall.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># firewall-cmd --permanent --add-port=3128/tcp </span>
+<span class="token comment"># firewall-cmd --reload </span>
+</code></pre></div><ol start="5"><li>Edit /etc/environment.conf configuration file.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>FTP<span class="token punctuation">\</span>_PROXY<span class="token operator">=</span>http://<span class="token punctuation">{</span><span class="token punctuation">{</span> squid VIP <span class="token punctuation">}</span><span class="token punctuation">}</span>:<span class="token punctuation">{</span><span class="token punctuation">{</span> squid<span class="token punctuation">\</span>_port <span class="token punctuation">}</span><span class="token punctuation">}</span> 
+
+https<span class="token punctuation">\</span>_proxy<span class="token operator">=</span>http://<span class="token punctuation">{</span><span class="token punctuation">{</span> squid VIP <span class="token punctuation">}</span><span class="token punctuation">}</span>:<span class="token punctuation">{</span><span class="token punctuation">{</span> squid<span class="token punctuation">\</span>_port <span class="token punctuation">}</span><span class="token punctuation">}</span> 
+
+http<span class="token punctuation">\</span>_proxy<span class="token operator">=</span>http://<span class="token punctuation">{</span><span class="token punctuation">{</span> squid VIP <span class="token punctuation">}</span><span class="token punctuation">}</span>:<span class="token punctuation">{</span><span class="token punctuation">{</span> squid<span class="token punctuation">\</span>_port <span class="token punctuation">}</span><span class="token punctuation">}</span> 
+
+no<span class="token punctuation">\</span>_proxy<span class="token operator">=</span>localhost,127.0.0.1,<span class="token punctuation">{</span><span class="token punctuation">{</span> squid VIP <span class="token punctuation">}</span><span class="token punctuation">}</span> 
+
+HTTPS<span class="token punctuation">\</span>_PROXY<span class="token operator">=</span>http://<span class="token punctuation">{</span><span class="token punctuation">{</span> squid VIP <span class="token punctuation">}</span><span class="token punctuation">}</span>:<span class="token punctuation">{</span><span class="token punctuation">{</span> squid<span class="token punctuation">\</span>_port <span class="token punctuation">}</span><span class="token punctuation">}</span> 
+
+ftp<span class="token punctuation">\</span>_proxy<span class="token operator">=</span>http://<span class="token punctuation">{</span><span class="token punctuation">{</span> squid VIP <span class="token punctuation">}</span><span class="token punctuation">}</span>:<span class="token punctuation">{</span><span class="token punctuation">{</span> squid<span class="token punctuation">\</span>_port <span class="token punctuation">}</span><span class="token punctuation">}</span> 
+</code></pre></div><ol start="6"><li>Edit /etc/keepalived/keepalived.conf configuration file.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>vrrp<span class="token punctuation">\</span>_script chk<span class="token punctuation">\</span>_squid<span class="token punctuation">\</span>_service <span class="token punctuation">{</span> 
+
+script <span class="token string">&quot;/usr/sbin/squid -k check&quot;</span> 
+
+interval <span class="token number">3</span> 
+
+<span class="token punctuation">}</span> 
+
+vrrp<span class="token punctuation">\</span>_instance proxy<span class="token punctuation">\</span>_ip1 <span class="token punctuation">{</span> 
+
+state MASTER 
+
+interface <span class="token punctuation">{</span><span class="token punctuation">{</span> VIP<span class="token punctuation">\</span>_Interface <span class="token punctuation">}</span><span class="token punctuation">}</span> 
+
+virtual<span class="token punctuation">\</span>_router<span class="token punctuation">\</span>_id <span class="token number">1</span> 
+
+priority <span class="token number">255</span> 
+
+virtual<span class="token punctuation">\</span>_ipaddress <span class="token punctuation">{</span> 
+
+<span class="token variable"><span class="token variable">`</span>  <span class="token variable">`</span></span><span class="token punctuation">{</span><span class="token punctuation">{</span> VIP <span class="token punctuation">}</span><span class="token punctuation">}</span>/<span class="token punctuation">{</span><span class="token punctuation">{</span> VIP<span class="token punctuation">\</span>_Prefix <span class="token punctuation">}</span><span class="token punctuation">}</span> dev <span class="token punctuation">{</span><span class="token punctuation">{</span> VIP<span class="token punctuation">\</span>_Interface <span class="token punctuation">}</span><span class="token punctuation">}</span> label <span class="token punctuation">{</span><span class="token punctuation">{</span> VIP<span class="token punctuation">\</span>_Interface <span class="token punctuation">}</span><span class="token punctuation">}</span>:1 
+
+<span class="token punctuation">}</span> 
+
+track<span class="token punctuation">\</span>_script <span class="token punctuation">{</span> 
+
+<span class="token variable"><span class="token variable">`</span>  <span class="token variable">`</span></span>chk<span class="token punctuation">\</span>_squid<span class="token punctuation">\</span>_service 
+
+<span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span> 
+</code></pre></div><ol start="7"><li>Restart Keepalived service.</li> <li>Restart Squid service.</li></ol> <p><strong>Configuring the cluster-wide proxy during installation</strong></p> <p>Most production environments deny direct access to the Internet and instead access the available HTTP or HTTPS proxy. To use a proxy while configuring a new RHOCP cluster, the proxy settings of that proxy must be configured in the install-config.yaml file.</p> <p><strong>NOTE</strong></p> <p>For bare metal installations, if the node IP addresses are not assigned from the range specified in the networking.machineNetwork[].cidr field in the install-config.yaml file, they must be added in the proxy.noProxy field.</p> <p>Prerequisites:</p> <ul><li>An existing install-config.yaml file must be available.</li> <li>If the cluster requires access to certain sites, review those sites and determine whether any of them need to bypass the proxy. By default, all cluster egress traffic is proxied, including calls to hosting cloud provider APIs. These sites must be added to the spec.noProxy field of the proxy object to bypass the proxy, if necessary.</li></ul> <p>To configure the proxy settings of a new RHOCP cluster:</p> <ul><li>Edit the install-config.yaml file and add the following details:</li> <li><strong>baseDomain:</strong> Base domain of the DNS that hosts RHOCP.</li> <li><strong>name:</strong> Name of the RHOCP cluster. It is same as the new domain created in DNS.</li> <li><strong>replicas:</strong> Update this field to reflect the corresponding number of master or worker instances required for the RHOCP cluster as per the installation environment requirements. It is recommended to have a minimum of three master nodes and two worker nodes per RHOCP cluster.</li> <li><strong>clusterNetworks:</strong> This field is pre-populated by Red Hat. Update this field only if a custom cluster network is needed.</li> <li><strong>pullSecret:</strong> Update this field with the pull secret for the Red Hat account. Login to Red Hat account using the following link and retrieve the pull secret:</li></ul> <p><a href="https://cloud.redhat.com/openshift/install/metal/user-provisioned" target="_blank" rel="noopener noreferrer">https://cloud.redhat.com/openshift/install/metal/user-provisioned<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <ul><li><strong>sshKey:</strong> Update this field with the sshKey of the installer VM and copy the SSH key in install-config.yaml file. Generate the SSH key with the following command:</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ssh-keygen </span>
+</code></pre></div><p>The following install-config.yaml file is an example with the path /opt/NGS-OpenShift/playbooks/roles/generate_ignition_files/ignitions/install-config.yml that can be used to update the fields to suit your installation environment:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1 
+
+<span class="token key atrule">baseDomain</span><span class="token punctuation">:</span> <span class="token important">&amp;lt;name</span> of the base domain<span class="token important">&amp;gt;</span> 
+<span class="token key atrule">proxy</span><span class="token punctuation">:</span> 
+  httpProxy<span class="token punctuation">:</span> http<span class="token punctuation">:</span>//172.28.201.200<span class="token punctuation">:</span>3128/ 
+
+  httpsProxy<span class="token punctuation">:</span> http<span class="token punctuation">:</span>//172.28.201.200<span class="token punctuation">:</span>3128/ 
+
+  noProxy<span class="token punctuation">:</span> “.apps.ocp.isv.local<span class="token punctuation">,</span>.cluster.local<span class="token punctuation">,</span>.hp.com<span class="token punctuation">,</span>.hpcloud.net<span class="token punctuation">,</span>.hpecorp.net<span class="token punctuation">,</span>.localdomain.com<span class="token punctuation">,</span>.svc<span class="token punctuation">,</span>10.0.0.0/16<span class="token punctuation">,</span>10.0.0.1<span class="token punctuation">,</span>10.0.0.2<span class="token punctuation">,</span>10.0.0.3<span class="token punctuation">,</span>10.1.0.0/16<span class="token punctuation">,</span>12.128.0.0/14<span class="token punctuation">,</span>127.0.0.1<span class="token punctuation">,</span>16.110.135.51<span class="token punctuation">,</span>16.110.135.52<span class="token punctuation">,</span>172.17.0.0/16<span class="token punctuation">,</span>172.28.230.0/24<span class="token punctuation">,</span>172.28.230.100<span class="token punctuation">,</span>172.28.230.101<span class="token punctuation">,</span>172.28.230.102<span class="token punctuation">,</span>172.28.230.103<span class="token punctuation">,</span>172.28.230.105<span class="token punctuation">,</span>172.28.230.106<span class="token punctuation">,</span>172.28.230.107<span class="token punctuation">,</span>172.28.230.108<span class="token punctuation">,</span>172.28.230.109<span class="token punctuation">,</span>172.28.230.110<span class="token punctuation">,</span>172.28.230.111<span class="token punctuation">,</span>172.28.230.112<span class="token punctuation">,</span>172.28.230.113<span class="token punctuation">,</span>172.28.230.114<span class="token punctuation">,</span>172.28.230.115<span class="token punctuation">,</span>172.30.0.0/16<span class="token punctuation">,</span>api<span class="token punctuation">,</span>api<span class="token punctuation">-</span>int<span class="token punctuation">,</span>api<span class="token punctuation">-</span>int.ocp.isv.local<span class="token punctuation">,</span>api.ocp.isv.local<span class="token punctuation">,</span>bootstrap<span class="token punctuation">,</span>bootstrap.ocp.isv.local<span class="token punctuation">,</span>haproxy.ocp.isv.local<span class="token punctuation">,</span>isv.local<span class="token punctuation">,</span>localaddress<span class="token punctuation">,</span>localhost<span class="token punctuation">,</span>master1<span class="token punctuation">,</span>master1.ocp.isv.local<span class="token punctuation">,</span>master2<span class="token punctuation">,</span>master2.ocp.isv.local<span class="token punctuation">,</span>master3<span class="token punctuation">,</span>master3.ocp.isv.local<span class="token punctuation">,</span>resolver.hpecorp.net<span class="token punctuation">,</span>worker1<span class="token punctuation">,</span>worker1.ocp.isv.local<span class="token punctuation">,</span>worker2<span class="token punctuation">,</span>worker2.ocp.isv.local<span class="token punctuation">,</span>worker3<span class="token punctuation">,</span>worker3.ocp.isv.local&quot; 
+compute<span class="token important">**:**</span> 
+
+<span class="token important">**-**</span> hyperthreading<span class="token important">**:**</span> Enabled 
+
+name<span class="token important">**:**</span> worker 
+
+replicas<span class="token important">**:**</span> 2 
+
+controlPlane<span class="token important">**:**</span> 
+
+hyperthreading<span class="token important">**:**</span> Enabled 
+
+name<span class="token important">**:**</span> master 
+
+replicas<span class="token important">**:**</span> 3 
+
+metadata<span class="token important">**:**</span> 
+
+name<span class="token important">**:**</span> <span class="token important">&amp;lt;name</span> of the cluster<span class="token punctuation">,</span> same as the new domain under the base domain created<span class="token important">&amp;gt;</span> 
+
+networking<span class="token important">**:**</span> 
+
+clusterNetworks<span class="token important">**:**</span> 
+
+<span class="token important">**-**</span> cidr<span class="token important">**:**</span> 12.128.0.0/14 
+
+hostPrefix<span class="token important">**:**</span> 23 
+
+networkType<span class="token important">**:**</span> OpenShiftSDN 
+
+serviceNetwork<span class="token important">**:**</span> 
+
+<span class="token punctuation">-</span> 172.30.0.0/16 
+
+platform<span class="token important">**:**</span> 
+
+none<span class="token important">**:**</span> <span class="token important">**</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token important">**</span> 
+
+<span class="token key atrule">pullSecret</span><span class="token punctuation">:</span> ‘pull secret provided as per the Red Hat account’ 
+
+<span class="token key atrule">sshKey</span><span class="token punctuation">:</span> ‘ssh key of the installer VM’ 
+
+</code></pre></div><p><strong>NOTE</strong></p> <p>The ignition files have a time-out period of 24 hours, and it is critical that the clusters are created within 24 hours after generating the ignition files. If the time-out period crosses 24 hours, clean up the files from the directory where the ignition files were saved to regenerate the ignition files.</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/hpe-solutions-openshift/4.10-dl/Troubleshooting-Using-Manual-Processes/Installing-and-Configuring-Bind-DNS.html" class="prev">
+        Installing and configuring master/slave Bind DNS on head nodes
+      </a></span> <span class="next"><a href="/hpe-solutions-openshift/4.10-dl/Troubleshooting-Using-Manual-Processes/OCP-Cluster-Deployment.html">
+        OCP Cluster Deployment
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/hpe-solutions-openshift/4.10-dl/assets/js/app.d2994e5a.js" defer></script><script src="/hpe-solutions-openshift/4.10-dl/assets/js/2.7c26c33b.js" defer></script><script src="/hpe-solutions-openshift/4.10-dl/assets/js/23.d0cfcce9.js" defer></script>
+  </body>
+</html>
