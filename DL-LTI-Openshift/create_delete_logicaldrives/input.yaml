@@ -1,0 +1,24 @@
+ILOServers:
+   - ILOIP: 172.28.*.*
+     ILOuser: admin
+     ILOPassword: Password
+     controller: 12
+     RAID: Raid1
+     PhysicalDrives: 1I:1:1,1I:1:2  
+
+   - ILOIP: 172.28.*.*
+     ILOuser: admin
+     ILOPassword: Password
+     controller: 1
+     RAID: Raid1
+     PhysicalDrives: 1I:3:1,1I:3:2
+
+   - ILOIP: 172.28.*.*
+     ILOuser: admin
+     ILOPassword: Password
+     controller: 11
+     RAID: Raid1
+     PhysicalDrives: 1I:3:1,1I:3:2
+
+
+ 

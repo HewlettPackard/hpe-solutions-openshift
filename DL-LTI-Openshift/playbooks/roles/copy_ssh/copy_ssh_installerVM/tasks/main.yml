@@ -1,0 +1,3 @@
+---
+   - name: Copy ssh key to VM
+     shell: "sshpass -p '{{ rhel7_installer_password }}' ssh-copy-id -f -o StrictHostKeyChecking=no root@{{ rhel7_installer_IP }}"

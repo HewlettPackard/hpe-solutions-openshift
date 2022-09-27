@@ -1,0 +1,69 @@
+    - name: Checking if the host is already registered?
+      shell: subscription-manager status | grep -e "Current"|awk '{print $3}'
+      register: issubscribed
+      ignore_errors: yes
+
+    - name: Registering hosts to Red Hat Subscription Manager
+      redhat_subscription:
+          state: present
+          username: "{{ rhsub_username }}"
+          password: "{{ rhsub_password }}"
+          force_register: yes
+          auto_attach: yes
+      when:
+          - issubscribed.stdout.find('Current') == -1
+      ignore_errors: yes
+
+    - name: Install required ansible packages
+      command: ansible-galaxy collection install ansible.posix
+      delegate_to: localhost
+
+    - name: Pulling the latest subscription data from RHSM
+      command: subscription-manager refresh
+
+    - name: Install KVM Virtualization  packages
+      become: yes
+      yum:
+        name:
+          - virt-manager
+          - virt-install
+          - virt-viewer
+          - libvirt
+          - cockpit-machines
+        state: latest
+
+    - name: Enable libvirtd service
+      command: systemctl enable libvirtd
+
+    - name: Start libvirtd service
+      command: systemctl start libvirtd
+
+    - name: Enable cockpit service
+      command: systemctl enable cockpit
+
+    - name: Start cockpit service
+      command: systemctl start cockpit
+
+    - name: Status cockpit service
+      command: systemctl status cockpit
+      register: output
+
+    - debug:
+          var: output.stdout_lines
+
+    - name: Status libvirtd service
+      command: systemctl status libvirtd
+      register: output1
+
+    - debug:
+           var: output1.stdout_lines
+
+
+    - name: Validate host virtualization
+      command: virt-host-validate
+      register: output2
+
+    - debug:
+           var: output2.stdout_lines
+
+

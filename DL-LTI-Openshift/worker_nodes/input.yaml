@@ -1,0 +1,38 @@
+servers:
+ - Server_serial_number  : 2M2XXXXXXXX
+   ILO_Address           : 172.28.*.*
+   ILO_Username          : admin
+   ILO_Password          : *******
+   Hostname              : worker1.ocp.isv.local      #FQDN of worker node as given in Binddns entry
+   Host_Username         : root
+   Host_Password         : ********
+   Bonding_Interface1    : eno*
+   Bonding_Interface2    : eno*
+   Host_OS_disk          : sda
+   Host_VlanID           : 230
+   Host_IP               : 172.28.*.*                 #IP of worker node as given in Binddns entry
+   Host_Netmask          : 255.*.*.*
+   Host_Prefix           : 24
+   Host_Gateway          : 172.28.*.*
+   Host_DNS1             : 172.28.*.*                 #Binddns master IP
+   Host_DNS2             : 172.28.*.*                 #Binddns slave1 IP
+   Host_DNS3             : 172.28.*.*                 #Binddns slave2 IP
+   SquidProxy_IP         : 172.28.*.*                 #Virtual Squid Proxy IP 
+   SquidProxy_Port       : 3128                     
+   Host_Domain           : ocp.isv.local
+
+
+config:
+   HTTP_server_base_url: http://172.28.230.114/      #rhel7 Installer VM ip address
+   HTTP_file_path: /usr/share/nginx/html/
+   OS_type: rhel8
+   OS_image_name: rhel-8.5-x86_64-dvd.iso            #ISO image should be present in /usr/share/nginx/html/
+   base_kickstart_filepath: /opt/ISV-OpenShift-develop/worker_nodes/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg
+
+
+rhsub_username: ******
+rhsub_password: *******
+pool_id: ************                                #Pool ID for Redhat OpenShift Container Platform and Openshift Infrastructure
+
+solution_network_ip: 172.28.201.200
+corporate_ntp: *.*.*.*                               #Corporate NTP server IP address

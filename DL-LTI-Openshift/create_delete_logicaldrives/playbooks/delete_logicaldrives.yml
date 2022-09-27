@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  vars_files: ../input.yaml
+  gather_facts: True
+  roles:
+    - { role: roles/delete_logicaldrives }
