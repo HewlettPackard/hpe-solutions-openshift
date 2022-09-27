@@ -1,0 +1,44 @@
+---
+  - name: copy ISO image to head node
+    become: true
+    copy:
+      src: /usr/share/nginx/html/rhel-server-7.9-x86_64-dvd.iso
+      dest: /tmp/
+      owner: root
+      group: root
+      mode: 0644
+
+  - name: copy ks.cfg file to head node
+    become: true
+    template:
+      src: ks.conf.j2
+      dest: /tmp/ks.cfg
+      owner: root
+      group: root
+      mode: 777
+
+  - name: create installer VM on KVM node1
+    shell:
+      cmd: >-
+          virt-install
+          --name rhel7_installer
+          --memory=16000
+          --vcpus=4
+          --os-type linux
+          --location /tmp/rhel-server-7.9-x86_64-dvd.iso
+          --disk path=/mnt/ocp_vms/installer.qcow2,device=disk,size=250,bus=virtio
+          --network bridge={{ common.interface_name }}
+          --os-variant=rhel7.0
+          --autostart
+          --console pty,target_type=virtio
+          --initrd-inject /tmp/ks.cfg
+          --extra-args "inst.ks=file:/ks.cfg console=tty0 console=ttyS0,115200n8"
+          --wait 8
+
+  - name: ping the VM to check it's reachable
+    wait_for:
+      port: 22
+      host: "{{ rhel7_installer_IP }}"
+      search_regex: OpenSSH
+      delay: 10
+

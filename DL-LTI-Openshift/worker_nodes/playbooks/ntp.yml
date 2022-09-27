@@ -1,0 +1,9 @@
+---
+- name: Setup NTP
+  hosts: new_workers
+  gather_facts: False
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/ntp
+

@@ -1,0 +1,140 @@
+###
+## Copyright (2020) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+####
+
+---
+    - name: Check that the dnsmasq.conf.bakup exists
+      stat:
+        path: /etc/dnsmasq.conf.bakup
+      register: stat_result
+
+    - name: backup dns config 
+      copy:
+        src: "/etc/dnsmasq.conf"
+        dest: "/etc/dnsmasq.conf.bakup"
+        remote_src: yes
+        mode: 0775
+      when: stat_result.stat.exists == False
+
+
+    - name: copy Dnsconfig to back 
+      copy:
+        src: "/etc/dnsmasq.conf.bakup"
+        dest: "{{ base_path }}/playbooks/roles/deploy_ipxe_ocp/files/dnsmasq.conf.org"
+        remote_src: yes
+        mode: 0775
+
+    - name: Create local dnsconfig 
+      copy:
+        src: "{{ base_path }}/playbooks/roles/deploy_ipxe_ocp/files/dnsmasq.conf.org"
+        dest: "{{ base_path }}/playbooks/roles/deploy_ipxe_ocp/files/dnsmasq.conf"
+        remote_src: yes
+        mode: 0775
+        follow: yes
+
+    - name: Insert a block at the end of a file.
+      blockinfile:
+        path: "{{ base_path }}/playbooks/roles/deploy_ipxe_ocp/files/dnsmasq.conf"
+        marker: "# This DHCP scope settings"
+        block: |
+          interface={{ interface_name }} 
+          domain={{ common.app_domain }}
+          dhcp-option=1,{{ servers[0].Host_Netmask }}
+          dhcp-option=3,{{ servers[0].Host_Gateway }}
+          dhcp-option=6,{{ master_binddns }},{{ slave1_binddns }},{{ slave2_binddns }}
+          dhcp-range={{ dhcp_range }}
+          listen-address=::1,127.0.0.1,{{ rhel7_installer_IP }}
+          dhcp-authoritative          
+
+    - name: Insert a block at the end of a file.
+      blockinfile:
+        path: "{{ base_path }}/playbooks/roles/deploy_ipxe_ocp/files/dnsmasq.conf"
+        marker: "# This DHCP boot settings"
+        block: |
+          enable-tftp
+          tftp-root=/var/lib/tftpboot/
+          tftp-secure
+          # Legacy PXE
+          dhcp-match=set:bios,option:client-arch,0
+          dhcp-boot=tag:bios,undionly.kpxe
+          # UEFI
+          dhcp-match=set:efi32,option:client-arch,6
+          dhcp-boot=tag:efi32,ipxe.efi
+          dhcp-match=set:efibc,option:client-arch,7
+          dhcp-boot=tag:efibc,ipxe.efi
+          dhcp-match=set:efi64,option:client-arch,9
+          dhcp-boot=tag:efi64,ipxe.efi
+          # iPXE - chainload to matchbox ipxe boot script
+          dhcp-userclass=set:ipxe,iPXE
+          dhcp-boot=tag:ipxe,http://{{ rhel7_installer_IP }}:8080/boot.ipxe
+
+    - name: Insert a block at the end of a file.
+      blockinfile:
+        path: "{{ base_path }}/playbooks/roles/deploy_ipxe_ocp/files/dnsmasq.conf"
+        marker: "# This mac to ip static mapping"
+        block: |
+          {% for item in ocp_bootstrap %}
+          dhcp-host={{ item.mac_address }},{{ item.ip }}
+          {% endfor %}
+          {% for item in ocp_masters %}
+          dhcp-host={{ item.mac_address }},{{ item.ip }}
+          {% endfor %}
+          {% for item in ocp_workers %}
+          dhcp-host={{ item.mac_address }},{{ item.ip }}
+          {% endfor %}
+
+    - name: Create local dnsconfig 
+      copy:
+        src: "{{ base_path }}/playbooks/roles/deploy_ipxe_ocp/files/dnsmasq.conf"
+        dest: /etc/dnsmasq.conf
+        remote_src: yes
+        mode: 0775
+        follow: yes
+
+    - name: verify dnsmasq configuration 
+      command: dnsmasq --test
+
+    - name: Add Dnsmasq permission on tftp
+      command: chown nobody -R "/var/lib/tftpboot/"
+
+
+    - name: Enable and start dnsmasq service 
+      service:
+        name: dnsmasq
+        enabled: yes
+        state: restarted
+
+    - name : Configure firewall to allow services
+      firewalld:
+        service: "{{ item }}"
+        permanent: yes
+        immediate: yes
+        state: enabled
+      with_items:
+        - dhcp
+        - tftp
+        - http
+        - dns
+
+    - name : Configure firewall to allow port
+      firewalld:
+        port: "{{ item }}"
+        permanent: yes
+        immediate: yes
+        state: enabled
+      with_items:
+        - "8080/tcp"
+        - "8081/tcp"
+

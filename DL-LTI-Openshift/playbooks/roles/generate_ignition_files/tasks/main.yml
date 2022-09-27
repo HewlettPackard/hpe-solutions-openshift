@@ -1,0 +1,21 @@
+---
+  - name: Delete existing dist folder
+    file:
+      path: "{{ base_path }}/playbooks/roles/generate_ignition_files/ignitions"
+      state: absent
+
+  - name: Create Ignition directory
+    file:
+      path: "{{ base_path }}/playbooks/roles/generate_ignition_files/ignitions"
+      state: directory
+
+  - name: install-config file
+    ansible.builtin.template:
+      src: install-config.conf.j2
+      dest: "{{ base_path }}/playbooks/roles/generate_ignition_files/ignitions/install-config.yaml"
+
+  - name: create manifests files
+    command: "{{ base_path }}/playbooks/roles/download_ocp_packages/library/openshift_components/openshift-install create manifests --dir={{ base_path }}/playbooks/roles/generate_ignition_files/ignitions"
+
+  - name: create ignition files
+    command: "{{ base_path }}/playbooks/roles/download_ocp_packages/library/openshift_components/openshift-install create ignition-configs  --dir={{ base_path }}/playbooks/roles/generate_ignition_files/ignitions"

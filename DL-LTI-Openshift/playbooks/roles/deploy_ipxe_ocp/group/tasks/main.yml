@@ -1,0 +1,234 @@
+###
+## Copyright (2020) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+####
+
+---
+    - name: copy group to back 
+      copy:
+        src: "{{ base_path }}/playbooks/roles/deploy_ipxe_ocp/files/group/{{ item }}"
+        dest: /var/lib/matchbox/groups/
+        mode: 0775
+        follow: yes
+      with_items:
+        - bootstrap.json
+        - master1.json
+        - master2.json
+        - master3.json
+        - worker1.json
+        - worker2.json
+        - worker3.json
+
+    - name: create bootstrap group.
+      blockinfile:
+        path: /var/lib/matchbox/groups/bootstrap.json
+        block: |
+          ".
+          {
+           "id": "bootstrap",
+           "name": "Bootstrap server",
+           "profile": "bootstrap",
+           "selector": {
+            "mac": "{% for item in ocp_bootstrap %}{{ item.mac_address }}{% endfor %}"
+           }
+          }
+          ".
+
+    - name: change json file 
+      lineinfile: 
+        dest: /var/lib/matchbox/groups/bootstrap.json
+        regexp: "^# *"
+        state: absent
+
+    - name: change json file2
+      lineinfile: 
+        dest: /var/lib/matchbox/groups/bootstrap.json
+        regexp: '^".'
+        state: absent
+    
+    - name: create master1 group.
+      blockinfile:
+        path: /var/lib/matchbox/groups/master1.json
+        block: |
+          ".
+          {
+           "id": "master",
+           "name": "Master server 1",
+           "profile": "master",
+           "selector": {
+            "mac": "{{ ocp_masters[0].mac_address }}"
+           }
+          }
+          ".
+
+    - name: change json file 
+      lineinfile: 
+        dest: /var/lib/matchbox/groups/master1.json
+        regexp: "^# *"
+        state: absent
+
+    - name: change json file2
+      lineinfile: 
+        dest: /var/lib/matchbox/groups/master1.json
+        regexp: '^".'
+        state: absent
+  
+    - name: create master2 group.
+      blockinfile:
+        path: /var/lib/matchbox/groups/master2.json
+        block: |
+          ".
+          {
+           "id": "master",
+           "name": "Master server 2",
+           "profile": "master",
+           "selector": {
+            "mac": "{{ ocp_masters[1].mac_address }}"
+           }
+          }
+          ".
+
+    - name: change json file 
+      lineinfile: 
+        dest: /var/lib/matchbox/groups/master2.json
+        regexp: "^# *"
+        state: absent
+
+    - name: change json file2
+      lineinfile: 
+        dest: /var/lib/matchbox/groups/master2.json
+        regexp: '^".'
+        state: absent
+
+    - name: create master3 group.
+      blockinfile:
+        path: /var/lib/matchbox/groups/master3.json
+        block: |
+          ".
+          {
+           "id": "master",
+           "name": "Master server 3",
+           "profile": "master",
+           "selector": {
+            "mac": "{{ ocp_masters[2].mac_address }}"
+           }
+          }
+          ".
+
+    - name: change json file 
+      lineinfile: 
+        dest: /var/lib/matchbox/groups/master3.json
+        regexp: "^# *"
+        state: absent
+
+    - name: change json file2
+      lineinfile: 
+        dest: /var/lib/matchbox/groups/master3.json
+        regexp: '^".'
+        state: absent
+
+
+    - name: create worker1 group.
+      blockinfile:
+        path: /var/lib/matchbox/groups/worker1.json
+        block: |
+          ".
+          {
+           "id": "worker",
+           "name": "worker server 1",
+           "profile": "worker",
+           "selector": {
+            "mac": "{{ ocp_workers[0].mac_address }}"
+           }
+          }
+          ".
+
+    - name: change json file 
+      lineinfile: 
+        dest: /var/lib/matchbox/groups/worker1.json
+        regexp: "^# *"
+        state: absent
+
+    - name: change json file2
+      lineinfile: 
+        dest: /var/lib/matchbox/groups/worker1.json
+        regexp: '^".'
+        state: absent
+
+    
+    - name: create worker2 group.
+      blockinfile:
+        path: /var/lib/matchbox/groups/worker2.json
+        block: |
+          ".
+          {
+           "id": "worker",
+           "name": "worker server 2",
+           "profile": "worker",
+           "selector": {
+            "mac": "{{ ocp_workers[1].mac_address }}"
+           }
+          }
+          ".
+
+    - name: change json file 
+      lineinfile: 
+        dest: /var/lib/matchbox/groups/worker2.json
+        regexp: "^# *"
+        state: absent
+
+    - name: change json file2
+      lineinfile: 
+        dest: /var/lib/matchbox/groups/worker2.json
+        regexp: '^".'
+        state: absent
+
+    - name: create worker3 group.
+      blockinfile:
+        path: /var/lib/matchbox/groups/worker3.json
+        block: |
+          ".
+          {
+           "id": "worker",
+           "name": "worker server 3",
+           "profile": "worker",
+           "selector": {
+            "mac": "{{ ocp_workers[2].mac_address }}"
+           }
+          }
+          ".
+
+    - name: change json file 
+      lineinfile: 
+        dest: /var/lib/matchbox/groups/worker3.json
+        regexp: "^# *"
+        state: absent
+
+    - name: change json file2
+      lineinfile: 
+        dest: /var/lib/matchbox/groups/worker3.json
+        regexp: '^".'
+        state: absent
+
+
+    - name: change onwer to matchbox 
+      command: chown -R matchbox:matchbox /var/lib/matchbox
+        
+   
+    - name: Enable and start matchbox  service 
+      service:
+        name: matchbox
+        enabled: yes
+        state: restarted
+
