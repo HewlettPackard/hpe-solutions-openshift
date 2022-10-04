@@ -8,7 +8,7 @@ This section covers the steps to add RHEL 8.5 worker nodes to an existing Red Ha
 
 	**Input File Update:-**
 
-		1. User has to update the input.yaml file in /opt/ISV-Openshit/create_delete_logicaldrives directory to  execute the logical drive script.
+		1. User has to update the input.yaml file in /opt/hpe-solutions-openshift/DL-LTI-Openshift/create_delete_logicaldrives directory to  execute the logical drive script.
 		2. User needs to update all the details in the input.yaml file which include:-
 							
                 ' ILOServers:
@@ -53,11 +53,11 @@ This section covers the steps to add RHEL 8.5 worker nodes to an existing Red Ha
 
 					' # ansible-playbook site.yml '
 
-2. Cleanup and reboot the RHEL 8.5  [Installer machine](https://github.hpe.com/Solutions/ISV-OpenShift/blob/develop/Readme.md "https://github.hpe.com/Solutions/ISV-OpenShift/blob/develop/Readme.md"), so the machine can be added as worker node to the existing OpenShift Container Platform cluster.
+2. Cleanup and reboot the RHEL 8.5  [Installer machine](https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md "https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md"), so the machine can be added as worker node to the existing OpenShift Container Platform cluster.
 
 3. Login to the Installer VM (that we created as a part of rhel7_installerVM.yml -- it would have created one KVM VM on one of the head nodes)
 
-4. Navigate to the directory /opt/ISV-OpenShift-develop/worker_nodes/
+4. Navigate to the directory /opt/hpe-solutions-openshift/LTI-OCP/worker_nodes/
 
 5. Here we can find input.yaml and inventory/hosts file , enter the values as per your setup.
 
