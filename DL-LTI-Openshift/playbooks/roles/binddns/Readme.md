@@ -10,14 +10,14 @@ This script lets you deploy the BIND DNS with one master and two slave configura
 
 **Pre-requisite:-**
 
-1. RHEL 8.5  [Installer machine](https://hewlettpackard.github.io/hpe-solutions-hpecp/5.2-Synergy/Solution-Deployment/Host-Configuration.html#installer-machine "https://hewlettpackard.github.io/hpe-solutions-hpecp/5.2-synergy/solution-deployment/host-configuration.html#installer-machine") is essential to initiate the binddns deployment process.
+1. RHEL 8.5  [Installer machine](https://github.hpe.com/Solutions/Openshift-Synergy-RA/blob/LTI-OCP-4.10/LTI-OCP/Readme.md "https://github.hpe.com/Solutions/Openshift-Synergy-RA/blob/LTI-OCP-4.10/LTI-OCP/Readme.md") is essential to initiate the binddns deployment process.
 2. Execute the following commands in the Ansible Engine to download the repositories.
 
                    '  # cd /opt
 
                       # yum install -y git
 
-                      # git clone  <https://github.hpe.com/Solutions/ISV-OpenShift.git> '
+                      # git clone  <https://github.hpe.com/Solutions/Openshift-Synergy-RA.git> '
 
 3. Generate and copy the ssh keys from ansible engine/installer machine to all the three binddns machines.
 
@@ -28,7 +28,7 @@ This script lets you deploy the BIND DNS with one master and two slave configura
 
 **Input File Update:-**
 
-1. User has to update the input.yaml file in /opt/ISV-Openshit directory to  execute the binddns script.
+1. User has to update the input.yaml file in /opt/Openshift-Synergy-RA/LTI-OCP/ directory to  execute the binddns script.
 2. User needs to update all the binddns deployment related details in the input.yaml file which include:-
                       
                       ' common:

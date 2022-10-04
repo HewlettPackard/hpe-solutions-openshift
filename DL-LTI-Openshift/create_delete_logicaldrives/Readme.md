@@ -6,19 +6,19 @@ This script lets you create and delete logical drives on the head nodes/compute 
 
 **Pre-requisite:-**
 
-1. RHEL 8.5  [Installer machine](https://hewlettpackard.github.io/hpe-solutions-hpecp/5.2-Synergy/Solution-Deployment/Host-Configuration.html#installer-machine "https://hewlettpackard.github.io/hpe-solutions-hpecp/5.2-synergy/solution-deployment/host-configuration.html#installer-machine") is essential to initiate the binddns deployment process.
+1. RHEL 8.5  [Installer machine](https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md "https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md") is essential to initiate the binddns deployment process.
 2. Execute the following commands in the Ansible Engine to download the repositories.
 
                    '  # cd /opt
 
                       # yum install -y git
 
-                      # git clone  <https://github.hpe.com/Solutions/ISV-OpenShift.git> '
+                      # git clone  <https://github.com/HewlettPackard/hpe-solutions-openshift.git> '
 
 
 **Input File Update:-**
 
-1. User has to update the input.yaml file in /opt/ISV-Openshit/create_delete_logicaldrives directory to  execute the logical drive script.
+1. User has to update the input.yaml file in /opt/hpe-solutions-openshift/DL-LTI-Openshift/create_delete_logicaldrives directory to  execute the logical drive script.
 2. User needs to update all the details in the input.yaml file which include:-
                       
                       ' ILOServers:

@@ -1,9 +1,11 @@
 apiVersion: v1
 baseDomain: {{ common.base_domain }}
+{% if squid_proxy_IP != None %}
 proxy:
   httpProxy: http://{{ squid_proxy_IP }}:{{ squid_port }}/
   httpsProxy: http://{{ squid_proxy_IP }}:{{ squid_port }}/
   noProxy: {% for item in ocp_bootstrap %}{{ item.ip }},{{ item.name }},{{ item.fqdn }}{% endfor %},{{ squid_proxy_IP }},{{ rhel7_installer_IP }},{{ VIP }},{{ haproxy_fqdn }},{% for item in ocp_masters %}{{ item.ip }},{{ item.name }},{{ item.fqdn }},{% endfor %}{% for item in ocp_workers %}{{ item.ip }},{{ item.name }},{{ item.fqdn }},{% endfor %}{{ common.customerforwarderdns_fqdn }},{{ common.base_domain }},localaddress,.localdomain.com,.hpecorp.net,.hp.com,.hpcloud.net,.cluster.local,.svc,172.30.0.0/16,172.17.0.0/16,10.1.0.0/16,10.0.0.1,10.0.0.2,10.0.0.3,{{ common.solution_subnet_ip }},localhost,127.0.0.1,{{ common.ansible_engine_ip }},{{ master_binddns }},{{ slave1_binddns }},{{ slave2_binddns }},{% for item in dns_forwarder %}{{ item.ip }},{% endfor %}api.{{ common.app_domain }},api-int.{{ common.app_domain }},api,api-int,.apps.{{ common.app_domain }}
+{% endif %}
 compute:
 - hyperthreading: Enabled
   name: worker
