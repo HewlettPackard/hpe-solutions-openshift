@@ -189,7 +189,9 @@ A sample **hosts** files is as follows
 
 1.  Openshift Platform can be deployed by running site.yml or by running individual playbooks. Each playbook description can be found further in this document.
 
-2.  Run the below command to execute the Lite Touch Installation.
+2. If you are not using proxy based setup, comment 'import_playbook: playbooks/squid_proxy.yml' in site.yml file.
+
+3.  Run the below command to execute the Lite Touch Installation.
 
 			'ansible-playbook -i hosts site.yml'
 
@@ -245,7 +247,7 @@ playbooks to be followed are:
 
 **squid_proxy.yml**
 
--   This playbook contains the script to deploy the squid proxy on the head nodes in order to get web access.
+-   This playbook contains the script to deploy the squid proxy on the head nodes in order to get web access. If you are not using proxy based setup skip this playbook.
 
 **download_ocp_packages.yml**
 
