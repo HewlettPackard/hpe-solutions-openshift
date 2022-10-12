@@ -6,7 +6,7 @@
 
 **Pre-requisite:-**
 
-1. RHEL 8.5  [Installer machine](https://github.hpe.com/Solutions/ISV-OpenShift/blob/develop/Readme.md "https://github.hpe.com/Solutions/ISV-OpenShift/blob/develop/Readme.md") is essential to initiate the installation of RHCOS.
+1. RHEL 8.5  [Installer machine](https://github.hpe.com/Solutions/Openshift-Synergy-RA/blob/LTI-OCP-4.10/LTI-OCP/Readme.md "https://github.hpe.com/Solutions/Openshift-Synergy-RA/blob/LTI-OCP-4.10/LTI-OCP/Readme.md") is essential to initiate the installation of RHCOS.
 
 2. Execute the following commands in the Ansible Engine to download the repositories.
 
@@ -14,7 +14,7 @@
 
                       # yum install -y git
 
-                      # git clone  <https://github.hpe.com/Solutions/ISV-OpenShift.git> '
+                      # git clone  <https://github.hpe.com/Solutions/Openshift-Synergy-RA.git> '
 
 3. Generate and copy the ssh keys from ansible engine/installer machine to rhel7 VM.
 
@@ -26,7 +26,7 @@
 
 **Input File Update:-**
 
-1. User has to update the input.yaml file in /opt/ISV-Openshit directory to execute the IPXe script.
+1. User has to update the input.yaml file in /opt/Openshift-Synergy-RA/LTI-OCP/ directory to execute the IPXe script.
 2. User needs to update all the IPXe deployment related details in the input.yaml file which include:-
 
                       ' servers:
@@ -66,8 +66,8 @@
                         #####################################################################
                         # Details of Ansible User Credentials required to set-up the iPXE
 
-                        #Path to ISV-OpenShift-develop Directory; Example: /opt/ISV-OpenShift-develop(no trailing forwardslash required)
-                        base_path: '/opt/ISV-OpenShift-develop'
+                        #Path to LTI-OCP Directory; Example: /opt/Openshift-Synergy-RA/LTI-OCP(no trailing forwardslash required)
+                        base_path: '/opt/Openshift-Synergy-RA/LTI-OCP'
 
                         #Is Environment Airgapped; ('yes' or 'no'):
                         is_environment_airgap: 'no'

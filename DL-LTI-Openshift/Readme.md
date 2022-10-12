@@ -1,4 +1,4 @@
-***Lite Touch Installation of RedHat OpenShift Platform using Ansible playbook***
+**Lite touch Installation of OpenShift Platform using Ansible playbook**
 
 ### **Installer Machine Prerequisite:**
 
@@ -24,9 +24,9 @@ RHEL 8.5 Installer machine the following configurations.
 	    'mkdir /opt
 		 cd /opt
 		 yum install -y git
-		 git clone https://github.com/HewlettPackard/hpe-solutions-openshift.git'
+		 git clone <https://github.com/HewlettPackard/hpe-solutions-openshift.git>'
 
-7.  Setup the installer machine to configure the nginx, development tools and other python packages required for LTI installation. Navigate to the directory,    /opt/hpe-solutions-openshift/DL-LTI-Openshift and run the below command.
+7.  Setup the installer machine to configure the nginx, development tools and other python packages required for LTI installation. Navigate to the directory,    /opt/hpe-solutions-openshift/DL-LTI-Openshift/ and run the below command.
 
          'sh setup.sh'
 
@@ -81,8 +81,17 @@ RHEL 8.5 Installer machine the following configurations.
 
 		To delete all the existing logical drives in the server in case if any and to create new logical drives named 'RHEL Boot Volume' in respective ILO servers run the site.yml playbook inside create_delete_logicaldrives directory with the below mentioned command                   
 
-				' # ansible-playbook site.yml '
+					' # ansible-playbook site.yml '
 
+### *Note* If you do not have proxy or VLAN based setup leave these variables empty as shown below
+	servers:
+	  Host_VlanID:                          
+	  corporate_proxy:                        
+	  corporate_proxy_port:
+	  
+	squid_proxy_IP: 
+	corporate_proxy: 
+	squid_port:
 
 ### **Input files**
 
@@ -90,13 +99,13 @@ RHEL 8.5 Installer machine the following configurations.
 
 We can provide the input variables in any one of the below methods
 
-**Method 1**: Input.py : Automation way of taking input
+Method 1.  **Input.py : Automation way of taking input**
 
-Through the input.py, go to the directory /opt/hpe-solutions-openshift/DL-LTI-Openshift and run the below command.
-             'python input.py'
+Through the input.py, go to the directory /opt/hpe-solutions-openshift/DL-LTI-Openshift/ and run the below command.
+
+            'python input.py'
 
 Here it will prompt for values for the fields enter one by one.
-
 A sample input collection through input.py is as follows.
 
 			'Enter server serial number for the first head node server ( Example: 2M2210020X )
@@ -114,9 +123,9 @@ A sample input collection through input.py is as follows.
 After execution of the command input.py it will generate input.yaml and hosts file in the same location.
 
 
-**Method 2**.  **Input.yaml: Manually editing input file**
+Method 2.  **Input.yaml: Manually editing input file**
 
-Go to the directory /opt/hpe-solutions-openshift/DL-LTI-Openshift, here we will have input_sample.yaml and hosts_sample files
+Go to the directory /opt/hpe-solutions-openshift/DL-LTI-Openshift/, here we will have input_sample.yaml and hosts_sample files
 
 Rename those two files as input.yaml and hosts and open the files and fill the values as per your setup.
 
@@ -151,36 +160,38 @@ A sample input.yaml file is as follows with a few filled parameters.
 
 A sample **hosts** files is as follows
 
-				   '[kvm_nodes]
-					172.28.*.*
-					172.28.*.*
-					172.28.*.*
+			   '[kvm_nodes]
+				172.28.*.*
+				172.28.*.*
+				172.28.*.*
 
-					[ansible_host]
-					172.28.*.*
+				[ansible_host]
+				172.28.*.*
 
-					[rhel7_installerVM]
-					172.28.*.*
+				[rhel7_installerVM]
+				172.28.*.*
 
-					[binddns_masters]
-					172.28.*.*
+				[binddns_masters]
+				172.28.*.*
 
-					[binddns_slaves]
-					172.28.*.*
-					172.28.*.*
+				[binddns_slaves]
+				172.28.*.*
+				172.28.*.*
 
-					[masters_info]
-					master1 ip=172.28.*.* hostname=headnode1
+				[masters_info]
+				master1 ip=172.28.*.* hostname=headnode1
 
-					[slaves_info]
-					slave1 ip=172.28.*.* hostname=headnode2
-					slave2 ip=172.28.*.* hostname=headnode3'
+				[slaves_info]
+				slave1 ip=172.28.*.* hostname=headnode2
+				slave2 ip=172.28.*.* hostname=headnode3'
 
 ### **Playbook execution** 
 
-1.  HPE Solution LTI for RedHat OpenShift Container Platform can be deployed by running site.yml or by running individual playbooks. Each playbook description can be found further in this document.
+1.  Openshift Platform can be deployed by running site.yml or by running individual playbooks. Each playbook description can be found further in this document.
 
-2.  Run the below command to execute the Lite Touch Installation.
+2. If you are not using proxy based setup, comment 'import_playbook: playbooks/squid_proxy.yml' in site.yml file.
+
+3.  Run the below command to execute the Lite Touch Installation.
 
 			'ansible-playbook -i hosts site.yml'
 
@@ -208,7 +219,7 @@ playbooks to be followed are:
 
 **site.yml**
 
--   This playbook contains the script to deploy HPE Solution LTI  for RedHat OpenShift Container PlatformOpenshift Container platform starting from the OS_deployment until cluster up.
+-   This playbook contains the script to deploy Openshift Container platform starting from the OS_deployment until cluster up.
 
 **rhel8_os_deployment.yml**
 
@@ -236,7 +247,7 @@ playbooks to be followed are:
 
 **squid_proxy.yml**
 
--   This playbook contains the script to deploy the squid proxy on the head nodes in order to get web access.
+-   This playbook contains the script to deploy the squid proxy on the head nodes in order to get web access. If you are not using proxy based setup skip this playbook.
 
 **download_ocp_packages.yml**
 
@@ -290,7 +301,7 @@ Once the Bootstrap and master nodes are deployed with the RHCOS perform the foll
 
 3.Now execute the following command.
 
-         '$ openshift-install wait-for install-complete --dir=/opt/hpe-solutions-openshift/DL-LTI-Openshift/playbooks/roles/generate_ignition_files/ignitions --log-level debug'
+         '$ openshift-install wait-for bootstrap-complete --dir=/opt/hpe-solutions-openshift/DL-LTI-Openshift/playbooks/roles/generate_ignition_files/ignitions --log-level debug'
 
 4.Execute the below command to complete the RedHat OpenShift Cluster
 installation.
