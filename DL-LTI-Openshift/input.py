@@ -57,10 +57,10 @@ usrtext = input("Enter Host Domain for the first head node server ( Example: xyz
 f.write("\n   Host_Domain: " +usrtext);
 
 usrtext = input("Enter Corporate Proxy for the first head node server ( Example: proxy.xyz.companycorp.net ) : " + "\n");
-f.write("\n   Corporate_Proxy: " +usrtext);
+f.write("\n   corporate_proxy: " +usrtext);
 
 usrtext = input("Enter Corporate Proxy Port for the first head node server ( Example: 8080 ) : " + "\n");
-f.write("\n   Corporate_Proxy_Port: " +usrtext);
+f.write("\n   corporate_proxy_port: " +usrtext);
 
 
 print("Enter the Details for OS Deployment in the second head node server\n");
@@ -117,10 +117,10 @@ usrtext = input("Enter Host Domain for the second head node server ( Example: xy
 f.write("\n   Host_Domain: " +usrtext);
 
 usrtext = input("Enter Corporate Proxy for the second head node server ( Example: proxy.xyz.companycorp.net ) : " + "\n");
-f.write("\n   Corporate_Proxy: " +usrtext);
+f.write("\n   corporate_proxy: " +usrtext);
 
 usrtext = input("Enter Corporate Proxy Port for the second head node server ( Example: 8080 ) : " + "\n");
-f.write("\n   Corporate_Proxy_Port: " +usrtext);
+f.write("\n   corporate_proxy_port: " +usrtext);
 
 
 print("Enter the Details for OS Deployment in the third head node server\n");
@@ -177,10 +177,10 @@ usrtext = input("Enter Host Domain for the third head node server ( Example: xyz
 f.write("\n   Host_Domain: " +usrtext);
 
 usrtext = input("Enter Corporate Proxy for the third head node server ( Example: proxy.xyz.companycorp.net ) : " + "\n");
-f.write("\n   Corporate_Proxy: " +usrtext);
+f.write("\n   corporate_proxy: " +usrtext);
 
 usrtext = input("Enter Corporate Proxy Port for the third head node server ( Example: 8080 ) : " + "\n");
-f.write("\n   Corporate_Proxy_Port: " +usrtext);
+f.write("\n   corporate_proxy_port: " +usrtext);
 
 
 f.write("\n\nconfig:");
@@ -194,7 +194,7 @@ f.write("\n   HTTP_file_path: " +usrtext);
 usrtext = input("Enter Operating System type ( Example: rhel8 ): " + "\n");
 f.write("\n   OS_type: " +usrtext);
 
-usrtext = input("Enter Operating System Image name ( Example: rhel-8.5-x86_64-dvd.iso )  : " + "\n");
+usrtext = input("Enter Operating System Image name ( Example: rhel-8.6-x86_64-dvd.iso )  : " + "\n");
 f.write("\n   OS_image_name: " +usrtext);
 
 usrtext = input("Enter Base Kickstart file path ( Example: /opt/ISV-Openshift/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg  ) : " + "\n");
@@ -309,7 +309,7 @@ f.write("\n   ip: " +usrtext);
 usrtext = input("Enter FQDN of the bootstrap node ( Example: boot.ocp.xyz.local ) : " + "\n");
 f.write("\n   fqdn: " +usrtext);
 
-usrtext = input("Provide any mac_address to be assigned to bootstrap node as shown in the example ( Example: 8A:5C:95:37:6E:7F ) : " + "\n");
+usrtext = input("Provide any mac_address to be assigned to bootstrap node as shown in the example ( Example: 00:15:5D:8d:1B:18 ) : " + "\n");
 f.write("\n   mac_address: " +usrtext);
 
 
@@ -326,7 +326,7 @@ f.write("\n   ip: " +usrtext);
 usrtext = input("Enter FQDN of the first master node ( Example: master1.ocp.xyz.local ): " + "\n");
 f.write("\n   fqdn: " +usrtext);
 
-usrtext = input("Provide any mac_address to be assigned to first master node as shown in the example ( Example:8A:5C:95:37:6E:7D ) : " + "\n");
+usrtext = input("Provide any mac_address to be assigned to first master node as shown in the example ( Example:08:00:27:36:0A:01 ) : " + "\n");
 f.write("\n   mac_address: " +usrtext);
 
 usrtext = input("Enter the hostname of the second master node ( Example: master2 ) : " + "\n");
@@ -338,7 +338,7 @@ f.write("\n   ip: " +usrtext);
 usrtext = input("Enter FQDN of the second master node ( Example: master2.ocp.xyz.local ): " + "\n");
 f.write("\n   fqdn: " +usrtext);
 
-usrtext = input("Provide any mac_address to be assigned to second master node as shown in the example ( Example: 8A:5C:95:37:6E:7E ) : " + "\n");
+usrtext = input("Provide any mac_address to be assigned to second master node as shown in the example ( Example: 08:00:27:36:0A:02 ) : " + "\n");
 f.write("\n   mac_address: " +usrtext);
 
 usrtext = input("Enter the hostname of the third master node ( Example: master3 ) : " + "\n");
@@ -350,7 +350,7 @@ f.write("\n   ip: " +usrtext);
 usrtext = input("Enter FQDN of the third master node ( Example: master3.ocp.xyz.local ) : " + "\n");
 f.write("\n   fqdn: " +usrtext);
 
-usrtext = input("Provide any mac_address to be assigned to third master node as shown in the example ( Example: 8A:5C:95:37:6E:7C ) : " + "\n");
+usrtext = input("Provide any mac_address to be assigned to third master node as shown in the example ( Example: 08:00:27:36:0A:03 ) : " + "\n");
 f.write("\n   mac_address: " +usrtext);
 
 
@@ -414,55 +414,36 @@ usrtext = input("Enter the Installer machine public key in single quotes (Genera
 f.write("\nid_rsa_pub: " +usrtext);
 
 
-print("Enter Path to deploy_rhcos Directory \n");
+print("Enter Path to DL-LTI-Openshift Directory \n");
 
-usrtext = input("Enter base path to deploy_rhcos Directory in single quotes ( Example: '/opt/ISV-OpenShift' ): " + "\n");
+usrtext = input("Enter base path to ISV-OpenShift Directory in single quotes ( Example: '/opt/hpe-solutions-openshift-master/DL-LTI-Openshift' ): " + "\n");
 f.write("\n\nbase_path: " +usrtext);
 
-
-print("Is Environment Airgapped; ('yes' or 'no')\n");
-
-usrtext = input("Enter 'yes' or 'no' for Environment Airgapped in single quotes ( Example: 'no' ): " + "\n");
-f.write("\n\nis_environment_airgap: " +usrtext);
+f.write("\n\nis_environment_airgap: 'no'");
 
 f.write("\n\ndns_server: " +master_binddns+","+slave1_binddns+","+slave2_binddns);
+
+f.write("interface_name: eth0")
 
 print("Enter dhcp range that is used for OCP nodes\n");
 
 usrtext = input("Enter comma separated values of dhcp range that is used for OCP nodes ( Example: 192.28.230.10,192.28.230.24 ) : " + "\n");
 f.write("\n\ndhcp_range: " +usrtext);
 
+f.write("\n\nimage_location: /tmp/image/");
 
-print("Enter details of the install media\n");
+f.write("\n\ninitramfs_name: rhcos-live-initramfs.x86_64.img");
 
-usrtext = input("Enter install media details (Provide OCP image location) ( Example: /tmp/image/ ) : " + "\n");
-f.write("\n\nimage_location: " +usrtext);
+f.write("\n\nkernel_name: rhcos-live-kernel-x86_64");
 
-
-print("Enter the OCP image intramfs name\n");
-
-usrtext = input("Enter OCP image intramfs name ( Example: rhcos-4.10.16-x86_64-live-initramfs.x86_64.img ) : " + "\n");
-f.write("\n\ninitramfs_name: " +usrtext);
-
-
-print("Enter the OCP image kernel name\n");
-
-usrtext = input("Enter OCP image kernel name ( Example: rhcos-4.10.16-x86_64-live-kernel-x86_64 ) : " + "\n");
-f.write("\n\nkernel_name: " +usrtext);
-
-
-print("Enter the OCP image rootfs name \n");
-
-usrtext = input("Enter the OCP rootfs name ( Example: rhcos-4.10.16-x86_64-live-rootfs.x86_64.img ) : " + "\n");
-f.write("\n\nbios_uefi_name: " +usrtext);
-
+f.write("\n\nbios_uefi_name: rhcos-live-rootfs.x86_64.img");
 
 print("Enter the OCP KVM VM's Master & Bootstrap details\n");
 
-usrtext = input("Enter the no. of CPU's for the OCP KVM VM's ( Example: 4 ) : " + "\n");
+usrtext = input("Enter the no. of CPU's for the OCP KVM VM's ( Example: 8 ) : " + "\n");
 f.write("\n\nvm_cpu: " +usrtext);
 
-usrtext = input("Enter the memory in MB for the OCP KVM VM's ( Example: 16000 ): " + "\n");
+usrtext = input("Enter the memory in MB for the OCP KVM VM's ( Example: 32000 ): " + "\n");
 f.write("\nvm_mem: " +usrtext);
 
 usrtext = input("Enter the disk size in GB for the OCP KVM VM's ( Example: 250 ): " + "\n");

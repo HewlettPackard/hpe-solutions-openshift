@@ -32,7 +32,17 @@ RHEL 8.5 Installer machine the following configurations.
 
 8.  As part of setup.sh script it will create nginx service, so user must download and copy Rhel 8.5 and Rhel 7.9 DVD ISO to **/usr/share/nginx/html/**
 
-9.  **Creating and deleting logical drives**
+9.  Minimum Storage requirement for management servers
+
+       | **Management Servers** | **Host OS disk** | **Storage Pool disk** |
+       |------------------------|------------------|-----------------------|
+       | Server 1               | 2 x 960GB        | 1 TB                  |
+       | Server 2               | 2 x 960GB        | 1 TB                  |
+       | Server 3               | 2 x 960GB        | 1 TB                  |
+	
+       Host OS disk – raid1 for redundancy
+
+10.  **Creating and deleting logical drives**
 
     Create and delete logical drives on the head nodes following below steps.
 
