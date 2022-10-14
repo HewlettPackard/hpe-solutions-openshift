@@ -33,7 +33,7 @@
           --console pty,target_type=virtio
           --initrd-inject /tmp/ks.cfg
           --extra-args "inst.ks=file:/ks.cfg console=tty0 console=ttyS0,115200n8"
-          --wait 8
+          --wait 12
 
   - name: ping the VM to check it's reachable
     wait_for:

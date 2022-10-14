@@ -46,8 +46,6 @@
         url: "https://github.com/poseidon/matchbox/releases/download/v0.9.0/matchbox-v0.9.0-linux-amd64.tar.gz"
         dest: "/tmp/"
         mode: 0400
-      when:
-      - is_environment_airgap == "no"
 
     - name: extract matchbox 
       unarchive:
