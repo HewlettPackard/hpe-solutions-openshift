@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Securing Red Hat OpenShift Container Platform using Sysdig Secure and | OpenShift Container Platform 4.10 on HPE DL365 Gen10 Plus Servers</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="Hewlett Packard Enterprise">
+    
+    <link rel="preload" href="/hpe-solutions-openshift/4.10-LTI/assets/css/0.styles.7ae315c3.css" as="style"><link rel="preload" href="/hpe-solutions-openshift/4.10-LTI/assets/js/app.61e21a34.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/4.10-LTI/assets/js/2.7c26c33b.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/4.10-LTI/assets/js/11.061e6989.js" as="script"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/10.f1cb13d3.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/12.54ffd556.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/13.7c6fc43e.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/14.97f3e6e4.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/15.7ce43e40.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/16.74c5a1bf.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/17.15c44ee1.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/18.115435b0.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/19.5fb9ed89.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/20.4f2e4386.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/21.3f7893d5.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/22.b1d77f77.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/23.5f40a554.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/24.a1a16178.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/25.d761f7ba.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/26.054715b8.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/3.734eb302.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/4.0962f450.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/5.e7dabacf.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/6.57b774f0.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/7.7351e6ab.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/8.23609685.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/9.110ca306.js">
+    <link rel="stylesheet" href="/hpe-solutions-openshift/4.10-LTI/assets/css/0.styles.7ae315c3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/hpe-solutions-openshift/4.10-LTI/" class="home-link router-link-active"><!----> <span class="site-name">OpenShift Container Platform 4.10 on HPE DL365 Gen10 Plus Servers</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/hpe-solutions-openshift/4.10-LTI/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/hpe-solutions-openshift/4.10-LTI/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Red Hat OpenShift Container Platform 4.10 on DL Servers</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Overview</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Components</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Deployment</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Storage</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Additional Features and Functionality</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/hpe-solutions-openshift/4.10-LTI/Additional-Features-and-Functionality/Install-and-Configure-Velero.html" class="sidebar-link">INSTALL AND CONFIGURE VELERO</a></li><li><a href="/hpe-solutions-openshift/4.10-LTI/Additional-Features-and-Functionality/Securing-OpenShift-Container-Platform-using-Sysdig.html" aria-current="page" class="active sidebar-link">Securing Red Hat OpenShift Container Platform using Sysdig Secure and</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Troubleshooing by Using Manual Processes</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Resosurces and Additional Links</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="securing-red-hat-openshift-container-platform-using-sysdig-secure-and"><a href="#securing-red-hat-openshift-container-platform-using-sysdig-secure-and" class="header-anchor">#</a> Securing Red Hat OpenShift Container Platform using Sysdig Secure and</h1> <p>Sysdig Monitor</p> <p>DESCRIPTION</p> <p>This section contains Ansible playbooks to automate the installation of
+sysdig agents over the Red Hat OpenShift 4.10 Cluster. The contents of
+the repository includes the playbooks and input files as listed.</p> <ul><li><p><strong>playbooks</strong>: This folder contains the playbook required for Sysdig
+agent installation over OCP 4.10.</p></li> <li><p><strong>roles:</strong> This folder contains a role called “sysdig-agent-deploy-ocp”
+which is responsible for performing the actions required for Sysdig agent integration.</p></li> <li><p><strong>hosts:</strong> This is the host file which will be used by Ansible
+installer machine to reference localhost during Sysdig agent
+deployment.</p></li> <li><p><strong>secrets.yml:</strong> This file contains sensitive information about the
+Sysdig SaaS platform access details and Red Hat OpenShift cluster
+access details.</p></li></ul> <p>Prerequisites</p> <ul><li><p>Ansible engine with Ansible 2.9.x and Python 3.6.x</p></li> <li><p>Red Hat OpenShift 4.10 is up and running</p></li> <li><p>User has SaaS-based access to Sysdig Secure and Sysdig Monitor for
+the purpose of container security</p></li> <li><p>User has “admin rights and privilege” for Sysdig Secure and Sysdig
+Monitor</p></li> <li><p>User has valid access token that is given by Sysdig and is specific
+to their credentials on Sysdig SaaS platform</p></li> <li><p>User has updated the kernel to ensure that all the nodes have same
+kernel version. Information regarding this can be found by logging
+into Sysdig monitor account. Go to setting and under Agent
+Installation, you will find instructions to install the kernel
+headers</p></li> <li><p>Enable password-less ssh from OpenShift installer machine to itself
+(OpenShift installer machine or localhost)</p></li></ul> <p>Create password-less ssh to installer VM by generating the ssh key</p> <div class="language-bash extra-class"><pre class="language-bash"><code> $ ssh-keygen 
+</code></pre></div><p>NOTE</p> <p>Press enter to overwrite the id_rsa.pub file and also press enter for
+empty password.</p> <p>Copy the ssh key to ~/id_rsa.pub file using following command</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ ssh-copy-id <span class="token parameter variable">-i</span> ~/.ssh/id_rsa.pub nonrootusername@ansible_engine_machine_ip 
+</code></pre></div><p>Software requirements</p> <p>Software             Version</p> <hr> <p>Sysdig SaaS Agent    10.1.1</p> <p>Input files</p> <ul><li>Playbook for Sysdig SaaS integration with RedHat OpenShift Container
+Platform are available under  $BASE_DIR/platform/security-sysdig/</li></ul> <p>NOTE</p> <p>BASE_DIR is defined and set in [installer machine] section in
+deployment guide.</p> <ul><li><p>It is mandatory to update all the input files (hosts,
+secrets.yml, sysdig-agent-configmap.yaml) with appropriate values
+before running the playbook available in this repository</p></li> <li><p>Input file name - hosts</p></li> <li><p>This file is an inventory of host details</p></li> <li><p>This file is available under $BASE_DIR/platform/security-sysdig/</p></li> <li><p>Specify the Ansible engine machine IP as the value of the variable</p></li></ul> <p>[ocp_installer_machine_ip]</p> <p></p> <p>Input file name - sysdig-agent-configmap.yaml</p> <p></p> <ol><li><p>This file is available under
+$BASE_DIR/platform/security-sysdig/roles/sysdig-agent-deploy-ocp/files/.</p></li> <li><p>Provide the Sysdig SaaS Platform Address and Port Number along with
+Red Hat OpenShift cluster name to the variables as listed :</p></li></ol> <p></p> <div class="language-bash extra-class"><pre class="language-bash"><code>collector: <span class="token operator">&lt;</span>sysdig_saas_collector_address<span class="token operator">&gt;</span> 
+
+collector_port: <span class="token operator">&lt;</span>collector_port<span class="token operator">&gt;</span> 
+
+k8s_cluster_name: <span class="token operator">&lt;</span>replace_with_ocp_cluster_name<span class="token operator">&gt;</span>
+</code></pre></div><ul><li><p>Input file name - secrets.yml</p></li> <li><p>This file is available under $BASE_DIR/platform/security-sysdig/</p></li> <li><p>Provide value of project name for Sysdig integration with OpenShift
+Container Platform. This project will be created in OpenShift</p></li> <li><p>Provide the access key or token value. You must get this value from
+user setting by logging into either Sysdig Secure or Sysdig
+Monitor GUI</p></li> <li><p>Provide Red Hat OpenShift username and password to login</p></li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code>projectname: <span class="token operator">&lt;</span>sysdig_project_name<span class="token operator">&gt;</span> 
+
+accesskeyval: <span class="token operator">&lt;</span>sysdig_saas_access_key<span class="token operator">&gt;</span> 
+
+ocpuser: <span class="token operator">&lt;</span>RedHat_OpenShift_User_Name<span class="token operator">&gt;</span> 
+
+ocppassword: <span class="token operator">&lt;</span>RedHat_OpenShift_User_Password<span class="token operator">&gt;</span> 
+</code></pre></div><ul><li><p><strong>Input file name</strong> - sysdig-agent-deployment.yaml</p></li> <li><p>This file is available under
+$BASE_DIR/platform/security-sysdig/playbooks/</p></li> <li><p>Update the KUBECONFIG and oc command path</p></li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code>KUBECONFIG: <span class="token operator">&lt;</span>replace_with_kubeconfig_path <span class="token operator">&gt;</span> <span class="token environment constant">PATH</span><span class="token builtin class-name">:</span>
+<span class="token operator">&lt;</span>replace_with_ocp_installation_dir_path <span class="token operator">&gt;</span> <span class="token punctuation">{</span> ansible_env.<span class="token environment constant">PATH</span> <span class="token punctuation">}</span> 
+</code></pre></div><blockquote><p></p></blockquote> <p>Procedure to deploy automated Sysdig SaaS agents on Red Hat OpenShift
+Container Platform cluster</p> <ul><li>Execute the following commands from the Ansible installer VM in the
+<blockquote><p>python virtual environment root user</p></blockquote></li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token builtin class-name">cd</span> <span class="token variable">$BASE_DIR</span>/platform/security-sysdig/ 
+$ ansible-playbook <span class="token parameter variable">-i</span> hosts playbooks/sysdig-agent-deployment.yaml --ask-vault-pass 
+</code></pre></div><p><strong>NOTE</strong></p> <p>BASE_DIR is defined in [installer machine] section in deployment
+guide.</p> <ul><li>Verification of Sysdig agent deployment on Red Hat OpenShift cluster
+nodes after successful execution of the playbook. Run the command
+listed below to get the information on Sysdig pods</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code>$ oc get pods <span class="token operator">|</span> <span class="token function">grep</span> sysdig-agent 
+</code></pre></div><p><strong>NOTE</strong></p> <p>Number of sysdig pods should be equal to number of nodes that user sees
+after running the following command:</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ oc get nodes 
+</code></pre></div><ul><li>Output of above command shows number of nodes in the Red HatOpenShift cluster</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code>NAME STATUS ROLES AGE VERSION 
+ 
+master0.ocp.isv.local Ready master,worker 13d v1.23.3+e419edf 
+
+master1.ocp.isv.local Ready master,worker 13d v1.23.3+e419edf 
+
+master2.ocp.isv.local Ready master,worker 13d v1.23.3+e419edf 
+
+worker1.ocp.isv.local Ready worker 23h v1.23.5+3afdacb 
+
+worker2.ocp.isv.local Ready worker 23h v1.23.5+3afdacb 
+
+worker3.ocp.isv.local Ready worker 23h v1.23.5+3afdacb 
+</code></pre></div><p></p> <p>Verification using Sydig GUI</p> <ul><li>Login to Sysdig Secure and under Policy Events –&gt; Hosts and
+Containers –&gt; user will find all the nodes that are part of
+your Red Hat OpenShift infra and this shows Sysdig agents are
+successfully installed and security checks are being run on all
+those nodes.</li></ul> <p><img src="/hpe-solutions-openshift/4.10-LTI/assets/img/f24.ae5e2a45.png" alt=""></p> <p>FIGURE 24 - Monitoring Red Hat OpenShift cluster nodes using Sysdig
+Monitor GUI</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/hpe-solutions-openshift/4.10-LTI/Additional-Features-and-Functionality/Install-and-Configure-Velero.html" class="prev">
+        INSTALL AND CONFIGURE VELERO
+      </a></span> <span class="next"><a href="/hpe-solutions-openshift/4.10-LTI/Troubleshooting-Using-Manual-Processes/Preparing-execution-environment.html">
+        Preparing the execution environment for RHOCP worker3 node
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/hpe-solutions-openshift/4.10-LTI/assets/js/app.61e21a34.js" defer></script><script src="/hpe-solutions-openshift/4.10-LTI/assets/js/2.7c26c33b.js" defer></script><script src="/hpe-solutions-openshift/4.10-LTI/assets/js/11.061e6989.js" defer></script>
+  </body>
+</html>

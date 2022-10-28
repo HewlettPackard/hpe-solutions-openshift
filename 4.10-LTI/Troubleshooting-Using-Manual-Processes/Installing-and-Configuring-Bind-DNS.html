@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Installing and configuring master/child Bind DNS on head nodes | OpenShift Container Platform 4.10 on HPE DL365 Gen10 Plus Servers</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="Hewlett Packard Enterprise">
+    
+    <link rel="preload" href="/hpe-solutions-openshift/4.10-LTI/assets/css/0.styles.7ae315c3.css" as="style"><link rel="preload" href="/hpe-solutions-openshift/4.10-LTI/assets/js/app.61e21a34.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/4.10-LTI/assets/js/2.7c26c33b.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/4.10-LTI/assets/js/25.d761f7ba.js" as="script"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/10.f1cb13d3.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/11.061e6989.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/12.54ffd556.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/13.7c6fc43e.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/14.97f3e6e4.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/15.7ce43e40.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/16.74c5a1bf.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/17.15c44ee1.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/18.115435b0.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/19.5fb9ed89.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/20.4f2e4386.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/21.3f7893d5.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/22.b1d77f77.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/23.5f40a554.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/24.a1a16178.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/26.054715b8.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/3.734eb302.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/4.0962f450.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/5.e7dabacf.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/6.57b774f0.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/7.7351e6ab.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/8.23609685.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.10-LTI/assets/js/9.110ca306.js">
+    <link rel="stylesheet" href="/hpe-solutions-openshift/4.10-LTI/assets/css/0.styles.7ae315c3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/hpe-solutions-openshift/4.10-LTI/" class="home-link router-link-active"><!----> <span class="site-name">OpenShift Container Platform 4.10 on HPE DL365 Gen10 Plus Servers</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/hpe-solutions-openshift/4.10-LTI/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/hpe-solutions-openshift/4.10-LTI/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Red Hat OpenShift Container Platform 4.10 on DL Servers</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Overview</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Components</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Solution Deployment</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Storage</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Additional Features and Functionality</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Troubleshooing by Using Manual Processes</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/hpe-solutions-openshift/4.10-LTI/Troubleshooting-Using-Manual-Processes/Preparing-execution-environment.html" class="sidebar-link">Preparing the execution environment for RHOCP worker3 node</a></li><li><a href="/hpe-solutions-openshift/4.10-LTI/Troubleshooting-Using-Manual-Processes/Deploying-OS-on-Head-Nodes.html" class="sidebar-link">Deploying RHOCP cluster manually</a></li><li><a href="/hpe-solutions-openshift/4.10-LTI/Troubleshooting-Using-Manual-Processes/Installing-and-Configuring-Bind-DNS.html" aria-current="page" class="active sidebar-link">Installing and configuring master/child Bind DNS on head nodes</a></li><li><a href="/hpe-solutions-openshift/4.10-LTI/Troubleshooting-Using-Manual-Processes/Configuring-Squid-Proxy.html" class="sidebar-link">Deploying Squid proxy on head nodes</a></li><li><a href="/hpe-solutions-openshift/4.10-LTI/Troubleshooting-Using-Manual-Processes/OCP-Cluster-Deployment.html" class="sidebar-link">Generating Kubernetes manifests and ignition files</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Resosurces and Additional Links</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="installing-and-configuring-master-child-bind-dns-on-head-nodes"><a href="#installing-and-configuring-master-child-bind-dns-on-head-nodes" class="header-anchor">#</a> Installing and configuring master/child Bind DNS on head nodes</h1> <p>Domain Name System (DNS) is a distributed database system that associates hostnames with their respective IP addresses. Berkeley Internet Name Domain (BIND) comprises a set of DNS-related programs. It is also known as the service named in Red Hat Enterprise Linux. The /etc/named.conf is the main configuration file in the BIND configuration. This section focuses on installing, configuring, and managing BIND on the DNS server for all head nodes to create master and child configuration.</p> <p>Prerequisites:</p> <ul><li><p>All hosts must be running RHEL 8.6 OS.</p></li> <li><p>Red Hat subscription must be active.</p></li> <li><p>DNS server must be configured with the following settings:</p></li></ul> <p><strong>TABLE</strong> <strong>9</strong> DNS server settings</p> <table><thead><tr><th>DNS server settings</th> <th>Description</th></tr></thead> <tbody><tr><td>isv.local</td> <td>Zone (Domain name)</td></tr> <tr><td>172.28.230.11</td> <td>IP address of master DNS node</td></tr> <tr><td>172.28.230.12</td> <td>IP address of the 1st child DNS node</td></tr> <tr><td>172.28.230.13</td> <td>IP address of the 2nd child DNS node</td></tr></tbody></table> <p>Installing and configuring Bind DNS service on master nodes</p> <p>To install and configure Bind DNS service on master nodes:</p> <ol><li>Install Bind DNS service on the master node with the following command:</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>$ yum <span class="token parameter variable">-y</span> <span class="token function">install</span> <span class="token builtin class-name">bind</span> bind-utils <span class="token function">vim</span>
+</code></pre></div><ol><li><p>Configure BIND DNS on the master node.</p></li> <li><p>Edit /etc/named.conf configuration file.</p></li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>Options <span class="token punctuation">{</span>
+
+listen-on port <span class="token number">53</span> <span class="token punctuation">{</span> <span class="token number">127.0</span>.0.1<span class="token punctuation">;</span> <span class="token number">172.28</span>.230.11<span class="token punctuation">;</span> <span class="token punctuation">}</span>:<span class="token operator">|</span>
+
+llsten-on-v6 port <span class="token number">53</span> <span class="token punctuation">{</span> ::1<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+directory  <span class="token string">&quot;/var/named&quot;</span><span class="token punctuation">;</span>
+
+dump-file <span class="token string">&quot;/var/named/data/cache_dump.db&quot;</span><span class="token punctuation">;</span>
+
+statistics-file <span class="token string">&quot;/var/named/data/named_stats.txt&quot;</span><span class="token punctuation">;</span>
+
+memstatistics-file <span class="token string">&quot;/var/named/data/named_mem_stats.txt&quot;</span><span class="token punctuation">;</span>
+
+secroots-file <span class="token string">&quot;/var/named/data/named.secroots&quot;</span><span class="token punctuation">;</span>
+
+recursing-file <span class="token string">&quot;/var/named/data/named.recursing&quot;</span><span class="token punctuation">;</span>
+
+allow-query  <span class="token punctuation">{</span> localhost<span class="token punctuation">;</span> <span class="token number">172.0</span>.0.0/24<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+allow-transfer <span class="token punctuation">{</span> localhost<span class="token punctuation">;</span> <span class="token number">172</span>-28.230.12<span class="token punctuation">;</span> <span class="token number">172.28</span>.230.13<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+recursion no<span class="token punctuation">;</span>
+
+dnssec-enable <span class="token function">yes</span><span class="token punctuation">;</span>
+
+dnssec-validation <span class="token function">yes</span><span class="token punctuation">;</span>
+
+managed-keys-directory <span class="token string">&quot;/var/named/dynamic &quot;</span><span class="token punctuation">;</span>
+
+pid:-file <span class="token string">&quot;/run/named/named.pid&quot;</span><span class="token punctuation">;</span>
+
+session-keyfile <span class="token string">&quot;/run/named./session.key&quot;</span><span class="token punctuation">;</span>
+
+include<span class="token string">&quot; /etc/crypto-policies/back.-ends/blind.config&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+logging <span class="token punctuation">{</span>
+
+channel default_debug <span class="token punctuation">{</span>
+
+<span class="token function">file</span> <span class="token string">&quot;data/named.run&quot;</span><span class="token punctuation">;</span>
+
+severity dynamic<span class="token punctuation">;</span>
+
+           <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+zone <span class="token string">&quot;.&quot;</span> IN <span class="token punctuation">{</span>
+
+<span class="token builtin class-name">type</span> hint<span class="token punctuation">;</span>
+
+<span class="token function">file</span> <span class="token string">&quot;named.ca&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+zone <span class="token string">&quot;isv.local&quot;</span> IN<span class="token punctuation">{</span>
+
+<span class="token builtin class-name">type</span> master<span class="token punctuation">;</span>
+
+<span class="token function">file</span> <span class="token string">&quot;forward,isv&quot;</span><span class="token punctuation">;</span>
+
+allow-update <span class="token punctuation">{</span> none<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+zone <span class="token string">&quot;230.28.172.in-addr.arpa&quot;</span> IN<span class="token punctuation">{</span>
+
+<span class="token builtin class-name">type</span> master<span class="token punctuation">;</span>
+
+<span class="token function">file</span> <span class="token string">&quot;reverse. isv&quot;</span><span class="token punctuation">;</span>
+
+allow-update <span class="token punctuation">{</span> none<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+include <span class="token string">&quot;/etc/named.rfc1912.zones&quot;</span><span class="token punctuation">;</span>
+
+include <span class="token string">&quot;/etc/named.root.key&quot;</span><span class="token punctuation">;</span>
+</code></pre></div><ol><li><p>Create zone files.</p></li> <li><p>After setting the files in the named.conf configuration file, create the zone files in the /var/named/ director directory and place all the records that you would wish to add such as A/AAAA, MX, PTR, and so on.</p></li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token punctuation">[</span>root@kvm~<span class="token punctuation">]</span> $ <span class="token function">cat</span> /var/named/forward.isv
+
+<span class="token variable">$TTL</span> <span class="token number">86400</span>
+
+@     IN SOA kvm1.isv.local. root.isv.local.<span class="token punctuation">(</span>
+
+<span class="token number">2011071001</span><span class="token punctuation">;</span> serial
+
+<span class="token number">300</span> <span class="token punctuation">;</span> refresh
+
+<span class="token number">1800</span><span class="token punctuation">;</span> retry
+
+<span class="token number">604800</span><span class="token punctuation">;</span> expire
+
+<span class="token number">86400</span> <span class="token punctuation">)</span> <span class="token punctuation">;</span> minimum
+
+@      IN     NS      kvm1.isv.local.
+
+@      IN     NS      kvm2.isv.local.
+
+@      IN     NS      kvm3.isv.local.
+
+@      IN      A       <span class="token number">172.28</span>.230.11
+
+@      IN      A       <span class="token number">172.28</span>.230.12
+
+@      IN      A       <span class="token number">172.28</span>.230.13
+
+boot.ocp.isv.local.           IN     A     <span class="token number">172.28</span>.230.21
+
+master0.ocp.isv.local.     IN     A     <span class="token number">172.28</span>.230.22
+
+master1.ocp.isv.local.     IN     A     <span class="token number">172.28</span>.230.23
+
+master2.ocp.isv.local.     IN     A     <span class="token number">172.28</span>.230.24
+
+haproxy.ocp.isv.local.     IN     A     <span class="token number">172.28</span>.230.25
+
+api.int.ocp.isv.local.        IN     A     <span class="token number">172.28</span>.230.25
+
+api.ocp.isv.local.             IN     A     <span class="token number">172.28</span>.230.25
+
+workerl.ocp.isv.local.     IN     A     <span class="token number">172.28</span>.230.26
+
+worker2.ocp.isv.local.    IN     A     <span class="token number">172.28</span>.230.27
+
+worker3.ocp.isv.local.    IN     A     <span class="token number">172.28</span>.230.28
+
+* .apps.ocp.isv.local.      IN     A     <span class="token number">172.28</span>.230.25
+</code></pre></div><ol><li>Create the corresponding reverse records for the same domain that were defined in the named.conf configuration file.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token punctuation">[</span>root@kvm1 ~<span class="token punctuation">]</span> $ <span class="token function">cat</span> /var/named/reverse.isv
+
+<span class="token variable">$TTL</span> <span class="token number">86400</span>
+
+@ IN SOA kvm1.isv.local.root.isv.local<span class="token punctuation">(</span>
+
+<span class="token number">2011071001</span> <span class="token punctuation">;</span> serial
+
+<span class="token number">300</span> <span class="token punctuation">;</span> refresh
+
+<span class="token number">1800</span><span class="token punctuation">;</span> retry
+
+<span class="token number">604800</span> <span class="token punctuation">;</span> expire
+
+<span class="token number">86400</span> <span class="token punctuation">)</span> <span class="token punctuation">;</span> minimum
+
+@    IN    NS     kvml.isv.local.
+
+@    IN    NS     kvm2.isv.local.
+
+@    IN    NS     kvm3.isv.local.
+
+@    IN    PTR    isv.local.
+
+@    IN    A      <span class="token number">172.28</span>.230.11
+
+4P   IN    A      <span class="token number">172.28</span>.230.12
+
+<span class="token number">11</span>   IN    A      <span class="token number">172.28</span>.230.13
+
+<span class="token number">11</span>   IN    PTR    kvm1.isv.local.
+
+<span class="token number">12</span>   IN    PTR    kvm2.isv.local.
+
+<span class="token number">13</span>   IN    PTR    kvm3.isv.local.
+
+<span class="token number">21</span>   IN    PTR    boot.ocp.isv.local.
+
+<span class="token number">22</span>   IN    PTR    master0.ocp.isv.local.
+
+<span class="token number">23</span>   IN    PTR    master1.ocp.isv.local.
+
+<span class="token number">24</span>   IN    PTR    master2.ocp.isv.local.
+
+<span class="token number">25</span>   IN    PTR    haproxy.ocp.isv.local.
+
+<span class="token number">25</span>   IN    PTR    api.int.ocp.isv.local.
+
+<span class="token number">25</span>   IN    PTR    api.ocp.isv.local.
+
+<span class="token number">26</span>   IN    PTR    worker1.ocp.isv.local.
+
+<span class="token number">27</span>   IN    PTR    worker2.ocp.isv.local.
+
+<span class="token number">28</span>   IN    PTR    worker3.ocp.isv.local.
+</code></pre></div><ol><li><p>Modify DNS settings on the master server.</p></li> <li><p>Set the new DNS server as the default name server.</p></li> <li><p>Edit /etc/resolv.conf configuration file and add the following lines:</p></li></ol> <p><strong>NOTE</strong></p> <p>Ensure that the IP address is replaced to match your environment.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token punctuation">[</span>root@kvm1~<span class="token punctuation">]</span> $ cat/etc/resolv.conf
+
+search isv.local
+
+nameserver <span class="token number">172.28</span>.230.11
+</code></pre></div><ol><li>Configure firewall to allow DNS service.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token function">sudo</span> firewall-cmd--add-service<span class="token operator">=</span>dns--permanent
+
+$ <span class="token function">sudo</span> firewall-cmd--reload
+
+$ <span class="token function">sudo</span> named-checkconf
+
+$ <span class="token function">sudo</span> systemctl start named
+
+$ <span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> named
+</code></pre></div><p>The master BIND DNS server configuration is complete.</p> <p>Installing Bind DNS service on child nodes</p> <p>To install Bind DNS service on child nodes:</p> <ol><li>On the both the child nodes with IP addresses as 172.28.230.12 and 172.28.230.13, install bind and bind-utils:</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>$ yum <span class="token parameter variable">-y</span> <span class="token function">install</span> <span class="token builtin class-name">bind</span> bind-utils <span class="token function">vim</span>
+</code></pre></div><ol><li>Configure the child nodes and edit /etc/named.conf configuration file.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>options <span class="token punctuation">{</span>
+
+listen-on port <span class="token number">53</span> <span class="token punctuation">{</span> <span class="token number">127.0</span>.0.1<span class="token punctuation">;</span> <span class="token number">172.28</span>.230.12<span class="token punctuation">;</span> <span class="token number">172.28</span>.230.13<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+listen-on-v6 port <span class="token number">53</span> <span class="token punctuation">{</span> ::1<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+directory <span class="token string">&quot; /var/named&quot;</span><span class="token punctuation">;</span>
+
+dump-file <span class="token string">&quot;/var/named/data/cache_dump.db&quot;</span><span class="token punctuation">;</span>
+
+statistics-file <span class="token string">&quot;/var/named/data/named_stats.txt&quot;</span><span class="token punctuation">;</span>
+
+memstatistics-file <span class="token string">&quot;/var/named/data/named_mem_stats.txt&quot;</span><span class="token punctuation">;</span>
+
+secroots-file <span class="token string">&quot;/var/named/data/named.secroots&quot;</span><span class="token punctuation">;</span>
+
+recursing-file <span class="token string">&quot;var/named/data/named.recursing&quot;</span><span class="token punctuation">;</span>
+
+allow-query <span class="token punctuation">{</span> localhost<span class="token punctuation">;</span> <span class="token number">172.0</span>.0.0/24<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+recursion <span class="token function">yes</span><span class="token punctuation">;</span>
+
+dnssec-enable <span class="token function">yes</span><span class="token punctuation">;</span>
+
+dnssec-validation <span class="token function">yes</span><span class="token punctuation">;</span>
+
+managed-keys-directory <span class="token string">&quot;/var/named/dynamic&quot;</span><span class="token punctuation">;</span>
+
+pid-file <span class="token string">&quot; /run/named/named.pid&quot;</span><span class="token punctuation">;</span>
+
+session-keyfile <span class="token string">&quot;/run/named/session.key&quot;</span><span class="token punctuation">;</span>
+
+include <span class="token string">&quot;/etc/crypto-policies/back-ends/bind_config&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+logging <span class="token punctuation">{</span>
+
+channel default_debug <span class="token punctuation">{</span>
+
+<span class="token function">file</span> <span class="token string">&quot;data/named.run&quot;</span><span class="token punctuation">;</span>
+
+severity dynamic<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+zone <span class="token string">&quot;.&quot;</span> IN <span class="token punctuation">{</span>
+
+<span class="token builtin class-name">type</span> hint<span class="token punctuation">;</span>
+
+<span class="token function">file</span> <span class="token string">&quot;named.ca&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+zone <span class="token string">&quot;isv.local&quot;</span> IN<span class="token punctuation">{</span>
+
+<span class="token builtin class-name">type</span> slave<span class="token punctuation">;</span>
+
+<span class="token function">file</span> <span class="token string">&quot;slaves/forward,isv&quot;</span><span class="token punctuation">;</span>
+
+master <span class="token punctuation">{</span> <span class="token number">172.28</span>.230.11<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+zone <span class="token string">&quot;230.28.172.in-addr.arpa&quot;</span> IN<span class="token punctuation">{</span>
+
+<span class="token builtin class-name">type</span> slave<span class="token punctuation">;</span>
+
+<span class="token function">file</span> <span class="token string">&quot;slaves/reverse. isv&quot;</span><span class="token punctuation">;</span>
+
+master <span class="token punctuation">{</span> <span class="token number">172.28</span>.230.11<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+include <span class="token string">&quot;/etc/named.rfc1912.zones&quot;</span><span class="token punctuation">;</span>
+
+include <span class="token string">&quot;/etc/named.root.key&quot;</span> <span class="token punctuation">;</span>
+</code></pre></div><ol><li><p>Modify DNS settings on the child server.</p></li> <li><p>Set the new DNS servers (both master and childs) as the default name servers.</p></li> <li><p>Edit /etc/resolv.conf configuration file and add the following lines:</p></li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token punctuation">[</span>root.kvm2~<span class="token punctuation">]</span><span class="token number">9</span>$ cat/etc/resolv.conf
+
+search isv.local
+
+nameserver <span class="token number">172.28</span>.230.11
+
+nameserver <span class="token number">172.28</span>.230.12
+
+nameserver <span class="token number">172.28</span>.230.13
+</code></pre></div><p><strong>NOTE</strong></p> <p>Ensure that the IP addresses are replaced to match your environment.</p> <ol><li>Check the configurations and then start and enable BIND:</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token function">sudo</span> named-checkconf
+
+$ <span class="token function">sudo</span> systemctl start named
+
+$ <span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> named
+</code></pre></div><ol><li>Verify that the /var/named/slaves directory includes the zone files that were transferred from the master node.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token punctuation">[</span>root@kvm2~<span class="token punctuation">]</span> $ <span class="token function">ls</span> -<span class="token operator">|</span> /var/named/slaves/
+
+-rw-r-r-1 named named <span class="token number">900</span> Jun <span class="token number">23</span> 09:11 forward.isv
+
+-rw-r-r-1 named named <span class="token number">1168</span> Jun <span class="token number">23</span> 09:12 reverse.isv
+
+<span class="token punctuation">[</span>root@<span class="token punctuation">)</span>kvm3~<span class="token punctuation">]</span> <span class="token variable">$ls</span>-<span class="token operator">|</span> /var/named/slaves/
+
+-rw-r-r-1 named named <span class="token number">900</span> Jun <span class="token number">23</span> 09:11 forward.isv
+
+-rw-r-r-1 named named <span class="token number">1168</span> Jun <span class="token number">23</span> 09:12 reverse.isv
+</code></pre></div><p>Testing master/childDNS configuration</p> <p>To test the DNS resolution from the master/child DNS servers:</p> <ol><li>On the master DNS server, run the following command:</li></ol> <ul><li>Master DNS node:</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token punctuation">[</span>root@kvm1~<span class="token punctuation">]</span> $ <span class="token function">dig</span> +short master0.ocp.isv.local
+
+<span class="token number">172.28</span>.230.22
+
+<span class="token punctuation">[</span>root@kvm1~<span class="token punctuation">]</span><span class="token variable">$dig</span> +short <span class="token parameter variable">-x</span> <span class="token number">172.28</span>.230.22
+
+master0.ocp.isv.local.
+</code></pre></div><ol><li>On both the child DNS servers, run the following commands:</li></ol> <ul><li>1st Child DNS node:</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token punctuation">[</span>root@kvm2~<span class="token punctuation">]</span> $ <span class="token function">dig</span> +short master0.ocp.isv.local
+
+<span class="token number">172.28</span>.230.22
+
+<span class="token punctuation">[</span>root@kvm2~<span class="token punctuation">]</span><span class="token comment">#$dig +short -x 172.28.230.22</span>
+
+master0.ocp.isv.local.
+</code></pre></div><ul><li>2nd Child DNS node:</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token punctuation">[</span>root@kvm3~<span class="token punctuation">]</span> $ <span class="token function">dig</span> +short master0.ocp.isv.local
+
+<span class="token number">172.28</span>.230.22
+
+<span class="token punctuation">[</span>root@kvm3~<span class="token punctuation">]</span> $ <span class="token function">dig</span> +short <span class="token parameter variable">-x</span> <span class="token number">172.28</span>.230.22
+
+master0.ocp.isv.local.
+</code></pre></div><p><strong>Configuring load balancer on head nodes</strong></p> <p>The RHOCP 4.10 uses an external load balancer to communicate from outside the cluster with services running inside the cluster. This section assumes that there is a load balancer available within our deployment environment and is available for use. Our deployment environment is developed using HAProxy, an open-source solution with one virtual machine for load balancing functionality.</p> <p>In a production environment, Hewlett Packard Enterprise recommends the use of enterprise load balancing such as F5 Networks Big-IP and its associated products.</p> <p>To configure load balancer on all head nodes:</p> <ol><li>Install HAProxy and keepalived service on all head nodes.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>$ yum <span class="token function">install</span> haproxy
+
+$ systemctl <span class="token builtin class-name">enable</span> haproxy
+
+$ systemctl start haproxy
+</code></pre></div><ol><li>Edit /etc/haproxy/haproxy.conf configuration file on all head nodes.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>frontend openshift-api-server
+
+    <span class="token builtin class-name">bind</span> *:6443
+
+    default_backend openshift-api-server
+
+    mode tcp
+
+    option tcplog
+
+backend openshift-api-server
+
+    balance <span class="token builtin class-name">source</span>
+
+    mode tcp
+
+server ocpboot1 boot.ocp.isv.local:6443 check
+
+        server ocpmaster1 master0.ocp.isv.local:6443 check
+
+        server ocpmaster2 master1.ocp.isv.local:6443 check
+
+        server ocpmaster3 master2.ocp.isv.local:6443 check
+
+frontend machine-config-server68
+
+    <span class="token builtin class-name">bind</span> *:22623
+
+    default_backend machine-config-server
+
+    mode tcp
+
+    option tcplog
+
+backend machine-config-server
+
+    balance <span class="token builtin class-name">source</span>
+
+    mode tcp
+
+server ocpboot1 boot.ocp.isv.local:22623 check
+
+        server ocpmaster1 master0.ocp.isv.local:22623 check
+
+        server ocpmaster2 master1.ocp.isv.local:22623 check
+
+        server ocpmaster3 master2.ocp.isv.local:22623 check
+
+frontend ingress-http
+
+    <span class="token builtin class-name">bind</span> *:80
+
+    default_backend ingress-http
+
+    mode tcp
+
+    option tcplog
+
+backend ingress-http
+
+    balance <span class="token builtin class-name">source</span>
+
+    mode tcp
+
+        server ocpworker1 worker1.ocp.isv.local:80 check
+
+        server ocpworker2 worker2.ocp.isv.local:80 check
+
+        server ocpworker3 worker3.ocp.isv.local:80 check
+
+<span class="token comment"># if creating a cluster with only master nodes to begin with and later adding the worker nodes, master nodes should be added in this section instead of worker nodes. Once all the worker nodes are added into the cluster, this configuration needs to be updated with the worker nodes.</span>
+
+    <span class="token comment"># server ocpmaster01 master0.ocp.isv.local:80 check</span>
+
+    <span class="token comment"># server ocpmaster02 master1.ocp.isv.local:80 check</span>
+
+    <span class="token comment"># server ocpmaster03 master2.ocp.isv.local:80 check</span>
+
+frontend ingress-https
+
+    <span class="token builtin class-name">bind</span> *:443
+
+    default_backend ingress-https
+
+    mode tcp
+
+    option tcplog
+
+backend ingress-https
+
+    balance <span class="token builtin class-name">source</span>
+
+    mode tcp
+
+        server ocpworker1 worker1.ocp.isv.local:443 check
+
+        server ocpworker2 worker2.ocp.isv.local:443 check
+
+        server ocpworker3 worker3.ocp.isv.local:443 check
+
+<span class="token comment"># if creating a cluster with only master nodes to begin with and later adding the worker nodes, master nodes should be added in this section instead of worker nodes. Once all the worker nodes are added into the cluster, this configuration needs to be updated with the worker nodes.</span>
+
+    <span class="token comment"># server ocpmaster01 master0.ocp.isv.local:443 check</span>
+
+    <span class="token comment"># server ocpmaster02 master1.ocp.isv.local:443 check</span>
+
+    <span class="token comment"># server ocpmaster03 master2.ocp.isv.local:443 check</span>
+</code></pre></div><p><strong>NOTE</strong></p> <p>The load balancer configuration should contain values that are aligned to the installation environment.</p> <p>Installing Keepalived service for HAProxy servers</p> <p>The Keepalived service provides highly available capabilities on the load balancer for HAProxy server configuration.</p> <p>To install the Keepalived service on all three head nodes:</p> <ol><li>Install Keepalived and psmisc service.</li></ol> <p><strong>NOTE</strong></p> <p>The psmisc service provides killall to check the HAProxy for VRRP.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ yum <span class="token function">install</span> <span class="token parameter variable">-y</span> keepalived psmisc
+</code></pre></div><ol><li>Determine the interface that can be used with the services. For example, the highlighted interface is used with the services on our load balancer for HAProxy servers.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token punctuation">[</span>root@kvm3 slaves<span class="token punctuation">]</span> $ <span class="token function">ip</span> a
+
+<span class="token number">1</span>: lo: <span class="token operator">&lt;</span>LOOPBACK,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="token number">1000</span>
+
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+
+    inet <span class="token number">127.0</span>.0.1/8 scope <span class="token function">host</span> lo
+
+       valid_lft forever preferred_lft forever
+
+    inet6 ::1/128 scope <span class="token function">host</span>
+
+       valid_lft forever preferred_lft forever
+
+<span class="token number">2</span>: ens2: <span class="token operator">&lt;</span>BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">1500</span> qdisc mq master bond0 state UP group default qlen <span class="token number">1000</span>
+
+    link/ether <span class="token number">88</span>:e9:a4:41:55:b8 brd ff:ff:ff:ff:ff:ff
+
+<span class="token number">3</span>: ens3: <span class="token operator">&lt;</span>BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">1500</span> qdisc mq master bond0 state UP group default qlen <span class="token number">1000</span>
+
+    link/ether <span class="token number">88</span>:e9:a4:41:55:b8 brd ff:ff:ff:ff:ff:ff permaddr <span class="token number">88</span>:e9:a4:40:f6:d8
+
+<span class="token number">4</span>: bridge0: <span class="token operator">&lt;</span>BROADCAST,MULTICAST,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">1500</span> qdisc noqueue state UP group default qlen <span class="token number">1000</span>
+
+    link/ether <span class="token number">88</span>:e9:a4:41:55:b8 brd ff:ff:ff:ff:ff:ff
+
+    inet6 fe80::8034:bdc:f7d0:b444/64 scope <span class="token function">link</span> noprefixroute
+
+       valid_lft forever preferred_lft forever
+
+<span class="token number">5</span>: bond0: <span class="token operator">&lt;</span>BROADCAST,MULTICAST,MASTER,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">1500</span> qdisc noqueue master bridge0 state UP group default qlen <span class="token number">1000</span>
+
+    link/ether <span class="token number">88</span>:e9:a4:41:55:b8 brd ff:ff:ff:ff:ff:ff
+
+<span class="token number">6</span>: bridge0.230: <span class="token operator">&lt;</span>BROADCAST,MULTICAST,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">1500</span> qdisc noqueue state UP group default qlen <span class="token number">1000</span>
+
+    link/ether <span class="token number">88</span>:e9:a4:41:55:b8 brd ff:ff:ff:ff:ff:ff
+
+    inet <span class="token number">172.28</span>.230.13/24 brd <span class="token number">172.28</span>.230.255 scope global noprefixroute bridge0.230
+</code></pre></div><p><strong>NOTE</strong></p> <p>This interface could be a dedicated interface or a shared interface. It needs to belong on the same broadcast domain as the VIP.</p> <ol><li>Allow all connections from the interface for traffic use. Use the following IP addresses as interfaces for HAProxy:</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>$ iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-s</span> <span class="token number">172.28</span>.230.11 <span class="token parameter variable">-j</span> ACCEPT
+
+$ iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-s</span> <span class="token number">172.28</span>.230.12 <span class="token parameter variable">-j</span> ACCEPT
+
+$ iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-s</span> <span class="token number">172.28</span>.230.13 <span class="token parameter variable">-j</span> ACCEPT
+</code></pre></div><ol><li><p>Allocate an IP address from the existing HAproxy network for the floating IP address of the load balancers.</p></li> <li><p>Update the existing cluster DNS name to the newly assigned IP address.</p></li> <li><p>Generate a random external password for Keepalived AUTH_PASS.</p></li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>$ uuidgen
+
+f30fedc5-2b19-414f-b67e-f05742a82e78
+</code></pre></div><p>Configuring Keepalived service for each node</p> <p>To configure Keepalived service for each node:</p> <ol><li>Edit /etc/keepalived/keepalived.conf configuration file on all three nodes for active/active VIP.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token punctuation">[</span>root@kvm3 slaves<span class="token punctuation">]</span><span class="token comment"># vi /etc/keepalived/keepalived.conf</span>
+
+router_id ovp_vrrp
+
+<span class="token punctuation">}</span>
+
+vrrp_script haproxy_check <span class="token punctuation">{</span>
+
+ script <span class="token string">&quot;killall -0 haproxy&quot;</span>
+
+ interval <span class="token number">2</span>
+
+ weight <span class="token number">2</span>
+
+ <span class="token punctuation">}</span>
+
+vrrp_instance OCP_EXT <span class="token punctuation">{</span>
+
+ interface bridge0.230
+
+virtual_router_id <span class="token number">51</span>
+
+priority <span class="token number">100</span>
+
+ state MASTER
+
+ virtual_ipaddress <span class="token punctuation">{</span>
+
+ <span class="token number">172.28</span>.230.25 dev bridge0.230<span class="token punctuation">}</span>
+
+ track_script <span class="token punctuation">{</span>
+
+ haproxy_check
+
+<span class="token punctuation">}</span>
+
+ authentication <span class="token punctuation">{</span>
+
+ auth_type PASS
+
+ auth_pass 1cee4b6e-2cdc-48bf-83b2-01a96d1593e4
+
+ <span class="token punctuation">}</span>
+
+ <span class="token punctuation">}</span>
+</code></pre></div><p>The keepalived configuration file consists of the following parts:</p> <ul><li><p><strong>state MASTER:</strong> It is the primary HAproxy server.</p></li> <li><p><strong>priority line:</strong> It determines the priority of the server configuration. If a master server must be elected, the server with the highest priority is selected.</p></li> <li><p><strong>virtual_ipaddress:</strong> It denotes the IP address to be used for floating VIP and the local device to bind to 10.0.15.30 and enp1s0 interface.</p></li></ul> <ol><li>Start and enable the services on all head nodes.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>$ systemctl <span class="token builtin class-name">enable</span> keepalived<span class="token punctuation">;</span> systemctl start keepalived
+</code></pre></div><p>Testing HAProxy with Keepalived service</p> <p>After successful deployment of Keepalived service on the head nodes, the HAProxy nodes route traffic via HAProxy when the VRRP VIP is available.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token punctuation">[</span>root@kvm3 slaves<span class="token punctuation">]</span> $ <span class="token function">ip</span> a
+
+<span class="token number">1</span>: lo: <span class="token operator">&lt;</span>LOOPBACK,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="token number">1000</span>
+
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+
+    inet <span class="token number">127.0</span>.0.1/8 scope <span class="token function">host</span> lo
+
+       valid_lft forever preferred_lft forever
+
+    inet6 ::1/128 scope <span class="token function">host</span>
+
+       valid_lft forever preferred_lft forever
+
+<span class="token number">2</span>: ens2: <span class="token operator">&lt;</span>BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">1500</span> qdisc mq master bond0 state UP group default qlen <span class="token number">1000</span>
+
+    link/ether <span class="token number">88</span>:e9:a4:41:55:b8 brd ff:ff:ff:ff:ff:ff
+
+<span class="token number">3</span>: ens3: <span class="token operator">&lt;</span>BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">1500</span> qdisc mq master bond0 state UP group default qlen <span class="token number">1000</span>
+
+    link/ether <span class="token number">88</span>:e9:a4:41:55:b8 brd ff:ff:ff:ff:ff:ff permaddr <span class="token number">88</span>:e9:a4:40:f6:d8
+
+<span class="token number">4</span>: bridge0: <span class="token operator">&lt;</span>BROADCAST,MULTICAST,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">1500</span> qdisc noqueue state UP group default qlen <span class="token number">1000</span>
+
+    link/ether <span class="token number">88</span>:e9:a4:41:55:b8 brd ff:ff:ff:ff:ff:ff
+
+    inet6 fe80::8034:bdc:f7d0:b444/64 scope <span class="token function">link</span> noprefixroute
+
+       valid_lft forever preferred_lft forever
+
+<span class="token number">5</span>: bond0: <span class="token operator">&lt;</span>BROADCAST,MULTICAST,MASTER,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">1500</span> qdisc noqueue master bridge0 state UP group default qlen <span class="token number">1000</span>
+
+    link/ether <span class="token number">88</span>:e9:a4:41:55:b8 brd ff:ff:ff:ff:ff:ff
+
+<span class="token number">6</span>: bridge0.230: <span class="token operator">&lt;</span>BROADCAST,MULTICAST,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">1500</span> qdisc noqueue state UP group default qlen <span class="token number">1000</span>
+
+    link/ether <span class="token number">88</span>:e9:a4:41:55:b8 brd ff:ff:ff:ff:ff:ff
+
+    inet <span class="token number">172.28</span>.230.13/24 brd <span class="token number">172.28</span>.230.255 scope global noprefixroute bridge0.230
+
+       valid_lft forever preferred_lft forever
+
+    inet <span class="token number">172.28</span>.230.25/32 scope global bridge0.230
+
+       valid_lft forever preferred_lft forever
+
+    inet6 fe80::c48b:8f0f:9902:b9a1/64 scope <span class="token function">link</span> noprefixroute
+
+       valid_lft forever preferred_lft forever
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/hpe-solutions-openshift/4.10-LTI/Troubleshooting-Using-Manual-Processes/Deploying-OS-on-Head-Nodes.html" class="prev">
+        Deploying RHOCP cluster manually
+      </a></span> <span class="next"><a href="/hpe-solutions-openshift/4.10-LTI/Troubleshooting-Using-Manual-Processes/Configuring-Squid-Proxy.html">
+        Deploying Squid proxy on head nodes
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/hpe-solutions-openshift/4.10-LTI/assets/js/app.61e21a34.js" defer></script><script src="/hpe-solutions-openshift/4.10-LTI/assets/js/2.7c26c33b.js" defer></script><script src="/hpe-solutions-openshift/4.10-LTI/assets/js/25.d761f7ba.js" defer></script>
+  </body>
+</html>
