@@ -34,6 +34,50 @@
         owner: root
         group: root
 
+    - name: Replace domain in resolv.conf file
+      lineinfile:
+        path: /etc/resolv.conf
+        regexp: "search*"
+        line: 'search {{ base_domain }}'
 
+    - name: Delete existing nameserver
+      lineinfile:
+        path: /etc/resolv.conf
+        regexp: "nameserver*"
+        state: absent
+
+    - name: Add nameserver in resolv.conf file
+      lineinfile:
+        path: /etc/resolv.conf
+        line: "nameserver {{ master_binddns }} \nnameserver {{ slave1_binddns }} \nnameserver {{ slave2_binddns }}"
+
+
+    - name: Replace domain in network scripts file
+      lineinfile:
+        path: /etc/sysconfig/network-scripts/{{ ifcfg_filename }}
+        regexp: "DOMAIN*"
+        line: 'DOMAIN={{ base_domain }}'
+
+    - name: Add master DNS in network scripts file
+      lineinfile:
+        path: /etc/sysconfig/network-scripts/{{ ifcfg_filename }}
+        regexp: "DNS1*"
+        line: 'DNS1={{ master_binddns }}'
+
+    - name: Add slave DNS in network scripts file
+      lineinfile:
+        path: /etc/sysconfig/network-scripts/{{ ifcfg_filename }}
+        insertafter: "^DNS1={{ master_binddns }}"
+        line: "DNS2={{ slave1_binddns }} \nDNS3={{ slave2_binddns }}"
+        state: present
+
+    -  name: Restart the service
+       service:
+            name: NetworkManager
+            state: restarted
+            enabled: true
+
+    - name: Make /etc/resolv.conf immutable
+      command: chattr -i /etc/resolv.conf
 
 
