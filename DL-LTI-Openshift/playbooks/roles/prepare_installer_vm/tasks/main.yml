@@ -16,8 +16,12 @@
           - issubscribed.stdout.find('Current') == -1
       ignore_errors: yes
 
+    - name: Get OCP major version from input variable
+      set_fact:
+        ocp_image_version : "{{ ocp_version.split('.')[0:2] | join('.') }}"
+
     - name: Enable the repositories required by OpenShift Container Platform 4.10
-      shell: subscription-manager repos --enable="rhel-7-server-rpms"  --enable="rhel-7-server-extras-rpms" --enable="rhel-7-server-ansible-2.9-rpms"  --enable="rhel-7-server-ose-4.10-rpms"
+      shell: subscription-manager repos --enable="rhel-7-server-rpms"  --enable="rhel-7-server-extras-rpms" --enable="rhel-7-server-ansible-2.9-rpms"  --enable="rhel-7-server-ose-{{ ocp_image_version }}-rpms"
 
     - name: Install the required packages, including openshift-ansible
       shell: yum -y install openshift-ansible openshift-clients jq
