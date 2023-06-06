@@ -42,3 +42,4 @@ ifcfg_filename: ifcfg-bridge0.*                    #network-scripts OS network f
 master_binddns: 172.28.*.*                         #headnode1 ip 
 slave1_binddns: 172.28.*.*                         #headnode2 ip
 slave2_binddns: 172.28.*.*                         #headnode3_ip
+ocp_version: 4.x.x                                 #should be same as ocp cluster version

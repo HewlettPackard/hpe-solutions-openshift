@@ -18,8 +18,12 @@
     - name: Disable all the enabled RHSM repositories
       shell: subscription-manager repos --disable="*"
 
+    - name: Get OCP major version from input variable
+      set_fact:
+        ocp_image_version : "{{ ocp_version.split('.')[0:2] | join('.') }}"
+
     - name: Enable the repositories required by OpenShift Container Platform 4.10
-      shell: subscription-manager repos --enable="rhel-8-for-x86_64-baseos-rpms" --enable="rhel-8-for-x86_64-appstream-rpms" --enable="rhocp-4.10-for-rhel-8-x86_64-rpms" --enable="fast-datapath-for-rhel-8-x86_64-rpms"
+      shell: subscription-manager repos --enable="rhel-8-for-x86_64-baseos-rpms" --enable="rhel-8-for-x86_64-appstream-rpms" --enable="rhocp-{{ ocp_image_version }}-for-rhel-8-x86_64-rpms" --enable="fast-datapath-for-rhel-8-x86_64-rpms"
 
     - name: Stop and disable firewall service.
       service:
