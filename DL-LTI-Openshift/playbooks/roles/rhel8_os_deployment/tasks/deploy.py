@@ -66,9 +66,9 @@ def image_deployment(server, config):
         if not server_model:
             print("Failed to get server model")
             return False
-        if "Gen10" not in server_model:
-            print("Server with serial number {} is not supported for this solution".format(server['Server_serial_number']))
-            return False
+        #if "Gen10" not in server_model:
+            #print("Server with serial number {} is not supported for this solution".format(server['Server_serial_number']))
+            #return False
 
          # creating inventory file
         #with open("./roles/prepare_hosts/tasks/inventory",'a') as t:
