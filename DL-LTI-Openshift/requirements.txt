@@ -7,3 +7,4 @@ jsonpatch
 jsonpath_rw
 ansible-vault
 jsonpath-ng
+requests
