@@ -6,3 +6,4 @@ urlparse2
 jsonpatch
 jsonpath_rw
 ansible-vault
+requests
