@@ -105,7 +105,6 @@ RHEL 8.5 Installer machine the following configurations.
 
 ### **Input files**
 
-### *Note* For server type ProLiant DL360 Gen10, Bonding_Interface1 = eno5 Bonding_Interface2 = eno6. For server type ProLiant DL365 Gen10 Plus, Bonding_Interface1 = ens2 Bonding_Interface2 = ens3
 
 We can provide the input variables in any one of the below methods
 
