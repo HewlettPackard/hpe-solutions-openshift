@@ -55,8 +55,8 @@
              "console=ttyS0",
              "coreos.inst=yes",
              "coreos.inst.install_dev=/dev/vda",
-             "coreos.live.rootfs_url=http://{{ rhel7_installer_IP }}:8080/assets/{{ bios_uefi_name }}",
-             "coreos.inst.ignition_url=http://{{ rhel7_installer_IP }}:8080/ignition?mac=${mac:hexhyp}"
+             "coreos.live.rootfs_url=http://{{ rhel8_installer_IP }}:8080/assets/{{ bios_uefi_name }}",
+             "coreos.inst.ignition_url=http://{{ rhel8_installer_IP }}:8080/ignition?mac=${mac:hexhyp}"
             ]
            }
           }
@@ -95,8 +95,8 @@
              "console=ttyS0",
              "coreos.inst=yes",
              "coreos.inst.install_dev=/dev/vda",
-             "coreos.live.rootfs_url=http://{{ rhel7_installer_IP }}:8080/assets/{{ bios_uefi_name }}",
-             "coreos.inst.ignition_url=http://{{ rhel7_installer_IP }}:8080/ignition?mac=${mac:hexhyp}"
+             "coreos.live.rootfs_url=http://{{ rhel8_installer_IP }}:8080/assets/{{ bios_uefi_name }}",
+             "coreos.inst.ignition_url=http://{{ rhel8_installer_IP }}:8080/ignition?mac=${mac:hexhyp}"
             ]
            }
           }
@@ -135,8 +135,8 @@
              "console=ttyS0",
              "coreos.inst=yes",
              "coreos.inst.install_dev=/dev/vda",
-             "coreos.live.rootfs_url=http://{{ rhel7_installer_IP }}:8080/assets/{{ bios_uefi_name }}",
-             "coreos.inst.ignition_url=http://{{ rhel7_installer_IP }}:8080/ignition?mac=${mac:hexhyp}"
+             "coreos.live.rootfs_url=http://{{ rhel8_installer_IP }}:8080/assets/{{ bios_uefi_name }}",
+             "coreos.inst.ignition_url=http://{{ rhel8_installer_IP }}:8080/ignition?mac=${mac:hexhyp}"
             ]
            }
           }

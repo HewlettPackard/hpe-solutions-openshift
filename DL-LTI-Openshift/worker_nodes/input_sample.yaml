@@ -1,0 +1,45 @@
+servers:
+ - Server_serial_number  : 2M2XXXXXXXX
+   ILO_Address           : 172.28.*.*
+   ILO_Username          : admin
+   ILO_Password          : *******
+   Hostname              : worker1.ocp.isv.local      #FQDN of worker node as given in Binddns entry
+   Host_Username         : root
+   Host_Password         : ********
+   HWADDR1               : XX:XX:XX:XX:XX:XX             #mac address for server adapter physical interface1 
+   HWADDR2-              : XX:XX:XX:XX:XX:XX             #mac address for server adapter physical interface2 
+   Host_OS_disk          : sda
+   Host_VlanID           : 230
+   Host_IP               : 172.28.*.*                 #IP of worker node as given in Binddns entry
+   Host_Netmask          : 255.*.*.*
+   Host_Prefix           : 24
+   Host_Gateway          : 172.28.*.*
+   Host_DNS1             : 172.28.*.*                 #Binddns master IP
+   Host_DNS2             : 172.28.*.*                 #Binddns slave1 IP
+   Host_DNS3             : 172.28.*.*                 #Binddns slave2 IP
+   SquidProxy_IP         : 172.28.*.*                 #Virtual Squid Proxy IP 
+   SquidProxy_Port       : 3128                     
+   Host_Domain           : ocp.isv.local
+
+
+config:
+   HTTP_server_base_url: http://172.28.230.114/      #rhel8 Installer VM ip address
+   HTTP_file_path: /usr/share/nginx/html/
+   OS_type: rhel8
+   OS_image_name: rhel-8.6-x86_64-dvd.iso            #ISO image should be present in /usr/share/nginx/html/
+   base_kickstart_filepath: /opt/Openshift-Synergy-RA-LTI-OCP-4.12/DL-LTI-Openshift/worker_nodes/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg
+
+
+rhsub_username: ******
+rhsub_password: *******
+pool_id: ************                                #Pool ID for Redhat OpenShift Container Platform and Openshift Infrastructure
+
+solution_network_ip: 172.28.201.200
+corporate_ntp: *.*.*.*                               #Corporate NTP server IP address
+
+base_domain: isv.local                             #base domain used for bringing up the RHOCP cluster
+ifcfg_filename: ifcfg-bridge0.*                    #network-scripts OS network filename with static IP, ifcfg-bridge0.230
+master_binddns: 172.28.*.*                         #headnode1 ip 
+slave1_binddns: 172.28.*.*                         #headnode2 ip
+slave2_binddns: 172.28.*.*                         #headnode3_ip
+ocp_version: 4.x.x                                 #should be same as ocp cluster version

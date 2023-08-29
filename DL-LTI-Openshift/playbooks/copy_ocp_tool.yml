@@ -1,8 +1,17 @@
 ---
-- name: Copy OC tools and kubeconfig file to head nodes
-  hosts: kvm_nodes:rhel7_installerVM
+
+- name: Copy OC tools and kubeconfig file to RHEL Installer
+  hosts: rhel8_installerVM
   gather_facts: no
   vars_files:
     - ../input.yaml
   roles:
     - role: roles/copy_ocp_tool
+
+- name: Copy ansible code to headnodes
+  hosts: kvm_nodes
+  gather_facts: no
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/copy_scripts

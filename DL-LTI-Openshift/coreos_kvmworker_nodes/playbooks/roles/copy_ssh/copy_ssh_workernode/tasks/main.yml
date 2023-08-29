@@ -1,0 +1,21 @@
+---
+   - name: Install sshpass
+     yum:
+       name: sshpass
+       state: present
+       
+   - name: generate SSH key 
+     openssh_keypair:
+       path: "~/.ssh/id_rsa"
+       type: rsa
+       size: 4096
+       state: present
+       force: no
+
+   - name: Copy ssh keys to kvm worker nodes
+     shell: "ssh-copy-id  -o StrictHostKeyChecking=no root@{{ item }}"
+     with_items: "{{ groups['kvm_workernodes'] }}"
+     
+   - name: Copy ssh keys to itself
+     shell: "ssh-copy-id  -o StrictHostKeyChecking=no root@{{ item }}"
+     with_items: "{{ groups['rhel8_installerVM'] }}"
