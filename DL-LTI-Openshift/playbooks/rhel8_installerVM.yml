@@ -1,0 +1,10 @@
+---
+- name: Create rhel 8.6 Installer VM to add worker nodes
+  hosts: "{{ groups['kvm_nodes'][0] }}"
+  gather_facts: True
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/rhel8_installerVM
+   
+

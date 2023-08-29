@@ -1,0 +1,164 @@
+servers:
+ - Hostname: ocpworker1.ocp.customer.local                #ex. workernode1.customer.local
+   Host_Username: root
+   Host_Password: Password
+   Host_VlanID: xxx                         #solution VLAN ID ex. xxx
+   Host_IP: 172.28.xx.xx
+   Host_Netmask: 255.255.255.0
+   Host_Prefix: 24                          #ex. 8,24,32
+   Host_Gateway: 172.28.xx.xx
+   Host_DNS: 172.28.xx.xx                   # provide headnode1 ip 
+   Host_Domain: xx.xx                       #ex. customer.local
+   corporate_proxy: 172.28.xxx.243              #provide squid proxy ip which we have excuted in squid proxy playbook on head node process (ref:- line number 66 for squid proxy ip)
+   corporate_proxy_port: 3128                 #squid proxy port no, ex. 3128
+
+ - Hostname: ocpworker2.ocp.customer.local            #ex. workernode2.customer.local
+   Host_Username: root
+   Host_Password: Password
+   Host_VlanID: xxx
+   Host_IP: 172.28.xxx.53
+   Host_Netmask: 255.255.255.0
+   Host_Prefix: 24                          #ex. 8,24,32
+   Host_Gateway: 172.28.xx.xx
+   Host_DNS: 172.28.xx.xx                    # provide headnode1 ip 
+   Host_Domain: xx.xx                      #ex. customer.local
+   corporate_proxy: 172.28.xx.xx              #provide squid proxy ip which we have excuted in squid proxy playbook on head node process (ref:- line number 66 for squid proxy ip)
+   corporate_proxy_port: 3128                #squid proxy port no, ex. 3128
+
+ - Hostname: ocpworker3.ocp.customer.local                #ex. workernode3.customer.local
+   Host_Username: root
+   Host_Password: Password
+   Host_VlanID: xxx
+   Host_IP: 172.28.xx.xx
+   Host_Netmask: 172.28.xx.xx
+   Host_Prefix: 24                          #ex. 8,24,32
+   Host_Gateway: 172.28.xx.xx
+   Host_DNS: 172.28.xx.xx                     # provide headnode1 ip 
+   Host_Domain: xx.xx                      #ex. customer.local
+   corporate_proxy: 172.28.xx.xx             #provide squid proxy ip which we have excuted in squid proxy playbook on head node process (ref:- line number 66 for squid proxy ip)
+   corporate_proxy_port: 3128               #squid proxy port no, ex. 3128
+
+rhsub_username: 
+rhsub_password: 
+pool_id:                          #Pool ID for Redhat OpenShift Container Platform and Openshift Infrastructure
+
+common:
+   ifcfg_filename: ifcfg-brAruba8325.xxx                #network-scripts OS network filename with static IP, ifcfg-bridge0.xxx          
+   interface_name: brAruba8325.xxx                      #ex. bridge0.xxx
+   base_domain: xx.xx                           #ex. customer.local
+   reverse_zone: xx.28.172.in-addr.arpa
+   app_domain: ocp.*.*                         #ex. ocp.customer.local
+   customerforwarderdns_fqdn: resolver.hpecorp.net
+   solution_subnet_ip: 172.28.xx.xx/24
+   ansible_engine_ip: 172.28.xx.xx
+
+solution_network_ip: 172.28.xx.xx
+corporate_ntp: xx.xx.xx.xx                        #Corporate NTP server IP address
+
+master_binddns: 172.28.xx.xx
+slave1_binddns: 172.28.xx.xx
+slave2_binddns: 172.28.xx.xx
+
+VIP: 172.28.xx.xx
+VIP_Prefix: 24
+haproxy_fqdn: haproxy.*.*
+
+squid_proxy_IP: 172.28.xx.xx
+
+corporate_proxy: 172.28.xx.xx
+corporate_proxy_port: 3128
+squid_port: 3128                                 #ex. 3128
+
+ocp_bootstrap:
+ - name: bootstrap
+   ip: 172.28.xx.xx
+   fqdn: bootstrap.*.*                       #ex. bootstrap.ocp.customer.local
+   mac_address: xx:xx:xx:xx:xx:xx               #ex. 52:54:00:3e:f5:c1
+
+ocp_masters:
+ - name: master1
+   ip: 172.28.xx.xx
+   fqdn: master1.*.*                         #ex. master1.ocp.customer.local
+   mac_address: xx:xx:xx:xx:xx:xx 
+ - name: master2
+   ip: 172.28.xx.xx
+   fqdn: master2.*.*
+   mac_address: xx:xx:xx:xx:xx:xx 
+ - name: master3
+   ip: 172.28.xx.xx
+   fqdn: master3.*.*
+   mac_address: xx:xx:xx:xx:xx:xx 
+
+ocp_workers:
+ - name: rhelworker1
+   ip: 172.28.xx.xx
+   fqdn: rhelworker1.*.*                        #ex. rhelworker1.ocp.customer.local
+   mac_address: xx:xx:xx:xx:xx:xx 
+ - name: rhelworker2
+   ip: 172.28.xx.xx
+   fqdn: rhelworker2.*.*
+   mac_address: xx:xx:xx:xx:xx:xx 
+ - name: rhelworker3
+   ip: 172.28.xx.xx
+   fqdn: rhelworker3.*.*
+   mac_address: xx:xx:xx:xx:xx:xx 
+ - name: coreosworker1
+   ip: 172.28.xx.xx
+   fqdn: coreosworker1.*.*                         #ex. coreosworker1.ocp.customer.local
+   mac_address: xx:xx:xx:xx:xx:xx 
+ - name: coreosworker2
+   ip: 172.28.xx.xx
+   fqdn: coreosworker2.*.*
+   mac_address: xx:xx:xx:xx:xx:xx 
+ - name: coreosworker3
+   ip: 172.28.xx.xx
+   fqdn: coreosworker3.*.*
+   mac_address: xx:xx:xx:xx:xx:xx 
+
+
+dns_forwarder:
+ - ip: xx.xx.xx.xx
+
+ocp_version: 4.12.2                           #ex. 4.12
+
+pull_secret: '' 
+id_rsa_pub: ''
+
+#####################################################################
+# Details of Ansible User Credentials required to set-up the iPXE
+
+#Path to OpenShift Directory; Example: /opt/Openshift-Synergy-RA/DL-LTI-Openshift(no trailing forwardslash required)
+base_path: '/opt/Openshift-Synergy-RA-LTI-OCP-4.12/DL-LTI-Openshift'
+
+#Is Environment Airgapped; ('yes' or 'no'):
+is_environment_airgap: 'no'
+
+###Common Networking
+# Interface Name of Rhel8.6 VM: interface_name: eth0
+interface_name: eth0
+
+# dhcp range that is used for OCP nodes Example: dhcp_range: 192.168.42.204,192.168.42.210,24h
+dhcp_range: 172.28.xx.xx,172.28.xx.xx
+
+# DO not change these details
+# install media details Example: image_location: "/tmp/image/"
+image_location: /tmp/image/
+
+# Example: initramfs_name: rhcos-live-initramfs.x86_64.img
+initramfs_name: rhcos-live-initramfs.x86_64.img
+
+# Example: kernel_name: rhcos-live-kernel-x86_64
+kernel_name: rhcos-live-kernel-x86_64
+
+# Example: bios_uefi_name: rhcos-live-rootfs.x86_64.img
+bios_uefi_name: rhcos-live-rootfs.x86_64.img
+
+#OCP VM details
+vm_cpu: 16                           #VM CPU cores
+vm_mem: 32000                       #VM RAM detail 
+vm_size: 250                        #VM virtual disk size is in GB
+
+#Rhel8 Installer VM details
+rhel8_installer_hostname: rhel8_installer.*.*
+rhel8_installer_IP: 172.28.xx.xx
+rhel8_installer_password: Password

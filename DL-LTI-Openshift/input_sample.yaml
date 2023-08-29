@@ -1,22 +1,22 @@
 servers:
  - Server_serial_number: 2M20510XXX
    ILO_Address: 172.28.*.*
-   ILO_Username: xxxx
+   ILO_Username: admin
    ILO_Password: *****
    Hostname: headnode1.XX.XX                #ex. headnode1.isv.local
    Host_Username: root
    Host_Password: ******
-   HWADDR1: XX:XX:XX:XX:XX:XX            #mac address for Physical server Network Adapter interface1 
-   HWADDR2: XX:XX:XX:XX:XX:XX            #mac address for Physical server Network Adapter interface2 
+   HWADDR1: XX:XX:XX:XX:XX:XX             #mac address for server physical interface1 
+   HWADDR2: XX:XX:XX:XX:XX:XX             #mac address for server physical interface2 
    Host_OS_disk: sda
-   Host_VlanID:                          #Provide VLAN ID if solution has VLAN ID ex. 230 if not provide empty
+   Host_VlanID: 230                         #solution VLAN ID ex. 230
    Host_IP: 172.28.*.*
    Host_Netmask: 255.*.*.*
    Host_Prefix: XX                          #ex. 8,24,32
    Host_Gateway: 172.28.*.*
    Host_DNS: 172.28.*.*
    Host_Domain: XX.XX                       #ex. isv.local
-   corporate_proxy: 172.28.*.*              #If sertup based on proxy then provide corporate proxy, if not provide empty
+   corporate_proxy: 172.28.*.*              #provide corporate proxy, ex. proxy.houston.company.net
    corporate_proxy_port: XX                 #corporate proxy port no, ex. 8080
 
  - Server_serial_number: 2M20510XXX
@@ -26,10 +26,10 @@ servers:
    Hostname: headnode2.XX.XX                #ex. headnode2.isv.local
    Host_Username: root
    Host_Password: ******
-   HWADDR1: XX:XX:XX:XX:XX:XX            #mac address for Physical server Network Adapter interface1
-   HWADDR2: XX:XX:XX:XX:XX:XX            #mac address for Physical server Network Adapter interface2
+   HWADDR1: XX:XX:XX:XX:XX:XX             #mac address for server physical interface1 
+   HWADDR2: XX:XX:XX:XX:XX:XX             #mac address for server physical interface2 
    Host_OS_disk: sda
-   Host_VlanID: xxx
+   Host_VlanID: 230
    Host_IP: 172.28.*.*
    Host_Netmask: 255.*.*.*
    Host_Prefix: XX                          #ex. 8,24,32
@@ -46,10 +46,10 @@ servers:
    Hostname: headnode3.XX.XX                #ex. headnode3.isv.local
    Host_Username: root
    Host_Password: ******
-   HWADDR1: XX:XX:XX:XX:XX:XX            #mac address for Physical server Network Adapter interface1
-   HWADDR2: XX:XX:XX:XX:XX:XX            #mac address for Physical server Network Adapter interface2
+   HWADDR1: XX:XX:XX:XX:XX:XX             #mac address for server physical interface1 
+   HWADDR2: XX:XX:XX:XX:XX:XX             #mac address for server physical interface2
    Host_OS_disk: sda
-   Host_VlanID: xxx
+   Host_VlanID: 230
    Host_IP: 172.28.*.*
    Host_Netmask: 255.*.*.*
    Host_Prefix: XX                          #ex. 8,24,32
@@ -64,7 +64,7 @@ config:
    HTTP_file_path: /usr/share/nginx/html/    
    OS_type: rhel8
    OS_image_name: rhel-8.6-x86_64-dvd.iso    # ISO image should be present in /usr/share/nginx/html/
-   base_kickstart_filepath: /opt/ISV-OpenShift-develop/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg
+   base_kickstart_filepath: /opt/Openshift-Synergy-RA/DL-LTI-Openshift/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg
 
 rhsub_username: ******
 rhsub_password: ******
@@ -74,10 +74,10 @@ common:
    ifcfg_filename: ifcfg-bridge0.*                #network-scripts OS network filename with static IP, ifcfg-bridge0.230          
    interface_name: bridge0.*                      #ex. bridge0.230
    base_domain: XX.XX                             #ex. isv.local
-   reverse_zone: xxx.28.172.in-addr.arpa
+   reverse_zone: xx.28.172.in-addr.arpa
    app_domain: XX.XX.XX                           #ex. ocp.isv.local
    customerforwarderdns_fqdn: resolver.hpecorp.net
-   solution_subnet_ip: 172.28.xxx.x/24
+   solution_subnet_ip: 172.28.230.0/24
    ansible_engine_ip: 172.28.*.*
 
 solution_network_ip: 172.28.*.*
@@ -88,7 +88,7 @@ slave1_binddns: 172.28.*.*
 slave2_binddns: 172.28.*.*
 
 VIP: 172.28.*.*
-VIP_Prefix: xx
+VIP_Prefix: 24
 haproxy_fqdn: haproxy.X.X.X
 
 squid_proxy_IP: 172.28.*.*
@@ -121,7 +121,7 @@ ocp_workers:
  - name: worker1
    ip: 172.28.*.*
    fqdn: worker1.*.*.*                          #ex. mworker1.ocp.isv.local
-   mac_address:                                 # Provide Mac address to use CoreOS workers, Provide emty while using RHEL worker  
+   mac_address: ### If user add core os worker to cluster then update mac address, if it rhel worker leave it empty
  - name: worker2
    ip: 172.28.*.*
    fqdn: worker2.*.*.*
@@ -135,22 +135,22 @@ dns_forwarder:
  - ip: 
  - ip: 
 
-ocp_version: x.x.x                           #ex. 4.10.16
+ocp_version: x.x.x                           #ex. 4.12
 
-pull_secret: ''                              # Login to redhat portal and copy pullsecret and update 
-id_rsa_pub: ''                               # update pubkey for access coreos ocp vm's
+pull_secret: '' 
+id_rsa_pub: ''
 
 #####################################################################
 # Details of Ansible User Credentials required to set-up the iPXE
 
 #Path to ISV-OpenShift-develop Directory; Example: /opt/ISV-OpenShift-develop(no trailing forwardslash required)
-base_path: '/opt/ISV-OpenShift-develop'
+base_path: '/opt/Openshift-Synergy-RA/DL-LTI-Openshift/'
 
 #Is Environment Airgapped; ('yes' or 'no'):
 is_environment_airgap: 'no'
 
 ###Common Networking
-# Interface Name of Rhel7.9 VM: interface_name: eth0
+# Interface Name of Rhel8 VM: interface_name: eth0
 interface_name: eth0
 
 # dhcp range that is used for OCP nodes Example: dhcp_range: 192.168.42.204,192.168.42.210,24h
@@ -174,7 +174,7 @@ vm_cpu: 4                           #VM CPU cores
 vm_mem: 16000                       #VM RAM detail 
 vm_size: 250                        #VM virtual disk size is in GB
 
-#Rhel7 Installer VM details
-rhel7_installer_hostname: rhel7_installer.*.*
-rhel7_installer_IP: 172.28.*.*
-rhel7_installer_password: ******
+#Rhel8 Installer VM details
+rhel8_installer_hostname: rhel8_installer.*.*
+rhel8_installer_IP: 172.28.*.*
+rhel8_installer_password: ******

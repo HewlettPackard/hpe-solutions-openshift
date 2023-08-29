@@ -2,13 +2,13 @@
 ansible_user=root 
 #ansible_become=True 
 
-openshift_kubeconfig_path="/opt/ISV-OpenShift-develop/playbooks/roles/generate_ignition_files/ignitions/auth/kubeconfig" 
+openshift_kubeconfig_path="/opt/Openshift-Synergy-RA-LTI-OCP-4.12/DL-LTI-Openshift/playbooks/roles/generate_ignition_files/ignitions/auth/kubeconfig" 
 
 [new_workers]
 worker1.ocp.isv.local
 worker2.ocp.isv.local
 worker3.ocp.isv.local
 
-[rhel7_installerVM]
+[rhel8_installerVM]
 172.28.*.*
 
