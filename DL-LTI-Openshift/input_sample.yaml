@@ -143,7 +143,7 @@ id_rsa_pub: ''
 #####################################################################
 # Details of Ansible User Credentials required to set-up the iPXE
 
-#Path to ISV-OpenShift-develop Directory; Example: /opt/ISV-OpenShift-develop(no trailing forwardslash required)
+#Path to ISV-OpenShift-develop Directory; Example: /opt/hpe-solutions-openshift/DL-LTI-Openshift(no trailing forwardslash required)
 base_path: '/opt/hpe-solutions-openshift/DL-LTI-Openshift/'
 
 #Is Environment Airgapped; ('yes' or 'no'):
