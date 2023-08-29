@@ -55,7 +55,7 @@ firewall-cmd --reload
 echo "============================================================"
 echo "Verifying Python3 status and installing the prerequisites"
 echo "============================================================"
-rpm -qa | grep -qw rh-python36 || yum install rh-python36 -y
+rpm -qa | grep -qw python38 || yum install python38 -y
 yum install python3-pip -y
 pip3 install setuptools_rust
 pip3 install --upgrade pip

@@ -1,7 +1,6 @@
 ---
 - name: Create manifests and ignition files
-  hosts: localhost
-  connection: local
+  hosts: rhel8_installerVM
   become: yes
   gather_facts: true
   vars_files:

@@ -1,20 +1,10 @@
 ---
-  - name: Copy OCP tools
-    block:
-      - name: Copying openshift components
-        become: true
-        copy:
-          src: "{{ base_path }}/"
-          dest: "{{ base_path }}/"
-          owner: root
-          group: root
-          mode: 775
-
       - name: Copy oc to path
         become: true
         copy:
           src: "{{ base_path }}/playbooks/roles/download_ocp_packages/library/openshift_components/oc"
           dest: /usr/local/bin/
+          remote_src: yes
           owner: root
           group: root
           mode: 775
@@ -24,18 +14,20 @@
         copy:
           src: "{{ base_path }}/playbooks/roles/download_ocp_packages/library/openshift_components/openshift-install"
           dest: /usr/local/bin/
+          remote_src: yes
           owner: root
           group: root
           mode: 775
 
-      - name: Copy boot images to Rhel7 installer
+      - name: Copy ignition files to Rhel8 installer
         become: true
         copy:
-          src: "/tmp/image/"
-          dest: /tmp/image/
+          src: "/opt/"
+          dest: /opt/
           owner: root
           group: root
           mode: 775
-        delegate_to: "{{ rhel7_installer_IP }}"
+          remote_src: yes
+        delegate_to: "{{ rhel8_installer_IP }}"
 
 

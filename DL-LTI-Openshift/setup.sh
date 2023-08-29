@@ -60,20 +60,20 @@ firewall-cmd --reload
 echo "============================================================"
 echo "Verifying Python3 status and installing the prerequisites"
 echo "============================================================"
-rpm -qa | grep -qw rh-python36 || yum install rh-python36 -y
+rpm -qa | grep -qw python38 || yum install python38 -y
 pip3 install setuptools_rust
 pip3 install --upgrade pip
 
 version=$(python -V 2>&1 | grep -Po '(?<=Python )\d.\d')
-min=3.6
+min=3.8
 rpm -qa | grep -qw genisoimage || yum install genisoimage -y
 rpm -qa | grep -qw bc || yum install bc -y
 if [ 1 -eq "$(echo "${version} < ${min}" | bc)" ]
 then
     echo "!!!!!!!!!!!======================================!!!!!!!!!!!!"
-    echo "This script requires python 3.6 or greater"
-    echo "Install and enable Python 3.6 or above using the following command and install requirements"
-    echo "scl enable rh-python36 bash"
+    echo "This script requires python 3.8 or greater"
+    echo "Install and enable Python 3.8 or above using the following command and install requirements"
+    echo "scl enable python38 bash"
     echo "pip3 install -r requirements.txt"
     echo "!!!!!!!!!!!======================================!!!!!!!!!!!!"
     exit 1
