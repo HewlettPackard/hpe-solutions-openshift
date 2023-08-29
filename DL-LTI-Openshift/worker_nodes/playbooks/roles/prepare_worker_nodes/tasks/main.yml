@@ -22,7 +22,7 @@
       set_fact:
         ocp_image_version : "{{ ocp_version.split('.')[0:2] | join('.') }}"
 
-    - name: Enable the repositories required by OpenShift Container Platform 4.10
+    - name: Enable the repositories required by OpenShift Container Platform 4.12
       shell: subscription-manager repos --enable="rhel-8-for-x86_64-baseos-rpms" --enable="rhel-8-for-x86_64-appstream-rpms" --enable="rhocp-{{ ocp_image_version }}-for-rhel-8-x86_64-rpms" --enable="fast-datapath-for-rhel-8-x86_64-rpms"
 
     - name: Stop and disable firewall service.

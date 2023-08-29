@@ -26,11 +26,11 @@ f.write("\n   Host_Username: " +usrtext);
 usrtext = input("Enter Host password for the first head node server ( Example: Password ) : " + "\n");
 f.write("\n   Host_Password: " +usrtext);
 
-usrtext = input("Enter Bonding Interface1 for the first head node server ( Example: ens2 ) : " + "\n");
-f.write("\n   Bonding_Interface1: " +usrtext);
+usrtext = input("Enter HWADDR1 for the first head node server ( Example: 88:e9:a4:69:43:44 ) : " + "\n");
+f.write("\n   HWADDR1: " +usrtext);
 
-usrtext = input("Enter Bonding Interface2 for the first head node server ( Example: ens3 ) : " + "\n");
-f.write("\n   Bonding_Interface2: " +usrtext);
+usrtext = input("Enter HWADDR2 for the first head node server ( Example: 88:e9:a4:69:43:45 ) : " + "\n");
+f.write("\n   HWADDR2: " +usrtext);
 
 usrtext = input("Enter Host OS Disk for the first head node server ( Example: sda ) : " + "\n");
 f.write("\n   Host_OS_disk: " +usrtext);
@@ -86,11 +86,11 @@ f.write("\n   Host_Username: " +usrtext);
 usrtext = input("Enter Host password for the second head node server ( Example: Password ) : " + "\n");
 f.write("\n   Host_Password: " +usrtext);
 
-usrtext = input("Enter Bonding Interface1 for the second head node server ( Example: ens2 ) : " + "\n");
-f.write("\n   Bonding_Interface1: " +usrtext);
+usrtext = input("Enter HWADDR1 for the second head node server ( Example: 88:e9:a4:69:43:44 ) : " + "\n");
+f.write("\n   HWADDR1: " +usrtext);
 
-usrtext = input("Enter Bonding Interface2 for the second head node server ( Example: ens3 ) : " + "\n");
-f.write("\n   Bonding_Interface2: " +usrtext);
+usrtext = input("Enter HWADDR2 for the second head node server ( Example: 88:e9:a4:69:43:45 ) : " + "\n");
+f.write("\n   HWADDR2: " +usrtext);
 
 usrtext = input("Enter Host OS Disk for the second head node server ( Example: sda ) : " + "\n");
 f.write("\n   Host_OS_disk: " +usrtext);
@@ -146,11 +146,11 @@ f.write("\n   Host_Username: " +usrtext);
 usrtext = input("Enter Host password for the third head node server ( Example: Password ) : " + "\n");
 f.write("\n   Host_Password: " +usrtext);
 
-usrtext = input("Enter Bonding Interface1 for the third head node server ( Example: eno5 ) : " + "\n");
-f.write("\n   Bonding_Interface1: " +usrtext);
+usrtext = input("Enter HWADDR1 for the third head node server ( Example: XX:XX:XX:XX:XX ) : " + "\n");
+f.write("\n   HWADDR1: " +usrtext);
 
-usrtext = input("Enter Bonding Interface2 for the third head node server ( Example: eno6 ) : " + "\n");
-f.write("\n   Bonding_Interface2: " +usrtext);
+usrtext = input("Enter HWADDR2 for the third head node server ( Example: XX:XX:XX:XX:XX ) : " + "\n");
+f.write("\n   HWADDR2: " +usrtext);
 
 usrtext = input("Enter Host OS Disk for the third head node server ( Example: sda ) : " + "\n");
 f.write("\n   Host_OS_disk: " +usrtext);
@@ -188,7 +188,7 @@ f.write("\n\nconfig:");
 usrtext = input("Enter HTTP_server_base_url with installer IP ( Example: http://InstallerIP/ ): " + "\n");
 f.write("\n   HTTP_server_base_url: " +usrtext);
 
-usrtext = input("Enter HTTP_file_path ( Download the Rhel 8.5 OS image and store it in /usr/share/nginx/html/ location of the installer machine ) ( Example: /usr/share/nginx/html/ ): " + "\n");
+usrtext = input("Enter HTTP_file_path ( Download the Rhel 8.6 OS image and store it in /usr/share/nginx/html/ location of the installer machine ) ( Example: /usr/share/nginx/html/ ): " + "\n");
 f.write("\n   HTTP_file_path: " +usrtext);
 
 usrtext = input("Enter Operating System type ( Example: rhel8 ): " + "\n");
@@ -197,7 +197,7 @@ f.write("\n   OS_type: " +usrtext);
 usrtext = input("Enter Operating System Image name ( Example: rhel-8.6-x86_64-dvd.iso )  : " + "\n");
 f.write("\n   OS_image_name: " +usrtext);
 
-usrtext = input("Enter Base Kickstart file path ( Example: /opt/ISV-Openshift/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg  ) : " + "\n");
+usrtext = input("Enter Base Kickstart file path ( Example: /opt/Openshift-Synergy-RA/DL-LTI-Openshift/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg  ) : " + "\n");
 f.write("\n   base_kickstart_filepath: " +usrtext);
 
 
@@ -402,7 +402,7 @@ f.write("\n - ip: " +usrtext);
 usrtext = input("Enter the customer's second upstream DNS forwarder ip : " + "\n");
 f.write("\n - ip: " +usrtext);
 
-usrtext = input("Enter the ocp version (Example: 4.10.16) : " + "\n");
+usrtext = input("Enter the ocp version (Example: 4.12) : " + "\n");
 f.write("\n\nocp_version: " +usrtext);
 
 print("Enter redhat pull secret & Installer machine public key \n");
@@ -416,7 +416,7 @@ f.write("\nid_rsa_pub: " +usrtext);
 
 print("Enter Path to DL-LTI-Openshift Directory \n");
 
-usrtext = input("Enter base path to ISV-OpenShift Directory in single quotes ( Example: '/opt/hpe-solutions-openshift-master/DL-LTI-Openshift' ): " + "\n");
+usrtext = input("Enter base path to ISV-OpenShift Directory in single quotes ( Example: '/opt/Openshift-Synergy-RA/DL-LTI-Openshift' ): " + "\n");
 f.write("\n\nbase_path: " +usrtext);
 
 f.write("\n\nis_environment_airgap: 'no'");
@@ -450,16 +450,16 @@ usrtext = input("Enter the disk size in GB for the OCP KVM VM's ( Example: 250 )
 f.write("\nvm_size: " +usrtext);
 
 
-print("Enter the Rhel 7.x Installer details to add rhel worker to OCP cluster\n");
+print("Enter the Rhel 8.x Installer details to add rhel worker to OCP cluster\n");
 
-usrtext = input("Enter the hostname of the rhel7 installer to add rhel worker to OCP cluster ( Example: installer.ocp.xyz.local ) : " + "\n");
-f.write("\n\nrhel7_installer_hostname: " +usrtext);
+usrtext = input("Enter the hostname of the rhel8 installer to add rhel worker to OCP cluster ( Example: installer.ocp.xyz.local ) : " + "\n");
+f.write("\n\nrhel8_installer_hostname: " +usrtext);
 
-rhel7_installer_IP = input("Enter the IP of the rhel7 installer to add rhel worker to OCP cluster ( Example: 192.28.230.29 ) : " + "\n");
-f.write("\nrhel7_installer_IP: " +rhel7_installer_IP);
+rhel8_installer_IP = input("Enter the IP of the rhel8 installer to add rhel worker to OCP cluster ( Example: 192.28.230.29 ) : " + "\n");
+f.write("\nrhel8_installer_IP: " +rhel8_installer_IP);
 
-usrtext = input("Enter the Password of the rhel7 installer to add rhel worker to OCP cluster ( Example: Password ) : " + "\n");
-f.write("\nrhel7_installer_password: " +usrtext);
+usrtext = input("Enter the Password of the rhel8 installer to add rhel worker to OCP cluster ( Example: Password ) : " + "\n");
+f.write("\nrhel8_installer_password: " +usrtext);
 
 
 
@@ -481,8 +481,8 @@ f.write("\n\n[ansible_host]");
 f.write("\n" + ansible_engine_ip);
 
 
-f.write("\n\n[rhel7_installerVM]");
-f.write("\n" +rhel7_installer_IP);
+f.write("\n\n[rhel8_installerVM]");
+f.write("\n" +rhel8_installer_IP);
 
 
 f.write("\n\n[binddns_masters]");

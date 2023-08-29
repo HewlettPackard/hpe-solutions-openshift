@@ -1,19 +1,11 @@
----  
-   - name: generate SSH key 
-     openssh_keypair:
-       path: "~/.ssh/id_rsa"
-       type: rsa
-       size: 4096
-       state: present
-       force: no
-     
+---      
    - name: Copy ssh keys to worker nodes
      shell: "ssh-copy-id  -o StrictHostKeyChecking=no root@{{ item }}"
      with_items: "{{ groups['new_workers'] }}"
 
    - name: Copy ssh keys to itself
      shell: "ssh-copy-id  -o StrictHostKeyChecking=no root@{{ item }}"
-     with_items: "{{ groups['rhel7_installerVM'] }}"
+     with_items: "{{ groups['rhel8_installerVM'] }}"
   
      
 

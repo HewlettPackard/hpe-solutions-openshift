@@ -14,6 +14,7 @@
     copy:
       src: "{{ base_path }}/playbooks/roles/generate_ignition_files/ignitions/bootstrap.ign"
       dest: /var/lib/matchbox/ignition/
+      remote_src: yes
       owner: root
       group: root
       mode: 775
@@ -22,6 +23,7 @@
     copy:
       src: "{{ base_path }}/playbooks/roles/generate_ignition_files/ignitions/master.ign"
       dest: /var/lib/matchbox/ignition/
+      remote_src: yes
       owner: root
       group: root
       mode: 775
@@ -30,6 +32,7 @@
     copy:
       src: "{{ base_path }}/playbooks/roles/generate_ignition_files/ignitions/worker.ign"
       dest: /var/lib/matchbox/ignition/
+      remote_src: yes
       owner: root
       group: root
       mode: 775

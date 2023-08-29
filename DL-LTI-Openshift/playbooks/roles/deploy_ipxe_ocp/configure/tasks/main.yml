@@ -34,7 +34,7 @@
       command: cp /usr/share/ipxe/undionly.kpxe /var/lib/tftpboot/
      
     - name: Copy files to tftp 2
-      command: cp /usr/share/ipxe/ipxe.efi /var/lib/tftpboot/
+      command: cp /usr/share/ipxe/ipxe-x86_64.efi /var/lib/tftpboot/
 
     - name: set permission
       command: chmod 0755 -R /var/lib/tftpboot/
