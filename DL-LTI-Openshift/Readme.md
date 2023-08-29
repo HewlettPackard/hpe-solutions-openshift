@@ -402,4 +402,5 @@ Execute the following command to set the parameter **mastersSchedulable** para
 
          '$ oc edit scheduler'
 
-### ***Note*** To add more worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding RHEL8.6 Worker Nodes section.
+### ***Note*** 
+To add more worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding RHEL8.6 Worker Nodes section.
