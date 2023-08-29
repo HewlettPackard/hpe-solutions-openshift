@@ -2,6 +2,9 @@ ocp_version=$1
 ocp_image_version=`echo $ocp_version | cut -d"." -f1-2`
 echo $ocp_image_version
 
+echo "Installing wget"
+yum install -y wget
+
 mkdir /tmp/image/
 rm -rf /tmp/image/*
 echo "Downloading openshift images"
@@ -12,9 +15,6 @@ chmod -R +x /tmp/image/
 
 mkdir -p ../library/openshift_components
 cd ../library/openshift_components
-
-echo "Installing wget"
-yum install -y wget
 
 echo "Downloading openshift packages"
 

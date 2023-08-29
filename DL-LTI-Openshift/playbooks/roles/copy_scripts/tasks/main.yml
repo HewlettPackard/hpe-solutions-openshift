@@ -1,0 +1,12 @@
+---
+  - name: Copy Execution environment
+    block:
+      - name: Copying ansible scripts to installer
+        become: true
+        copy:
+          src: "{{ base_path }}/"
+          dest: "{{ base_path }}/"
+          owner: root
+          group: root
+          mode: 775
+

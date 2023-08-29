@@ -96,7 +96,7 @@
         --wait 10
   delegate_to: "{{ groups['kvm_nodes'][2] }}"
 
-- name: Restart master3 Doamin
+- name: Restart master3 Domain
   shell:
     cmd: >-
         virsh

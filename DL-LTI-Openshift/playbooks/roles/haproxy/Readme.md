@@ -14,7 +14,7 @@ GPLv2 is the license for HAProxy
 
 **Pre-requisite:-**
 
-1. RHEL 8.5  [Installer machine](https://github.hpe.com/Solutions/Openshift-Synergy-RA/blob/LTI-OCP-4.10/LTI-OCP/Readme.md "https://github.hpe.com/Solutions/Openshift-Synergy-RA/blob/LTI-OCP-4.10/LTI-OCP/Readme.md") is essential to initiate the haproxy deployment process.
+1. RHEL 8.6  [Installer machine](https://github.hpe.com/Solutions/Openshift-Synergy-RA/blob/LTI-OCP-4.12/LTI-OCP/Readme.md "https://github.hpe.com/Solutions/Openshift-Synergy-RA/blob/LTI-OCP-4.12/LTI-OCP/Readme.md") is essential to initiate the haproxy deployment process.
 2. Execute the following commands in the Ansible Engine to download the repositories.
 
                       ' # cd /opt

@@ -55,7 +55,7 @@
           dhcp-option=3,{{ servers[0].Host_Gateway }}
           dhcp-option=6,{{ master_binddns }},{{ slave1_binddns }},{{ slave2_binddns }}
           dhcp-range={{ dhcp_range }}
-          listen-address=::1,127.0.0.1,{{ rhel7_installer_IP }}
+          listen-address=::1,127.0.0.1,{{ rhel8_installer_IP }}
           dhcp-authoritative          
 
     - name: Insert a block at the end of a file.
@@ -71,14 +71,14 @@
           dhcp-boot=tag:bios,undionly.kpxe
           # UEFI
           dhcp-match=set:efi32,option:client-arch,6
-          dhcp-boot=tag:efi32,ipxe.efi
+          dhcp-boot=tag:efi32,ipxe-x86_64.efi
           dhcp-match=set:efibc,option:client-arch,7
-          dhcp-boot=tag:efibc,ipxe.efi
+          dhcp-boot=tag:efibc,ipxe-x86_64.efi
           dhcp-match=set:efi64,option:client-arch,9
-          dhcp-boot=tag:efi64,ipxe.efi
+          dhcp-boot=tag:efi64,ipxe-x86_64.efi
           # iPXE - chainload to matchbox ipxe boot script
           dhcp-userclass=set:ipxe,iPXE
-          dhcp-boot=tag:ipxe,http://{{ rhel7_installer_IP }}:8080/boot.ipxe
+          dhcp-boot=tag:ipxe,http://{{ rhel8_installer_IP }}:8080/boot.ipxe
 
     - name: Insert a block at the end of a file.
       blockinfile:

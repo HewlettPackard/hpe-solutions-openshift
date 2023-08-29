@@ -22,12 +22,12 @@
   - import_playbook: playbooks/binddns.yml
   - import_playbook: playbooks/haproxy.yml
   - import_playbook: playbooks/squid_proxy.yml
+  - import_playbook: playbooks/storage_pool.yml
+  - import_playbook: playbooks/rhel8_installerVM.yml
+  - import_playbook: playbooks/copy_ssh_installerVM.yml
+  - import_playbook: playbooks/prepare_rhel8_installer.yml
   - import_playbook: playbooks/download_ocp_packages.yml
   - import_playbook: playbooks/generate_manifest.yml
-  - import_playbook: playbooks/storage_pool.yml
-  - import_playbook: playbooks/rhel7_installerVM.yml
-  - import_playbook: playbooks/copy_ssh_installerVM.yml
-  - import_playbook: playbooks/prepare_rhel7_installer.yml
   - import_playbook: playbooks/copy_ocp_tool.yml
   - import_playbook: playbooks/deploy_ipxe_ocp.yml
   - import_playbook: playbooks/ocp_vm.yml
