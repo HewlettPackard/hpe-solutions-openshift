@@ -8,7 +8,7 @@ This section covers the steps to add RHEL 8.6 worker nodes to an existing Red Ha
 
 	**Input File Update:-**
 
-		1. User has to update the input.yaml file in $BASE_DIR(**/opt/Openshift-Synergy-RA-LTI-OCP-4.12/DL-LTI-Openshift/**) create_delete_logicaldrives directory to  execute the logical drive script.
+		1. User has to update the input.yaml file in $BASE_DIR(**/opt/hpe-solutions-openshift/DL-LTI-Openshift/**) create_delete_logicaldrives directory to  execute the logical drive script.
 		2. User needs to update all the details in the input.yaml file which include:-
 							
                 ' ILOServers:
@@ -53,7 +53,7 @@ This section covers the steps to add RHEL 8.6 worker nodes to an existing Red Ha
 
 					' # ansible-playbook site.yml --ask-vault-pass'
 
-2. Cleanup and reboot the RHEL 8.6  [Installer machine](https://github.hpe.com/Solutions/Openshift-Synergy-RA/blob/LTI-OCP-4.12/DL-LTI-Openshift/Readme.md "https://github.hpe.com/Solutions/Openshift-Synergy-RA/blob/LTI-OCP-4.12/DL-LTI-Openshift/Readme.md"), so the machine can be added as worker node to the existing OpenShift Container Platform cluster.
+2. Cleanup and reboot the RHEL 8.6  [Installer machine](https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md "https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md"), so the machine can be added as worker node to the existing OpenShift Container Platform cluster.
 
 3. Login to the Installer VM (that we created as a part of rhel8_installerVM.yml -- it would have created one KVM VM on one of the head nodes)
 
@@ -63,12 +63,12 @@ This section covers the steps to add RHEL 8.6 worker nodes to an existing Red Ha
 cd $BASE_DIR/worker_nodes/
 ```
 **NOTE**
-$BASE_DIR refers to **/opt/Openshift-Synergy-RA-LTI-OCP-4.12/DL-LTI-Openshift/**
+$BASE_DIR refers to **/opt/hpe-solutions-openshift/DL-LTI-Openshift/**
 
 5. Run the following commands on the rhel8 installer VM to edit the vault input file.
 
 ```
-ansible-vault edit input.yml
+ansible-vault edit input.yaml
 ```
 **NOTE**
 ansible vault password is **changeme**
@@ -87,7 +87,7 @@ vi inventory/hosts
 
 8. Execute the following command to add the worker nodes to the cluster
 
-         'ansible-playbook -i inventory/hosts site.yaml --ask-vault-pass'
+         'ansible-playbook -i inventory/hosts site.yml --ask-vault-pass'
 
 In case if user want to deploy through individual playbooks. Sequence of playbooks to be followed are:
 
@@ -111,4 +111,5 @@ Execute the following command to set the parameter **mastersSchedulable** para
 
          '$ oc edit scheduler'
 
-### ***Note*** To add more worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding RHEL8.6 Worker Nodes section.
+### ***Note*** 
+To add more worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding RHEL8.6 Worker Nodes section.

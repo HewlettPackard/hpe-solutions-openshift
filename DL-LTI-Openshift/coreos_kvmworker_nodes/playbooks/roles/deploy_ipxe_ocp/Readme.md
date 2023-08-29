@@ -2,7 +2,7 @@
 
 **Description:-**
 
-  This playbook contains the tasks to configure RHEL 7.9 installer VM used to perform an unattended installation of Red Hat Enterprise Linux CoreOS (RHCOS) for OCP KVM VMs. The playbooks deploy open source tools such as dnsmasq, Ipxe etc. to achive its objectives.
+  This playbook contains the tasks to configure RHEL 8.6 installer VM used to perform an unattended installation of Red Hat Enterprise Linux CoreOS (RHCOS) for OCP KVM VMs. The playbooks deploy open source tools such as dnsmasq, Ipxe etc. to achive its objectives.
 
 **Pre-requisite:-**
 
@@ -22,7 +22,7 @@
 
                       # ssh-copy-id root@rhel8_vm_ip '
 
-4. Rhel 7.9 VM with atleast 200 GB disk space - Two (2) CPU cores - 8 GB RAM. - /var has at least 15GB disk space allocated while partitioning, internet connectivity and is subscribed with valid redhat credentials is required to execute this playbook.
+4. Rhel 8.6 VM with atleast 200 GB disk space - Two (2) CPU cores - 8 GB RAM. - /var has at least 15GB disk space allocated while partitioning, internet connectivity and is subscribed with valid redhat credentials is required to execute this playbook.
 
 **Input File Update:-**
 
@@ -102,7 +102,7 @@
 
 After updating the above varible run below ansible playbook
 
-            ' # ansible-playbook -i hosts playbooks/deploy_ipxe_ocp.yml '
+            ' # ansible-playbook -i hosts playbooks/deploy_ipxe_ocp.yml --ask-vault-pass'
 
 Test Setup with Mac address curl http://localhost:8080/ipxe?mac=08:00:27:36:0A:01
 

@@ -95,10 +95,11 @@ INFO:
 
 To test wordpress application on ODF Cluster run below command:
 
+```
 # cd wordpress
 
 # chmod +x deploy_wordpress.sh
 
 # ./deploy_wordpress.sh
 
-
+```
