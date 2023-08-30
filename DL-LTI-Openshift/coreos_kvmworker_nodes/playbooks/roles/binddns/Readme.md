@@ -10,14 +10,14 @@ This script lets you deploy the BIND DNS with one master and two slave configura
 
 **Pre-requisite:-**
 
-1. RHEL 8.6  [Installer machine](https://hewlettpackard.github.io/hpe-solutions-hpecp/5.2-Synergy/Solution-Deployment/Host-Configuration.html#installer-machine "https://hewlettpackard.github.io/hpe-solutions-hpecp/5.2-synergy/solution-deployment/host-configuration.html#installer-machine") is essential to initiate the binddns deployment process.
+1. RHEL 8.6  [Installer machine](https://hewlettpackard.github.io/hpe-solutions-openshift/4.12-AMD-LTI/Solution-Deployment/Preparing-execution-environment.html "https://hewlettpackard.github.io/hpe-solutions-openshift/4.12-AMD-LTI/Solution-Deployment/Preparing-execution-environment.html") is essential to initiate the binddns deployment process.
 2. Execute the following commands in the Ansible Engine to download the repositories.
 
                    '  # cd /opt
 
                       # yum install -y git
 
-                      # git clone  <https://github.hpe.com/Solutions/ISV-OpenShift.git> '
+                      # git clone  <https://github.com/HewlettPackard/hpe-solutions-openshift.git> '
 
 3. Generate and copy the ssh keys from ansible engine/installer machine to all the three binddns machines.
 
@@ -28,7 +28,7 @@ This script lets you deploy the BIND DNS with one master and two slave configura
 
 **Input File Update:-**
 
-1. User has to update the input.yaml file in /opt/Openshift-Synergy-RA/DL-LTI-Openshift directory to  execute the binddns script.
+1. User has to update the input.yaml file in /opt/hpe-solutions-openshift/DL-LTI-Openshift/ directory to  execute the binddns script.
 2. User needs to update all the binddns deployment related details in the input.yaml file which include:-
                       
                       ' common:
@@ -100,7 +100,7 @@ This script lets you deploy the BIND DNS with one master and two slave configura
 
 To deploy binddns service with active-passive configuration consisting one master and two slaves run the binddns playbook with the below mentioned command                   
 
-            ' # ansible-playbook -i hosts playbooks/binddns.yml '
+            ' # ansible-playbook -i hosts playbooks/binddns.yml --ask-vault-pass'
 
 
 

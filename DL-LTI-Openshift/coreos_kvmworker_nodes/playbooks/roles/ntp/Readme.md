@@ -41,4 +41,4 @@ This script installs chrony on remote hosts which helps to ensure clocks are syn
 
 To deploy NTP service on hosts run the playbook with below mentioned command                   
 
-            ' # ansible-playbook -i hosts playbooks/ntp.yml '
+            ' # ansible-playbook -i hosts playbooks/ntp.yml --ask-vault-pass'
