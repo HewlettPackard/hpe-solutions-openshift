@@ -16,7 +16,7 @@ RHEL 8.6 Installer machine the following configurations.
 
 5.  Use the following commands to create and activate a Python3 virtual environment for deploying this solution.
 
-		'python3 -m venv \<virtual_environment_name\>   # example: virtual_environment_name= ocp
+		'python3 -m venv \<virtual_environment_name\>  Example:virtual_environment_name=ocp
 		 source \<virtual_environment_name\>/bin/activate'
 
 6.  Execute the following commands in the Ansible Engine to download the repositories.
@@ -26,7 +26,7 @@ RHEL 8.6 Installer machine the following configurations.
 		 yum install -y git
 		 git clone <https://github.com/HewlettPackard/hpe-solutions-openshift.git>'
 
-7.  Setup the installer machine to configure the nginx, development tools and other python packages required for LTI installation. Navigate to the directory, /opt/hpe-solutions-openshift/DL-LTI-Openshift/ and run the below command.
+7.  Setup the installer machine to configure the nginx, development tools and other python packages required for LTI installation. Navigate to the directory,  /opt/hpe-solutions-openshift/DL-LTI-Openshift/ and run the below command.
 
          'sh setup.sh'
 
