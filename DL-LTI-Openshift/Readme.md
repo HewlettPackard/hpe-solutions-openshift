@@ -87,11 +87,11 @@ RHEL 8.6 Installer machine the following configurations.
 				  # Slot: 12:Port=1I:Box=1:Bay=2
 				  # Example - 1I:1:2 ('Port:Box:Bay') '
 								
-	**Playbook Execution:-**
+   **Playbook Execution:-**
 
 		To delete all the existing logical drives in the server in case if any and to create new logical drives named 'RHEL Boot Volume' in respective ILO servers run the site.yml playbook inside create_delete_logicaldrives directory with the below mentioned command                   
 
-					' # ansible-playbook site.yml '
+					' # ansible-playbook site.yml --ask-vault-pass'
 
 ### *Note* If you do not have proxy or VLAN based setup leave these variables empty as shown below
 	servers:
@@ -144,7 +144,7 @@ cd $BASE_DIR
 Run the following commands on the installer VM to edit the vault to match the installation environment.
 
 ```
-ansible-vault edit input.yml
+ansible-vault edit input.yaml
 ```
 **NOTE**
 The default password for the Ansible vault file is **changeme**
@@ -402,4 +402,5 @@ Execute the following command to set the parameter **mastersSchedulable** para
 
          '$ oc edit scheduler'
 
-### ***Note*** To add more worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding RHEL8.6 Worker Nodes section.
+### ***Note*** 
+ To add more worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding RHEL8.6 Worker Nodes section.
