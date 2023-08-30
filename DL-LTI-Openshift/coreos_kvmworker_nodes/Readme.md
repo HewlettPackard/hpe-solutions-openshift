@@ -4,7 +4,7 @@ This section covers the steps to Enable KVM hypervisor on Worker Nodes and add R
 
 1. Login to the Rhel 8.6 Installer VM (that we created as a part of rhel8_installerVM.yml -- it would have been created as one KVM VM on one of the head nodes)
 
-2. Navigate to the directory $BASE_DIR(**/opt/Openshift-Synergy-RA-LTI-OCP-4.12/DL-LTI-Openshift/**) then copy **input file and hosts** file to $BASE_DIR/coreos_kvmworker_nodes/ and later update ocp worker details in input file and kvm_workernodes group as per sample host file. 
+2. Navigate to the directory $BASE_DIR(**/opt/hpe-solutions-openshift/DL-LTI-Openshift/**) then copy **input file and hosts** file to $BASE_DIR/coreos_kvmworker_nodes/ and later update ocp worker details in input file and kvm_workernodes group as per sample host file. 
 
 ```
 ansible-vault edit input.yaml
@@ -21,19 +21,19 @@ ansible vault password is **changeme**
 
 3. Execute the following command to add the worker nodes to the cluster
 
-           'ansible-playbook -i hosts site.yaml --ask-vault-pass'
+           'ansible-playbook -i hosts site.yml --ask-vault-pass'
 
 In case, if user want to deploy through individual playbooks. Sequence of playbooks to be followed are:
 
-		   'ansible-playbook -i hosts playbooks/rhel8_os_deployment.yml
-		    ansible-playbook -i hosts playbooks/copy_ssh_workernode.yml
-			ansible-playbook -i hosts playbooks/prepare_rhel_hosts.yml
-			ansible-playbook -i hosts playbooks/ntp.yml
-			ansible-playbook -i hosts playbooks/binddns.yml
-			ansible-playbook -i hosts playbooks/haproxy.yml
-			ansible-playbook -i hosts playbooks/storage_pool.yml
-			ansible-playbook -i hosts playbooks/deploy_ipxe_ocp.yml
-			ansible-playbook -i hosts playbooks/ocp_rhcosworkervm.yml'
+		   'ansible-playbook -i hosts playbooks/rhel8_os_deployment.yml --ask-vault-pass
+		    ansible-playbook -i hosts playbooks/copy_ssh_workernode.yml --ask-vault-pass
+			ansible-playbook -i hosts playbooks/prepare_rhel_hosts.yml --ask-vault-pass
+			ansible-playbook -i hosts playbooks/ntp.yml --ask-vault-pass
+			ansible-playbook -i hosts playbooks/binddns.yml --ask-vault-pass
+			ansible-playbook -i hosts playbooks/haproxy.yml --ask-vault-pass
+			ansible-playbook -i hosts playbooks/storage_pool.yml --ask-vault-pass
+			ansible-playbook -i hosts playbooks/deploy_ipxe_ocp.yml --ask-vault-pass
+			ansible-playbook -i hosts playbooks/ocp_rhcosworkervm.yml --ask-vault-pass'
 
 
 ### **Playbook description**
