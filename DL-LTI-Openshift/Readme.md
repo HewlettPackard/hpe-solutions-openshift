@@ -88,8 +88,7 @@ RHEL 8.6 Installer machine the following configurations.
 				  # Example - 1I:1:2 ('Port:Box:Bay') '
 								
    **Playbook Execution:-**
-
-		To delete all the existing logical drives in the server in case if any and to create new logical drives named 'RHEL Boot Volume' in respective ILO servers run the site.yml playbook inside create_delete_logicaldrives directory with the below mentioned command                   
+   To delete all the existing logical drives in the server in case if any and to create new logical drives named 'RHEL Boot Volume' in respective ILO servers run the site.yml playbook inside create_delete_logicaldrives directory with the below mentioned command                   
 
 					' # ansible-playbook site.yml --ask-vault-pass'
 
