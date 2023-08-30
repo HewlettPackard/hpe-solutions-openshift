@@ -127,8 +127,8 @@ id_rsa_pub: ''
 #####################################################################
 # Details of Ansible User Credentials required to set-up the iPXE
 
-#Path to OpenShift Directory; Example: /opt/Openshift-Synergy-RA/DL-LTI-Openshift(no trailing forwardslash required)
-base_path: '/opt/Openshift-Synergy-RA-LTI-OCP-4.12/DL-LTI-Openshift'
+#Path to OpenShift Directory; Example: /opt/hpe-solutions-openshift/DL-LTI-Openshift(no trailing forwardslash required)
+base_path: '/opt/hpe-solutions-openshift/DL-LTI-Openshift'
 
 #Is Environment Airgapped; ('yes' or 'no'):
 is_environment_airgap: 'no'

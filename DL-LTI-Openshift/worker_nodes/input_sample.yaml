@@ -27,7 +27,7 @@ config:
    HTTP_file_path: /usr/share/nginx/html/
    OS_type: rhel8
    OS_image_name: rhel-8.6-x86_64-dvd.iso            #ISO image should be present in /usr/share/nginx/html/
-   base_kickstart_filepath: /opt/Openshift-Synergy-RA-LTI-OCP-4.12/DL-LTI-Openshift/worker_nodes/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg
+   base_kickstart_filepath: /opt/hpe-solutions-openshift/DL-LTI-Openshift/worker_nodes/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg
 
 
 rhsub_username: ******

@@ -6,7 +6,7 @@
 
 **Pre-requisite:-**
 
-1. RHEL 8.6  [Installer machine](https://github.hpe.com/Solutions/Openshift-Synergy-RA/blob/LTI-OCP-4.12/LTI-OCP/Readme.md "https://github.hpe.com/Solutions/Openshift-Synergy-RA/blob/LTI-OCP-4.12/LTI-OCP/Readme.md") is essential to initiate the installation of RHCOS.
+1. RHEL 8.6  [Installer machine](https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md "https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md") is essential to initiate the installation of RHCOS.
 
 2. Execute the following commands in the Ansible Engine to download the repositories.
 
@@ -14,7 +14,7 @@
 
                       # yum install -y git
 
-                      # git clone  <https://github.hpe.com/Solutions/Openshift-Synergy-RA.git> '
+                      # git clone  <https://github.com/HewlettPackard/hpe-solutions-openshift.git> '
 
 3. Generate and copy the ssh keys from ansible engine/installer machine to rhel8 VM.
 
@@ -26,7 +26,7 @@
 
 **Input File Update:-**
 
-1. User has to update the input.yaml file in /opt/Openshift-Synergy-RA/LTI-OCP/ directory to execute the IPXe script.
+1. User has to update the input.yaml file in /opt/hpe-solutions-openshift/DL-LTI-Openshift/ directory to execute the IPXe script.
 2. User needs to update all the IPXe deployment related details in the input.yaml file which include:-
 
                       ' servers:
@@ -66,8 +66,8 @@
                         #####################################################################
                         # Details of Ansible User Credentials required to set-up the iPXE
 
-                        #Path to LTI-OCP Directory; Example: /opt/Openshift-Synergy-RA/LTI-OCP(no trailing forwardslash required)
-                        base_path: '/opt/Openshift-Synergy-RA/LTI-OCP'
+                        #Path to LTI-OCP Directory; Example: /opt/hpe-solutions-openshift/DL-LTI-Openshift(no trailing forwardslash required)
+                        base_path: '/opt/hpe-solutions-openshift/DL-LTI-Openshift/'
 
                         #Is Environment Airgapped; ('yes' or 'no'):
                         is_environment_airgap: 'no'
@@ -102,7 +102,7 @@
 
 After updating the above varible run below ansible playbook
 
-            ' # ansible-playbook -i hosts playbooks/deploy_ipxe_ocp.yml '
+            ' # ansible-playbook -i hosts playbooks/deploy_ipxe_ocp.yml --ask-vault-pass'
 
 Test Setup with Mac address curl http://localhost:8080/ipxe?mac=08:00:27:36:0A:01
 
