@@ -197,7 +197,7 @@ f.write("\n   OS_type: " +usrtext);
 usrtext = input("Enter Operating System Image name ( Example: rhel-8.6-x86_64-dvd.iso )  : " + "\n");
 f.write("\n   OS_image_name: " +usrtext);
 
-usrtext = input("Enter Base Kickstart file path ( Example: /opt/Openshift-Synergy-RA/DL-LTI-Openshift/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg  ) : " + "\n");
+usrtext = input("Enter Base Kickstart file path ( Example: /opt/hpe-solutions-openshift/DL-LTI-Openshift/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg  ) : " + "\n");
 f.write("\n   base_kickstart_filepath: " +usrtext);
 
 
@@ -416,7 +416,7 @@ f.write("\nid_rsa_pub: " +usrtext);
 
 print("Enter Path to DL-LTI-Openshift Directory \n");
 
-usrtext = input("Enter base path to ISV-OpenShift Directory in single quotes ( Example: '/opt/Openshift-Synergy-RA/DL-LTI-Openshift' ): " + "\n");
+usrtext = input("Enter base path to ISV-OpenShift Directory in single quotes ( Example: '/opt/hpe-solutions-openshift/DL-LTI-Openshift' ): " + "\n");
 f.write("\n\nbase_path: " +usrtext);
 
 f.write("\n\nis_environment_airgap: 'no'");

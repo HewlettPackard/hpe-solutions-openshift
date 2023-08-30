@@ -14,7 +14,7 @@ GPLv2 is the license for HAProxy
 
 **Pre-requisite:-**
 
-1. RHEL 8.6  [Installer machine](https://hewlettpackard.github.io/hpe-solutions-hpecp/5.2-Synergy/Solution-Deployment/Host-Configuration.html#installer-machine "https://hewlettpackard.github.io/hpe-solutions-hpecp/5.2-synergy/solution-deployment/host-configuration.html#installer-machine") is essential to initiate the haproxy deployment process.
+1. RHEL 8.6  [Installer machine](https://hewlettpackard.github.io/hpe-solutions-openshift/4.12-AMD-LTI/Solution-Deployment/Preparing-execution-environment.html "https://hewlettpackard.github.io/hpe-solutions-openshift/4.12-AMD-LTI/Solution-Deployment/Preparing-execution-environment.html") is essential to initiate the haproxy deployment process.
 2. Execute the following commands in the Ansible Engine to download the repositories.
 
                       ' # cd /opt
@@ -73,5 +73,5 @@ GPLv2 is the license for HAProxy
 
 To deploy three node haproxy service along with keepalived active-active configuration run the haproxy playbook with the below mentioned command                   
 
-               ' # ansible-playbook -i hosts playbooks/haproxy.yml '
+               ' # ansible-playbook -i hosts playbooks/haproxy.yml --ask-vault-pass'
 
