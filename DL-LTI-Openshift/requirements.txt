@@ -1,5 +1,5 @@
 future >= 0.15.2
-python-ilorest-library==3.1
+python-ilorest-library
 pyVmomi
 pyVim
 urlparse2
