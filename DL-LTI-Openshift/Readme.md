@@ -16,7 +16,7 @@ RHEL 8.6 Installer machine the following configurations.
 
 5.  Use the following commands to create and activate a Python3 virtual environment for deploying this solution.
 
-		'python3 -m venv \<virtual_environment_name\>   # example: virtual_environment_name= ocp
+		'python3 -m venv \<virtual_environment_name\>  Example:virtual_environment_name=ocp
 		 source \<virtual_environment_name\>/bin/activate'
 
 6.  Execute the following commands in the Ansible Engine to download the repositories.
@@ -26,7 +26,7 @@ RHEL 8.6 Installer machine the following configurations.
 		 yum install -y git
 		 git clone <https://github.com/HewlettPackard/hpe-solutions-openshift.git>'
 
-7.  Setup the installer machine to configure the nginx, development tools and other python packages required for LTI installation. Navigate to the directory, /opt/hpe-solutions-openshift/DL-LTI-Openshift/ and run the below command.
+7.  Setup the installer machine to configure the nginx, development tools and other python packages required for LTI installation. Navigate to the directory,  /opt/hpe-solutions-openshift/DL-LTI-Openshift/ and run the below command.
 
          'sh setup.sh'
 
@@ -87,9 +87,8 @@ RHEL 8.6 Installer machine the following configurations.
 				  # Slot: 12:Port=1I:Box=1:Bay=2
 				  # Example - 1I:1:2 ('Port:Box:Bay') '
 								
-	**Playbook Execution:-**
-
-		To delete all the existing logical drives in the server in case if any and to create new logical drives named 'RHEL Boot Volume' in respective ILO servers run the site.yml playbook inside create_delete_logicaldrives directory with the below mentioned command                   
+   **Playbook Execution:-**
+   To delete all the existing logical drives in the server in case if any and to create new logical drives named 'RHEL Boot Volume' in respective ILO servers run the site.yml playbook inside create_delete_logicaldrives directory with the below mentioned command                   
 
 					' # ansible-playbook site.yml --ask-vault-pass'
 
@@ -403,4 +402,8 @@ Execute the following command to set the parameter **mastersSchedulable** para
          '$ oc edit scheduler'
 
 ### ***Note*** 
+<<<<<<< HEAD
 To add more worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding RHEL8.6 Worker Nodes section.
+=======
+ To add more worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding RHEL8.6 Worker Nodes section.
+>>>>>>> b2ef1904d33d3fb95a0b87022194da06d4f225fc
