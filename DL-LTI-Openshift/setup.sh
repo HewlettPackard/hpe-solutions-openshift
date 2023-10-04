@@ -64,7 +64,7 @@ rpm -qa | grep -qw python38 || yum install python38 -y
 pip3 install setuptools_rust
 pip3 install --upgrade pip
 
-version=$(python -V 2>&1 | grep -Po '(?<=Python )\d.\d')
+version=$(python3 -V 2>&1 | grep -Po '(?<=Python )\d.\d')
 min=3.8
 rpm -qa | grep -qw genisoimage || yum install genisoimage -y
 rpm -qa | grep -qw bc || yum install bc -y
