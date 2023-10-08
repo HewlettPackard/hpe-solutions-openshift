@@ -19,15 +19,4 @@
           group: root
           mode: 775
 
-      - name: Copy ignition files to Rhel8 installer
-        become: true
-        copy:
-          src: "/opt/"
-          dest: /opt/
-          owner: root
-          group: root
-          mode: 775
-          remote_src: yes
-        delegate_to: "{{ rhel8_installer_IP }}"
-
 
