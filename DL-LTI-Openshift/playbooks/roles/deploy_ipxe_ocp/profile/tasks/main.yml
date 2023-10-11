@@ -32,7 +32,8 @@
         dest: /var/lib/matchbox/assets/
         mode: 0775
         follow: yes
-        directory_mode: yes    
+        directory_mode: yes 
+        remote_src: yes   
 
     - name: create bootstrap profile.
       blockinfile:
