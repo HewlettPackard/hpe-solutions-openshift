@@ -7,7 +7,7 @@ servers:
    Host_Username         : root
    Host_Password         : ********
    HWADDR1               : XX:XX:XX:XX:XX:XX             #mac address for server adapter physical interface1 
-   HWADDR2-              : XX:XX:XX:XX:XX:XX             #mac address for server adapter physical interface2 
+   HWADDR2              : XX:XX:XX:XX:XX:XX             #mac address for server adapter physical interface2 
    Host_OS_disk          : sda
    Host_VlanID           : 230
    Host_IP               : 172.28.*.*                 #IP of worker node as given in Binddns entry
