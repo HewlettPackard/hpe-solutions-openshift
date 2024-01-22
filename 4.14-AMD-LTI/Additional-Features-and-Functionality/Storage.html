@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Storage Options | OpenShift Container Platform 4.14 on HPE DL AMD Gen11 Servers</title>
+    <meta name="description" content="Hewlett Packard Enterprise">
+    
+    
+    <link rel="preload" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/css/0.styles.350242d5.css" as="style"><link rel="preload" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/app.a652b1eb.js" as="script"><link rel="preload" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/2.7dc22b72.js" as="script"><link rel="prefetch" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/10.d904139f.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/11.496b27e7.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/12.812c3f05.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/13.b106d720.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/14.ebe9997c.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/15.4dd80699.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/16.bda92651.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/17.aa3ee2b7.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/18.59107dd9.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/19.ce351482.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/3.e6e4ed9b.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/4.aed6a745.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/5.71459368.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/6.ae8cc0e2.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/7.481e1954.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/8.eb3fc9fb.js"><link rel="prefetch" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/9.835e078e.js">
+    <link rel="stylesheet" href="/hpe-solutions-openshift/4.14-AMD-LTI/assets/css/0.styles.350242d5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/hpe-solutions-openshift/4.14-AMD-LTI/" class="home-link router-link-active"><!----> <span class="site-name">OpenShift Container Platform 4.14 on HPE DL AMD Gen11 Servers</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/hpe-solutions-openshift/4.14-AMD-LTI/" class="nav-link">Home</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/hpe-solutions-openshift/4.14-AMD-LTI/" class="nav-link">Home</a></div><div class="nav-item"><a href="http://www.hpe.com/info/ra" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  RA Library
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first collapsable"><p class="sidebar-heading"><span>Red Hat OpenShift Container Platform 4.14 on HPE DL325 &amp; DL385 Gen11 Servers</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Solution Overview</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Solution Components</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Solution Deployment</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading open"><span>Additional Features and Functionality</span> <span class="arrow down"></span></p> <ul class="sidebar-group-items"><li><a href="/hpe-solutions-openshift/4.14-AMD-LTI/Additional-Features-and-Functionality/Storage.html" aria-current="page" class="active sidebar-link">Storage Options</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/hpe-solutions-openshift/4.14-AMD-LTI/Additional-Features-and-Functionality/Storage.html#alletra-nimble-storage" class="sidebar-link">Alletra/Nimble Storage</a></li><li class="sidebar-sub-header"><a href="/hpe-solutions-openshift/4.14-AMD-LTI/Additional-Features-and-Functionality/Storage.html#deploying-openshift-data-foundation" class="sidebar-link">Deploying Openshift Data Foundation</a></li></ul></li><li><a href="/hpe-solutions-openshift/4.14-AMD-LTI/Additional-Features-and-Functionality/Install-and-Configure-Velero.html" class="sidebar-link">INSTALL AND CONFIGURE VELERO</a></li><li><a href="/hpe-solutions-openshift/4.14-AMD-LTI/Additional-Features-and-Functionality/Securing-OpenShift-Container-Platform-using-Sysdig.html" class="sidebar-link">Securing Red Hat OpenShift Container Platform using Sysdig Secure</a></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Resources and Additional Links</span> <span class="arrow right"></span></p> <!----></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="storage-options"><a href="#storage-options" class="header-anchor">#</a> Storage Options</h1> <h2 id="alletra-nimble-storage"><a href="#alletra-nimble-storage" class="header-anchor">#</a> Alletra/Nimble Storage</h2> <h3 id="hpe-csi-driver-architecture"><a href="#hpe-csi-driver-architecture" class="header-anchor">#</a> HPE CSI Driver Architecture</h3> <p>A diagramatic representation of the HPE CSI driver architecture is illustrated in the figure 10.</p> <p><img src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/img/figure4.080352b0.png" alt></p> <p><strong>Figure 10</strong>: CSI Driver Architecture</p> <p>The OpenShift Container Platform 4.14 cluster comprises the master and worker nodes (physical and virtual) with CoreOS deployed as the operating system. The iSCSI interface configured on the host nodes establishes the connection with the HPE Alletra array to the cluster. Upon successful deployment of HPE CSI Driver, the CSI controller, CSI Driver, and 3PAR CSP  and Nimble CSP gets deployed which communicates with the HPE Alletra array via REST APIs. The associated features on Storage Class such as CSI Provisioner, CSI Attacher, and others are configured on the Storage Class.</p> <h3 id="deploying-hpe-csi-driver-for-hpe-alletra-storage-on-rhocp-4-14"><a href="#deploying-hpe-csi-driver-for-hpe-alletra-storage-on-rhocp-4-14" class="header-anchor">#</a> Deploying HPE CSI Driver for HPE Alletra storage on RHOCP 4.14</h3> <p>This section describes how to deploy HPE CSI Driver for HPE Alletra storage on an existing RHOCP 4.14.</p> <p><strong>Prerequisites:</strong></p> <p>Before configuring the HPE CSI Driver, the following prerequisites must be met:</p> <ol><li><p>RHOCP 4.14 must be successfully deployed, and console should be accessible.</p></li> <li><p>iSCSI interface must be configured on the HPE Alletra Storage array. For more information, see the <a href="https://hpe.sharepoint.com/:f:/r/sites/msteams_ca9c1f/Shared%20Documents/Storage/Alletra/6K%20%26%205K/MRA_Alletra6K_Release?csf=1&web=1&e=i211EA" target="_blank" rel="noopener noreferrer">Infrastructure Master Reference Architecture based on HPE Alletra 6000<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>.</p></li> <li><p>Additional iSCSI network interfaces must be configured on physical worker nodes.()</p></li> <li><p>Deploy scc.yaml file to enable Security Context Constraints (SCC).</p></li></ol> <p><strong>Configuring iSCSI interface on worker nodes</strong></p> <p>The RHOCP 4.14 cluster comprises the master and physical worker nodes with RHEL 8.8 deployed as the operating system. The iSCSI interface is configured on the host nodes to establish the connection with the HPE Alletra array to the cluster. Apart from the host nodes, additional iSCSI interface needs to be configured on all the worker (physical and virtual) nodes for establishing the connection between the RHOCP cluster and HPE Alletra arrays.</p> <p>To configure iSCSI interface on physical RHEL worker nodes:</p> <ul><li>Configure iSCSI A connection as a storage interface and iSCSI B connection as an additional storage for redundancy</li></ul> <p>For example, the iSCSI_A and iSCSI_B interface connection is configured on worker1 node, as shown in Figure 11.</p> <p><img src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/img/f13.da860108.png" alt></p> <p><strong>FIGURE 11</strong> iSCSI_A and iSCSI_B interface connection</p> <p><strong>Creating namespace</strong></p> <p>To create a namespace, in this case, hpe-csi:</p> <ol><li><p>Open Red Hat OpenShift Container Platform Console on a supported web browser.</p></li> <li><p>Click Administration → Namespaces on the left pane.</p></li> <li><p>Click Create Namespaces.</p></li> <li><p>On the Create Namespace dialog box, enter hpe-csi.</p></li> <li><p>Click Create.</p></li></ol> <p><strong>Deploying Security Context Constraints (SCC)</strong></p> <p>The HPE CSI Driver needs to run in the privileged mode to get access to the host ports, host network, and to mount the host path volume. Before deploying HPE CSI Driver operator on RHOCP cluster, deploy SCC to allow HPE CSI Driver to run with these privileges.</p> <p><strong>Prerequisites:</strong></p> <ul><li>Ensure that you can access the scc.yaml file from the following GitHub link:</li></ul> <p><a href="https://raw.githubusercontent.com/hpe-storage/co-deployments/master/operators/hpe-csi-operator/deploy/scc.yaml" target="_blank" rel="noopener noreferrer">https://raw.githubusercontent.com/hpe-storage/co-deployments/master/operators/hpe-csi-operator/deploy/scc.yaml<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>To deploy SCC:</p> <ol><li>On the installer VM, download scc.yaml file from the <a href="https://raw.githubusercontent.com/hpe-storage/co-deployments/master/operators/hpe-csi-operator/deploy/scc.yaml" target="_blank" rel="noopener noreferrer">GitHub<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> link using the following command:</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token function">curl</span> <span class="token parameter variable">-sL</span> https://raw.githubusercontent.com/hpe-storage/co-deployments/master/operators/hpe-csi-operator/deploy/scc.yaml <span class="token operator">&gt;</span> hpe-csi-scc.yaml
+</code></pre></div><ol start="2"><li><p>Edit relevant parameters such as project name or namespace in the hpe-csi-scc.yaml file.</p></li> <li><p>Change my-hpe-csi-operator to the name of the project (in this case, hpe-csi) where the CSI Operator is being deployed using the following command:</p></li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>$ oc new-project hpe-csi --display-name<span class="token operator">=</span><span class="token string">&quot;HPE CSI Driver for Kubernetes&quot;</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token function">sed</span> -i<span class="token string">''</span> <span class="token parameter variable">-e</span> <span class="token string">'s/my-hpe-csi-driver-operator/hpe-csi/g'</span> hpe-csi-scc.yaml
+</code></pre></div><ol start="4"><li>Save the file.</li></ol> <p>The following figure illustrates the parameter that needs to be edited (project name) where the HPE CSI Driver operator is deployed:</p> <p><img src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/img/figure14.d9cc4d61.png" alt></p> <p><strong>FIGURE 12:</strong> Editing hpe-cs-scc.yaml file</p> <ol start="5"><li>Deploy SCC using the following command and check the output:</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>$ oc create <span class="token parameter variable">-f</span> hpe-csi-scc.yaml
+</code></pre></div><p>The following output is displayed:</p> <p>securitycontextconstraints.security.openshift.io/hpe-csi-scc created</p> <p><strong>Installing and configuring HPE CSI Driver</strong></p> <div class="tip custom-block"><p class="custom-block-title">NOTE</p> <p>HPE CSI Driver version 2.4 is used for deploying HPE Alletra Storage on the RHOCP 4.14.</p></div> <p><strong>Prerequisites:</strong></p> <p>Before installing the HPE CSI Driver from the Red Hat OpenShift Container Platform Console:</p> <ul><li>Create a namespace for HPE CSI Driver</li> <li>Deploy SCC for the created namespace</li></ul> <p><strong>Installing HPE CSI Driver Operator using Red Hat OperatorHub</strong></p> <p>To install HPE CSI Driver Operator from the Red Hat OperatorHub:</p> <ol><li><p>Log in to the Red Hat OpenShift Container Platform Console.</p></li> <li><p>Navigate to Operators → OperatorHub.</p></li> <li><p>Search for HPE CSI Driver Operator from the list of operators and click HPE CSI Driver Operator.</p></li> <li><p>On the HPE CSI Operator for Kubernetes page, click Install.</p></li></ol> <p><img src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/img/f15.959aa058.png" alt></p> <p><strong>FIGURE 13:</strong> HPE CSI Driver Operator search</p> <ol start="5"><li><p>On the Create Operator Subscription page, select the appropriate options:</p> <ol><li><p>Select &quot;A specific namespace on the cluster&quot; in the Installation Mode option.</p></li> <li><p>Select the appropriate namespace (in this case, hpe-csi) in the Installed Namespace option.</p></li> <li><p>Select &quot;stable&quot; in the Update Channel option.</p></li> <li><p>Select &quot;Automatic&quot; in the Approval Strategy option.</p></li></ol> <p><img src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/img/f16.7b70d6c5.png" alt></p> <p><strong>FIGURE 14:</strong> Create Operator Subscription</p> <ol start="5"><li>Click Install.</li></ol></li> <li><p>The Installed Operators page is displayed with the status of the operator.</p></li></ol> <p><img src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/img/f17.d9b68538.png" alt></p> <p><strong>FIGURE 15:</strong> Installed Operators</p> <p><strong>Creating HPE CSI Driver</strong></p> <p>The HPE CSI Driver is a multi-vendor and multi-backend driver where each implementation has a Container Storage Provider (CSP). The HPE CSI Driver for Kubernetes uses CSP to perform data management operations on storage resources such as searching for a logical unit number (lun) and so on. The HPE CSI Driver allows any vendor or project to develop its own CSP using the <a href="https://developer.hpe.com/api/hpe-nimble-csp/" target="_blank" rel="noopener noreferrer">CSP specification<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>. It enables the third parties to integrate their storage solution into Kubernetes and takes care of all the intricacies.</p> <p>To create the HPE CSI Driver:</p> <ol><li><p>Log in to the Red Hat OpenShift Container Platform Console.</p></li> <li><p>Navigate to  Operators → Installed Operators on the left pane to view the installed operators.</p></li> <li><p>On the Installed Operators page, select HPECSIDriver from the Project drop-down list to switch to the hpe-csi project.</p></li> <li><p>On the hpe-csi project, select HPECSIDriver tab.</p></li> <li><p>Click Create HPECSIDriver.</p></li> <li><p>Click Create.</p></li></ol> <p><img src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/img/f18.036479ee.png" alt></p> <p><strong>FIGURE 16:</strong> HPE CSI Driver creation</p> <p><strong>Verifying HPECSIDriver configuration</strong></p> <p>After the HPECSIDriver is deployed, the deployment pods such as hpe-csi-controller, hpe-csi-driver, primera3par-csp, and Nimble-csp are displayed on the Pods page.</p> <p><img src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/img/f19.7443f97b.png" alt></p> <p><strong>FIGURE 17:</strong> Deployment pods for HPECSIDriver</p> <div class="tip custom-block"><p class="custom-block-title">NOTE</p> <p>The Nimble Storage CSP also supports HPE Alletra 6000.</p></div> <p>To verify the HPE CSI node information:</p> <ol><li>On the installer VM, check HPENodeInfo and network status of worker nodes with the following commands.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>$ oc get HPENodeInfo
+
+$ oc get HPENodeInfo/<span class="token operator">&lt;</span>workernode fqdn<span class="token operator">&gt;</span> <span class="token parameter variable">-o</span> yaml
+</code></pre></div><p>The following output is displayed:</p> <p><img src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/img/f20.0698d36d.png" alt></p> <p><strong>FIGURE 18:</strong> HPENodeInfo on the cluster</p> <p><strong>Creating HPE Alletra StorageClass</strong></p> <p>After HPE CSI Driver is deployed, two additional objects, Secret and StorageClass, must be created to initiate the provisioning of persistent storage.</p> <p><strong>Creating Alletra Secret</strong></p> <p>To create a new Secret via CLI that will be used with HPE Alletra:</p> <ol><li>Add the name, Namespace, backend username, backend password and the backend IP address in the Alletra-secret.yaml file and save it to be used by the CSP.</li></ol> <p>The following details are provided in the Alletra-secret.yaml file:</p> <div class="language-bash extra-class"><pre class="language-bash"><code>apiVersion: v1
+
+kind: Secret
+
+metadata:
+
+  name: alletra-secret
+
+  namespace: hpe-csi
+
+stringData:
+
+  serviceName: alletra-csp-svc
+
+  servicePort: <span class="token string">&quot;8080&quot;</span>
+
+  backend: alletramgmtip      <span class="token comment"># update alletramgmt ip</span>
+
+  username: admin
+
+  password: admin
+</code></pre></div><ol start="2"><li>Create the Alletra-secret.yaml file with the following command:</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>$ oc create <span class="token parameter variable">-f</span> Alletra-secret.yaml
+</code></pre></div><ol start="3"><li>The following output displays the status of the alletra-secret with the &quot;hpe-csi&quot; namespace.</li></ol> <p><img src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/img/f21.0cbd6ea6.png" alt></p> <p><strong>FIGURE 19:</strong> HPE Alletra Secret status</p> <p><strong>Creating StorageClass with HPE Alletra Secret</strong></p> <p>This section describes how to create a new StorageClass using the existing Alletra-secret and the necessary StorageClass parameters.</p> <p>To create a new StorageClass using the Alletra-secret:</p> <ol><li>Edit the following parameters in the Alletra-storageclass.yaml file:</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>apiVersion: storage.k8s.io/v1
+
+kind: StorageClass
+
+metadata:
+
+  annotations:
+
+    storageclass.kubernetes.io/is-default-class: <span class="token string">&quot;true&quot;</span>
+
+  name: Alletra-storageclass
+
+provisioner: csi.hpe.com
+
+parameters:
+
+  csi.storage.k8s.io/fstype: xfs
+
+  csi.storage.k8s.io/controller-expand-secret-name: alletra-secret
+
+  csi.storage.k8s.io/controller-expand-secret-namespace: hpe-csi
+
+  csi.storage.k8s.io/controller-publish-secret-name: alletra-secret
+
+  csi.storage.k8s.io/controller-publish-secret-namespace: hpe-csi
+
+  csi.storage.k8s.io/node-publish-secret-name: alletra-secret
+
+  csi.storage.k8s.io/node-publish-secret-namespace: hpe-csi
+
+  csi.storage.k8s.io/node-stage-secret-name: alletra-secret
+
+  csi.storage.k8s.io/node-stage-secret-namespace: hpe-csi
+
+  csi.storage.k8s.io/provisioner-secret-name: alletra-secret
+
+  csi.storage.k8s.io/provisioner-secret-namespace: hpe-csi
+
+  description: <span class="token string">&quot;Volume created by the HPE CSI Driver for Kubernetes&quot;</span>
+
+reclaimPolicy: Delete
+
+allowVolumeExpansion: <span class="token boolean">true</span>
+</code></pre></div><ol start="2"><li>Create the Alletra-storageclass.yml file with the following command:</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>$ oc create <span class="token parameter variable">-f</span> Alletra-storageclass.yml
+</code></pre></div><ol start="3"><li>Verify the name of the storage class (in this case, Alletra-storageclass).</li></ol> <p><img src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/img/f22.12e184bd.png" alt></p> <p><strong>FIGURE 20:</strong> HPE Alletra StorageClass status</p> <h2 id="deploying-openshift-data-foundation"><a href="#deploying-openshift-data-foundation" class="header-anchor">#</a> Deploying Openshift Data Foundation</h2> <p>This section covers deploying OpenShift Data Foundation 4.14 on existing Red Hat OpenShift Container Platform 4.14 worker nodes.</p> <p>The OpenShift Data Foundation operator installation will be using Local Storage operator which will use file system storage of 10GB for monitoring purpose and block storage of 500GB/2TB for OSD (Object Storage Daemon) volumes. These OSD are useful for configuring any application on top of OCP cluster using ODF configuration.</p> <p><img src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/img/figure50.5ad53a9f.png" alt></p> <p><strong>Figure 21.</strong> Logical storage Layout in Solution</p> <p>The below operators are required to create ODF cluster and deployed through automation fashion.</p> <ul><li><p>Local Storage Operator</p></li> <li><p>OpenShift Data Foundation Operator</p></li></ul> <h3 id="flow-diagram"><a href="#flow-diagram" class="header-anchor">#</a> Flow Diagram</h3> <p><img src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/img/figure51.15f0902e.png" alt></p> <p><strong>Figure 22</strong>. Deploying OpenShift Container Storage Solution Flow Diagram</p> <h3 id="configuration-requirements"><a href="#configuration-requirements" class="header-anchor">#</a> Configuration requirements</h3> <p>The below table shows about all required worker node configuration.</p> <table><thead><tr><th><strong>Server Role</strong></th> <th><strong>CPU</strong></th> <th><strong>RAM</strong></th> <th><strong>HardDisk1</strong></th> <th><strong>HardDisk2</strong></th> <th><strong>HardDisk3</strong></th></tr></thead> <tbody><tr><td>Worker</td> <td>16</td> <td>64</td> <td>120 GB</td> <td>10 GB</td> <td>500 GB/2 TB</td></tr></tbody></table> <h3 id="pre-requisites"><a href="#pre-requisites" class="header-anchor">#</a> Pre-requisites</h3> <ol><li><p>Red Hat OpenShift Container Platform 4.14 cluster console is required with the login credentials.</p></li> <li><p>Availability of any local storage from any storage (i.e Nimble,Alletra,Local Storage) in OpenShift Container Platform.</p></li> <li><p>ODF installation on OCP 4.14 cluster requires a minimum of 3 worker nodes but ODF should have exact 3 worker nodes which use two more hard disks with 10GB for mon POD (3 in total using always a PVC) + 500GB (or more than 500GB) volume (a PVC using the default &quot;<strong>thin</strong>&quot; storage class) for the OSD volumes. It also requires 16 CPUs and 64GB RAM for each node and worker node hard disk configuration as shown in above figure.</p></li></ol> <h3 id="scripts-for-deploying-odf-cluster"><a href="#scripts-for-deploying-odf-cluster" class="header-anchor">#</a> Scripts for deploying ODF cluster</h3> <div class="tip custom-block"><p class="custom-block-title">NOTE</p> <p>BASE_DIR - is a base directory path for all automated scripts directories are in place and path is
+<strong>/opt/hpe-solutions-openshift/DL-LTI-Openshift/</strong></p></div> <p>This section provides details on the scripts developed to automate the installation of ODF operator on the OCP cluster. The scripts used to deploy ODF can be found in the installer VM at <em>$BASE_DIR/odf_installation</em>.</p> <ol><li><p><strong>install_odf_operator.py</strong> - main python script which installs Local Storage operator, OpenShift Container Storage operators, creates file system &amp; block storage and also creates SCs, PVs, PVCs.</p></li> <li><p><strong>config.py</strong> - This python script is used to convert user input values into program variables for usage by the install_odf_operator.py script.</p></li> <li><p><strong>userinput.json</strong> - The userinput.json file needs to be modified as per user configuration and requirements for installing and scaling ODF cluster.</p></li> <li><p><strong>create_local_storage_operator.yaml</strong> -- Creates Local Storage operator's Namespace, installs Local Storage operator.</p></li> <li><p><strong>auto_discover_devices.yaml</strong> -– Creates the LocalVolumeDiscovery resource using this file.</p></li> <li><p><strong>localvolumeset.yaml</strong> -– Creates the LocalVolumeSets</p></li> <li><p><strong>odf_operator.yaml</strong> -- This playbook creates OpenShift Container Storage Namespace and OpenShift Data Foundation Operator.</p></li> <li><p><strong>storagecluster.yaml</strong> -– This playbook creates storage classes, PVCs (Persistent Volume Claim), pods to bring up the ODF cluster.</p></li></ol> <h3 id="installing-openshift-container-storage-on-openshift-container-platform"><a href="#installing-openshift-container-storage-on-openshift-container-platform" class="header-anchor">#</a> Installing OpenShift Container Storage on OpenShift Container Platform</h3> <ol><li><p>Login to the installer machine as non-root user and browse to python virtual environment as per DG.</p></li> <li><p>Update the <em>userinput.json</em> file is found at <em>$BASE_DIR/odf_installation</em> with the following setup configuration details:</p> <div class="language-bash extra-class"><pre class="language-bash"><code>OPENSHIFT_DOMAIN: <span class="token string">&quot;&lt;OpenShift Server sub domain fqdn (api.domain.base_domain)&gt;&quot;</span>,
+
+OPENSHIFT_PORT: <span class="token string">&quot;&lt;OpenShift Server port number (OpenShift Container Platform runs on port 6443 by default)&gt;&quot;</span>,
+
+LOCAL_STORAGE_VERSION<span class="token string">&quot;: &quot;</span><span class="token operator">&lt;</span>OCP_cluster_version<span class="token operator">&gt;</span><span class="token string">&quot;,
+
+OPENSHIFT_CONTAINER_STORAGE_VERSION&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;&quot;</span>,
+
+OPENSHIFT_CLIENT_PATH: <span class="token string">&quot;&lt;Provide oc absolute path ending with / OR leave empty in case oc is available under /usr/local/bin&gt;&quot;</span>,
+
+<span class="token string">&quot;OPENSHIFT_CONTAINER_PLATFORM_WORKER_NODES&quot;</span><span class="token builtin class-name">:</span> <span class="token operator">&lt;</span>Provide OCP worker nodes fqdn list <span class="token punctuation">[</span><span class="token string">&quot;sworker1.fqdn&quot;</span>, <span class="token string">&quot;sworker2.fqdn&quot;</span>,<span class="token string">&quot;worker3.fqdn&quot;</span><span class="token punctuation">]</span><span class="token operator">&gt;</span>,
+
+<span class="token string">&quot;OPENSHIFT_USERNAME&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;&quot;</span>,
+
+<span class="token string">&quot;OPENSHIFT_PASSWORD&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;&quot;</span>,
+
+<span class="token string">&quot;DISK_NUMBER&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;&quot;</span>
+</code></pre></div></li> <li><p>Execute the following command to deploy ODF cluster.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">cd</span> <span class="token variable">$BASE_DIR</span>/odf_installation
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> python <span class="token parameter variable">-W</span> ignore install_odf_operator.py
+</code></pre></div><p>The output of the above command as shown below:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> python <span class="token parameter variable">-W</span> ignore install_odf_operator.py
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>Enter key <span class="token keyword">for</span> encrypted variables:
+
+Logging into your OpenShift Cluster
+
+Successfully logged into the OpenShift Cluster
+
+Waiting <span class="token keyword">for</span> <span class="token number">1</span> minutes to <span class="token string">'Local Storage'</span> operator to be available on OCP web console<span class="token punctuation">..</span><span class="token operator">!</span><span class="token operator">!</span>
+
+<span class="token string">'Local Storage'</span> operator is created<span class="token punctuation">..</span><span class="token operator">!</span><span class="token operator">!</span>
+
+Waiting <span class="token keyword">for</span> <span class="token number">2</span> minutes to OCS operator to be available on OCP web console<span class="token punctuation">..</span><span class="token operator">!</span><span class="token operator">!</span>
+
+<span class="token string">'OpenShift Container Storage'</span> operator is created<span class="token punctuation">..</span><span class="token operator">!</span><span class="token operator">!</span>
+
+INFO:
+
+<span class="token number">1</span><span class="token punctuation">)</span> Run the below <span class="token builtin class-name">command</span> to list all PODs and PVCs of OCS cluster.
+
+  <span class="token string">'oc get pod,pvc -n openshift-storage'</span>
+
+<span class="token number">2</span><span class="token punctuation">)</span> Wait <span class="token keyword">for</span> <span class="token string">'pod/ocs-operator-xxxx'</span> pod to be up and running.
+
+<span class="token number">3</span><span class="token punctuation">)</span> Log into OCP web GUI and check Persistant Stoarge <span class="token keyword">in</span> dashboard.
+
+$
+</code></pre></div></li></ol> <h3 id="validation-of-the-openshift-data-foundation-cluster"><a href="#validation-of-the-openshift-data-foundation-cluster" class="header-anchor">#</a> Validation of the OpenShift Data Foundation cluster</h3> <p>The required operators will be created after the execution of the script and they will be reflected in the OpenShift console. This section outlines the steps to verify the operators created through script and are reflected in the GUI:</p> <ol><li><p>Login to the <strong>OpenShift Container Platform</strong> web console as the user with administrative privileges.</p></li> <li><p>Navigate to <strong>Operators -&gt; Project (local-storage)</strong> -&gt; <strong>Installed</strong> <strong>Operators</strong> select your project name.</p></li> <li><p>The Openshift data foundation operator will be available in the OpenShift web console as shown in below Figure.</p> <p><img src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/img/figure52.edabae41.png" alt></p></li> <li><p>Navigate to <strong>Operators</strong> -&gt; <strong>Installed</strong> <strong>Operators</strong> select your project name openshift-storage for OpenShift Container Storage operator.</p></li> <li><p>The OpenShift Container Storage operator will be available on the OpenShift Container Platform web console as shown in below Figure.</p> <p><img src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/img/figure53.83c41d7b.png" alt></p></li> <li><p>SCs of OpenShift Data Foundation operator on CLI as shown in below.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> oc get sc
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>NAME                          PROVISIONER                             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+local-sc                      kubernetes.io/no-provisioner            Delete          WaitForFirstConsumer   <span class="token boolean">false</span>                  45h
+localblock-sc                 kubernetes.io/no-provisioner            Delete          WaitForFirstConsumer   <span class="token boolean">false</span>                  45h
+odf-storagecluster-ceph-rbd   openshift-storage.rbd.csi.ceph.com      Delete          Immediate              <span class="token boolean">false</span>                  45h
+odf-storagecluster-cephfs     openshift-storage.cephfs.csi.ceph.com   Delete          Immediate              <span class="token boolean">false</span>                  45h
+openshift-storage.noobaa.io   openshift-storage.noobaa.io/obc         Delete          Immediate              <span class="token boolean">false</span>                  45h
+</code></pre></div></li> <li><p>PVs of OpenShift Data Foundation operator on CLI as shown in
+below.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> oc get <span class="token function">pv</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                       STORAGECLASS                  REASON   AGE
+local-pv-2febb788                          500Gi      RWO            Delete           Bound    openshift-storage/odf-deviceset-1-0-lhtvh   localblock-sc                          45h
+local-pv-5f19c0e5                          10Gi       RWO            Delete           Bound    openshift-storage/rook-ceph-mon-b           local-sc                               45h
+local-pv-b73b1cd5                          500Gi      RWO            Delete           Bound    openshift-storage/odf-deviceset-2-0-jmmck   localblock-sc                          45h
+local-pv-b8ba8c38                          10Gi       RWO            Delete           Bound    openshift-storage/rook-ceph-mon-a           local-sc                               45h
+local-pv-c3a372f6                          10Gi       RWO            Delete           Bound    openshift-storage/rook-ceph-mon-c           local-sc                               45h
+local-pv-e5e3d596                          500Gi      RWO            Delete           Bound    openshift-storage/odf-deviceset-0-0-5jxg7   localblock-sc                          45h
+pvc-8f3e3d8b-6be7-4ba8-8968-69cbc866c89f   50Gi       RWO            Delete           Bound    openshift-storage/db-noobaa-db-0            ocs-storagecluster-ceph-rbd            45h
+ $
+</code></pre></div></li> <li><p>PVCs of OpenShift Data Foundation operator on CLI as shown in below.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> oc get pvc <span class="token parameter variable">-n</span> openshift-storage
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>NAME                      STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS                  AGE
+db-noobaa-db-0            Bound    pvc-8f3e3d8b-6be7-4ba8-8968-69cbc866c89f   50Gi       RWO            odf-storagecluster-ceph-rbd   45h
+odf-deviceset-0-0-5jxg7   Bound    local-pv-e5e3d596                          500Gi      RWO            localblock-sc                 45h
+odf-deviceset-1-0-lhtvh   Bound    local-pv-2febb788                          500Gi      RWO            localblock-sc                 45h
+odf-deviceset-2-0-jmmck   Bound    local-pv-b73b1cd5                          500Gi      RWO            localblock-sc                 45h
+rook-ceph-mon-a           Bound    local-pv-b8ba8c38                          10Gi       RWO            local-sc                      45h
+rook-ceph-mon-b           Bound    local-pv-5f19c0e5                          10Gi       RWO            local-sc                      45h
+rook-ceph-mon-c           Bound    local-pv-c3a372f6                          10Gi       RWO            local-sc                      45h
+ $
+</code></pre></div></li> <li><p>PODs of OpenShift Data Foundation operator on CLI as shown in below.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> oc get pod <span class="token parameter variable">-n</span> openshift-storage
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>NAME READY STATUS RESTARTS AGE
+
+csi-cephfsplugin-6xpsk <span class="token number">3</span>/3 Running <span class="token number">0</span> 45h
+
+csi-cephfsplugin-7khm6 <span class="token number">3</span>/3 Running <span class="token number">0</span> 17m
+
+csi-cephfsplugin-bb48n <span class="token number">3</span>/3 Running <span class="token number">0</span> 45h
+
+csi-cephfsplugin-cfzx6 <span class="token number">3</span>/3 Running <span class="token number">0</span> 15m
+
+csi-cephfsplugin-provisioner-79587c64f9-2dpm6 <span class="token number">5</span>/5 Running <span class="token number">0</span> 45h
+
+csi-cephfsplugin-provisioner-79587c64f9-hf46x <span class="token number">5</span>/5 Running <span class="token number">0</span> 45h
+
+csi-cephfsplugin-w6p6v <span class="token number">3</span>/3 Running <span class="token number">0</span> 45h
+
+csi-rbdplugin-2z686 <span class="token number">3</span>/3 Running <span class="token number">0</span> 45h
+
+csi-rbdplugin-6tv5m <span class="token number">3</span>/3 Running <span class="token number">0</span> 45h
+
+csi-rbdplugin-jgf5z <span class="token number">3</span>/3 Running <span class="token number">0</span> 17m
+
+csi-rbdplugin-provisioner-5f495c4566-76rqm <span class="token number">5</span>/5 Running <span class="token number">0</span> 45h
+
+csi-rbdplugin-provisioner-5f495c4566-pzvww <span class="token number">5</span>/5 Running <span class="token number">0</span> 45h
+
+csi-rbdplugin-v7lfx <span class="token number">3</span>/3 Running <span class="token number">0</span> 45h
+
+csi-rbdplugin-ztdjs <span class="token number">3</span>/3 Running <span class="token number">0</span> 15m
+
+noobaa-core-0 <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+noobaa-db-0 <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+noobaa-endpoint-6458fc874f-vpznd <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+noobaa-operator-7f4495fc6-lmk9k <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+odf-operator-5d664769f-59v8j <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+rook-ceph-crashcollector-sworker1.socp.twentynet.local-84dddddb <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+rook-ceph-crashcollector-sworker2.socp.twentynet.local-8b5qzzsz <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+rook-ceph-crashcollector-sworker3.socp.twentynet.local-699n9kzp <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+rook-ceph-drain-canary-sworker1.socp.twentynet.local-85bffzm66m <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+rook-ceph-drain-canary-sworker2.socp.twentynet.local-66bcfjjfkr <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+rook-ceph-drain-canary-sworker3.socp.twentynet.local-5f6b57c9nt <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+rook-ceph-mds-ocs-storagecluster-cephfilesystem-a-67fbb67dkb4kz <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+rook-ceph-mds-ocs-storagecluster-cephfilesystem-b-db66df7dtqkmx <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+rook-ceph-mgr-a-6f5f7b58dc-fjvjc <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+rook-ceph-mon-a-76cc49c944-5pcgf <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+rook-ceph-mon-b-b9449cdd7-s6mct <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+rook-ceph-mon-c-59d854cd8-gn6sd <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+rook-ceph-operator-775cd6cd66-sdfph <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+rook-ceph-osd-0-7644557bfb-9l7ns <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+rook-ceph-osd-1-7694c74948-lc9sf <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+rook-ceph-osd-2-794547558-wjcpz <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+rook-ceph-osd-prepare-ocs-deviceset-0-0-5jxg7-t89zh <span class="token number">0</span>/1 Completed <span class="token number">0</span> 45h
+
+rook-ceph-osd-prepare-ocs-deviceset-1-0-lhtvh-f2znl <span class="token number">0</span>/1 Completed <span class="token number">0</span> 45h
+
+rook-ceph-osd-prepare-ocs-deviceset-2-0-jmmck-wsrb2 <span class="token number">0</span>/1 Completed <span class="token number">0</span> 45h
+
+rook-ceph-rgw-ocs-storagecluster-cephobjectstore-a-67b7865qx276 <span class="token number">1</span>/1 Running <span class="token number">0</span> 45h
+
+$
+</code></pre></div></li> <li><p>Storage capacity of ODF cluster with 3 worker nodes (3x500Gi) on OCP web cluster as shown below figure.</p> <p><img src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/img/figure54.9aa7463b.png" alt></p></li></ol> <h3 id="validating-odf-with-deploying-wordpress-application"><a href="#validating-odf-with-deploying-wordpress-application" class="header-anchor">#</a> Validating ODF with deploying WordPress application</h3> <p>This section covers the steps to validate the OpenShift Data Foundation deployment (ODF) by deploying 2-tier application along with MySQL database.</p> <div class="warning custom-block"><p class="custom-block-title">Prerequisites</p> <ul><li><p>OCP 4.14 cluster must be installed.</p></li> <li><p>ODF to claim persistent volume (PV).</p></li></ul></div> <h3 id="deploying-wordpress-application"><a href="#deploying-wordpress-application" class="header-anchor">#</a> Deploying WordPress application</h3> <div class="tip custom-block"><p class="custom-block-title">NOTE</p> <p>BASE_DIR - is a base directory path for all automated scripts directories are in place and path is /opt/hpe-solutions-openshift/DL-LTI-Openshift</p></div> <ol><li><p>Login to the installer machine as a non-root user.</p></li> <li><p>From within the repository, navigate to the WordPress script folder</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> <span class="token builtin class-name">cd</span> <span class="token variable">$BASE_DIR</span>/odf_installation/wordpress
+</code></pre></div></li> <li><p>Run below script to deploy Wordpress application along with MySQL</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> ./deploy_wordpress.sh
+</code></pre></div></li></ol> <p>The deploy_wordpress.sh scripts does the following activities.</p> <ul><li><p>Creates project</p></li> <li><p>Sets default storage class</p></li> <li><p>Deploys Wordpress and MySQL app</p></li> <li><p>Create routes</p></li></ul> <ol start="6"><li><p>Below is the output of the scripts</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> ./deploy_wordpress.sh
+</code></pre></div><p>Output of the command follows:</p> <div class="language-bash extra-class"><pre class="language-bash"><code>Already on project <span class="token string">&quot;wordpress&quot;</span> on server <span class="token string">&quot;https://api.socp.twentynet.local:6443&quot;</span><span class="token builtin class-name">.</span>
+
+You can <span class="token function">add</span> applications to this project with the <span class="token string">'new-app'</span> command.
+For example, try:
+
+oc new-app ruby~https://github.com/sclorg/ruby-ex.git
+
+to build a new example application <span class="token keyword">in</span> Ruby. Or use kubectl to deploy a simple Kubernetes application:
+
+kubectl create deployment hello-node <span class="token parameter variable">--image</span><span class="token operator">=</span>gcr.io/hello-minikube-zero-install/hello-node
+
+Already on project <span class="token string">&quot;wordpress&quot;</span> on server <span class="token string">&quot;https://api.socp.twentynet.local:6443&quot;</span><span class="token builtin class-name">.</span>
+
+clusterrole.rbac.authorization.k8s.io/system:openshift:scc:anyuid
+added: <span class="token string">&quot;default&quot;</span>error: <span class="token parameter variable">--overwrite</span> is <span class="token boolean">false</span> but found the following declared annotation<span class="token punctuation">(</span>s<span class="token punctuation">)</span>:
+<span class="token string">'storageclass.kubernetes.io/is-default-class'</span> already has a value <span class="token punctuation">(</span>true<span class="token punctuation">)</span>
+
+service/wordpress-http created
+
+service/wordpress-mysql created
+
+persistentvolumeclaim/mysql-pv-claim created
+
+persistentvolumeclaim/wp-pv-claim created
+
+secret/mysql-pass created
+
+deployment.apps/wordpress-mysql created
+
+deployment.apps/wordpress created
+
+route.route.openshift.io/wordpress-http created
+
+URL to access application
+
+wordpress-http-wordpress.apps.socp.twentynet.local
+
+$
+</code></pre></div></li></ol> <h3 id="verifying-the-wordpress-deployment"><a href="#verifying-the-wordpress-deployment" class="header-anchor">#</a> Verifying the WordPress deployment</h3> <ol><li><p>Execute the following command to verify the persistent volume associated with WordPress application and MySQL database.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> oc get pods,pvc,route <span class="token parameter variable">-n</span> wordpress
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>NAME                                  READY   STATUS    RESTARTS   AGE
+pod/wordpress-6f69797b8f-hqpss        <span class="token number">1</span>/1     Running   <span class="token number">0</span>          5m52s
+pod/wordpress-mysql-8f4b599b5-cd2s2   <span class="token number">1</span>/1     Running   <span class="token number">0</span>          5m52s
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>NAME                                   STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS                  AGE
+persistentvolumeclaim/mysql-pv-claim   Bound    pvc-ccf2a578-9ba3-4577-8115-7c80ac200a9c   5Gi        RWO            ocs-storagecluster-ceph-rbd   5m50s
+persistentvolumeclaim/wp-pv-claim      Bound    pvc-3acec0a0-943d-4138-bda9-5b57f8c35c5d   5Gi        RWO            ocs-storagecluster-ceph-rbd   5m50s
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>NAME                                      HOST/PORT                                              <span class="token environment constant">PATH</span>   SERVICES         PORT     TERMINATION   WILDCARD
+route.route.openshift.io/wordpress-http   wordpress-http-wordpress.apps.socp.twentynet.local          wordpress-http   <span class="token number">80</span>-tcp                 None
+$
+</code></pre></div></li> <li><p>Access the route url in browser to access the WordPress application as shown below.</p> <p><img src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/img/figure55.6c2f2dfe.png" alt></p></li></ol></div> <div class="page-edit"><!----> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/hpe-solutions-openshift/4.14-AMD-LTI/Solution-Deployment/Deploying-sample-application-using-Ephemeral-storage.html" class="prev">
+          Deploying sample application on RHOCP 4.14 using Ephemeral storage
+        </a></span> <span class="next"><a href="/hpe-solutions-openshift/4.14-AMD-LTI/Additional-Features-and-Functionality/Install-and-Configure-Velero.html">
+          INSTALL AND CONFIGURE VELERO
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/app.a652b1eb.js" defer></script><script src="/hpe-solutions-openshift/4.14-AMD-LTI/assets/js/2.7dc22b72.js" defer></script>
+  </body>
+</html>
