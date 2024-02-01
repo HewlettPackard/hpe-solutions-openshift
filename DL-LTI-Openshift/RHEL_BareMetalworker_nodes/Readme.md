@@ -57,10 +57,10 @@ This section covers the steps to add RHEL 8.8 worker nodes to an existing Red Ha
 
 3. Login to the Installer VM (that we created as a part of rhel8_installerVM.yml -- it would have created one KVM VM on one of the head nodes)
 
-4. Navigate to the directory $BASE_DIR/worker_nodes/
+4. Navigate to the directory $BASE_DIR/RHEL_BareMetalworker_nodes/
 
 ```
-cd $BASE_DIR/worker_nodes/
+cd $BASE_DIR/RHEL_BareMetalworker_nodes/
 ```
 **NOTE**
 $BASE_DIR refers to **/opt/hpe-solutions-openshift/DL-LTI-Openshift/**
