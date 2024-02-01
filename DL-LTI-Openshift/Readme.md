@@ -2,11 +2,11 @@
 
 ### **Installer Machine Prerequisite:**
 
-RHEL 8.6 Installer machine the following configurations.
+RHEL 8.8 Installer machine the following configurations.
 
 1.  At least 500 GB disk space (especially in the \"/\" partition), 4 CPU cores and 16GB RAM.
 
-2.  Rhel 8.6 Installer machine should be subscribed with valid **Redhat credentials**.
+2.  Rhel 8.8 Installer machine should be subscribed with valid **Redhat credentials**.
 
 3.  Sync time with NTP server.
 
@@ -36,9 +36,9 @@ RHEL 8.6 Installer machine the following configurations.
 
        | **Management Servers** | **Host OS disk** | **Storage Pool disk** |
        |------------------------|------------------|-----------------------|
-       | Server 1               | 2 x 960GB        | 1 TB                  |
-       | Server 2               | 2 x 960GB        | 1 TB                  |
-       | Server 3               | 2 x 960GB        | 1 TB                  |
+       | Server 1               | 2 x 1.6 TB       | 2 x 1.6 TB            |
+       | Server 2               | 2 x 1.6 TB       | 2 x 1.6 TB            |
+       | Server 3               | 2 x 1.6 TB       | 2 x 1.6 TB            |
 	
        Host OS disk – raid1 for redundancy
 
@@ -176,7 +176,7 @@ A sample input.yaml file is as follows with a few filled parameters.
 					HTTP_server_base_url: http://172.28.*.*/  #Installer IP address
 					HTTP_file_path: /usr/share/nginx/html/    
 					OS_type: rhel8
-					OS_image_name: rhel-8.6-x86_64-dvd.iso
+					OS_image_name: rhel-8.8-x86_64-dvd.iso
 					base_kickstart_filepath: /opt/hpe-solutions-openshift/DL-LTI-Openshift/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg'
 
 2. The installation user should review hosts file (located on the installer VM at $BASE_DIR/hosts) and ensure that the information within the file accurately reflects the information in their environment.
@@ -250,7 +250,7 @@ In case if user want to deploy through individual playbooks. Sequence of playboo
 
 **rhel8_os_deployment.yml**
 
--   This playbook contains the scripts to deploy rhel8.6 OS on baremetal servers.
+-   This playbook contains the scripts to deploy rhel8.8 OS on baremetal servers.
 
 **copy_ssh_headnode.yml**
 
@@ -316,6 +316,30 @@ In case if user want to deploy through individual playbooks. Sequence of playboo
 
 -   This playbook contains the script to create bootstrap and master nodes.
 
+**For creating the network interface bonding on the CoreOS BareMetal worker**
+
+Execute the following command to create bonding on the network interfaces for baremetal CoreOS worker nodes
+
+    ssh core@<CoreOS IP>
+    ip -o link show|grep 'state UP' | awk -F ': ' '{print $2}'                                                      ###to retrive only the names of the network interfaces that are currently UP
+
+	sample output from above command:
+    ens1f0np0
+    ens1f1np1
+
+    sudo nmcli connection add type bond con-name "bond0" ifname bond0
+    sudo nmcli connection modify bond0 bond.options "mode=active-backup,downdelay=0,miimon=100,updelay=0"
+    sudo nmcli connection add type ethernet slave-type bond con-name bond0-if1 ifname ens1f0np0 master bond0                ###ens1f0np0 interface names from the sample output
+    sudo nmcli connection add type ethernet slave-type bond con-name bond0-if2 ifname ens1f1np1 master bond0                ###ens1f1np1 interface names from the sample output
+    sudo nmcli connection up bond0
+    sudo nmcli connection modify "bond0" ipv4.addresses '<<CoreOS IP  with netmask>>' ipv4.gateway '<<gateway IP>>' ipv4.dns  '<<dns server IP(all the head node IP)>>' ipv4.dns-search '<<domain name>>'
+ipv4.method manual
+
+    example:
+    sudo nmcli connection modify "bond0" ipv4.addresses '172.28.*.*/24' ipv4.gateway '172.28.*.*' ipv4.dns  '172.28.*.*,172.28.*.*,172.28.*.*' ipv4.dns-search 'isv.local' ipv4.method manual
+
+    sudo reboot
+
 ### **OpenShift Container Platform Cluster Deployment**
 
 Once the playbooks executed successfully then need to deploy OpenShift cluster as follows.
@@ -343,9 +367,9 @@ installation.
 
          '$ oc get nodes'
 
-### **Adding RHEL8.6 Worker Nodes**
+### **Adding RHEL8.8 Worker Nodes**
 
-This section covers the steps to add RHEL 8.6 worker nodes to an existing Red Hat OpenShift Container Platform cluster.
+This section covers the steps to add RHEL 8.8 worker nodes to an existing Red Hat OpenShift Container Platform cluster.
 
 1. Login to the Installer VM (that we created as a part of rhel8_installerVM.yml -- it would have created one KVM VM on one of the head nodes)
 
@@ -369,7 +393,7 @@ The installation user should review hosts file (located on the installer VM at $
 ```
 vi inventory/hosts
 ```
-4. Copy Rhel8.6 DVD ISO to /usr/share/nginx/html/ 
+4. Copy Rhel8.8 DVD ISO to /usr/share/nginx/html/ 
 
 5. Navigate to the directory, /opt/hpe-solutions-openshift/DL-LTI-Openshift/worker_nodes and run the below command.
 
@@ -402,4 +426,80 @@ Execute the following command to set the parameter **mastersSchedulable** para
          '$ oc edit scheduler'
 
 ### ***Note*** 
-To add more worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding RHEL8.6 Worker Nodes section.
+To add more RHEL worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding RHEL8.8 Worker Nodes section.
+
+**Adding RH CoreOS Worker Nodes to Existing Openshift Cluster**
+
+This section covers the steps to add Baremetal RHCOS worker nodes to an existing Red Hat OpenShift Container Platform cluster.
+
+1. Login to the Rhel 8.8 Installer VM (that we created as a part of rhel8_installerVM.yml -- it would have been created as one KVM VM on one of the head nodes)
+
+2. Navigate to the directory $BASE_DIR(**/opt/hpe-solutions-openshift/DL-LTI-Openshift/**) then copy **input file and hosts** file to $BASE_DIR/coreos_BareMetalworker_nodes/ and later get the input file fro
+m the $BASE_DIR for ocp worker details.
+
+**NOTE**
+ansible vault password is **changeme**
+
+3. Execute the following command to add the worker nodes to the cluster
+
+           'ansible-playbook -i hosts site.yml --ask-vault-pass'
+
+In case, if user want to deploy through individual playbooks. Sequence of playbooks to be followed are:
+
+                        ansible-playbook -i hosts playbooks/binddns.yml --ask-vault-pass
+                        ansible-playbook -i hosts playbooks/haproxy.yml --ask-vault-pass
+                        ansible-playbook -i hosts playbooks/deploy_ipxe_ocp.yml --ask-vault-pass
+
+4. Execute the following command for creating bonding on the network interfaces for baremetal CoreOS worker nodes
+
+        ssh core@<CoreOS IP>
+        ip -o link show|grep 'state UP' | awk -F ': ' '{print $2}'                                                      ###to retrive only the names of the network interfaces that are currently UP
+
+        sample output from above command:
+        ens1f0np0
+        ens1f1np1
+
+        sudo nmcli connection add type bond con-name "bond0" ifname bond0
+        sudo nmcli connection modify bond0 bond.options "mode=active-backup,downdelay=0,miimon=100,updelay=0"
+        sudo nmcli connection add type ethernet slave-type bond con-name bond0-if1 ifname ens1f0np0 master bond0                ###ens1f0np0 interface names from the sample output
+        sudo nmcli connection add type ethernet slave-type bond con-name bond0-if2 ifname ens1f1np1 master bond0                ###ens1f1np1 interface names from the sample output
+        sudo nmcli connection up bond0
+        sudo nmcli connection modify "bond0" ipv4.addresses '<<CoreOS IP  with netmask>>' ipv4.gateway '<<gateway IP>>' ipv4.dns  '<<dns server IP(all the head node IP)>>' ipv4.dns-search '<<domain name>>'
+ipv4.method manual
+
+        example:
+        sudo nmcli connection modify "bond0" ipv4.addresses '172.28.*.*/24' ipv4.gateway '172.28.*.*' ipv4.dns  '172.28.*.*,172.28.*.*,172.28.*.*' ipv4.dns-search 'isv.local' ipv4.method manual
+
+        sudo reboot
+
+### **Playbook description**
+
+**site.yml**
+
+-   This playbook contains the script for bringing up baremetal coreOS Worker Nodes and adds RHCOS worker nodes to an existing Red Hat OpenShift Container Platform cluster
+
+**binddns.yml**
+
+-   This playbook contains the script to deploy bind dns on three head nodes and it will work as both Active & Passive.
+
+**haproxy.yml**
+
+-   This playbook contains the script to deploy haproxy on the head nodes and it will act as Active.
+
+**deploy_ipxe_ocp.yml**
+
+-   This playbook contains the script to deploy the ipxe code on the RHEL8 installer machine.
+
+After successful execution of all playbooks, check the node status as below.
+
+** Approving server certificates (CSR) for newly added nodes **
+
+The administrator needs to approve the CSR requests generated by each kubelet.
+
+You can approve all Pending CSR requests using below command
+
+        '$ oc get csr -o json | jq -r '.items[] | select(.status == {} ) | .metadata.name' | xargs oc adm certificate approve '
+
+Later, Verify Node status using below command
+
+         '$ oc get nodes'
