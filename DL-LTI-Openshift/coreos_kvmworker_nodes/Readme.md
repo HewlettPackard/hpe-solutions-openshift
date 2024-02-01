@@ -44,7 +44,7 @@ In case, if user want to deploy through individual playbooks. Sequence of playbo
 
 **rhel8_os_deployment.yml**
 
-- This playbook contains the scripts to deploy rhel8.6 OS on baremetal servers.
+- This playbook contains the scripts to deploy rhel8.8 OS on baremetal servers.
 
 **copy_ssh_workernode.yml**
 

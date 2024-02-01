@@ -188,13 +188,13 @@ f.write("\n\nconfig:");
 usrtext = input("Enter HTTP_server_base_url with installer IP ( Example: http://InstallerIP/ ): " + "\n");
 f.write("\n   HTTP_server_base_url: " +usrtext);
 
-usrtext = input("Enter HTTP_file_path ( Download the Rhel 8.6 OS image and store it in /usr/share/nginx/html/ location of the installer machine ) ( Example: /usr/share/nginx/html/ ): " + "\n");
+usrtext = input("Enter HTTP_file_path ( Download the Rhel 8.8 OS image and store it in /usr/share/nginx/html/ location of the installer machine ) ( Example: /usr/share/nginx/html/ ): " + "\n");
 f.write("\n   HTTP_file_path: " +usrtext);
 
 usrtext = input("Enter Operating System type ( Example: rhel8 ): " + "\n");
 f.write("\n   OS_type: " +usrtext);
 
-usrtext = input("Enter Operating System Image name ( Example: rhel-8.6-x86_64-dvd.iso )  : " + "\n");
+usrtext = input("Enter Operating System Image name ( Example: rhel-8.8-x86_64-dvd.iso )  : " + "\n");
 f.write("\n   OS_image_name: " +usrtext);
 
 usrtext = input("Enter Base Kickstart file path ( Example: /opt/hpe-solutions-openshift/DL-LTI-Openshift/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg  ) : " + "\n");
@@ -402,7 +402,7 @@ f.write("\n - ip: " +usrtext);
 usrtext = input("Enter the customer's second upstream DNS forwarder ip : " + "\n");
 f.write("\n - ip: " +usrtext);
 
-usrtext = input("Enter the ocp version (Example: 4.12) : " + "\n");
+usrtext = input("Enter the ocp version (Example: 4.14) : " + "\n");
 f.write("\n\nocp_version: " +usrtext);
 
 print("Enter redhat pull secret & Installer machine public key \n");
