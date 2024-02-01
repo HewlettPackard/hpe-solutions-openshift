@@ -1,9 +1,0 @@
----
-- name: prepare worker nodes
-  hosts: new_workers
-  gather_facts: true
-  become: true
-  vars_files:
-    - ../input.yaml
-  roles:
-    - role: roles/prepare_worker_nodes
