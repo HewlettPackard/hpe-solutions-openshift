@@ -1,0 +1,71 @@
+options {
+        listen-on port 53 { any; };
+        listen-on-v6 port 53 { ::1; };
+        directory       "/var/named";
+        dump-file       "/var/named/data/cache_dump.db";
+        statistics-file "/var/named/data/named_stats.txt";
+        memstatistics-file "/var/named/data/named_mem_stats.txt";
+        secroots-file   "/var/named/data/named.secroots";
+        recursing-file  "/var/named/data/named.recursing";
+        allow-query     { localhost; {{ common.solution_subnet_ip }}; };
+        forwarders { 
+        {{ solution_network_ip }};
+        {% for item in dns_forwarder %}
+        {{ item.ip }};
+        {% endfor %}
+        };
+        forward only;
+
+
+
+        /*
+         - If you are building an AUTHORITATIVE DNS server, do NOT enable recursion.
+         - If you are building a RECURSIVE (caching) DNS server, you need to enable
+           recursion.
+         - If your recursive DNS server has a public IP address, you MUST enable access
+           control to limit queries to your legitimate users. Failing to do so will
+           cause your server to become part of large scale DNS amplification
+           attacks. Implementing BCP38 within your network would greatly
+           reduce such attack surface
+        */
+        recursion yes;
+
+        dnssec-enable no;
+        dnssec-validation no;
+
+        managed-keys-directory "/var/named/dynamic";
+
+        pid-file "/run/named/named.pid";
+        session-keyfile "/run/named/session.key";
+
+        /* https://fedoraproject.org/wiki/Changes/CryptoPolicy */
+        include "/etc/crypto-policies/back-ends/bind.config";
+};
+
+logging {
+        channel default_debug {
+                file "data/named.run";
+                severity dynamic;
+        };
+};
+
+zone "." IN {
+        type hint;
+        file "named.ca";
+};
+
+zone "{{ common.base_domain }}" IN {
+type slave;
+file "slaves/forward.isv";
+masters { {{ groups['binddns_masters'][0] }}; };
+};
+zone "{{ common.reverse_zone }}" IN {
+type slave;
+file "slaves/reverse.isv";
+masters { {{ groups['binddns_masters'][0] }}; };
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+
+

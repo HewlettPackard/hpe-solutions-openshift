@@ -2,7 +2,7 @@
 
 This section covers the steps to Enable KVM hypervisor on Worker Nodes and add RHCOS worker VM nodes to an existing Red Hat OpenShift Container Platform cluster.
 
-1. Login to the Rhel 8.6 Installer VM (that we created as a part of rhel8_installerVM.yml -- it would have been created as one KVM VM on one of the head nodes)
+1. Login to the Rhel 8.8 Installer VM (that we created as a part of rhel8_installerVM.yml -- it would have been created as one KVM VM on one of the head nodes)
 
 2. Navigate to the directory $BASE_DIR(**/opt/hpe-solutions-openshift/DL-LTI-Openshift/**) then copy **input file and hosts** file to $BASE_DIR/coreos_kvmworker_nodes/ and later update ocp worker details in input file and kvm_workernodes group as per sample host file. 
 

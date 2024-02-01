@@ -1,0 +1,28 @@
+[kvm_nodes]
+172.28.0.111
+172.28.0.112
+172.28.0.113
+
+[ansible_host]
+172.28.0.70
+
+[rhel8_installerVM]
+172.28.0.114
+
+[binddns_masters]
+172.28.0.111
+
+[binddns_slaves]
+172.28.0.112
+172.28.0.113
+
+[masters_info]
+master1 ip=172.28.0.111 hostname=headnode1
+
+[slaves_info]
+slave1 ip=172.28.0.112  hostname=headnode2
+slave2 ip=172.28.0.113  hostname=headnode3
+
+[kvm_workernodes]
+172.28.0.125
+
