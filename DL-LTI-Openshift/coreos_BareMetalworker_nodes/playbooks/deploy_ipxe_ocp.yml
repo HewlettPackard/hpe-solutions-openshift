@@ -1,0 +1,14 @@
+---
+- name: Deploy RHCOS
+  hosts: localhost
+  become: true
+  gather_facts: False
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/deploy_ipxe_ocp/configure
+    - role: roles/deploy_ipxe_ocp/dnsmasq
+    - role: roles/deploy_ipxe_ocp/profile
+    - role: roles/deploy_ipxe_ocp/group
+    - role: roles/deploy_ipxe_ocp/services
+

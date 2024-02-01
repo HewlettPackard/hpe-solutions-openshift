@@ -9,7 +9,7 @@
   "LOCAL_STORAGE_VERSION": "stable",
 
   "_comment_6": "Provide the OpenShift Container Platform version (ex: 4.4 or 4.5 or 4.8) for creating OpenShift Container Storage",
-  "OPENSHIFT_CONTAINER_STORAGE_VERSION": "4.12",
+  "OPENSHIFT_CONTAINER_STORAGE_VERSION": "4.14",
 
 
   "_comment_9": "Provide the OC client tool path if it has not been added to the path (eg. $BASE_DIR/installer/library/openshift_components/openshift-install ). If the OC client path has been added then leave the below field empty",
