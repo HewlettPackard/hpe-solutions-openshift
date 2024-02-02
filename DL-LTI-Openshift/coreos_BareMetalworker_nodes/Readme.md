@@ -6,6 +6,25 @@ This section covers the steps to add Baremetal RHCOS worker nodes to an existing
 
 2. Navigate to the directory $BASE_DIR(**/opt/hpe-solutions-openshift/DL-LTI-Openshift/**) then copy **input file and hosts** file to $BASE_DIR/coreos_BareMetalworker_nodes/ and later get the input file from the $BASE_DIR for ocp worker details. 
 
+```
+ansible-vault edit input.yaml
+
+ocp_workers:
+ - name: worker1
+   ip: 172.X.X.X
+   fqdn: worker1.XXX.XX.XXXX                          #ex. mworker1.ocp.isv.local
+   mac_address:  ### update mac address of the worker node NIC
+ - name: worker2
+   ip: 172.X.X.X
+   fqdn: worker2.XXX.XX.XXXX                          #ex. mworker2.ocp.isv.local
+   mac_address:  ### update mac address of the worker node NIC
+ - name: worker3
+   ip: 172.2X.X.X
+   fqdn: worker3.XX.XX.XXXX                          #ex. mworker3.ocp.isv.local
+   mac_address:  ### update mac address of the worker node NIC
+
+```
+
 **NOTE**
 ansible vault password is **changeme**
 
@@ -36,7 +55,7 @@ In case, if user want to deploy through individual playbooks. Sequence of playbo
 	sudo nmcli connection modify "bond0" ipv4.addresses '<<CoreOS IP  with netmask>>' ipv4.gateway '<<gateway IP>>' ipv4.dns  '<<dns server IP(all the head node IP)>>' ipv4.dns-search '<<domain name>>' ipv4.method manual
 	
 	example:
-	sudo nmcli connection modify "bond0" ipv4.addresses '172.28.*.*/24' ipv4.gateway '172.28.*.*' ipv4.dns  '172.28.*.*,172.28.*.*,172.28.*.*' ipv4.dns-search 'isv.local' ipv4.method manual
+	sudo nmcli connection modify "bond0" ipv4.addresses '172.X.X.X/X' ipv4.gateway '172.X.X.X' ipv4.dns  '172.X.X.X,172.X.X.X,172.X.X.X' ipv4.dns-search 'isv.local' ipv4.method manual
 
 	sudo reboot
 
