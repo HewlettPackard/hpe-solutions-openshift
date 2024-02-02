@@ -119,7 +119,7 @@ ocp_workers:
 dns_forwarder:
  - ip: xx.xx.xx.xx
 
-ocp_version: 4.14                           #ex. 4.14
+ocp_version: 4.12.2                           #ex. 4.12
 
 pull_secret: '' 
 id_rsa_pub: ''
@@ -134,7 +134,7 @@ base_path: '/opt/hpe-solutions-openshift/DL-LTI-Openshift'
 is_environment_airgap: 'no'
 
 ###Common Networking
-# Interface Name of Rhel8.8 VM: interface_name: eth0
+# Interface Name of Rhel8.6 VM: interface_name: eth0
 interface_name: eth0
 
 # dhcp range that is used for OCP nodes Example: dhcp_range: 192.168.42.204,192.168.42.210,24h

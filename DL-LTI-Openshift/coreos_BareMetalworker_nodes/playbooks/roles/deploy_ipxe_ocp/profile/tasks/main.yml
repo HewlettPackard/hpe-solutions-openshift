@@ -26,14 +26,14 @@
         - master.json
         - worker.json
 
-#    - name: copy boot images to match 
-#      copy:
-#        src: "{{ image_location }}"
-#        dest: /var/lib/matchbox/assets/
-#        remote_src: yes
-#        mode: 0775
-#        follow: yes
-#        directory_mode: yes    
+    - name: copy boot images to match 
+      copy:
+        src: "{{ image_location }}"
+        dest: /var/lib/matchbox/assets/
+        remote_src: yes
+        mode: 0775
+        follow: yes
+        directory_mode: yes    
 
     - name: create bootstrap profile.
       blockinfile:
