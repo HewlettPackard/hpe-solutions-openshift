@@ -63,7 +63,7 @@ config:
    HTTP_server_base_url: http://172.28.*.*/  #Installer IP address
    HTTP_file_path: /usr/share/nginx/html/    
    OS_type: rhel8
-   OS_image_name: rhel-8.6-x86_64-dvd.iso    # ISO image should be present in /usr/share/nginx/html/
+   OS_image_name: rhel-8.8-x86_64-dvd.iso    # ISO image should be present in /usr/share/nginx/html/
    base_kickstart_filepath: /opt/hpe-solutions-openshift/DL-LTI-Openshift/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg
 
 rhsub_username: ******
@@ -135,7 +135,7 @@ dns_forwarder:
  - ip: 
  - ip: 
 
-ocp_version: x.x.x                           #ex. 4.12
+ocp_version: x.x.x                           #ex. 4.14.x
 
 pull_secret: '' 
 id_rsa_pub: ''

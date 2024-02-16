@@ -26,7 +26,7 @@ config:
    HTTP_server_base_url: http://172.28.230.114/      #rhel8 Installer VM ip address
    HTTP_file_path: /usr/share/nginx/html/
    OS_type: rhel8
-   OS_image_name: rhel-8.6-x86_64-dvd.iso            #ISO image should be present in /usr/share/nginx/html/
+   OS_image_name: rhel-8.8-x86_64-dvd.iso            #ISO image should be present in /usr/share/nginx/html/
    base_kickstart_filepath: /opt/hpe-solutions-openshift/DL-LTI-Openshift/worker_nodes/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg
 
 

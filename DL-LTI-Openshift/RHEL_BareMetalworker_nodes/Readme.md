@@ -1,6 +1,6 @@
-### **Adding RHEL8.6 Worker Nodes**
+### **Adding RHEL8.8 Worker Nodes**
 
-This section covers the steps to add RHEL 8.6 worker nodes to an existing Red Hat OpenShift Container Platform cluster.
+This section covers the steps to add RHEL 8.8 worker nodes to an existing Red Hat OpenShift Container Platform cluster.
 
 1. **Creating and deleting logical drives**
 
@@ -53,14 +53,14 @@ This section covers the steps to add RHEL 8.6 worker nodes to an existing Red Ha
 
 					' # ansible-playbook site.yml --ask-vault-pass'
 
-2. Cleanup and reboot the RHEL 8.6  [Installer machine](https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md "https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md"), so the machine can be added as worker node to the existing OpenShift Container Platform cluster.
+2. Cleanup and reboot the RHEL 8.8  [Installer machine](https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md "https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md"), so the machine can be added as worker node to the existing OpenShift Container Platform cluster.
 
 3. Login to the Installer VM (that we created as a part of rhel8_installerVM.yml -- it would have created one KVM VM on one of the head nodes)
 
-4. Navigate to the directory $BASE_DIR/worker_nodes/
+4. Navigate to the directory $BASE_DIR/RHEL_BareMetalworker_nodes/
 
 ```
-cd $BASE_DIR/worker_nodes/
+cd $BASE_DIR/RHEL_BareMetalworker_nodes/
 ```
 **NOTE**
 $BASE_DIR refers to **/opt/hpe-solutions-openshift/DL-LTI-Openshift/**
@@ -79,7 +79,7 @@ The installation user should review hosts file (located on the installer VM at $
 vi inventory/hosts
 
 ```
-6. Copy Rhel8.6 DVD ISO to **/usr/share/nginx/html/**
+6. Copy Rhel8.8 DVD ISO to **/usr/share/nginx/html/**
 
 7. Run the below command to download the required packages for adding worker nodes.
 
@@ -112,4 +112,4 @@ Execute the following command to set the parameter **mastersSchedulable** para
          '$ oc edit scheduler'
 
 ### ***Note*** 
-To add more worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding RHEL8.6 Worker Nodes section.
+To add more worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding RHEL8.8 Worker Nodes section.
