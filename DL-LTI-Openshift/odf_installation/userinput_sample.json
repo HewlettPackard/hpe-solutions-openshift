@@ -4,9 +4,9 @@
 
   "OPENSHIFT_PORT": "OPENSHIFT_PORT for OCP web cluster console port number (ex: 6443)",
 
-  "LOCAL_STORAGE_VERSION": "Provide the Local Storage operator version (ex: 4.12 or stable) for creating Local Storage operator",
+  "LOCAL_STORAGE_VERSION": "Provide the Local Storage operator version (ex: 4.14 or stable) for creating Local Storage operator",
 
-  "OPENSHIFT_CONTAINER_STORAGE_VERSION": "Provide the OpenShift Container Platform version (ex: 4.12) for creating OpenShift Container Storage",
+  "OPENSHIFT_CONTAINER_STORAGE_VERSION": "Provide the OpenShift Container Platform version (ex: 4.14) for creating OpenShift Container Storage",
 
   "OPENSHIFT_CLIENT_PATH": "Provide the OC client tool path if it has not been added to the path (eg. $BASE_DIR/installer/library/openshift_components/openshift-install ). If the OC client path has been added then leave the below field empty",
   
