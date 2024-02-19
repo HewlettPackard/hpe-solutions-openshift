@@ -65,7 +65,6 @@
         block: |
           enable-tftp
           tftp-root=/var/lib/tftpboot/
-          tftp-secure
           # Legacy PXE
           dhcp-match=set:bios,option:client-arch,0
           dhcp-boot=tag:bios,undionly.kpxe
