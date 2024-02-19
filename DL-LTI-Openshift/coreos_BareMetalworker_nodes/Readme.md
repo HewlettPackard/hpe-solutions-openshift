@@ -40,24 +40,24 @@ In case, if user want to deploy through individual playbooks. Sequence of playbo
 
 4. Execute the following command for creating bonding on the network interfaces for baremetal CoreOS worker nodes 
 
-	ssh core@<CoreOS IP>
-	ip -o link show|grep 'state UP' | awk -F ': ' '{print $2}'							###to retrive only the names of the network interfaces that are currently UP
+	'ssh core@<CoreOS IP>
+	ip -o link show|grep 'state UP' | awk -F ': ' '{print $2}'							### to retrieve only the names of the network interfaces that are currently UP
 
-	sample output from above command:
+	sample output from the above command:
 	ens1f0np0
-	ens1f1np1
+	ens1f1np1 '
 
-	sudo nmcli connection add type bond con-name "bond0" ifname bond0
-	sudo nmcli connection modify bond0 bond.options "mode=active-backup,downdelay=0,miimon=100,updelay=0"
-	sudo nmcli connection add type ethernet slave-type bond con-name bond0-if1 ifname ens1f0np0 master bond0		###ens1f0np0 interface names from the sample output
+	'sudo nmcli connection add type bond con-name "bond0" ifname bond0
+	 sudo nmcli connection modify bond0 bond.options "mode=active-backup,downdelay=0,miimon=100,updelay=0"
+	 sudo nmcli connection add type ethernet slave-type bond con-name bond0-if1 ifname ens1f0np0 master bond0		###ens1f0np0 interface names from the sample output
 	sudo nmcli connection add type ethernet slave-type bond con-name bond0-if2 ifname ens1f1np1 master bond0		###ens1f1np1 interface names from the sample output
 	sudo nmcli connection up bond0
 	sudo nmcli connection modify "bond0" ipv4.addresses '<<CoreOS IP  with netmask>>' ipv4.gateway '<<gateway IP>>' ipv4.dns  '<<dns server IP(all the head node IP)>>' ipv4.dns-search '<<domain name>>' ipv4.method manual
 	
 	example:
-	sudo nmcli connection modify "bond0" ipv4.addresses '172.X.X.X/X' ipv4.gateway '172.X.X.X' ipv4.dns  '172.X.X.X,172.X.X.X,172.X.X.X' ipv4.dns-search 'isv.local' ipv4.method manual
+	sudo nmcli connection modify "bond0" ipv4.addresses '172.X.X.X/X' ipv4.gateway '172.X.X.X' ipv4.dns  '172.X.X.X,172.X.X.X,172.X.X.X' ipv4.dns-search 'isv.local' ipv4.method manual 
 
-	sudo reboot
+	sudo reboot '
 
 ### **Playbook description**
 
