@@ -1,19 +1,5 @@
 ---
     
-- name: disable selinux
-  selinux:
-    state: disabled
-
-- name: Install Haproxy package
-  yum:
-    name: haproxy
-    state: present
-
-- name: Stop Haproxy service if running already
-  service:
-    name: haproxy
-    state: stopped
-
 - name: Dynamically copying HAproxy Configuration file
   template:
     src: ./haproxy.cfg.j2
@@ -27,21 +13,6 @@
     name: haproxy
     state: started
     enabled: true
-      
-- name: Install keepalived package
-  yum:
-   name:
-     - keepalived
-     - psmisc
-   state: present
-      
-- name: Dynamically copying Keepalived Configuration file
-  template:
-    src: ./keepalived.conf.j2
-    dest: /etc/keepalived/keepalived.conf
-    owner: root
-    group: root
-    mode: 0644
 
 - name: Restart Keepalived Service
   service:
@@ -49,33 +20,9 @@
     state: started
     enabled: true
         
-- name: Allow HTTPS to the firewall
-  firewalld:
-    service: https
-    permanent: true
-    state: enabled
-
-- name: Add TCP ports to the firewall
-  firewalld:
-    port: "{{ item }}"
-    permanent: yes
-    state: enabled
-  with_items:
-    - 6443/tcp
-    - 22623/tcp
-    - 80/tcp
-    - 443/tcp
 
 - name: Reload firewall service
   systemd:
     name: firewalld
     state: reloaded
-
-#- name: Permit TCP and HTTP ports
-#  shell: |
-#       semanage port  -a 6443 -t http_port_t -p tcp
-#       semanage port  -a 22623 -t http_port_t -p tcp
-#       semanage port -a 32700 -t http_port_t -p tcp
-#  become: true
-
    
