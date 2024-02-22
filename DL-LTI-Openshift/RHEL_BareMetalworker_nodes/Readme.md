@@ -57,7 +57,9 @@ This section covers the steps to add RHEL 8.8 worker nodes to an existing Red Ha
 
 3. Login to the Installer VM (that we created as a part of rhel8_installerVM.yml -- it would have created one KVM VM on one of the head nodes)
 
-4. Navigate to the directory $BASE_DIR/RHEL_BareMetalworker_nodes/
+4. Navigate to the directory $BASE_DIR(**/opt/hpe-solutions-openshift/DL-LTI-Openshift/**) then copy **input file and hosts** file to $BASE_DIR/RHEL_BareMetalworker_nodes/ and later update ocp worker details in input file and kvm_workernodes group as per sample host file.
+
+5. Navigate to the directory $BASE_DIR/RHEL_BareMetalworker_nodes/
 
 ```
 cd $BASE_DIR/RHEL_BareMetalworker_nodes/
@@ -65,7 +67,7 @@ cd $BASE_DIR/RHEL_BareMetalworker_nodes/
 **NOTE**
 $BASE_DIR refers to **/opt/hpe-solutions-openshift/DL-LTI-Openshift/**
 
-5. Run the following commands on the rhel8 installer VM to edit the vault input file.
+6. Run the following commands on the rhel8 installer VM to edit the vault input file.
 
 ```
 ansible-vault edit input.yaml
@@ -79,13 +81,13 @@ The installation user should review hosts file (located on the installer VM at $
 vi inventory/hosts
 
 ```
-6. Copy Rhel8.8 DVD ISO to **/usr/share/nginx/html/**
+7. Copy Rhel8.8 DVD ISO to **/usr/share/nginx/html/**
 
-7. Run the below command to download the required packages for adding worker nodes.
+8. Run the below command to download the required packages for adding worker nodes.
 
          'sh setup.sh' 
 
-8. Execute the following command to add the worker nodes to the cluster
+9. Execute the following command to add the worker nodes to the cluster
 
          'ansible-playbook -i inventory/hosts site.yml --ask-vault-pass'
 
