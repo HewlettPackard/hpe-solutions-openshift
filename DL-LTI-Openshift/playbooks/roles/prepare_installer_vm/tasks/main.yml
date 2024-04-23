@@ -20,8 +20,8 @@
       set_fact:
         ocp_image_version : "{{ ocp_version.split('.')[0:2] | join('.') }}"
 
-    - name: Enable the repositories required by OpenShift Container Platform 4.12
-      shell: subscription-manager repos --enable="rhel-8-for-x86_64-baseos-rpms" --enable="rhel-8-for-x86_64-appstream-rpms" --enable="ansible-2.9-for-rhel-8-x86_64-rpms" --enable="rhocp-4.12-for-rhel-8-x86_64-rpms"
+    - name: Enable the repositories required by OpenShift Container Platform 
+      shell: subscription-manager repos --enable="rhel-8-for-x86_64-baseos-rpms" --enable="rhel-8-for-x86_64-appstream-rpms" --enable="fast-datapath-for-rhel-8-x86_64-rpms" --enable="rhocp-{{ ocp_image_version }}-for-rhel-8-x86_64-rpms"
 
     - name: Install the required packages, including openshift-ansible
       shell: yum -y install openshift-ansible openshift-clients jq
@@ -34,11 +34,11 @@
         group: root
         mode: 775
 
-    - name: Copy openshift-ansible folder to current directory
+    - name: Copy the openshift-ansible folder to the current directory
       copy:
         remote_src: yes
         src: /usr/share/ansible/openshift-ansible
-        dest: "{{ base_path }}/worker_nodes/"
+        dest: "{{ base_path }}/RHEL_BareMetalworker_nodes/"
         owner: root
         group: root
 
