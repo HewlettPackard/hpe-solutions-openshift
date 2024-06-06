@@ -1,9 +1,0 @@
----
-- name: prepare hosts
-  hosts: kvm_nodes
-  gather_facts: false
-  become: true
-  vars_files:
-    - ../input.yaml
-  roles:
-    - role: roles/prepare_rhel_hosts

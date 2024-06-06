@@ -1,9 +1,0 @@
-- name: Copy ssh key to rhel installer VM
-  hosts: localhost
-  become: true
-  gather_facts: False
-  vars_files:
-    - ../input.yaml
-  roles:
-    - role: roles/copy_ssh/copy_ssh_installerVM
-
