@@ -22,7 +22,7 @@
 
                       # ssh-copy-id root@rhel8_vm_ip '
 
-4. Rhel 8.6 VM with atleast 200 GB disk space - Two (2) CPU cores - 8 GB RAM. - /var has at least 15GB disk space allocated while partitioning, internet connectivity and is subscribed with valid redhat credentials is required to execute this playbook.
+4. Rhel 8.9 VM with atleast 200 GB disk space - Two (2) CPU cores - 8 GB RAM. - /var has at least 15GB disk space allocated while partitioning, internet connectivity and is subscribed with valid redhat credentials is required to execute this playbook.
 
 **Input File Update:-**
 

@@ -1,0 +1,85 @@
+---
+
+- name: Create coreos worker1 VM on KVM node1
+  shell:
+    cmd: >-
+        virt-install
+        -n worker1
+        --description "Coreosworker1 Machine for Openshift 4 Cluster"
+        --memory {{ vm_mem }}
+        --vcpus={{ vm_cpu }}  
+        --os-variant=rhel8.0
+        --os-type linux
+        --noreboot
+        --disk pool=ocp_vms,bus=virtio,size={{ vm_size }}
+        --serial pty 
+        --console pty
+        --pxe 
+        --network bridge:{{ common.interface_name }},mac.address={{ ocp_workers[0].mac_address }}
+        --wait 15
+        --autostart
+  delegate_to: "{{ groups['kvm_workernodes'][0] }}" 
+
+- name: Restart worker1 Doamin
+  shell:
+    cmd: >-
+        virsh
+        --connect qemu:///system start worker1
+  delegate_to: "{{ groups['kvm_workernodes'][0] }}"
+
+- name: Create coreos Worker2 VM on KVM node2
+  shell:
+    cmd: >-
+        virt-install
+        -n worker2
+        --description "Coreosworker2 Machine for Openshift 4 Cluster"
+        --memory {{ vm_mem }}
+        --vcpus={{ vm_cpu }}
+        --os-variant=rhel8.0
+        --os-type linux
+        --noreboot
+        --disk pool=ocp_vms,bus=virtio,size={{ vm_size }}
+        --serial pty
+        --console pty
+        --pxe
+        --network bridge:{{ common.interface_name }},mac.address={{ ocp_workers[1].mac_address }}
+        --wait 15
+        --autostart
+  delegate_to: "{{ groups['kvm_workernodes'][1] }}"
+
+- name: Restart master2 Doamin
+  shell:
+    cmd: >-
+        virsh
+        --connect qemu:///system start worker2
+  delegate_to: "{{ groups['kvm_workernodes'][1] }}"
+
+- name: Create Master3 VM on KVM node
+  shell:
+    cmd: >-
+        virt-install
+        -n  worker3
+        --description "Coreos worker3 Machine for Openshift 4 Cluster"
+        --memory {{ vm_mem }}
+        --vcpus={{ vm_cpu }}
+        --os-variant=rhel8.0
+        --os-type linux
+        --noreboot
+        --disk pool=ocp_vms,bus=virtio,size={{ vm_size }}
+        --serial pty
+        --console pty
+        --pxe
+        --network bridge:{{ common.interface_name }},mac.address={{ ocp_workers[2].mac_address }}
+        --wait 15
+        --autostart
+  delegate_to: "{{ groups['kvm_workernodes'][2] }}"
+
+- name: Restart master3 Doamin
+  shell:
+    cmd: >-
+        virsh
+        --connect qemu:///system start worker3
+  delegate_to: "{{ groups['kvm_workernodes'][2] }}"
+
+
+

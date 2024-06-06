@@ -39,7 +39,7 @@ def create_custom_iso_image_redhat(os_type, server, config, kickstart_file):
     copies the contents, updates the custom kickstart file location and rebundles it into a custom RHEL image for each of the server. 
     
     Arguments:
-        os_type {string}                      -- Type of operating system (currently supports rhel8)
+        os_type {string}                      -- Type of operating system (currently supports rhel)
         server {string}                       -- Custom configurations for a particular server as per the input_files/server_details.json
         config {string}                       -- OneView, web server and OS details as per the input_files/config.json
         kickstart_file {string}               -- Path of the base kickstart file for ESXi operating system
@@ -47,7 +47,7 @@ def create_custom_iso_image_redhat(os_type, server, config, kickstart_file):
     Returns:
         Boolean -- returns True upon successful creation of custom os image, return False on failure of creation of custom os image
     """
-    if os_type == "rhel8":
+    if os_type == "rhel":
         rhel_iso_filename = config["OS_image_name"]
         if not os.path.isfile(kickstart_file):
             print("Kickstart file is not present for RHEL installation")
@@ -66,7 +66,7 @@ def create_custom_iso_image_redhat(os_type, server, config, kickstart_file):
 
     val = is_iso_image(rhel_iso_filename)
     if val:
-        if os_type == "rhel8":
+        if os_type == "rhel":
             base_iso_image_path = config["HTTP_file_path"]
             filepath = base_iso_image_path + rhel_iso_filename
             server_serial_number = server["Server_serial_number"]
