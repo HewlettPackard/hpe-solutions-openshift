@@ -4,6 +4,7 @@
 
 RHEL 8.9 Installer machine the following configurations.
 
+
 1.  At least 500 GB disk space (especially in the \"/\" partition), 4 CPU cores and 16GB RAM.
 
 2.  Rhel 8.9 Installer machine should be subscribed with valid **Redhat credentials**.
