@@ -1,9 +1,0 @@
----
-- name: Mirroring the OpenShift Container Platform image repository
-  hosts: localhost
-  become: yes
-  gather_facts: False
-  vars_files:
-    - ../input.yaml
-  roles:
-    - role: roles/mirroring_ocp_image_repository
