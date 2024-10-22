@@ -1,0 +1,14 @@
+base_path: /opt/GreenLake-for-OpenShift/airgap/mirror_registry
+mirror_registry_ip: 10.0.11.30
+mirror_registry_fqdn: dserver.anand.local
+pull_secret_path: /opt/GreenLake-for-OpenShift/airgap/mirror_registry/pull-secret
+password_file_path: /opt/GreenLake-for-OpenShift/airgap/mirror_registry/credentials
+email: eaj@hpe.com
+
+OCP_RELEASE: 4.16.10
+LOCAL_REGISTRY: dserver.anand.local:8443
+LOCAL_REPOSITORY: ocp416
+PRODUCT_REPO: openshift-release-dev
+LOCAL_SECRET_JSON: /opt/GreenLake-for-OpenShift/airgap/mirror_registry/json_pull_secret.json
+RELEASE_NAME: ocp-release
+ARCHITECTURE: x86_64
