@@ -1,0 +1,6 @@
+- name: Copy YUM repo 
+  hosts: clients
+  become: yes
+  vars_files: ../input.yaml
+  roles:
+    - role: roles/copy_yum_repo

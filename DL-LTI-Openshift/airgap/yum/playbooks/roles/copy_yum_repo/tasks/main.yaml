@@ -1,0 +1,46 @@
+---
+
+     - name: Dynamically coping local repo file
+       template:
+         src: ./client.repo.j2
+         dest: /etc/yum.repos.d/client.repo
+         owner: root
+         group: root
+         mode: 0644
+
+     - name: Check the YUM repo list
+       command: yum repolist       
+       register: yum_repolist
+
+     - debug:
+         msg: "{{ yum_repolist.stdout }}"
+
+     - debug: 
+         msg: "{{ yum_repolist.stderr }}"
+
+     - name: Check redhat.repo file exists or not
+       stat: path=/etc/yum.repos.d/redhat.repo
+       register: redhat_repo
+
+     - name: Move redhat.repo file to /tmp folder
+       command: mv /etc/yum.repos.d/redhat.repo /tmp/
+       when: redhat_repo.stat.exists
+
+     - name: Permit TCP ports and services in firewall rule
+       shell: |
+             firewall-cmd --add-service={http,https} --permanent
+             firewall-cmd --reload         
+
+     - name: Enables the repositories defined outside redhat.repo    
+       lineinfile:
+         path: /etc/yum/pluginconf.d/subscription-manager.conf
+         regexp: '^disable_system_repos='
+         line: 'disable_system_repos=0'
+         state: present
+
+     - name: suppress or prevent warning message
+       lineinfile:
+         path: /etc/yum/pluginconf.d/subscription-manager.conf
+         regexp: '^enabled='
+         line: 'enabled=0'
+         state: present           
