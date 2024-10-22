@@ -1,3 +1,0 @@
----
-  - name: Download Mirror Registry Package
-    script: ../shell-scripts/download_mirror_registry_package.sh
