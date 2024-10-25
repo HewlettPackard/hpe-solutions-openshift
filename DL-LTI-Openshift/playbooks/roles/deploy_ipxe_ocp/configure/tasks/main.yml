@@ -1,0 +1,119 @@
+###
+## Copyright (2020) Hewlett Packard Enterprise Development LP
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## You may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+## http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+####
+
+---
+    - name: Install required yum packages 
+      yum:
+        name:
+          - dnsmasq
+          - ipxe-bootimgs
+          - tftp-server
+          - tftp
+          - xinetd
+        state: present
+
+    - name: create tftp directory 
+      file:
+        path: /var/lib/tftp/
+        state: directory
+        
+    - name: Copy files to tftp 
+      command: cp /usr/share/ipxe/undionly.kpxe /var/lib/tftpboot/
+     
+    - name: Copy files to tftp 2
+      command: cp /usr/share/ipxe/ipxe-x86_64.efi /var/lib/tftpboot/
+
+    - name: set permission
+      command: chmod 0755 -R /var/lib/tftpboot/
+
+
+    - name: download matchbox
+      remote_user: 
+      get_url: 
+        url: "https://github.com/poseidon/matchbox/releases/download/v0.9.0/matchbox-v0.9.0-linux-amd64.tar.gz"
+        dest: "/tmp/"
+        mode: 0400
+
+    - name: extract matchbox 
+      unarchive:
+        src: "/tmp/matchbox-v0.9.0-linux-amd64.tar.gz"
+        dest: "/tmp/"
+        remote_src: yes
+
+    - name: set path matchbox 
+      copy:
+        src: "/tmp/matchbox-v0.9.0-linux-amd64/matchbox"
+        dest: /usr/local/bin
+        mode: 0775
+        remote_src: yes
+
+    - name: set path matchbox 
+      user:
+        name: matchbox
+        state: present
+
+    - name: create matchbox directories 
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: matchbox
+        mode: 0775
+      with_items:
+        - /var/lib/matchbox/
+        - /var/lib/matchbox/assets/
+        - /var/lib/matchbox/groups/
+        - /var/lib/matchbox/ignition/
+        - /var/lib/matchbox/profiles/
+
+    - name: copy matchbox service 
+      copy:
+        src: "/tmp/matchbox-v0.9.0-linux-amd64/contrib/systemd/matchbox.service"
+        dest: /etc/systemd/system/matchbox.service
+        remote_src: yes
+        mode: 0775
+
+    - name: copy tftp setting
+      copy:
+        src: "{{ base_path }}/playbooks/roles/deploy_ipxe_ocp/files/tftp"
+        dest: /etc/xinetd.d/tftp
+        mode: 0775
+        remote_src: yes
+        follow: yes
+
+#    - name: set permission to write on tftp 
+#      command: setsebool -P tftp_anon_write 1
+     
+#    - name: set permission to write on tftp 2
+#      command: setsebool -P tftp_home_dir 1
+
+
+    - name: Enable and start services
+      service:
+        name: "{{ item }}"
+        enabled: yes
+        state: started
+      with_items:
+        - matchbox
+        - tftp 
+        - xinetd
+        
+
+    
+
+    
+
+       
+
