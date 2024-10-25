@@ -155,6 +155,7 @@ OCP_RELEASE: 4.16.10
 LOCAL_REGISTRY: registry.anand.local:8443
 LOCAL_REPOSITORY: ocp416
 ARCHITECTURE: x86_64
+yumrepo:
   
 
 ###Common Networking
