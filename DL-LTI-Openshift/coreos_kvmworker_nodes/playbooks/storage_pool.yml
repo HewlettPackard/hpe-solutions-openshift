@@ -1,0 +1,10 @@
+---
+- name: Create Storage poll for KVM VM
+  hosts: kvm_workernodes
+  become: true
+  roles:
+    - role: roles/storage_pool
+      virt_dir_storage_pool_lv: vms
+      virt_dir_storage_pool_vg: ocp
+      virt_dir_storage_pool_size: 800G
+
