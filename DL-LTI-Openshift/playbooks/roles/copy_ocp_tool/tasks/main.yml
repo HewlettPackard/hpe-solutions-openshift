@@ -1,0 +1,22 @@
+---
+      - name: Copy oc to path
+        become: true
+        copy:
+          src: "{{ base_path }}/playbooks/roles/download_ocp_packages/library/openshift_components/oc"
+          dest: /usr/local/bin/
+          remote_src: yes
+          owner: root
+          group: root
+          mode: 775
+
+      - name: Copy openshift-install to path
+        become: true
+        copy:
+          src: "{{ base_path }}/playbooks/roles/download_ocp_packages/library/openshift_components/openshift-install"
+          dest: /usr/local/bin/
+          remote_src: yes
+          owner: root
+          group: root
+          mode: 775
+
+
