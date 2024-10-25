@@ -1,0 +1,9 @@
+---
+- name: Create manifests and ignition files
+  hosts: localhost
+  become: yes
+  gather_facts: true
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/generate_ignition_files
