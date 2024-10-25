@@ -1,2 +1,0 @@
----
-  - include_tasks: rhel_deploy.yaml

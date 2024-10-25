@@ -1,9 +1,0 @@
----
-  - import_playbook: playbooks/download_mirror_registry_package.yaml
-  - import_playbook: playbooks/install_mirror_registry.yaml
-  - import_playbook: playbooks/generate_ssl_certs.yaml
-  - import_playbook: playbooks/create_json_pull_secret.yaml
-  - import_playbook: playbooks/update_json_pull_secret.yaml
-  - import_playbook: playbooks/download_openshift_cli.yaml
-  - import_playbook: playbooks/mirroring_ocp_image_repository.yaml
-  
