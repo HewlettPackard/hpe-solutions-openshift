@@ -14,7 +14,7 @@ Create Yum Repo server
   mkdir -p /var/www/html/ocp_packages
   cp rhcos-live.x86_64.iso /var/www/html/ocp_packages
   cp rhel-9.4-x86_64-dvd.iso /var/www/html/ocp_packages
-  wget --execute="robots = off" --mirror --convert-links --no-parent --wait=5 https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/$ocp_version/ -A "openshift-*-linux-$ocp_version*" --no-directories --no-check-certificate -P /var/www/html/ocp_packages
+  wget --execute="robots = off" --mirror --convert-links --no-parent --wait=5 https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/<ocp_version>/ -A "openshift-*-linux-<ocp_version>*" --no-directories --no-check-certificate -P /var/www/html/ocp_packages
 
 
 Mirror Registry
