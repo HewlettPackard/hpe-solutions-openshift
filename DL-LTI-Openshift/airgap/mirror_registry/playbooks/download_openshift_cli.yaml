@@ -1,0 +1,9 @@
+---
+- name: Download OpenShift CLI
+  hosts: localhost
+  become: yes
+  gather_facts: False
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/download_openshift_cli

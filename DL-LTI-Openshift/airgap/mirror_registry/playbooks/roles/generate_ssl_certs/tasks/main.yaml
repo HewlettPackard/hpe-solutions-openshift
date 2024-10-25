@@ -1,0 +1,146 @@
+---
+  - name: Check if certs folder exists or not
+    stat:
+      path: "{{ base_path }}/certs"
+    register: folder_status
+    
+  - name: Delete an existing certs folder
+    file:
+      path: "{{ base_path }}/certs"
+      state: absent
+    when: folder_status.stat.exists
+    
+  - name: Generate root CA key and root certificate
+    shell: |
+      mkdir -p "{{ base_path }}/certs"
+      cd "{{ base_path }}/certs"
+      openssl genrsa -out rootCA.key 2048
+      openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem -subj "/C={{ country_name }}/ST={{ state_or_province }}/L={{ locality_name }}/O={{ organization_name }}/OU={{ organizational_unit }}/CN={{ common_name }}/emailAddress={{ email_address }}"
+    vars:
+      country_name: ""
+      state_or_province: ""
+      locality_name: ""
+      organization_name: ""
+      organizational_unit: ""
+      common_name: "{{ mirror_registry_fqdn }}"
+      email_address: ""
+  
+  - name: Signing the Certificate
+    shell: |    
+      cd "{{ base_path }}/certs"
+      openssl genrsa -out ssl.key 2048
+      openssl req -new -key ssl.key -out ssl.csr -subj "/C={{ country_name }}/ST={{ state_or_province }}/L={{ locality_name }}/O={{ organization_name }}/OU={{ organizational_unit }}/CN={{ common_name }}/emailAddress={{ email_address }}"
+    vars:
+      country_name: ""
+      state_or_province: ""
+      locality_name: ""
+      organization_name: ""
+      organizational_unit: ""
+      common_name: "{{ mirror_registry_fqdn }}"
+      email_address: ""
+          
+  - name: Dynamically copying Configuration file
+    template:
+      src: ./openssl.cnf.j2
+      dest: "{{ base_path }}/certs/openssl.cnf"
+      mode: 0644
+
+  - name: Generate ssl.cert fileby using Configuration file
+    shell: |
+      cd "{{ base_path }}/certs"
+      openssl x509 -req -in ssl.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out ssl.cert -days 356 -extensions v3_req -extfile openssl.cnf
+     
+  - name: Check if ssl.key file exists
+    stat:
+      path: "{{ base_path }}/quay-install/quay-config/ssl.key"
+    register: file_status
+
+  - name: Delete ssl.key file if already exists
+    file:
+      path: "{{ base_path }}/quay-install/quay-config/ssl.key"
+      state: absent
+    when: file_status.stat.exists
+
+#  - name: Copy ssl.key file to quay-config folder
+#    command: cp {{ base_path }}/certs/ssl.key {{ base_path }}/quay-install/quay-config
+
+  - name: Check if ssl.cert file exists
+    stat:
+      path: "{{ base_path }}/quay-install/quay-config/ssl.cert"
+    register: file_status
+
+  - name: Delete ssl.cert file if already exists
+    file:
+      path: "{{ base_path }}/quay-install/quay-config/ssl.cert"
+      state: absent
+    when: file_status.stat.exists
+
+#  - name: Copy ssl.cert file to quay-config folder
+#    command: cp {{ base_path }}/certs/ssl.cert {{ base_path }}/quay-install/quay-config
+#  
+#  - name: Append rootA.pem content to quay-config/ssl.cert  
+#    slurp:
+#      src: "{{ base_path }}/certs/rootCA.pem"
+#    register: source_file_content
+#
+#  - name: Append the content to the ssl.cert file
+#    blockinfile:
+#      path: "{{ base_path }}/quay-install/quay-config/ssl.cert"
+#      block: "{{ source_file_content['content'] | b64decode }}"
+#      insertafter: EOF
+#
+#  - name: Remove the BEGIN ANSIBLE MANAGED BLOCK line
+#    lineinfile:
+#      path: "{{ base_path }}/quay-install/quay-config/ssl.cert"
+#      state: absent
+#      regexp: '^# BEGIN ANSIBLE MANAGED BLOCK'
+#
+#  - name: Remove the END ANSIBLE MANAGED BLOCK line
+#    lineinfile:
+#      path: "{{ base_path }}/quay-install/quay-config/ssl.cert"
+#      state: absent
+#      regexp: '^# END ANSIBLE MANAGED BLOCK'
+#        
+#  - name: Configure the Podman to trust the Certifaicate Authority
+#    shell: mkdir -p /etc/containers/certs.d/{{ mirror_registry_fqdn }}
+    
+  - name: check if ca.crt file exists or not
+    stat:
+      path: "/etc/containers/certs.d/{{ mirror_registry_fqdn }}/ca.crt"
+    register: ca_crt_status
+    
+  - name: Delete ca.crt file if it exists
+    file:
+      path: "/etc/containers/certs.d/{{ mirror_registry_fqdn }}/ca.crt"
+      state: absent
+    when: ca_crt_status.stat.exists
+    
+#  - name: Copy ca.crt file
+#    copy:
+#      src: "{{ base_path }}/certs/rootCA.pem"
+#      dest: "/etc/containers/certs.d/{{ mirror_registry_fqdn }}/ca.crt"
+    
+  - name: check if rootCA.pem file exists or not
+    stat:
+      path: /etc/pki/ca-trust/source/anchors/rootCA.pem
+    register: rootCA_pem_status
+    
+  - name: Delete rootCA.pem file if it exists
+    file:
+      path: /etc/pki/ca-trust/source/anchors/rootCA.pem
+      state: absent
+    when: rootCA_pem_status.stat.exists
+    
+#  - name: Copy rootCA.pem file
+#    copy:
+#      src: "{{ base_path }}/certs/rootCA.pem"
+#      dest: /etc/pki/ca-trust/source/anchors/
+#    
+#  - name: Update system-wide trust store configuration
+#    command: update-ca-trust extract
+
+#  - name: un shell script to copy certs and update Quay service
+#    script: ../shell-scripts/copy_certs.sh {{ base_path }}
+      
+
+

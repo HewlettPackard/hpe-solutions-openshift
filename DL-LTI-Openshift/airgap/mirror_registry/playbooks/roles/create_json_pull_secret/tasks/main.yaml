@@ -1,0 +1,17 @@
+---
+  - name: Check if json_pull_secret file exists
+    stat:
+      path: "{{ base_path }}/json_pull_secret.json"
+    register: file_status
+
+  - name: Delete json_pull_secret.json file if already exists
+    file:
+      path: "{{ base_path }}/json_pull_secret.json"
+      state: absent
+    when: file_status.stat.exists
+
+  - name: Convert pull-secret to JSON format
+    shell: |
+      #      jq . {{ pull_secret_path }}  > {{ base_path }}/json_pull_secret.json
+      echo '{{ pull_secret }}' | jq . > {{ base_path }}/json_pull_secret.json
+

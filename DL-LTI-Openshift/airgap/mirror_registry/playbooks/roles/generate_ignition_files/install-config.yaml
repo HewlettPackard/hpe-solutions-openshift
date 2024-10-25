@@ -1,0 +1,84 @@
+apiVersion: v1
+baseDomain: anand.local
+compute:
+- hyperthreading: Enabled
+  name: worker
+  replicas: 0
+controlPlane:
+  hyperthreading: Enabled
+  name: master
+  replicas: 3
+metadata:
+  name: ocp
+networking:
+  clusterNetworks:
+  - cidr: 12.128.0.0/14
+    hostPrefix: 23
+  networkType: OVNKubernetes
+  serviceNetwork:
+  - 162.30.0.0/16
+platform:
+  none: {}
+fips: false
+pullSecret: >-
+  {"auths":{
+    "dserver.anand.local:8443": {
+      "auth": "aW5pdDpRN00yR1lES2w4NTZWMTlPZzR5ZnMzU3UwQ3ZYbXpxeA==",
+      "email": "eaj@hpe.com"
+    }
+  }}
+sshKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC+G9TiIAfT8uYOxmhOxC+WnZLUpMSIUMCAZqaQM2jkuZS21jdYTQ05kPHmsW1LTY8jWiUCfJhbYke7oBwAWzxKKq3kwJoJaTSJqUUkIsB9MGn5J2q0iFfMRJJkiPv4SyEJMEhnfSA4G9m8fOCUpnG6MaBV/j+HOOdpLzVVjKlrQ2BMPc+BFVnpzvypCmnhRdSpvtpYKTpt4yeTA73jx61PLnCejen6cc5+pU9YZKXEqHGDAIudS0C/owYW9oXdb8XUhhot5Beydj5qYrQmKNlwkOfEsMeAOfOfsDkaYECY22F7Jp1RQQ1tslABz5DdghxmOUW32E6nfGDtWP22FtxyjD/VglTUPht4u5k3Ai2DSBULP3ThvyjbMHH4W43D1hJsmbpzcFvtZ+lbcLqPj81tO2sHi7xCW9hfq/nFgKdZPajouQCzptHSrTe9kplCsqCs/zGFO61UQnR9cWwL81RAplzzldue3khIIZHBdFf7VuIr4YaVSaMVDKygfEKvmnU= root@headnode1.anand.local' 
+additionalTrustBundle: |
+  -----BEGIN CERTIFICATE-----
+  MIIDzzCCAregAwIBAgIUcEIHAcRkDLtkiMAoNyZg/PXlQMAwDQYJKoZIhvcNAQEL
+  BQAwYDELMAkGA1UEBhMCWFgxFTATBgNVBAcMDERlZmF1bHQgQ2l0eTEcMBoGA1UE
+  CgwTRGVmYXVsdCBDb21wYW55IEx0ZDEcMBoGA1UEAwwTZHNlcnZlci5hbmFuZC5s
+  b2NhbDAeFw0yNDEwMjQwOTMzMTRaFw0yNTEwMTUwOTMzMTRaMGAxCzAJBgNVBAYT
+  AlhYMRUwEwYDVQQHDAxEZWZhdWx0IENpdHkxHDAaBgNVBAoME0RlZmF1bHQgQ29t
+  cGFueSBMdGQxHDAaBgNVBAMME2RzZXJ2ZXIuYW5hbmQubG9jYWwwggEiMA0GCSqG
+  SIb3DQEBAQUAA4IBDwAwggEKAoIBAQCLjMC26BbV3LqCtZwd5RwrN1JZQymwyxAh
+  gFIhZtTXYwh3sm3mrWkeWZ7q8RGZipemVRT+9j7uDfmIdMPvaFSe6TdZayf/aMek
+  3JuISzW/jOi8oAjn94nvL0KqhMlgdoYgW7M8gcEWpCun8bKkgYZWq2q7drURYZbW
+  VIVYEu6MCZjO6V91e2NAwrmllX5A4BxZEVS+TPAXsZobzLZw+t4wPH0lJ7Uw2Cy+
+  Hpxm+Nv2T1Lr2oDdkVw46eTCSQW+Fp3NWaZ+Oe2tlqbF5QQop8sd470cQ9VxRKY7
+  WqALqeXD1cVacSuIQqknk/xyrPn463dJB5pZVl1Y8pG4HXp5MUSzAgMBAAGjgYAw
+  fjAJBgNVHRMEAjAAMAsGA1UdDwQEAwIF4DAkBgNVHREEHTAbghNkc2VydmVyLmFu
+  YW5kLmxvY2FshwQKAAseMB0GA1UdDgQWBBR9zCJ7s2vQqNbwlQaUMJqh+2Gy8DAf
+  BgNVHSMEGDAWgBTdPxRtjK3Ifa9jetKHk2OkJ8nuSzANBgkqhkiG9w0BAQsFAAOC
+  AQEAXpy8XQLBW7jd0ZVdc3/ez4tHBhrpY6mc/U+sa8m6kv/YNjgHM/eCjOsbtzyi
+  DN06qsIzqstebsH2GNCPv+jXKhE3SjV4sFTUk1TfNJSHgaCy8l45j0nI8J2JnTMZ
+  9r5IhWr+QKIkx+Xc6X9XuO8p060ZpF0Pt64fUuLcJg6HoqXgCp3VaAJ0uclDJHvh
+  3G4+8Ue1zb/PzzIsxFPd46jKYtl10AYxBTwwYisgPC84tY3P1znwJWO+xlhjfSJC
+  IA6AsNq8C3TplExEgU1CY8DQy33OBQMG/TCYS8wXGJU0LPOSzZcRbwk5dyaygW7h
+  L7AdmaTZHReJ9pP1tzjeu0PL7w==
+  -----END CERTIFICATE-----
+  -----BEGIN CERTIFICATE-----
+  MIIDoTCCAomgAwIBAgIUWEdZChgI1d0F5rjd3fao6CWAKGowDQYJKoZIhvcNAQEL
+  BQAwYDELMAkGA1UEBhMCWFgxFTATBgNVBAcMDERlZmF1bHQgQ2l0eTEcMBoGA1UE
+  CgwTRGVmYXVsdCBDb21wYW55IEx0ZDEcMBoGA1UEAwwTZHNlcnZlci5hbmFuZC5s
+  b2NhbDAeFw0yNDEwMjQwOTMwMzlaFw0yNzA4MTQwOTMwMzlaMGAxCzAJBgNVBAYT
+  AlhYMRUwEwYDVQQHDAxEZWZhdWx0IENpdHkxHDAaBgNVBAoME0RlZmF1bHQgQ29t
+  cGFueSBMdGQxHDAaBgNVBAMME2RzZXJ2ZXIuYW5hbmQubG9jYWwwggEiMA0GCSqG
+  SIb3DQEBAQUAA4IBDwAwggEKAoIBAQCrIfaasBTiK/7uHdgw74w+8UYkx2C5xQe5
+  e+CIvajZXEZWjfOBNk/PAre8K2xFS4AqskIShNGid3d7IqA/QXvokUyUdoi/BAYV
+  BRwBZhtPtkHSwv7qFmOmSTgpq6El3AdGEPlt5Gl3onlR4xcdn4EdvyecDS0ulrMx
+  JPE1NdfDQT/Z9TMQuC2JCoz7hYjt8LB8XXmMV1alGaJQFseQTqSMduZiBfDk+jFy
+  mFTzMpFWWsyhT61J4bWDpRg8ZfsCObF7GKqi9m6nQwJm0pTz3PUXnFFRzXOUW5RP
+  NSFaNroOA6H1ER/krI9I6qeIMGrh09MPnxOS6uXBATm9fgYhETjhAgMBAAGjUzBR
+  MB0GA1UdDgQWBBTdPxRtjK3Ifa9jetKHk2OkJ8nuSzAfBgNVHSMEGDAWgBTdPxRt
+  jK3Ifa9jetKHk2OkJ8nuSzAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUA
+  A4IBAQBtTxemGhhvzXRcqQcNWKLrxXQnxdIsAu4/0GZLpbjLkwotWRWei1WvUBpu
+  gnzeJJ2qAiHtCyperEt5Y8IQPsFtdf8rjfk3yOPbfki789KmAPmtRiwbvao+n77c
+  /9yum8XY5BxUoEAXvrcMBylpgBVqhgv7LvqKusZ1xFJ0+H8zYkRsjE2CBjLDI15Y
+  Az/f60ysnSNN11AIz+IxPq76cWHXLGEOwcMOXnK4lgTu+hsrk0tc2QxfeMSxTOtd
+  RWdAPM7TvfSZrdLii88eniErw9004fWgGhY3AFWX4ZprxhUkynx/+gd2I6KY3/1S
+  naNPHnJqMbqr6weWno+S1N27D7aK
+  -----END CERTIFICATE-----
+
+imageContentSources:
+- mirrors:
+  - dserver.anand.local:8443/ocp416
+  source: quay.io/openshift-release-dev/ocp-release
+- mirrors:
+  - dserver.anand.local:8443/ocp416
+  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
