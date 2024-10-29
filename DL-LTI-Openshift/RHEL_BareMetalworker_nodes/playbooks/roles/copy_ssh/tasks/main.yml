@@ -1,0 +1,8 @@
+---      
+   - name: Copy ssh keys to worker nodes
+     shell: "sshpass -p '{{ item.Host_Password }}' ssh-copy-id -o StrictHostKeyChecking=no root@{{ item.Host_IP }}"
+     with_items: "{{ servers }}"
+  
+   - name: Copy ssh keys to itself
+     shell: "sshpass -p '{{ rhel8_installer_password }}' ssh-copy-id -f -o StrictHostKeyChecking=no root@{{ item }}"
+     with_items: "{{ groups['rhel8_installerVM'] }}"
