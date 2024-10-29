@@ -1,0 +1,9 @@
+---
+- name: Deploy Rhel8 on head nodes
+  hosts: localhost
+  vars:
+   files:
+      - ../input.yaml
+  roles:
+    - role: roles/rhel8_os_deployment
+
