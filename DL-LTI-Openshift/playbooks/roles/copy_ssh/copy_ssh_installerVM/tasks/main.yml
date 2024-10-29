@@ -1,3 +1,0 @@
----
-   - name: Copy ssh key to VM
-     shell: "sshpass -p '{{ rhel8_installer_password }}' ssh-copy-id -f -o StrictHostKeyChecking=no root@{{ rhel8_installer_IP }}"
