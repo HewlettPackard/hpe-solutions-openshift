@@ -1,6 +1,0 @@
-- name: Copy YUM repo 
-  hosts: kvm_nodes
-  become: yes
-  vars_files: ../input.yaml
-  roles:
-    - role: roles/copy_yum_repo
