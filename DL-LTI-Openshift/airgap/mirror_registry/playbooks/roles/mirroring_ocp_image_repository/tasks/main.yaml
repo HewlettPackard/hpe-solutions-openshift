@@ -1,0 +1,33 @@
+---
+#  - name: Read password from file
+#    set_fact:
+#      password: "{{ lookup('file', password_file_path) }}"
+
+  - name: Login to Mirror resitry with credentials
+    shell: podman login {{ mirror_registry_fqdn }}:8443 -u init -p {{ lookup('file', '{{ base_path }}/airgap/mirror_registry/credentials') }}
+    register: login
+
+  - name: disply the login status
+    debug:
+      msg: "{{ login.stdout }}"
+
+        #  - name: Login to Mirror resitry with auth file
+        #    shell: podman login {{ mirror_registry_fqdn }}:8443 --authfile {{ base_path }}/airgap/mirror_registry/json_pull_secret.json
+        #    register: authlogin
+
+        #  - name: disply the auth login status
+        #    debug:
+        #      msg: "{{ authlogin.stdout }}"
+
+  - name: Run OpenShift adm release mirror command
+    shell: |
+        oc adm release mirror -a {{ base_path }}/airgap/mirror_registry/json_pull_secret.json \
+        --from=quay.io/openshift-release-dev/ocp-release:{{ ocp_version }}-{{ ARCHITECTURE }} \
+        --to={{ LOCAL_REGISTRY }}/{{ LOCAL_REPOSITORY }} \
+        --to-release-image={{ LOCAL_REGISTRY }}/{{ LOCAL_REPOSITORY }}:{{ ocp_version }}-{{ ARCHITECTURE }}
+    register: mirror_output
+
+  - name: Display mirror command output
+    debug:
+      msg: "{{ mirror_output.stdout_lines | join('\n') }}"        
+

@@ -1,0 +1,9 @@
+---
+- name: Download Mirror Registry Packages
+  hosts: localhost
+  become: yes
+  gather_facts: False
+  vars_files:
+    - ../../../input.yaml
+  roles:
+    - role: roles/download_mirror_registry_package
