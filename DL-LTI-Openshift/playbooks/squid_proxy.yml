@@ -1,8 +1,0 @@
-- name: Setup squid proxy
-  hosts: kvm_nodes
-  vars_files:
-    - ../input.yaml
-  gather_facts: False
-  roles:
-    - roles/squidproxy
-
