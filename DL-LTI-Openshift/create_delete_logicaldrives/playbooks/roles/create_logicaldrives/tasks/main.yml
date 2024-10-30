@@ -1,0 +1,14 @@
+---
+
+- name: Login to the ILO servers and create logical drives
+  with_items: "{{ ILOServers }}"
+  shell: |
+       ilorest login "{{ item.ILOIP }}"  -u "{{ item.ILOuser }}" -p "{{ item.ILOPassword }}"
+       ilorest createlogicaldrive customdrive "{{ item.RAID }}" "{{ item.PhysicalDrives }}" --controller="{{ item.controller }}" --name='RHEL Boot Volume' --spare-type=Dedicated --capacitygib=-1 --accelerator-type=None
+       ilorest reboot
+       ilorest logout
+
+- wait_for:
+    delay: 300
+
+
