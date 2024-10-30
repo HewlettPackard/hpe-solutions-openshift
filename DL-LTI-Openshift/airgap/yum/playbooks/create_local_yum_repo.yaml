@@ -1,0 +1,7 @@
+---
+- name: Create Local YUM repo
+  hosts: yumrepo
+  become: yes
+  vars_files: ../../../input.yaml
+  roles:
+    - role: roles/create_local_yum_repo
