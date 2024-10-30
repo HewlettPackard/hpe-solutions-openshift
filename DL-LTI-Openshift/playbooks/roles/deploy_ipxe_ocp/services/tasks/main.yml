@@ -1,0 +1,39 @@
+---
+  - name: populate service facts
+    service_facts:
+
+  - debug:
+      var: ansible_facts.services["{{ item }}"].state
+    with_items:
+      - tftp.service
+      - dnsmasq.service
+      - matchbox.service
+      - xinetd.service
+
+  - name: copy ignition files to matchbox
+    copy:
+      src: "{{ base_path }}/playbooks/roles/generate_ignition_files/ignitions/bootstrap.ign"
+      dest: /var/lib/matchbox/ignition/
+      remote_src: yes
+      owner: root
+      group: root
+      mode: 775
+
+  - name: copy ignition files to matchbox
+    copy:
+      src: "{{ base_path }}/playbooks/roles/generate_ignition_files/ignitions/master.ign"
+      dest: /var/lib/matchbox/ignition/
+      remote_src: yes
+      owner: root
+      group: root
+      mode: 775
+
+  - name: copy ignition files to matchbox
+    copy:
+      src: "{{ base_path }}/playbooks/roles/generate_ignition_files/ignitions/worker.ign"
+      dest: /var/lib/matchbox/ignition/
+      remote_src: yes
+      owner: root
+      group: root
+      mode: 775
+
