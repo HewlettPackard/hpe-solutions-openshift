@@ -1,0 +1,25 @@
+[kvm_nodes]
+172.XX.XX.XXX
+172.XX.XX.XXX
+172.XX.XX.XXX
+
+[ansible_host]
+172.XX.XX.XXX
+
+[rhel8_installerVM]
+172.XX.XX.XXX
+
+[binddns_masters]
+172.XX.XX.XXX
+
+[binddns_slaves]
+172.XX.XX.XXX
+172.XX.XX.XXX
+
+[masters_info]
+master1 ip=172.XX.XX.XXX hostname=headnode1
+
+[slaves_info]
+slave1 ip=172.XX.XX.XXX  hostname=headnode2
+slave2 ip=172.XX.XX.XXX  hostname=headnode3
+
