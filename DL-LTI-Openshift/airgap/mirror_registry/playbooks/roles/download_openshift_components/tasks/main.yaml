@@ -1,6 +1,0 @@
----
-  - name: Download OpenShift CLI
-    script: ../shell-scripts/download_openshift_components.sh {{ ocp_version }}
-    args:
-      chdir: "{{ base_path }}/airgap/mirror_registry/playbooks/roles/download_ocp_packages/shell-scripts/"
-
