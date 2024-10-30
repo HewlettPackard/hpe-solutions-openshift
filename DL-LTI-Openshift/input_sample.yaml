@@ -150,12 +150,12 @@ base_path: '/opt/hpe-solutions-openshift/DL-LTI-Openshift'
 #########  fill the below values for the airgap deployment #####
 #Is Environment Airgapped; ('yes' or 'no'):
 is_environment_airgap: 'no'
-mirror_registry_ip: #10.0.11.30
-mirror_registry_fqdn: #registry.anand.local
-LOCAL_REGISTRY:  #registry.anand.local:8443
-LOCAL_REPOSITORY: #ocp416
-ARCHITECTURE: #x86_64
-yumrepo:      #10.0.11.30
+mirror_registry_ip:                       #10.0.x.x
+mirror_registry_fqdn:                     #registry.xxx.xxx
+LOCAL_REGISTRY:                           #registry.xxx.xxx:8443
+LOCAL_REPOSITORY:                         #ocp416
+ARCHITECTURE:                             #x86_64
+yumrepo:                                  #10.0.x.x
   
 
 ###Common Networking
