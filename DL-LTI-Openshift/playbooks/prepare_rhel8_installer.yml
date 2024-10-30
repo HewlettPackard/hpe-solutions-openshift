@@ -1,0 +1,9 @@
+---
+- name: Prepare rhel 8.6 Installer VM to add worker nodes
+  hosts: rhel8_installerVM
+  gather_facts: True
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/prepare_installer_vm
+

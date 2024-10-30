@@ -1,0 +1,17 @@
+ vrrp_script chk_squid_service {
+ script "/usr/sbin/squid -k check"
+ interval 3
+ }
+ vrrp_instance proxy_ip1 {
+ state MASTER
+ interface {{ common.interface_name }}
+ virtual_router_id 1
+ priority 255
+ virtual_ipaddress {
+  {{ squid_proxy_IP }}/{{ VIP_Prefix }} dev {{ common.interface_name }} label {{ common.interface_name }}:1
+ }
+ track_script {
+  chk_squid_service
+ }
+}
+
