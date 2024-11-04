@@ -1,6 +1,6 @@
 ---
   - name: Download Openshift components
-    script: ../shell-scripts/download_openshift_components.sh {{ ocp_version }}
+    script: ../shell-scripts/download_openshift_components.sh {{ ocp_version }} {{yumrepo }} {{ is_environment_airgap }}
     args:
       chdir: "{{ base_path }}/playbooks/roles/download_ocp_packages/shell-scripts/"
 

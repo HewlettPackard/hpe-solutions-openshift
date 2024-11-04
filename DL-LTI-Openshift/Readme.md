@@ -216,6 +216,10 @@ vi $BASE_DIR/hosts
 
 ### **Playbook execution** 
 
+### **NOTE:** 
+    If its a Airgap deployment then navigate to the below location and run the yum and mirror registry playbooks. otherwise we can ignore this step.
+		cd /opt/hpe-solutions-openshift/DL-LTI-Openshift/airgap/
+
 1.  Openshift Platform can be deployed by running site.yml or by running individual playbooks. Each playbook description can be found further in this document.
 
 2. If you are not using proxy based setup, comment 'import_playbook: playbooks/squid_proxy.yml' in site.yml file.

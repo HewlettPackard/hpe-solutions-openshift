@@ -22,3 +22,6 @@ master1 ip=172.28.*.* hostname=headnode1
 [slaves_info]
 slave1 ip=172.28.*.* hostname=headnode2
 slave2 ip=172.28.*.* hostname=headnode3
+
+[yumrepo]
+10.0.*.*
