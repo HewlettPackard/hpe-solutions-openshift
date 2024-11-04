@@ -46,7 +46,21 @@
         url: "https://github.com/poseidon/matchbox/releases/download/v0.9.0/matchbox-v0.9.0-linux-amd64.tar.gz"
         dest: "/tmp/"
         mode: 0400
+      when: is_environment_airgap == 'no'
 
+    - name: Download matchbox
+      shell: |
+        wget http://{{ yumrepo }}/ocp_packages/matchbox-v0.9.0-linux-amd64.tar.gz -P /tmp/ && echo "Download successful"
+      register: download_result
+      ignore_errors: yes
+      when: is_environment_airgap == 'yes'
+
+    - name: Verify download
+      fail:
+        msg: "Download failed, matchbox file not found in /tmp"
+      when: download_result.rc != 0
+
+     
     - name: extract matchbox 
       unarchive:
         src: "/tmp/matchbox-v0.9.0-linux-amd64.tar.gz"

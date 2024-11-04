@@ -1,0 +1,18 @@
+[Local-BaseOS]
+name=BaseOS-RHEL9
+gpgcheck=0
+enabled=1
+baseurl=http://{{ yumrepo }}/rhel9/BaseOS/
+ 
+[Local-AppStream]
+name=AppStream-RHEL9
+gpgcheck=0
+enabled=1
+baseurl=http://{{ yumrepo }}/rhel9/AppStream/
+
+[Local-Ceph]
+name=Local-Ceph
+gpgcheck=0
+enabled=1
+baseurl=http://{{ yumrepo }}/ceph/rhceph-7-tools-for-rhel-9-x86_64-rpms/
+
