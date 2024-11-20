@@ -10,7 +10,7 @@ This script lets you deploy the BIND DNS with one master and two slave configura
 
 **Pre-requisite:-**
 
-1. RHEL 8.6  [Installer machine](https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md "https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md") is essential to initiate the binddns deployment process.
+1. RHEL 9.4  [Installer machine](https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md "https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md") is essential to initiate the binddns deployment process.
 2. Execute the following commands in the Ansible Engine to download the repositories.
 
                    '  # cd /opt

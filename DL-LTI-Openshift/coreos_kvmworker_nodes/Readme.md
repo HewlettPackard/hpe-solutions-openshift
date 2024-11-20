@@ -2,7 +2,7 @@
 
 This section covers the steps to Enable KVM hypervisor on Worker Nodes and add RHCOS worker VM nodes to an existing Red Hat OpenShift Container Platform cluster.
 
-1. Login to the Rhel 8.9 Installer VM (that we created as a part of rhel8_installerVM.yml -- it would have been created as one KVM VM on one of the head nodes)
+1. Login to the Rhel 9.4 Installer VM (that we created as a part of rhel9_installerVM.yml -- it would have been created as one KVM VM on one of the head nodes)
 
 2. Navigate to the directory $BASE_DIR(**/opt/hpe-solutions-openshift/DL-LTI-Openshift/**) then copy **input file and hosts** file to $BASE_DIR/coreos_kvmworker_nodes/ and later update ocp worker details in input file and kvm_workernodes group as per sample host file. 
 
@@ -25,7 +25,7 @@ ansible vault password is **changeme**
 
 In case, if user want to deploy through individual playbooks. Sequence of playbooks to be followed are:
 
-		   'ansible-playbook -i hosts playbooks/rhel8_os_deployment.yml --ask-vault-pass
+		   'ansible-playbook -i hosts playbooks/rhel9_os_deployment.yml --ask-vault-pass
 		    ansible-playbook -i hosts playbooks/copy_ssh_workernode.yml --ask-vault-pass
 			ansible-playbook -i hosts playbooks/prepare_rhel_hosts.yml --ask-vault-pass
 			ansible-playbook -i hosts playbooks/ntp.yml --ask-vault-pass
@@ -42,9 +42,9 @@ In case, if user want to deploy through individual playbooks. Sequence of playbo
 
 -   This playbook contains the script to enable KVM hypervisor on Worker Nodes and adds RHCOS worker VM nodes to an existing Red Hat OpenShift Container Platform cluster
 
-**rhel8_os_deployment.yml**
+**rhel9_os_deployment.yml**
 
-- This playbook contains the scripts to deploy rhel8.9 OS on baremetal servers.
+- This playbook contains the scripts to deploy rhel9.4 OS on baremetal servers.
 
 **copy_ssh_workernode.yml**
 
@@ -72,7 +72,7 @@ In case, if user want to deploy through individual playbooks. Sequence of playbo
 
 **deploy_ipxe_ocp.yml**
 
--   This playbook contains the script to deploy the ipxe code on the RHEL8 installer machine.
+-   This playbook contains the script to deploy the ipxe code on the RHEL9 installer machine.
 
 **ocp_rhcosworkervm.yml**
 

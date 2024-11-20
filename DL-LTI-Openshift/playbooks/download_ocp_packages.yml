@@ -1,6 +1,6 @@
 ---
 - name: Download OCP Packages
-  hosts: rhel8_installerVM
+  hosts: rhel9_installerVM
   become: yes
   gather_facts: False
   vars_files:

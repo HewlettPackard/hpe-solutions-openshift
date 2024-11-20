@@ -11,7 +11,7 @@ yum install -y wget
 rm -rf /tmp/image/*
 mkdir /tmp/image/
 echo "Downloading openshift images"
-if [[ "$is_airgap" == "no" ]]; then
+if [[ "$is_airgap" != "yes" ]]; then
     wget --wait=5 https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/$ocp_image_version/latest/rhcos-live-initramfs.x86_64.img -P /tmp/image/
     wget --wait=5 https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/$ocp_image_version/latest/rhcos-live-kernel-x86_64 -P /tmp/image/
     wget --wait=5 https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/$ocp_image_version/latest/rhcos-live-rootfs.x86_64.img -P /tmp/image/
@@ -27,7 +27,7 @@ cd ../library/openshift_components
 echo "Downloading openshift packages"
 
 echo "Downloading latest OpenShift Container Platform Installer and Client"
-if [[ "$is_airgap" == "no" ]]; then
+if [[ "$is_airgap" != "yes" ]]; then
     wget --execute="robots = off" --mirror --convert-links --no-parent --wait=5 https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/$ocp_version/ -A "openshift-*-linux-$ocp_version*" --no-directories --no-check-certificate
 else
     wget http://$yumrepo/ocp_packages/openshift-install-linux-$ocp_version.tar.gz

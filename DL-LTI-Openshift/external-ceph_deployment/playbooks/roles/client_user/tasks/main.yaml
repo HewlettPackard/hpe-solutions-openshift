@@ -1,0 +1,11 @@
+---
+  - name: create a file with client user password
+    ansible.builtin.copy:
+      dest: /tmp/pwd
+      content: |
+        {{ client_pwd }}
+
+  - name: create a client user with view access
+    shell: |
+      ceph dashboard ac-user-create {{ client_user }} -i /tmp/pwd
+      ceph dashboard ac-user-set-roles {{ client_user }} read-only
