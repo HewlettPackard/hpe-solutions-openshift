@@ -1,0 +1,9 @@
+---
+
+- name: create registry
+  hosts: "{{ groups['admin'] }}"
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/registry
+

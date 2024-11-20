@@ -2,7 +2,7 @@
 
 This section covers the steps to add Baremetal RHCOS worker nodes to an existing Red Hat OpenShift Container Platform cluster.
 
-1. Login to the Rhel 8.9 Installer VM (that we created as a part of rhel8_installerVM.yml -- it would have been created as one KVM VM on one of the head nodes)
+1. Login to the Rhel 9.4 Installer VM (that we created as a part of rhel9_installerVM.yml -- it would have been created as one KVM VM on one of the head nodes)
 
 2. Navigate to the directory $BASE_DIR(**/opt/hpe-solutions-openshift/DL-LTI-Openshift/**) then copy **input file and hosts** file to $BASE_DIR/coreos_BareMetalworker_nodes/ and later get the input file from the $BASE_DIR for ocp worker details. 
 
@@ -75,7 +75,7 @@ In case, if user want to deploy through individual playbooks. Sequence of playbo
 
 **deploy_ipxe_ocp.yml**
 
--   This playbook contains the script to deploy the ipxe code on the RHEL8 installer machine.
+-   This playbook contains the script to deploy the ipxe code on the rhel9 installer machine.
 
 After successful execution of all playbooks, check the node status as below.
 

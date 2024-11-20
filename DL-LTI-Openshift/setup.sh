@@ -20,62 +20,80 @@ echo "============================================================"
 echo "Starting Environment Setup"
 echo "============================================================"
 
+# Detect the operating system (RHEL/CentOS vs. Ubuntu/Debian)
+if [ -f /etc/redhat-release ]; then
+    OS="RHEL"
+    PACKAGE_MANAGER="yum"
+    DEV_TOOLS="@development"
+    FIREWALL_SERVICE="firewalld"
+    SYSTEMCTL="systemctl"
+    PYTHON_PKG="python3"
+elif [ -f /etc/lsb-release ]; then
+    OS="Ubuntu"
+    PACKAGE_MANAGER="apt-get"
+    DEV_TOOLS="build-essential"
+    FIREWALL_SERVICE="ufw"
+    SYSTEMCTL="systemctl"
+    PYTHON_PKG="python3"
+else
+    echo "Unsupported operating system"
+    exit 1
+fi
+
 echo "============================================================"
 echo "Installing development tools"
 echo "============================================================"
-yum -y install @development
+if [ "$OS" = "RHEL" ]; then
+    $PACKAGE_MANAGER -y groupinstall $DEV_TOOLS
+else
+    $PACKAGE_MANAGER update -y
+    $PACKAGE_MANAGER install -y $DEV_TOOLS
+fi
 
 echo "============================================================"
 echo "Installing Nginx server"
 echo "============================================================"
-yum -y install nginx
+$PACKAGE_MANAGER -y install nginx
 
 echo "============================================================"
 echo "Starting Nginx server"
 echo "============================================================"
-SERVICE=httpd;
-if ps ax | grep -v grep | grep $SERVICE > /dev/nulli
+SERVICE="httpd"
+if ps ax | grep -v grep | grep $SERVICE > /dev/null
 then
-    systemctl stop httpd
+    $SYSTEMCTL stop $SERVICE
 fi
-systemctl enable nginx
-systemctl start nginx
-
-
-echo "============================================================"
-echo "Installing iso-repackaging utilities"
-echo "============================================================"
-yum -y install syslinux isomd5sum
+$SYSTEMCTL enable nginx
+$SYSTEMCTL start nginx
 
 echo "============================================================"
-echo "Configuring firewall ports for HTTP and HTTPS"
+echo "Installing ISO-repackaging utilities"
 echo "============================================================"
-rpm -qa | grep -qw firewalld || yum install firewalld -y
-systemctl enable firewalld
-systemctl start firewalld
-firewall-cmd --permanent --zone=public --add-service=http
-firewall-cmd --permanent --zone=public --add-service=https
-firewall-cmd --reload
+if [ "$OS" = "RHEL" ]; then
+    $PACKAGE_MANAGER -y install syslinux isomd5sum ansible-core
+    $PACKAGE_MANAGER -y install genisoimage bc
+else
+    $PACKAGE_MANAGER update -y
+    $PACKAGE_MANAGER install -y syslinux-utils isolinux isomd5sum ansible
+    $PACKAGE_MANAGER install -y genisoimage bc
+fi
 
 echo "============================================================"
-echo "Verifying Python3 status and installing the prerequisites"
+echo "Verifying Python3 status and installing prerequisites"
 echo "============================================================"
-rpm -qa | grep -qw python38 || yum install python38 -y
-sudo alternatives --set python3 /usr/bin/python3.8
-python3 -m ensurepip
-pip3 install setuptools_rust
-pip3 install --upgrade pip
 
-version=$(python3 -V 2>&1 | grep -Po '(?<=Python )\d.\d')
-min=3.8
-rpm -qa | grep -qw genisoimage || yum install genisoimage -y
-rpm -qa | grep -qw bc || yum install bc -y
-if [ 1 -eq "$(echo "${version} < ${min}" | bc)" ]
-then
+# Upgrade pip and install required Python packages
+pip3 install --upgrade pip setuptools_rust
+
+# Check if Python version is 3.9 or higher
+version=$($PYTHON_PKG -V 2>&1 | grep -Po '(?<=Python )\d+\.\d+')
+min=3.9
+
+if [ "$(printf '%s\n' "$min" "$version" | sort -V | head -n1)" != "$min" ]; then
     echo "!!!!!!!!!!!======================================!!!!!!!!!!!!"
-    echo "This script requires python 3.8 or greater"
-    echo "Install and enable Python 3.8 or above using the following command and install requirements"
-    echo "scl enable python38 bash"
+    echo "This script requires Python 3.9 or greater"
+    echo "Install and enable Python 3.9 or above using the following command and install requirements"
+    echo "scl enable python39 bash (RHEL) or update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1 (Ubuntu)"
     echo "pip3 install -r requirements.txt"
     echo "!!!!!!!!!!!======================================!!!!!!!!!!!!"
     exit 1

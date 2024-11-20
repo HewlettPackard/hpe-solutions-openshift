@@ -7,7 +7,7 @@
         --description "Bootstrap Machine for Openshift 4 Cluster"
         --memory {{ vm_mem }}
         --vcpus={{ vm_cpu }}
-        --os-variant=rhel8.0
+        --os-variant=rhel9.0
         --os-type linux
         --noreboot
         --disk pool=ocp_vms,bus=virtio,size={{ vm_size }}
@@ -33,7 +33,7 @@
         --description "Master1 Machine for Openshift 4 Cluster"
         --memory {{ vm_mem }}
         --vcpus={{ vm_cpu }}  
-        --os-variant=rhel8.0
+        --os-variant=rhel9.0
         --os-type linux
         --noreboot
         --disk pool=ocp_vms,bus=virtio,size={{ vm_size }}
@@ -59,7 +59,7 @@
         --description "Master2 Machine for Openshift 4 Cluster"
         --memory {{ vm_mem }}
         --vcpus={{ vm_cpu }}
-        --os-variant=rhel8.0
+        --os-variant=rhel9.0
         --os-type linux
         --noreboot
         --disk pool=ocp_vms,bus=virtio,size={{ vm_size }}
@@ -85,7 +85,7 @@
         --description "Master3 Machine for Openshift 4 Cluster"
         --memory {{ vm_mem }}
         --vcpus={{ vm_cpu }}
-        --os-variant=rhel8.0
+        --os-variant=rhel9.0
         --os-type linux
         --noreboot
         --disk pool=ocp_vms,bus=virtio,size={{ vm_size }}

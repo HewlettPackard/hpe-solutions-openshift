@@ -1,0 +1,17 @@
+- name: Create user on all nodes
+  hosts: "{{ groups['add'] }}"
+  gather_facts: false
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: /opt/hpe-solutions-openshift/DL-LTI-Openshift/external-ceph_deployment/playbooks/roles/user_creation
+
+- name: Copy ssh keys to all ceph nodes
+  hosts: localhost
+  become_user: "{{ ceph_adminuser }}"
+  gather_facts: false
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/ssh-adminuser
+

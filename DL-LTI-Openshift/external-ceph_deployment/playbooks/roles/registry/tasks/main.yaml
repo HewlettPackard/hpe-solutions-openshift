@@ -1,0 +1,12 @@
+---
+
+- name: create the registry file
+  ansible.builtin.copy:
+    dest: /etc/mylogin.json
+    content: |
+      {
+       "url":"{{ url_registry }}",
+       "username":"{{ rhsub_username }}",
+       "password":"{{ rhsub_password }}"
+      }
+

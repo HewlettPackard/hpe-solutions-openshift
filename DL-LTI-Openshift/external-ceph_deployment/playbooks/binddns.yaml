@@ -1,0 +1,32 @@
+---
+- hosts: OSD
+  gather_facts: true
+  vars_files: ../input.yaml
+  roles:
+    - { role: roles/binddns/preinstall }
+
+- hosts: binddns_masters
+  gather_facts: true
+  vars_files: ../input.yaml
+  roles:
+    - { role: roles/binddns/masters }
+
+- hosts: binddns_masters
+  gather_facts: true
+  vars_files: ../input.yaml
+  roles:
+    - { role: roles/binddns/masters-networks }
+
+- hosts: binddns_slaves
+  gather_facts: true
+  vars_files: ../input.yaml
+  roles:
+    - { role: roles/binddns/slaves }
+
+- hosts: binddns_slaves
+  gather_facts: true
+  vars_files: ../input.yaml
+  roles:
+    - { role: roles/binddns/slaves-networks }
+
+

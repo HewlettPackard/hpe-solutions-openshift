@@ -1,0 +1,10 @@
+
+---
+- name: Deploy Rhel9 on ceph cluster nodes
+  hosts: localhost
+  vars:
+   files:
+      - ../input.yaml
+  roles:
+    - role: /opt/hpe-solutions-openshift/DL-LTI-Openshift/external-ceph_deployment/playbooks/roles/rhel9_os_deployment
+

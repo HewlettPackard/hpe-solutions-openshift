@@ -9,7 +9,7 @@
           state: present
           username: "{{ rhsub_username }}"
           password: "{{ rhsub_password }}"
-          pool_ids: "{{ pool_id }}"
+            #          pool_ids: "{{ pool_id }}"
           force_register: yes
           auto_attach: yes
       when:
@@ -21,7 +21,7 @@
         ocp_image_version : "{{ ocp_version.split('.')[0:2] | join('.') }}"
 
     - name: Enable the repositories required by OpenShift Container Platform 
-      shell: subscription-manager repos --enable="rhel-8-for-x86_64-baseos-rpms" --enable="rhel-8-for-x86_64-appstream-rpms" --enable="fast-datapath-for-rhel-8-x86_64-rpms" --enable="rhocp-{{ ocp_image_version }}-for-rhel-8-x86_64-rpms"
+      shell: subscription-manager repos --enable="rhel-9-for-x86_64-baseos-rpms" --enable="rhel-9-for-x86_64-appstream-rpms" --enable="fast-datapath-for-rhel-9-x86_64-rpms" --enable="rhocp-{{ ocp_image_version }}-for-rhel-9-x86_64-rpms"
 
     - name: Install the required packages, including openshift-ansible
       shell: yum -y install openshift-ansible openshift-clients jq
@@ -54,7 +54,7 @@
         content: |
           [nginx]
           name=nginx repo
-          baseurl=http://nginx.org/packages/mainline/rhel/8/$basearch/
+          baseurl=http://nginx.org/packages/mainline/rhel/9/$basearch/
           gpgcheck=0
           enabled=1
 

@@ -1,0 +1,9 @@
+---
+- name: Deploy Rhel9 on head nodes
+  hosts: localhost
+  vars:
+   files:
+      - ../input.yaml
+  roles:
+    - role: roles/rhel9_os_deployment
+

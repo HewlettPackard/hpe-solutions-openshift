@@ -1,0 +1,8 @@
+---
+  - import_playbook: playbooks/rhel9_os_deployment.yml
+  - import_playbook: playbooks/ssh_add.yaml
+  - import_playbook: playbooks/subscriptions.yaml
+  - import_playbook: playbooks/ntp.yaml
+  - import_playbook: playbooks/user_req.yaml
+  - import_playbook: playbooks/add_hosts.yaml
+

@@ -1,7 +1,7 @@
 ---
 
 - name: Copy OC tools and kubeconfig file to RHEL Installer
-  hosts: rhel8_installerVM
+  hosts: rhel9_installerVM
   gather_facts: no
   vars_files:
     - ../input.yaml

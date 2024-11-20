@@ -1,0 +1,38 @@
+---
+   - name: create a ceph-admin user
+     shell: |
+       adduser "{{ ceph_adminuser }}"
+     become: true
+
+   - name: Generate encrypted password using SHA512
+     ansible.builtin.command:
+       cmd: "python3 -c 'import crypt, getpass, crypt; print(crypt.crypt(\"{{ ceph_adminuser_password }}\", crypt.mksalt(crypt.METHOD_SHA512)))'"
+     register: generated_password
+
+   - name: Store the generated password
+     ansible.builtin.set_fact:
+       ceph_adminuser_password1: "{{ generated_password.stdout }}"
+
+   - name: Assign password for ceph user
+     become: true
+     user:
+        name: "{{ ceph_adminuser }}"
+        password: "{{ ceph_adminuser_password1 }}"
+        shell: /bin/bash
+
+
+   - name: Grant sudo access to ceph user
+     #     remote_user: "{{ ceph_adminuser }}"
+     ansible.builtin.copy:
+       dest: /etc/sudoers.d/{{ ceph_adminuser }}
+       content: " {{ ceph_adminuser }} ALL = (root) NOPASSWD:ALL"
+       mode: 0440
+
+   - name: create directory for ceph-admin
+     ansible.builtin.file:
+       path: /home/{{ ceph_adminuser }}/.ssh
+       state: directory
+       mode: '0700'
+       owner: "{{ ceph_adminuser }}"
+       group: "{{ ceph_adminuser }}"
+

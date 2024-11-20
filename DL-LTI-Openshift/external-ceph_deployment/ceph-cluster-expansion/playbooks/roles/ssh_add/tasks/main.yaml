@@ -1,0 +1,18 @@
+---
+   - name: generate SSH key pair for root
+     become: true
+     become_user: root
+     shell: ssh-keygen -t rsa -b 4096 -f /root/.ssh/id_rsa -N ""
+
+   - name: host file creation
+     ansible.builtin.blockinfile:
+       dest: /etc/hosts
+       block: |
+         {% for item in servers %}
+         {{ item.Host_IP }}   {{ item.Hostname }}
+         {% endfor %}
+
+   - name: Copy ssh keys to OSD nodes
+     shell: "sshpass -p '{{ item.Host_Password }}' ssh-copy-id  -o StrictHostKeyChecking=no root@{{ item.Host_IP }}"
+     with_items: "{{ servers }}"
+

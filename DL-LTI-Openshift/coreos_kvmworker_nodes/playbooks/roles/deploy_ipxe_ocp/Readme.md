@@ -6,7 +6,7 @@
 
 **Pre-requisite:-**
 
-1. RHEL 8.5  [Installer machine](https://github.hpe.com/Solutions/ISV-OpenShift/blob/develop/Readme.md "https://github.hpe.com/Solutions/ISV-OpenShift/blob/develop/Readme.md") is essential to initiate the installation of RHCOS.
+1. RHEL 9.4  [Installer machine](https://github.hpe.com/Solutions/ISV-OpenShift/blob/develop/Readme.md "https://github.hpe.com/Solutions/ISV-OpenShift/blob/develop/Readme.md") is essential to initiate the installation of RHCOS.
 
 2. Execute the following commands in the Ansible Engine to download the repositories.
 
@@ -16,11 +16,11 @@
 
                       # git clone  <https://github.hpe.com/Solutions/ISV-OpenShift.git> '
 
-3. Generate and copy the ssh keys from ansible engine/installer machine to rhel8 VM.
+3. Generate and copy the ssh keys from ansible engine/installer machine to rhel9 VM.
 
                     ' # ssh-keygen 
 
-                      # ssh-copy-id root@rhel8_vm_ip '
+                      # ssh-copy-id root@rhel9_vm_ip '
 
 4. Rhel 8.9 VM with atleast 200 GB disk space - Two (2) CPU cores - 8 GB RAM. - /var has at least 15GB disk space allocated while partitioning, internet connectivity and is subscribed with valid redhat credentials is required to execute this playbook.
 
@@ -73,7 +73,7 @@
                         is_environment_airgap: 'no'
 
                         ###Common Networking
-                        # Interface Name of rhel8.6 VM: interface_name: eth0
+                        # Interface Name of rhel9.4 VM: interface_name: eth0
                         interface_name: eth0
 
                         # dhcp range that is used for OCP nodes Example: dhcp_range: 192.168.42.204,192.168.42.210,24h
@@ -91,11 +91,11 @@
                         # Example: bios_uefi_name: rhcos-live-rootfs.x86_64.img
                         bios_uefi_name: rhcos-live-rootfs.x86_64.img
 
-                        rhel8_installer_IP: 172.28.*.* '
+                        rhel9_installer_IP: 172.28.*.* '
 
 3. User needs to update all the IPXe deployment related details in the hosts file which include :-
                      
-                      ' [rhel8_installerVM]
+                      ' [rhel9_installerVM]
                         172.28.*.* '
 
 **Playbook Execution:-**
@@ -106,6 +106,6 @@ After updating the above varible run below ansible playbook
 
 Test Setup with Mac address curl http://localhost:8080/ipxe?mac=08:00:27:36:0A:01
 
-            ' # curl http://<rhel8_vm_ip>:8080/ignition?mac=08:00:27:36:0A:01 '
+            ' # curl http://<rhel9_vm_ip>:8080/ignition?mac=08:00:27:36:0A:01 '
 
 

@@ -22,7 +22,7 @@
           - ipxe-bootimgs
           - tftp-server
           - tftp
-          - xinetd
+#          - xinetd
         state: present
 
     - name: create tftp directory 
@@ -85,13 +85,13 @@
         remote_src: yes
         mode: 0775
 
-    - name: copy tftp setting
-      copy:
-        src: "{{ base_path }}/playbooks/roles/deploy_ipxe_ocp/files/tftp"
-        dest: /etc/xinetd.d/tftp
-        mode: 0775
-        remote_src: yes
-        follow: yes
+#    - name: copy tftp setting
+#      copy:
+#        src: "{{ base_path }}/playbooks/roles/deploy_ipxe_ocp/files/tftp"
+#        dest: /etc/xinetd.d/tftp
+#        mode: 0775
+#        remote_src: yes
+#        follow: yes
 
 #    - name: set permission to write on tftp 
 #      command: setsebool -P tftp_anon_write 1
@@ -108,4 +108,4 @@
       with_items:
         - matchbox
         - tftp 
-        - xinetd
+#        - xinetd

@@ -1,0 +1,59 @@
+---
+   - name: install ssh package
+     ansible.builtin.package:
+       name: openssh-server
+       state: present
+
+         #   - name: generate SSH key pair for root user
+         #     shell: ssh-keygen -t rsa -b 4096 -f /root/.ssh/id_rsa -N ""
+
+   - name: host file creation
+     ansible.builtin.copy:
+       dest: /etc/hosts
+       content: |
+         {% for item in   installer_admin%}
+         {{ item.ip }}   {{ item.fqdn }}
+         {% endfor %}
+         {% for item in servers %}
+         {{ item.Host_IP }}   {{ item.Hostname }}
+         {% endfor %}
+
+   - name: download sshpass package
+     shell: wget http://sourceforge.net/projects/sshpass/files/latest/download -O sshpass.tar.gz
+     args:
+       chdir: /tmp/
+
+   - name: Extract the package
+     shell: tar -xvf sshpass.tar.gz
+     args:
+       chdir: /tmp/
+
+   - name: "Find sshpass directory"
+     find:
+       paths: "/tmp/"
+       use_regex: yes
+       patterns: "sshpass-*"
+       file_type: "directory"
+     register: var
+
+   - debug:
+       msg: "{{ var.files[0].path }}"
+
+   - name: Configure sshpass
+     shell: ./configure
+     args:
+       chdir: "{{ var.files[0].path }}/"
+
+   - name: Install sshpass
+     shell: make install
+     args:
+       chdir: "{{ var.files[0].path }}/"
+
+   - name: Copy ssh keys to OSD nodes
+     shell: "sshpass -p '{{ item.Host_Password }}' ssh-copy-id  -o StrictHostKeyChecking=no root@{{ item.Host_IP }}"
+     with_items: "{{ servers }}"
+
+   - name: Copy ssh keys to installer nodes
+     shell: "sshpass -p '{{ item.Host_Password }}' ssh-copy-id  -o StrictHostKeyChecking=no root@{{ item.ip }}"
+     with_items: "{{ installer_admin }}"
+

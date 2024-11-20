@@ -1,0 +1,10 @@
+---
+
+- name: Adding hosts to cluster
+  hosts: "{{ groups['admin'] }}"
+  become: true
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/add_hosts
+

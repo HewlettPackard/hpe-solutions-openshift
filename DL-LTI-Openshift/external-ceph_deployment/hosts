@@ -1,0 +1,28 @@
+[all]
+mc1.xxx.xxxx
+mc2.xxx.xxxx
+mc3.xxx.xxxx
+mc4.xxx.xxxx
+
+[OSD]
+mc4.xxx.xxxx
+mc3.xxx.xxxx
+mc2.xxx.xxxx
+
+[admin]
+mc2.xxx.xxxx
+
+[binddns_masters]
+172.28.xx.xxx
+
+[binddns_slaves]
+mc3.xxx.xxxx
+mc4.xxx.xxxx
+
+[masters_info]
+master1 ip=172.28.xx.xxx hostname=mc2
+
+[slaves_info]
+slave1 ip=172.28.xx.xxx hostname=mc3
+slave2 ip=172.28.xx.xxx hostname=mc4
+

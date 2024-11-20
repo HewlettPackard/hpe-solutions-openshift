@@ -1,0 +1,68 @@
+---
+
+
+   - name: generate SSH key pair for ceph_admin
+     become: true
+     become_user: "{{ ceph_adminuser }}"
+     shell: ssh-keygen -t rsa -b 4096 -f /home/{{ ceph_adminuser }}/.ssh/id_rsa -N ""
+
+   - name: admin ssh config
+     become: true
+     become_user: "{{ ceph_adminuser }}"
+     ansible.builtin.copy:
+       dest: /home/{{ ceph_adminuser }}/.ssh/config
+       content: |
+         {% for item in installer_admin %}
+         Host {{ item.fqdn }}
+            Hostname {{ item.fqdn }}
+            User {{ ceph_adminuser }}
+         {% endfor %}
+         {% for item in servers %}
+         Host {{ item.Hostname }}
+            Hostname {{ item.Hostname }}
+            User {{ ceph_adminuser }}
+         {% endfor %}
+       owner: "{{ ceph_adminuser }}"
+       group: "{{ ceph_adminuser }}"
+       mode: 0600
+
+   - name: install dev tools
+     shell: yum -y groupinstall "Development Tools"
+
+   - name: download sshpass package
+     shell: wget http://sourceforge.net/projects/sshpass/files/latest/download -O sshpass.tar.gz
+     args:
+       chdir: /tmp/
+
+   - name: Extract the package
+     shell: tar -xvf sshpass.tar.gz
+     args:
+       chdir: /tmp/
+
+   - name: "Find sshpass directory"
+     find:
+       paths: "/tmp/"
+       use_regex: yes
+       patterns: "sshpass-*"
+       file_type: "directory"
+     register: var
+
+   - debug:
+       msg: "{{ var.files[0].path }}"
+
+   - name: Configure sshpass
+     shell: ./configure
+     args:
+       chdir: "{{ var.files[0].path }}/"
+
+   - name: Install sshpass
+     shell: make install
+     args:
+       chdir: "{{ var.files[0].path }}/"
+
+   - name: Copy ceph-admin user ssh keys to OSD nodes
+     shell: "sshpass -p '{{ item.Host_Password }}' ssh-copy-id -i /home/{{ ceph_adminuser }}/.ssh/id_rsa.pub -o StrictHostKeyChecking=no {{ ceph_adminuser }}@{{ item.Host_IP }}"
+     with_items: "{{ servers }}"
+
+
+

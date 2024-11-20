@@ -1,0 +1,8 @@
+---
+
+  - name: add osd disks
+    shell: ceph orch apply osd --all-available-devices
+
+  - name: pause for 5 mins
+    pause:
+      minutes: 5

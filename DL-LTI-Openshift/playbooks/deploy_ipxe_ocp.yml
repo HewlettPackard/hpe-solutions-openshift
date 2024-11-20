@@ -1,6 +1,6 @@
 ---
 - name: Deploy RHCOS
-  hosts: rhel8_installerVM
+  hosts: rhel9_installerVM
   become: true
   gather_facts: False
   vars_files:

@@ -1,0 +1,10 @@
+---
+
+- name: copying the files to server1(manager) cluster
+  hosts: localhost
+  become: true
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/copy_script
+

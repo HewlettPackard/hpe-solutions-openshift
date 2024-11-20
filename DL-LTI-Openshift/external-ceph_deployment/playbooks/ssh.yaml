@@ -1,0 +1,10 @@
+---
+- name: Copy ssh keys to all ceph nodes
+  hosts: localhost
+  become: true
+  gather_facts: false
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/ssh
+

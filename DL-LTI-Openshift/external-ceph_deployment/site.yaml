@@ -1,0 +1,18 @@
+---
+
+  - import_playbook: playbooks/rhel9_os_deployment.yml
+  - import_playbook: playbooks/ssh.yaml
+  - import_playbook: playbooks/subscriptions.yaml
+  - import_playbook: playbooks/ntp.yaml
+  - import_playbook: playbooks/user_req.yaml
+  - import_playbook: playbooks/deploy_cephadm.yaml
+  - import_playbook: playbooks/registry.yaml
+  - import_playbook: playbooks/preflight.yaml
+  - import_playbook: playbooks/bootstrap.yaml
+  - import_playbook: playbooks/add_hosts.yaml
+  - import_playbook: playbooks/add_osd.yaml
+  - import_playbook: playbooks/client_user.yaml
+  - import_playbook: playbooks/copy_script.yaml
+  - import_playbook: playbooks/rbd.yaml
+  - import_playbook: playbooks/fs.yaml
+  - import_playbook: playbooks/rgw.yaml

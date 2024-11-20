@@ -1,0 +1,47 @@
+$TTL 86400
+
+{% for host in groups['masters_info'] %}
+@            IN SOA {{ hostvars[host]['hostname'] }}.{{ common.base_domain }}. root.{{ common.base_domain }}. (
+{% endfor %}
+
+2011071001 ; serial
+
+3600 ; refresh
+
+1800 ; retry
+
+604800 ; expire
+
+86400 ) ; minimum
+
+
+
+{% for host in groups['masters_info'] %}
+@         IN          NS         {{ hostvars[host]['hostname'] }}.{{ common.base_domain }}.
+{% endfor %}
+
+{% for host in groups['slaves_info'] %}
+@         IN          NS         {{ hostvars[host]['hostname'] }}.{{  common.base_domain  }}.
+{% endfor %}
+
+
+{% for host in groups['masters_info'] %}
+@          IN         A            {{ hostvars[host]['ip'] }}
+{% endfor %}
+
+{% for host in groups['slaves_info'] %}
+@          IN         A            {{ hostvars[host]['ip'] }}
+{% endfor %}
+
+
+
+{% for host in groups['masters_info'] %}
+{{ hostvars[host]['hostname'] }}              IN         A        {{ hostvars[host]['ip'] }}
+{% endfor %}
+
+{% for host in groups['slaves_info'] %}
+{{ hostvars[host]['hostname'] }}              IN         A        {{ hostvars[host]['ip'] }}
+{% endfor %}
+
+{{ haproxy_fqdn }}.                              IN         A        {{ VIP }}
+

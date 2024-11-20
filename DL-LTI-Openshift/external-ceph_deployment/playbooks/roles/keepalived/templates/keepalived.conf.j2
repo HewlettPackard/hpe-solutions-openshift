@@ -1,0 +1,22 @@
+vrrp_instance OCP_EXT1 {
+ interface {{ common.interface_name }}
+
+
+virtual_router_id 51
+
+
+priority 100
+ state CEPH
+ virtual_ipaddress {
+ {{ VIP }}/{{ VIP_Prefix }}
+
+}
+ track_script {
+ haproxy_check
+ }
+ authentication {
+ auth_type PASS
+ auth_pass 1cee4b6e-2cdc-48bf-83b2-01a96d1593e4
+ }
+ }
+
