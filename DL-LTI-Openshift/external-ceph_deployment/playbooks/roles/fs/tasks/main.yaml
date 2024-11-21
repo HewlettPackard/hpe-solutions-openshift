@@ -1,0 +1,12 @@
+---
+
+  - name: create ceph fs
+    shell: |
+      ceph fs volume create "{{ ceph_fs[0].fs_pool_name }}" --placement="{{ ceph_fs[0].number_of_daemons }} {% for host in item.hosts %} {{ host }} {% endfor %}"
+    loop: "{{ ceph_fs }}"
+
+  - name: Deploy MDS service using the ceph orch
+    shell: |
+      ceph orch apply mds "{{ ceph_fs[0].fs_pool_name }}" --placement="{{ ceph_fs[0].number_of_daemons }} {% for host in item.hosts %} {{ host }} {% endfor %}"
+    loop: "{{ ceph_fs }}"
+
