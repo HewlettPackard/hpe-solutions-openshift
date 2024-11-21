@@ -9,6 +9,6 @@ worker1.ocp.isv.local
 worker2.ocp.isv.local
 worker3.ocp.isv.local
 
-[rhel8_installerVM]
+[rhel9_installerVM]
 172.28.*.*
 

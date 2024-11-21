@@ -1,0 +1,4 @@
+---
+
+  - name: copy the installation directory to manager1
+    shell: scp -r /opt/* root@{{ servers[0].Host_IP }}:/opt

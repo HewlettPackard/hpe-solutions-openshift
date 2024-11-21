@@ -1,0 +1,40 @@
+---
+    - name: Deploy cephadm-ansible cephadm
+      shell: |
+           dnf install -y cephadm-ansible
+           dnf install -y cephadm
+      become: true
+
+    - name: input to ansible.cfg for cephadm
+      ansible.builtin.lineinfile:
+        path: /usr/share/cephadm-ansible/ansible.cfg
+        regexp: '^# timeout = 60'
+        insertafter: '^timeout = 60'
+        line: inventory = /usr/share/cephadm-ansible/inventory
+
+    - name: create a directory for host file
+      shell: mkdir -p /usr/share/cephadm-ansible/inventory
+
+    - name: create host file for preflight
+      become: true
+      ansible.builtin.copy:
+        dest: /usr/share/cephadm-ansible/inventory/hosts
+        content: |
+          {% for item in servers %}
+          {{ item.Hostname }}
+          {% endfor %}
+          [admin]
+          {{ servers[0].Hostname }}
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: add all hostname in admin hosts
+      become: true
+      ansible.builtin.copy:
+        dest: /etc/hosts
+        content: |
+          {% for item in servers %}
+          {{ item.Host_IP }} {{ item.Hostname }}
+          {% endfor %}
+

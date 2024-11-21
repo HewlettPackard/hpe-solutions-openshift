@@ -134,7 +134,7 @@ base_path: '/opt/hpe-solutions-openshift/DL-LTI-Openshift'
 is_environment_airgap: 'no'
 
 ###Common Networking
-# Interface Name of Rhel8.6 VM: interface_name: eth0
+# Interface Name of Rhel9.4 VM: interface_name: eth0
 interface_name: eth0
 
 # dhcp range that is used for OCP nodes Example: dhcp_range: 192.168.42.204,192.168.42.210,24h
@@ -158,7 +158,7 @@ vm_cpu: 16                           #VM CPU cores
 vm_mem: 32000                       #VM RAM detail 
 vm_size: 250                        #VM virtual disk size is in GB
 
-#Rhel8 Installer VM details
-rhel8_installer_hostname: rhel8_installer.*.*
-rhel8_installer_IP: 172.28.xx.xx
-rhel8_installer_password: Password
+#Rhel9 Installer VM details
+rhel9_installer_hostname: rhel9-installer.*.*
+rhel9_installer_IP: 172.28.xx.xx
+rhel9_installer_password: Password

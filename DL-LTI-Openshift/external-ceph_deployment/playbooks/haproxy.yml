@@ -1,0 +1,6 @@
+---
+- hosts: "{{ groups['OSD'] }}"
+  vars_files: ../input.yaml
+  gather_facts: True
+  roles:
+    - { role: roles/keepalived }    

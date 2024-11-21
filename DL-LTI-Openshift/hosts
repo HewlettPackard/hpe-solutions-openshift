@@ -1,27 +1,27 @@
 [kvm_nodes]
-172.28.*.*
-172.28.*.*
-172.28.*.*
+172.28.xx.xxx
+172.28.xx.xxx
+172.28.xx.xxx
 
 [ansible_host]
-172.28.*.*
+172.28.xx.xxx
 
-[rhel8_installerVM]
-172.28.*.*
+[rhel9_installerVM]
+172.28.xx.xxx
 
 [binddns_masters]
-172.28.*.*
+172.28.xx.xxx
 
 [binddns_slaves]
-172.28.*.*
-172.28.*.*
+172.28.xx.xxx
+172.28.xx.xxx
 
 [masters_info]
-master1 ip=172.28.*.* hostname=headnode1
+master1 ip=172.28.xx.xxx hostname=headnode1
 
 [slaves_info]
-slave1 ip=172.28.*.* hostname=headnode2
-slave2 ip=172.28.*.* hostname=headnode3
+slave1 ip=172.28.xx.xxx hostname=headnode2
+slave2 ip=172.28.xx.xxx hostname=headnode3
 
 [yumrepo]
-10.0.*.*
+172.28.xx.xxx

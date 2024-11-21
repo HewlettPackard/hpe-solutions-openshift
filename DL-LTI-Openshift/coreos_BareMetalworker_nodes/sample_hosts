@@ -12,7 +12,7 @@
 [ansible_host]
 172.28.xx.xx
 
-[rhel8_installerVM]
+[rhel9_installerVM]
 172.28.xx.xx
 
 [binddns_masters]
