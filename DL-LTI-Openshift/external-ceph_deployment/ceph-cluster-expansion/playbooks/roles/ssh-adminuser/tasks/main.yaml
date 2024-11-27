@@ -1,0 +1,25 @@
+---
+
+   - name: delete existing sshkey pair
+     become: true
+     become_user: root
+     shell: rm -rf /root/.ssh/id_rsa*
+
+   - name: generate SSH key pair for root
+     become: true
+     become_user: root
+     shell: ssh-keygen -t rsa -b 4096 -f /root/.ssh/id_rsa -N ""
+
+   - name: Copy ssh keys to OSD nodes
+     shell: "sshpass -p '{{ item.Host_Password }}' ssh-copy-id  -o StrictHostKeyChecking=no root@{{ item.Host_IP }}"
+     with_items: "{{ servers }}"
+
+   - name: Copy ssh keys to OSD nodes
+     shell: "sshpass -p '{{ item.Host_Password }}' ssh-copy-id  -o StrictHostKeyChecking=no {{ ceph_adminuser }}@{{ item.Host_IP }}"
+     with_items: "{{ servers }}"
+
+   - name: Copy ceph-admin user ssh keys to OSD nodes
+     shell: 
+       "sshpass -p '{{ item.Host_Password }}' ssh-copy-id -i /home/{{ ceph_adminuser }}/.ssh/id_rsa.pub -o StrictHostKeyChecking=no {{ ceph_adminuser }}@{{ item.Host_IP }}"
+     with_items: "{{ servers }}"
+

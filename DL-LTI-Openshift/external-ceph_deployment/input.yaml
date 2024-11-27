@@ -1,0 +1,100 @@
+servers:
+ - Server_serial_number: XXXXXXXXXX
+   ILO_Address: XXX.XX.XX.XX
+   ILO_Username: XXXXX
+   ILO_Password: XXXXXXXXX
+   Hostname: XXX.XXXXXX.XXXXX                #ex. ceph01.isv.local
+   Host_Username: XXXXX
+   Host_Password: XXXXXXXXXXXX
+   HWADDR1: XX:XX:XX:XX:XX:XX             #mac address for server physical interface1
+   HWADDR2: XX:XX:XX:XX:XX:XX             #mac address for server physical interface2
+   Host_OS_disk: XXX
+   Host_VlanID:                          # VLAN ID ex. 230
+   Host_IP: XXX.XX.XX.XXX
+   Host_Netmask: XXX.XX.XX.XX
+   Host_Prefix: XX                          #ex. 8,24,32
+   Host_Gateway: XXX.XX.XX.XX
+   Host_DNS: XXX.XX.XX.XX
+   Host_Domain: xxxxxxxx.xxxx                       #ex. isv.local
+   SquidProxy_IP:               #provide Squid proxy, ex. proxy.houston.company.net
+   SquidProxy_Port:                  #Squid proxy port no, ex. 8080
+
+ - Server_serial_number: XXXXXXXXXX 
+   ILO_Address: XXX.XX.XX.XX
+   ILO_Username: XXXXX
+   ILO_Password: XXXXXXXXXX
+   Hostname: XXX.XXXXXX.XXXXX               #ex. ceph02.isv.local
+   Host_Username: xxxxxx
+   Host_Password: XXXXXXXXXX
+   HWADDR1: XX:XX:XX:XX:XX:XX             #mac address for server physical interface1
+   HWADDR2: XX:XX:XX:XX:XX:XX             #mac address for server physical interface2
+   Host_OS_disk: xxx
+   Host_VlanID:
+   Host_IP: XXX.XX.XX.XXX
+   Host_Netmask: XXX.XX.XX.XXX
+   Host_Prefix: xx              #ex. 8,24,32
+   Host_Gateway: XXX.XX.XX.XXX
+   Host_DNS: XXX.XX.XX.XX
+   Host_Domain: xxxxxxxx.xxxx                       #ex. isv.local
+   SquidProxy_IP:               #provide Squid proxy, ex. proxy.houston.hpecorp.net
+   SquidProxy_Port:                 #Squid proxy port no, ex. 8080
+
+ - Server_serial_number: XXXXXXXXXX
+   ILO_Address: XXX.XX.XX.XX
+   ILO_Username: XXXXX
+   ILO_Password: XXXXXXXXXX
+   Hostname: XXX.XXXXXX.XXXX                #ex. ceph03.isv.local
+   Host_Username: XXXXX
+   Host_Password: XXXXXXXXXX
+   HWADDR1: XX:XX:XX:XX:XX:XX             #mac address for server physical interface1
+   HWADDR2: XX:XX:XX:XX:XX:XX             #mac address for server physical interface2
+   Host_OS_disk: xxx
+   Host_VlanID: 
+   Host_IP: XXX.XX.XX.XX
+   Host_Netmask: XXX.XX.XX.XX
+   Host_Prefix: XX                          #ex. 8,24,32
+   Host_Gateway: XXX.XX.XX.XX
+   Host_DNS: XXX.XX.XX.XX
+   Host_Domain: xxxxxxxx.xxxx                       #ex. isv.local
+   SquidProxy_IP:               #provide Squid proxy, ex. proxy.houston.hpecorp.net
+   SquidProxy_Port:                 #Squid proxy port no, ex. 8080
+
+config:
+   HTTP_server_base_url: http://172.28.xx.xxx/  #Installer IP address
+   HTTP_file_path: /usr/share/nginx/html/
+   OS_type: rhel
+   OS_image_name: RHEL-9.4.0-20240419.25-x86_64-dvd1.iso    # ISO image should be present in /usr/share/nginx/html/
+   base_kickstart_filepath: /opt/hpe-solutions-openshift/DL-LTI-Openshift/external-ceph_deployment/playbooks/roles/rhel9_os_deployment/tasks/ks_rhel9.cfg
+
+solution_network_ip: xxx.xx.xx.xx
+corporate_ntp: xx.xx.xx.xx                         #Corporate NTP server IP address
+
+url_registry: xxxxxxx.xxxxx.xx                     # registry details ex: registry.redhat.io
+rhsub_username: xxxxxxxxxxxx                          # login for registry
+rhsub_password: xxxxxxxxxxxx                         # password for the registry
+
+installer_admin:
+ - name: xxx
+   ip: xxx.xx.xx.xxx                                 # installer Host IP of the installer machine
+   fqdn: xxx.xxxxxxx.xxxxxx                         #installer fqdn ex. bootstrap.ocp.isv.local
+   Host_Password: xxxxxxxxxxx                      # password details of the installer machine
+
+dashboard_user: xxxx                                     # admin user for the dashboard
+dashboard_password: xxxxxxxxxxx                         # password for the dashboard admin
+
+client_user: xxxxxxxxxxx                                       # user with readonly access ex:user1
+client_pwd: xxxxxxxxxxx                                 # password for the user with read only access
+
+ceph_adminuser: xxxxxxxxxxx                               # user details to deploy cluster ex.ceph-admin
+ceph_adminuser_password: xxxxxxxxxxxxx                    # password for the user who will deploy the cluster
+
+rbd_pool_name: xxxxxxxx                                  # pool name required for rbd in the cluster
+rgw_pool_name: xxxxxxxx                                  # pool name required for rgw in the cluster
+
+ceph_fs:
+  - fs_pool_name: xxxxxxxx
+    number_of_daemons: x                                  # number of daemons for mds service ex. 3
+    hosts:
+      -  xxx.xxxxxxxx.xxxxx                               # fqdn for mds service ex. ceph01.ocp.isv.local
+      -  xxx.xxxxxxxx.xxxxx                               # fqdn for mds service ex. ceph02.ocp.isv.local
+      -  xxx.xxxxxxxx.xxxxx                               # fqdn for mds service ex. ceph03.ocp.isv.local

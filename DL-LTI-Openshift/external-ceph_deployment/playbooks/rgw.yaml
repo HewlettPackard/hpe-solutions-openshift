@@ -1,0 +1,10 @@
+---
+
+- name: Create a ceph file system
+  hosts: "{{ groups['admin'] }}"
+  become: true
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/rgw
+
