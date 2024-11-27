@@ -1,0 +1,10 @@
+---
+
+  - name: create the block device pool
+    shell: |
+      ceph osd pool create "{{ rbd_pool_name }}"
+      ceph osd pool application enable "{{ rbd_pool_name }}" rbd
+      rbd pool init -p "{{ rbd_pool_name }}"
+
+  - name: create the same image
+    shell: rbd create image1 --size 1024 --pool "{{ rbd_pool_name }}"

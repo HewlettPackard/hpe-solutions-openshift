@@ -1,6 +1,6 @@
-### **Adding RHEL8.9 Worker Nodes**
+### **Adding RHEL 9.4 Worker Nodes**
 
-This section covers the steps to add RHEL 8.9 worker nodes to an existing Red Hat OpenShift Container Platform cluster.
+This section covers the steps to add RHEL 9.4 worker nodes to an existing Red Hat OpenShift Container Platform cluster.
 
 1. **Creating and deleting logical drives**
 
@@ -53,9 +53,9 @@ This section covers the steps to add RHEL 8.9 worker nodes to an existing Red Ha
 
 					' # ansible-playbook site.yml --ask-vault-pass'
 
-2. Cleanup and reboot the RHEL 8.9  [Installer machine](https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md "https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md"), so the machine can be added as worker node to the existing OpenShift Container Platform cluster.
+2. Cleanup and reboot the RHEL 9.4  [Installer machine](https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md "https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md"), so the machine can be added as worker node to the existing OpenShift Container Platform cluster.
 
-3. Login to the Installer VM (that we created as a part of rhel8_installerVM.yml -- it would have created one KVM VM on one of the head nodes)
+3. Login to the Installer VM (that we created as a part of rhel9_installerVM.yml -- it would have created one KVM VM on one of the head nodes)
 
 4. Navigate to the directory $BASE_DIR(**/opt/hpe-solutions-openshift/DL-LTI-Openshift/**) then copy **input file and hosts** file to $BASE_DIR/RHEL_BareMetalworker_nodes/ and later update ocp worker details in input file and kvm_workernodes group as per sample host file.
 
@@ -67,7 +67,7 @@ cd $BASE_DIR/RHEL_BareMetalworker_nodes/
 **NOTE**
 $BASE_DIR refers to **/opt/hpe-solutions-openshift/DL-LTI-Openshift/**
 
-6. Run the following commands on the rhel8 installer VM to edit the vault input file.
+6. Run the following commands on the rhel9 installer VM to edit the vault input file.
 
 ```
 ansible-vault edit input.yaml
@@ -81,10 +81,10 @@ The installation user should review hosts file (located on the installer VM at $
 vi inventory/hosts
 
 ```
-7. Copy Rhel8.9 DVD ISO to **/usr/share/nginx/html/**
+7. Copy rhel 9.4 DVD ISO to **/usr/share/nginx/html/**
 
 8. Run the below command to download the required packages for adding worker nodes.
-	 'sed -i 's/\r//' setup.sh' ###Run this command to remove extra spaces caused while copying scripts to rhel8 isntaller vm
+	 'sed -i 's/\r//' setup.sh' ###Run this command to remove extra spaces caused while copying scripts to rhel9 isntaller vm
 
          'sh setup.sh' 
 
@@ -94,7 +94,7 @@ vi inventory/hosts
 
 In case if user want to deploy through individual playbooks. Sequence of playbooks to be followed are:
 
-		 '- import_playbook: playbooks/rhel8_os_deployment.yml
+		 '- import_playbook: playbooks/rhel9_os_deployment.yml
           - import_playbook: playbooks/copy_ssh.yml
           - import_playbook: playbooks/prepare_worker_nodes.yml
           - import_playbook: playbooks/ntp.yml
@@ -115,4 +115,4 @@ Execute the following command to set the parameter **mastersSchedulable** para
          '$ oc edit scheduler'
 
 ### ***Note*** 
-To add more worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding RHEL8.9 Worker Nodes section.
+To add more worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding rhel 9.4 Worker Nodes section.

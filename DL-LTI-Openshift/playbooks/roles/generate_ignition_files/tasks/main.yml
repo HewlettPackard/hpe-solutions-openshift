@@ -9,6 +9,11 @@
       path: "{{ base_path }}/playbooks/roles/generate_ignition_files/ignitions"
       state: directory
 
+  - name: install-config file
+    ansible.builtin.template:
+      src: install-config.conf.j2
+      dest: "{{ base_path }}/playbooks/roles/generate_ignition_files/ignitions/install-config.yaml"
+
   - name: Read ssh key file content
     slurp:
       src: /root/.ssh/id_rsa.pub
@@ -43,15 +48,15 @@
       additionalTrustBundle: "{{ ssl_cert_content['content'] | b64decode }}"
     when: is_environment_airgap == 'yes'
 
-  - name: install-config file
-    ansible.builtin.template:
-      src: install-config.conf.j2
-      dest: "{{ base_path }}/playbooks/roles/generate_ignition_files/ignitions/install-config.yaml"
+      #  - name: install-config file
+      #    ansible.builtin.template:
+      #      src: install-config.conf.j2
+      #      dest: "{{ base_path }}/playbooks/roles/generate_ignition_files/ignitions/install-config.yaml"
 
-  - name: take the back up of install-config file
-    copy:
-      src: "{{ base_path }}/playbooks/roles/generate_ignition_files/ignitions/install-config.yaml"
-      dest: "{{ base_path }}/playbooks/roles/generate_ignition_files/install-config.yaml"
+        #  - name: take the back up of install-config file
+        #    copy:
+        #      src: "{{ base_path }}/playbooks/roles/generate_ignition_files/ignitions/install-config.yaml"
+        #      dest: "{{ base_path }}/playbooks/roles/generate_ignition_files/install-config.yaml"
       
   - name: create manifests files
     command: "{{ base_path }}/playbooks/roles/download_ocp_packages/library/openshift_components/openshift-install create manifests --dir={{ base_path }}/playbooks/roles/generate_ignition_files/ignitions"

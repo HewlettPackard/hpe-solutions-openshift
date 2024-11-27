@@ -2,12 +2,12 @@
 
 ### **Installer Machine Prerequisite:**
 
-RHEL 8.9 Installer machine the following configurations.
+RHEL 9.4 Installer machine the following configurations.
 
 
 1.  At least 500 GB disk space (especially in the \"/\" partition), 4 CPU cores and 16GB RAM.
 
-2.  Rhel 8.9 Installer machine should be subscribed with valid **Redhat credentials**.
+2.  Rhel 9.4 Installer machine should be subscribed with valid **Redhat credentials**.
 
 3.  Sync time with NTP server.
 
@@ -170,15 +170,15 @@ A sample input.yaml file is as follows with a few filled parameters.
 					Host_Gateway: 172.28.*.*
 					Host_DNS: 172.28.*.*
 					Host_Domain: XX.XX                       #ex. isv.local
-					corporate_proxy: 172.28.*.*              #provide corporate proxy, ex. proxy.houston.company.net
-					corporate_proxy_port: XX                 #corporate proxy port no, ex. 8080
+			                corporate_proxy: 172.28.*.*
+                                        corporate_proxy_port: XX
 
 					config:
 					HTTP_server_base_url: http://172.28.*.*/  #Installer IP address
 					HTTP_file_path: /usr/share/nginx/html/    
 					OS_type: rhel
-					OS_image_name: rhel-8.9-x86_64-dvd.iso
-					base_kickstart_filepath: /opt/hpe-solutions-openshift/DL-LTI-Openshift/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg'
+					OS_image_name: rhel-9.4-x86_64-dvd.iso
+					base_kickstart_filepath: /opt/hpe-solutions-openshift/DL-LTI-Openshift/playbooks/roles/rhel9_os_deployment/tasks/ks_rhel9.cfg'
 
 2. The installation user should review hosts file (located on the installer VM at $BASE_DIR/hosts) and ensure that the information within the file accurately reflects the information in their environment.
 
@@ -197,7 +197,7 @@ vi $BASE_DIR/hosts
 				[ansible_host]
 				172.28.*.*
 
-				[rhel8_installerVM]
+				[rhel9_installerVM]
 				172.28.*.*
 
 				[binddns_masters]
@@ -230,17 +230,17 @@ vi $BASE_DIR/hosts
 
 In case if user want to deploy through individual playbooks. Sequence of playbooks to be followed are:
 
-		     '- import_playbook: playbooks/rhel8_os_deployment.yml
+		     '- import_playbook: playbooks/rhel9_os_deployment.yml
 			  - import_playbook: playbooks/copy_ssh_headnode.yml
 			  - import_playbook: playbooks/prepare_rhel_hosts.yml
 			  - import_playbook: playbooks/ntp.yml
 			  - import_playbook: playbooks/binddns.yml
 			  - import_playbook: playbooks/haproxy.yml
-			  - import_playbook: playbooks/squid_proxy.yml
+			  - import_playbook: playbooks/squid_proxy.yml                                                 #If you are not using proxy based setup skip this playbook
 			  - import_playbook: playbooks/storage_pool.yml
-			  - import_playbook: playbooks/rhel8_installerVM.yml
+			  - import_playbook: playbooks/rhel9_installerVM.yml
 			  - import_playbook: playbooks/copy_ssh_installerVM.yml
-			  - import_playbook: playbooks/prepare_rhel8_installer.yml
+			  - import_playbook: playbooks/prepare_rhel9_installer.yml
 			  - import_playbook: playbooks/download_ocp_packages.yml
 			  - import_playbook: playbooks/generate_manifest.yml
 			  - import_playbook: playbooks/copy_ocp_tool.yml
@@ -253,9 +253,9 @@ In case if user want to deploy through individual playbooks. Sequence of playboo
 
 -   This playbook contains the script to deploy Openshift Container platform starting from the OS_deployment until cluster up.
 
-**rhel8_os_deployment.yml**
+**rhel9_os_deployment.yml**
 
--   This playbook contains the scripts to deploy rhel8.9 OS on baremetal servers.
+-   This playbook contains the scripts to deploy rhel9.4 OS on baremetal servers.
 
 **copy_ssh_headnode.yml**
 
@@ -285,21 +285,21 @@ In case if user want to deploy through individual playbooks. Sequence of playboo
 
 -   This playbook contains the script to create the storage pools on the head nodes.
 
-**rhel8_installerVM.yml**
+**rhel9_installerVM.yml**
 
--   This playbook contains the script to create a rhel8 installer machine and this will be used as a installer further.
+-   This playbook contains the script to create a rhel9 installer machine and this will be used as a installer further.
 
 **copy_ssh_installerVM.yml**
 
--   This playbook contains the script to copy the ssh public key to the rhel8 installer machine.
+-   This playbook contains the script to copy the ssh public key to the rhel9 installer machine.
 
-**prepare_rhel8_installer.yml**
+**prepare_rhel9_installer.yml**
 
--   This playbook contains the script to prepare the rhel8 installer.
+-   This playbook contains the script to prepare the rhel9 installer.
 
 **copy_scripts.yml**
 
-- This playbooks contains the script to copy ansible code to rhel8 installer and headnodes.
+- This playbooks contains the script to copy ansible code to rhel9 installer and headnodes.
 
 **download_ocp_packages.yml**
 
@@ -311,7 +311,7 @@ In case if user want to deploy through individual playbooks. Sequence of playboo
 
 **copy_ocp_tool.yml**
 
--   This playbook contains the script to copy the ocp tools from the present installer to head nodes and rhel8 installer.
+-   This playbook contains the script to copy the ocp tools from the present installer to head nodes and rhel9 installer.
 
 **deploy_ipxe_ocp.yml**
 
@@ -353,7 +353,7 @@ Once the playbooks executed successfully then need to deploy OpenShift cluster a
 
 Once the Bootstrap and master nodes are deployed with the RHCOS perform the following.
 
-1. Login to the Installer VM (that we created as a part of rhel8_installerVM.yml -- it would have created one KVM VM on one of the head nodes)
+1. Login to the Installer VM (that we created as a part of rhel9_installerVM.yml -- it would have created one KVM VM on one of the head nodes)
 
 2. Add the kubeconfig path in the environment variables as follows
 
@@ -372,11 +372,11 @@ installation.
 
          '$ oc get nodes'
 
-### **Adding RHEL8.9 Worker Nodes**
+### **Adding RHEL9.4 Worker Nodes**
 
-This section covers the steps to add RHEL 8.9 worker nodes to an existing Red Hat OpenShift Container Platform cluster.
+This section covers the steps to add RHEL 9.4 worker nodes to an existing Red Hat OpenShift Container Platform cluster.
 
-1. Login to the Installer VM (that we created as a part of rhel8_installerVM.yml -- it would have created one KVM VM on one of the head nodes)
+1. Login to the Installer VM (that we created as a part of rhel9_installerVM.yml -- it would have created one KVM VM on one of the head nodes)
 
 2. Navigate to the directory $BASE_DIR/RHEL_BareMetalworker_nodes/
 
@@ -398,7 +398,7 @@ The installation user should review hosts file (located on the installer VM at $
 ```
 vi inventory/hosts
 ```
-4. Copy Rhel8.9 DVD ISO to /usr/share/nginx/html/ 
+4. Copy Rhel9.4 DVD ISO to /usr/share/nginx/html/ 
 
 5. Navigate to the directory, /opt/hpe-solutions-openshift/DL-LTI-Openshift/RHEL_BareMetalworker_nodes/ and run the below command.
 
@@ -410,7 +410,7 @@ vi inventory/hosts
 
 In case if user want to deploy through individual playbooks. Sequence of playbooks to be followed are:
 
-         '- import_playbook: playbooks/rhel8_os_deployment.yml
+         '- import_playbook: playbooks/rhel9_os_deployment.yml
           - import_playbook: playbooks/copy_ssh.yml
           - import_playbook: playbooks/prepare_worker_nodes.yml
           - import_playbook: playbooks/ntp.yml
@@ -431,13 +431,13 @@ Execute the following command to set the parameter **mastersSchedulable** para
          '$ oc edit scheduler'
 
 ### ***Note*** 
-To add more RHEL worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding RHEL8.9 Worker Nodes section.
+To add more RHEL worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding RHEL9.4 Worker Nodes section.
 
 **Adding RH CoreOS Worker Nodes to Existing Openshift Cluster**
 
 This section covers the steps to add Baremetal RHCOS worker nodes to an existing Red Hat OpenShift Container Platform cluster.
 
-1. Login to the Rhel 8.9 Installer VM (that we created as a part of rhel8_installerVM.yml -- it would have been created as one KVM VM on one of the head nodes)
+1. Login to the Rhel 9.4 Installer VM (that we created as a part of rhel9_installerVM.yml -- it would have been created as one KVM VM on one of the head nodes)
 
 2. Navigate to the directory $BASE_DIR(**/opt/hpe-solutions-openshift/DL-LTI-Openshift/**) then copy **input file and hosts** file to $BASE_DIR/coreos_BareMetalworker_nodes/ and later get the input file from the $BASE_DIR for ocp worker details.
 
@@ -492,7 +492,7 @@ ipv4.method manual
 
 **deploy_ipxe_ocp.yml**
 
--   This playbook contains the script to deploy the ipxe code on the RHEL8 installer machine.
+-   This playbook contains the script to deploy the ipxe code on the rhel9 installer machine.
 
 After successful execution of all playbooks, check the node status as below.
 

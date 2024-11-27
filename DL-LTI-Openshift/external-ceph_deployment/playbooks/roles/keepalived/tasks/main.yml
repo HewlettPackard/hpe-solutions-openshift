@@ -1,0 +1,57 @@
+---
+
+#- name: disable selinux
+#  selinux:
+#    state: disabled
+
+#- name: Install Haproxy package
+#  yum:
+#    name: haproxy
+#    state: present
+
+#- name: Stop Haproxy service if running already
+#  service:
+#    name: haproxy
+#    state: stopped
+
+#- name: Dynamically copying HAproxy Configuration file
+#  template:
+#    src: ./haproxy.cfg.j2
+#    dest: /etc/haproxy/haproxy.cfg
+#    owner: root
+#    group: root
+#    mode: 0644
+#      #  with_items: "{{ user_clusters }}"
+
+- name: Install keepalived package
+  yum:
+   name:
+     - keepalived
+     - psmisc
+   state: present
+
+- name: Dynamically copying Keepalived Configuration file
+  template:
+    src: ./keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Restart Keepalived Service
+  service:
+    name: keepalived
+    state: started
+    enabled: true
+
+      #- name: Restart HAProxy Service
+      #  service:
+      #    name: haproxy
+      #    state: started
+      #    enabled: true
+
+- name: Restart Keepalived Service Again
+  service:
+    name: keepalived
+    state: started
+    enabled: true

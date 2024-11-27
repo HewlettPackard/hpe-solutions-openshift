@@ -6,7 +6,7 @@
 [ansible_host]
 172.XX.XX.XXX
 
-[rhel8_installerVM]
+[rhel9_installerVM]
 172.XX.XX.XXX
 
 [binddns_masters]

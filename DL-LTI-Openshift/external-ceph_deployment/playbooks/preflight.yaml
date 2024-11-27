@@ -1,0 +1,11 @@
+---
+
+- name: install cephadm-ansible
+  hosts: "{{ groups['admin'] }}"
+  become: true
+  become_user: ceph-admin
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/preflight
+
