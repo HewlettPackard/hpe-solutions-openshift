@@ -1,0 +1,25 @@
+---
+
+  - name: adding nodes to cluster
+    shell: "sshpass -p '{{ item.Host_Password }}' ssh-copy-id -f -i /etc/ceph/ceph.pub {{ ceph_adminuser }}@{{ item.Host_IP }}"
+    with_items: 
+      - "{{ servers }}"
+
+  - name: create host file for adding nodes
+    become: true
+    become_user: root
+    ansible.builtin.copy:
+      dest: /tmp/hosts.yaml
+      content: |
+        {% for item in servers %}
+        ---
+        service_type: host
+        hostname: {{ item.Hostname }}
+        addr: {{ item.Host_IP }}
+        
+        {% endfor %}
+
+  - name: applying the host file using the ceph orch
+    become: true
+    become_user: root
+    shell: ceph orch apply -i /tmp/hosts.yaml

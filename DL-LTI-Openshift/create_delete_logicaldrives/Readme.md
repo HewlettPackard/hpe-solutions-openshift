@@ -6,7 +6,7 @@ This script lets you create and delete logical drives on the head nodes/compute 
 
 **Pre-requisite:-**
 
-1. RHEL 8.9  [Installer machine](https://hewlettpackard.github.io/hpe-solutions-openshift/4.15-AMD-LTI/Solution-Deployment/Preparing-execution-environment.html "https://hewlettpackard.github.io/hpe-solutions-openshift/4.15-AMD-LTI/Solution-Deployment/Preparing-execution-environment.html") is essential to initiate the binddns deployment process.
+1. RHEL 9.4  [Installer machine](https://hewlettpackard.github.io/hpe-solutions-openshift/4.16-AMD-LTI/Solution-Deployment/Preparing-execution-environment.html "https://hewlettpackard.github.io/hpe-solutions-openshift/4.16-AMD-LTI/Solution-Deployment/Preparing-execution-environment.html") is essential to initiate the binddns deployment process.
 2. Execute the following commands in the Ansible Engine to download the repositories.
 
                    '  # cd /opt
