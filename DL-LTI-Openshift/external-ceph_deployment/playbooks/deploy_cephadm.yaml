@@ -1,0 +1,10 @@
+---
+
+- name: install cephadm-ansible
+  hosts: "{{ groups['admin'] }}"
+  become: true
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/deploy_cephadm
+

@@ -1,0 +1,17 @@
+- name: Create rhel subscription all nodes
+  hosts: "{{ groups['OSD'] }}"
+  gather_facts: false
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/user_creation
+
+- name: Copy ssh keys to all ceph nodes
+  hosts: "{{ groups['admin'] }}"
+  become_user: "{{ ceph_adminuser }}"
+  gather_facts: false
+  vars_files:
+    - ../input.yaml
+  roles:
+    - role: roles/ssh-admin
+

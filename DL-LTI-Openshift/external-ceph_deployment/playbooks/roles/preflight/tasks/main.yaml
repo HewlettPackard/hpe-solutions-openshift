@@ -1,0 +1,6 @@
+---
+
+  - name: preflight playbook execution
+    args:
+      chdir: /usr/share/cephadm-ansible
+    shell: "ansible-playbook -i inventory/hosts /usr/share/cephadm-ansible/cephadm-preflight.yml --extra-vars ceph-origin=rhcs" 

@@ -63,8 +63,8 @@ config:
    HTTP_server_base_url: http://172.28.*.*/  #Installer IP address
    HTTP_file_path: /usr/share/nginx/html/    
    OS_type: rhel
-   OS_image_name: rhel-8.9-x86_64-dvd.iso    # ISO image should be present in /usr/share/nginx/html/
-   base_kickstart_filepath: /opt/hpe-solutions-openshift/DL-LTI-Openshift/playbooks/roles/rhel8_os_deployment/tasks/ks_rhel8.cfg
+   OS_image_name: rhel-9.4-x86_64-dvd.iso    # ISO image should be present in /usr/share/nginx/html/
+   base_kickstart_filepath: /opt/hpe-solutions-openshift/DL-LTI-Openshift/playbooks/roles/rhel9_os_deployment/tasks/ks_rhel9.cfg
 
 rhsub_username: ******
 rhsub_password: ******
@@ -159,7 +159,7 @@ ARCHITECTURE:                           #x86_64
 yumrepo:                                #10.0.x.x
 
 ###Common Networking
-# Interface Name of Rhel8 VM: interface_name: eth0
+# Interface Name of Rhel9 VM: interface_name: eth0
 interface_name: eth0
 
 # dhcp range that is used for OCP nodes Example: dhcp_range: 192.168.42.204,192.168.42.210,24h
@@ -183,7 +183,7 @@ vm_cpu: 4                           #VM CPU cores
 vm_mem: 16000                       #VM RAM detail 
 vm_size: 250                        #VM virtual disk size is in GB
 
-#Rhel8 Installer VM details
-rhel8_installer_hostname: rhel8_installer.*.*
-rhel8_installer_IP: 172.28.*.*
-rhel8_installer_password: ******
+#Rhel9 Installer VM details
+rhel9_installer_hostname: rhel9-installer.*.*
+rhel9_installer_IP: 172.28.*.*
+rhel9_installer_password: ******

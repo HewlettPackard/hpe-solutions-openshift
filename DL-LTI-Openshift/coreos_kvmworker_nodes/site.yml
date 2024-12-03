@@ -14,7 +14,7 @@
 ####
 
 ---
-  - import_playbook: playbooks/rhel8_os_deployment.yml
+  - import_playbook: playbooks/rhel9_os_deployment.yml
   - import_playbook: playbooks/copy_ssh_workernode.yml
   - import_playbook: playbooks/prepare_rhel_hosts.yml
   - import_playbook: playbooks/ntp.yml

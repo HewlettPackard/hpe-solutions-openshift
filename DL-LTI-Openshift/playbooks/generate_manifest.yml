@@ -1,6 +1,6 @@
 ---
 - name: Create manifests and ignition files
-  hosts: rhel8_installerVM
+  hosts: rhel9_installerVM
   become: yes
   gather_facts: true
   vars_files:
