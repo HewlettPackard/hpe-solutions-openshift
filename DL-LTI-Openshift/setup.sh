@@ -24,7 +24,6 @@ echo "============================================================"
 if [ -f /etc/redhat-release ]; then
     OS="RHEL"
     PACKAGE_MANAGER="yum"
-    DEV_TOOLS="@development"
     FIREWALL_SERVICE="firewalld"
     SYSTEMCTL="systemctl"
     PYTHON_PKG="python3"
@@ -44,7 +43,7 @@ echo "============================================================"
 echo "Installing development tools"
 echo "============================================================"
 if [ "$OS" = "RHEL" ]; then
-    $PACKAGE_MANAGER -y groupinstall $DEV_TOOLS
+    $PACKAGE_MANAGER -y groupinstall "Development Tools"
 else
     $PACKAGE_MANAGER update -y
     $PACKAGE_MANAGER install -y $DEV_TOOLS
@@ -70,7 +69,7 @@ echo "============================================================"
 echo "Installing ISO-repackaging utilities"
 echo "============================================================"
 if [ "$OS" = "RHEL" ]; then
-    $PACKAGE_MANAGER -y install syslinux isomd5sum ansible-core
+    $PACKAGE_MANAGER -y install syslinux isomd5sum ansible-core python3-pip
     $PACKAGE_MANAGER -y install genisoimage bc
 else
     $PACKAGE_MANAGER update -y
