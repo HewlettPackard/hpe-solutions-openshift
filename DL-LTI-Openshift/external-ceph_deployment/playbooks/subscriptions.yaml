@@ -1,5 +1,5 @@
 - name: Create rhel subscription all nodes
-  hosts: "{{ groups['all'] }}"
+  hosts: "{{ groups['ceph_nodes'] }}"
   gather_facts: false
   vars_files:
     - ../input.yaml
