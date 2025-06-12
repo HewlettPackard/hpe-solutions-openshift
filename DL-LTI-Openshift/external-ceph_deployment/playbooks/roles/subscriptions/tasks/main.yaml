@@ -8,6 +8,6 @@
       shell: subscription-manager register --username "{{ rhsub_username }}" --password "{{ rhsub_password }}" --auto-attach --force
 
     - name: Enable the repositories required by OpenShift Container Platform
-      shell: subscription-manager repos --enable="rhel-9-for-x86_64-baseos-rpms" --enable="rhel-9-for-x86_64-appstream-rpms"  --enable="rhceph-7-tools-for-rhel-9-x86_64-rpms"
+      shell: subscription-manager repos --enable="rhel-9-for-x86_64-baseos-rpms" --enable="rhel-9-for-x86_64-appstream-rpms"  --enable="rhceph-8-tools-for-rhel-9-x86_64-rpms"
 
 

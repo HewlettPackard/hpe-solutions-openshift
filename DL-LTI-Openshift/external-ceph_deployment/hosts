@@ -1,4 +1,4 @@
-[all]
+[ceph_nodes]
 mc1.xxx.xxxx
 mc2.xxx.xxxx
 mc3.xxx.xxxx
