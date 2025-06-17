@@ -111,7 +111,7 @@ A sample input.yaml file is as follows with a few filled parameters.
 The First Machine details provided in the server section of input file will be considered for Manager/admin node in the ceph Cluster.
 
 					config:
-					HTTP_server_base_url: http://172.28.*.*/  #Installer IP address
+					HTTP_server_base_url: https://172.28.*.*/  #Installer IP address
 					HTTP_file_path: /usr/share/nginx/html/    
 					OS_type: rhel
 					OS_image_name: rhel-9.4-x86_64-dvd.iso
@@ -145,7 +145,7 @@ Use an editor such as vi or nano to edit the inventory file.
 vi $BASE_DIR/hosts
 
 ```
-                           [all]
+                           [ceph_nodes]
                            installer.isv.local
                            ceph01.isv.local
                            ceph02.isv.local
