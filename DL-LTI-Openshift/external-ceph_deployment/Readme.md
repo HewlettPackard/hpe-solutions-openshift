@@ -2,8 +2,9 @@
 
 ### **Installer Machine Prerequisite:**
 
-RHEL 9.4 Installer machine the following configurations(we can utilise the same installer machine used for RHOCP cluster deployment).
+The following are the required prerequisites for the RHEL 9.4 installer machine:
 
+**Note:** If the RHEL 9.4 installer machine was previously created using the rhel9_installerVM.yml playbook, you may skip the earlier steps and proceed directly to Step 4.
 
 1.  At least 500 GB disk space (especially in the \"/\" partition), 4 CPU cores and 16GB RAM.
 
