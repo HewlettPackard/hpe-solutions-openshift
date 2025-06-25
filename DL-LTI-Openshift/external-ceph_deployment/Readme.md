@@ -2,8 +2,9 @@
 
 ### **Installer Machine Prerequisite:**
 
-RHEL 9.4 Installer machine the following configurations(we can utilise the same installer machine used for RHOCP cluster deployment).
+The following are the required prerequisites for the RHEL 9.4 installer machine:
 
+**Note:** If the RHEL 9.4 installer machine was previously created using the rhel9_installerVM.yml playbook, you may skip the earlier steps and proceed directly to Step 4.
 
 1.  At least 500 GB disk space (especially in the \"/\" partition), 4 CPU cores and 16GB RAM.
 
@@ -111,7 +112,7 @@ A sample input.yaml file is as follows with a few filled parameters.
 The First Machine details provided in the server section of input file will be considered for Manager/admin node in the ceph Cluster.
 
 					config:
-					HTTP_server_base_url: http://172.28.*.*/  #Installer IP address
+					HTTP_server_base_url: https://172.28.*.*/  #Installer IP address
 					HTTP_file_path: /usr/share/nginx/html/    
 					OS_type: rhel
 					OS_image_name: rhel-9.4-x86_64-dvd.iso
@@ -145,7 +146,7 @@ Use an editor such as vi or nano to edit the inventory file.
 vi $BASE_DIR/hosts
 
 ```
-                           [all]
+                           [ceph_nodes]
                            installer.isv.local
                            ceph01.isv.local
                            ceph02.isv.local

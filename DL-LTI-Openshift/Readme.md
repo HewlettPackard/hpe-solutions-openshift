@@ -174,7 +174,7 @@ A sample input.yaml file is as follows with a few filled parameters.
                                         corporate_proxy_port: XX
 
 					config:
-					HTTP_server_base_url: http://172.28.*.*/  #Installer IP address
+					HTTP_server_base_url: https://172.28.*.*/  #Installer IP address
 					HTTP_file_path: /usr/share/nginx/html/    
 					OS_type: rhel
 					OS_image_name: rhel-9.4-x86_64-dvd.iso
