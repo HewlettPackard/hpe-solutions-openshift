@@ -60,7 +60,7 @@ servers:
    corporate_proxy_port: XX               #corporate proxy port no, ex. 8080
 
 config:
-   HTTP_server_base_url: https://172.28.*.*/  #Installer IP address
+   HTTP_server_base_url: https://172.28.*.*:444/  #Installer IP address
    HTTP_file_path: /usr/share/nginx/html/    
    OS_type: rhel
    OS_image_name: rhel-9.4-x86_64-dvd.iso    # ISO image should be present in /usr/share/nginx/html/
