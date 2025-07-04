@@ -62,16 +62,13 @@ if ps ax | grep -v grep | grep $SERVICE > /dev/null; then
     $SYSTEMCTL stop $SERVICE
 fi
 
-# Remove default server configs that use port 80
 echo "============================================================"
 echo "Removing default Nginx configs that use port 80"
 echo "============================================================"
 rm -f /etc/nginx/conf.d/default.conf
 
-# Ensure SSL directory exists
 mkdir -p /etc/nginx/ssl
 
-# Generate self-signed SSL cert
 if [ ! -f /etc/nginx/ssl/nginx.crt ]; then
     openssl req -x509 -nodes -days 365 \
         -newkey rsa:2048 \
@@ -84,10 +81,8 @@ echo "============================================================"
 echo "Configuring nginx.conf for ports 81 and 444 ONLY"
 echo "============================================================"
 
-# Backup original config
 cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
 
-# Write new config
 cat > /etc/nginx/nginx.conf <<EOF
 user nginx;
 worker_processes auto;
@@ -134,17 +129,26 @@ http {
 EOF
 
 echo "============================================================"
-echo "Configuring firewall for ports 81 and 444"
+echo "Configuring firewall for ports 81 and 444 (if firewall is running)"
 echo "============================================================"
+
 if [ "$FIREWALL_SERVICE" = "firewalld" ]; then
-    $SYSTEMCTL start firewalld
-    firewall-cmd --permanent --add-port=81/tcp
-    firewall-cmd --permanent --add-port=444/tcp
-    firewall-cmd --reload
+    if $SYSTEMCTL is-active --quiet firewalld; then
+        echo "firewalld is running, configuring ports..."
+        firewall-cmd --permanent --add-port=81/tcp
+        firewall-cmd --permanent --add-port=444/tcp
+        firewall-cmd --reload
+    else
+        echo "firewalld is not running. Skipping firewall port configuration."
+    fi
 elif [ "$FIREWALL_SERVICE" = "ufw" ]; then
-    ufw allow 81
-    ufw allow 444
-    ufw --force enable
+    if ufw status | grep -qw active; then
+        echo "ufw is active, configuring ports..."
+        ufw allow 81
+        ufw allow 444
+    else
+        echo "ufw is not active. Skipping firewall port configuration."
+    fi
 fi
 
 echo "============================================================"
@@ -186,4 +190,3 @@ else
     echo "Installing requirements"
     pip3 install -r requirements.txt
 fi
-
