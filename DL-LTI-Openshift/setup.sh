@@ -1,5 +1,5 @@
 ###
-## Copyright (2020) Hewlett Packard Enterprise Development LP
+## Copyright (2020) Hewlett-Packard Enterprise Development LP
 ##
 ## Licensed under the Apache License, Version 2.0 (the "License");
 ## You may not use this file except in compliance with the License.
@@ -189,4 +189,47 @@ else
     echo "Python3 is enabled"
     echo "Installing requirements"
     pip3 install -r requirements.txt
+fi
+
+echo "============================================================"
+echo "Installing coreos-installer and Rust toolchain"
+echo "============================================================"
+
+if [ "$OS" = "RHEL" ]; then
+    echo "Installing coreos-installer via yum"
+    $PACKAGE_MANAGER -y install coreos-installer
+
+elif [ "$OS" = "Ubuntu" ]; then
+    echo "Installing Rust toolchain and dependencies for coreos-installer on Ubuntu"
+
+    # Install Rust using rustup
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    . "$HOME/.cargo/env"
+
+    # Install build dependencies
+    sudo apt update
+    sudo apt install -y pkg-config libssl-dev libclang-dev clang libzstd-dev git
+
+    # Use /tmp for the build
+    TMP_DIR="/tmp/coreos-installer-$$"
+    mkdir -p "$TMP_DIR"
+    echo "Cloning coreos-installer into $TMP_DIR"
+    git clone https://github.com/coreos/coreos-installer.git "$TMP_DIR"
+    cd "$TMP_DIR" || { echo "Failed to enter $TMP_DIR"; exit 1; }
+
+    echo "Building coreos-installer..."
+    cargo build --release
+
+    if [ -f target/release/coreos-installer ]; then
+        echo "Copying coreos-installer to /usr/local/bin"
+        sudo cp target/release/coreos-installer /usr/local/bin
+    else
+        echo "Build failed: coreos-installer binary not found"
+        exit 1
+    fi
+
+    # Cleanup
+    cd ~
+    rm -rf "$TMP_DIR"
+    echo "Cleaned up temporary directory"
 fi
