@@ -65,8 +65,7 @@ def wait_for_os_deployment_to_complete(redfish_object, server_serial_number, pos
         return False
 
     return True
-
-
+    
 def get_post_state(redfish_object):
     """This function is to get server POST state
     
@@ -144,32 +143,99 @@ def wait_for_reboot(redfish_object, timeout=20):
     print("Timeout: System has not completed POST")
     return False
 
+def set_one_time_boot_to_cd(redfish_object):
+    """
+    Sets one-time boot to CD by searching for the system resource dynamically.
 
-
-def mount_virtual_media_iso(redfish_object, img_url, boot_on_next_server_reset=True):
-    """This function is to mount virtual media ISO on the iLO
-    
     Arguments:
         redfish_object {object} -- iLO Redfish object
     """
-    print("Mounting virtual media")
     try:
-        instances = redfish_object.search_for_type("Manager.")
+        ip = getattr(redfish_object, 'host', 'Unknown IP')
+        print(f"{ip}: Setting one-time boot to CD...")
 
-        for instance in instances:
-            rsp = redfish_object.redfish_get(instance["@odata.id"])
-            rsp = redfish_object.redfish_get(rsp.dict["VirtualMedia"]["@odata.id"])
+        # Find system instances
+        system_instances = redfish_object.search_for_type("ComputerSystem.")
+        if not system_instances:
+            print(f"{ip}: No ComputerSystem instances found.")
+            return
 
-            for vmlink in rsp.dict["Members"]:
-                response = redfish_object.redfish_get(vmlink["@odata.id"])
-                if response.status == 200 and "DVD" in response.dict["MediaTypes"]:
-                    body = {"Image": img_url, "Oem": {"Hpe": {"BootOnNextServerReset": boot_on_next_server_reset}}}
-                    response = redfish_object.redfish_patch(vmlink["@odata.id"], body)
-                    redfish_object.error_handler(response)
-                elif response.status != 200:
-                    redfish_object.error_handler(response)
+        for system in system_instances:
+            system_uri = system["@odata.id"]
+
+            body = {
+                "Boot": {
+                    "BootSourceOverrideTarget": "Cd",
+                    "BootSourceOverrideEnabled": "Once"
+                }
+            }
+
+            response = redfish_object.redfish_patch(system_uri, body)
+            redfish_object.error_handler(response)
+
+            print(f"{ip}:  Boot override set on {system_uri}")
+            break  # Remove this break if you want to patch all systems
+
     except Exception as e:
-        print("Error occurred while mounting the cd image {} and error is {}".format(img_url, e))
+        ip = getattr(redfish_object, 'host', 'Unknown IP')
+        print(f"{ip}: ERROR during boot override: {e}")
+
+
+def get_system_uri(redfish_obj):
+    systems_uri = "/redfish/v1/Systems"
+    systems_resp = redfish_obj.get(systems_uri)
+    system_uri = systems_resp.dict["Members"][0]["@odata.id"]
+    return system_uri
+
+def mount_virtual_media_iso(redfish_object, iso_url, boot_on_next_server_reset=True):
+    """
+    Mounts an ISO image as virtual media on iLO using Redfish.
+
+    Args:
+        redfish_object (RedfishObject): Authenticated Redfish client object.
+        iso_url (str): HTTPS URL of the ISO to mount.
+        boot_on_next_server_reset (bool): Whether to boot from virtual media on next reset.
+    """
+    print(f"Mounting ISO: {iso_url}")
+    try:
+        # Find iLO Manager instances
+        managers = redfish_object.search_for_type("Manager.")
+
+        for manager in managers:
+            manager_id = manager["@odata.id"]
+            mgr_data = redfish_object.redfish_get(manager_id)
+
+            # Get VirtualMedia endpoint
+            virtual_media_url = mgr_data.dict["VirtualMedia"]["@odata.id"]
+            virtual_media_data = redfish_object.redfish_get(virtual_media_url)
+
+            for media_link in virtual_media_data.dict["Members"]:
+                vm_url = media_link["@odata.id"]
+                vm_response = redfish_object.redfish_get(vm_url)
+
+                if vm_response.status == 200:
+                    media_types = vm_response.dict.get("MediaTypes", [])
+                    if "DVD" in media_types:
+                        payload = {
+                            "Image": iso_url,
+                            "Oem": {
+                                "Hpe": {
+                                    "BootOnNextServerReset": boot_on_next_server_reset
+                                }
+                            }
+                        }
+                        patch_response = redfish_object.redfish_patch(vm_url, payload)
+                        redfish_object.error_handler(patch_response)
+                        print(f"Successfully mounted ISO on {vm_url}")
+                    else:
+                        print(f"Skipping device at {vm_url}, not a DVD device.")
+                else:
+                    print(f"Failed to get virtual media info from {vm_url}")
+                    redfish_object.error_handler(vm_response)
+
+    except Exception as e:
+        print(f"[ERROR] Failed to mount ISO {iso_url}. Exception: {e}")
+
 
 
 def unmount_virtual_media_iso(redfish_object):

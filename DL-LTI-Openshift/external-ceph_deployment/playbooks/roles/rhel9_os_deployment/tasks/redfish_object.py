@@ -27,6 +27,7 @@ from logger import *
 
 class RedfishObject(object):
     def __init__(self, host, login_account, login_password):
+        self.host = host
         # Creating instace for RedfishClient clasee by providing ilo_url, ilo_username, ilo_password
         # Note:redfish.ris.tpdefs is not supported by python-ilorest-library 3.0
         try:
