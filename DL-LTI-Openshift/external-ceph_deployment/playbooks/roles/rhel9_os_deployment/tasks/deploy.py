@@ -96,6 +96,7 @@ def image_deployment(server, config):
             # Unmount the previous ISO and mount the custom ISO image
             unmount_virtual_media_iso(redfish_obj)
             mount_virtual_media_iso(redfish_obj, custom_image_url, True)
+            set_one_time_boot_to_cd(redfish_obj)
             power_staus = get_post_state(redfish_obj)
             if power_staus == "PowerOff":
                 change_server_power_state(redfish_obj, server_serial_number, power_state="On")
@@ -157,5 +158,3 @@ def wait_for_os_deployment(server):
         wait_for_os_deployment_to_complete(redfish_obj, server['Server_serial_number'])
     except Exception as e:
         print("Failure: Image deployment failed {}".format(e))
-
-
