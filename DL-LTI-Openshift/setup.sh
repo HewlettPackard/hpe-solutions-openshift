@@ -48,7 +48,6 @@ else
     $PACKAGE_MANAGER update -y
     $PACKAGE_MANAGER install -y $DEV_TOOLS
 fi
-
 echo "============================================================"
 echo "Installing Nginx server"
 echo "============================================================"
@@ -127,6 +126,23 @@ http {
     }
 }
 EOF
+
+echo "============================================================"
+echo "Installing policycoreutils-python-utils if needed"
+echo "============================================================"
+if ! command -v semanage &> /dev/null; then
+    $PACKAGE_MANAGER -y install policycoreutils-python-utils
+fi
+
+echo "============================================================"
+echo "Allowing nginx to bind to port 444 via SELinux"
+echo "============================================================"
+semanage port -a -t http_port_t -p tcp 444 || echo "Port 444 already allowed"
+
+echo "============================================================"
+echo "Applying setcap to nginx binary"
+echo "============================================================"
+setcap 'cap_net_bind_service=+ep' /usr/sbin/nginx
 
 echo "============================================================"
 echo "Configuring firewall for ports 81 and 444 (if firewall is running)"
