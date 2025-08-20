@@ -2,4 +2,4 @@
   - import_playbook: playbooks/download_openshift_components.yaml
   - import_playbook: playbooks/create_json_pull_secret.yaml
   - import_playbook: playbooks/update_json_pull_secret.yaml
-  - import_playbook: playbooks/mirroring_ocp_image_repository.yaml
+  - import_playbook: playbooks/mirroring_ocp_image_repository.yaml 
