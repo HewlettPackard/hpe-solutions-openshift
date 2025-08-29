@@ -18,7 +18,7 @@
         --wait 10
   delegate_to: "{{ groups['kvm_nodes'][0] }}" 
 
-- name: Restart bootstrap Doamin
+- name: Restart bootstrap Domain
   shell: 
     cmd: >-
         virsh 
@@ -44,7 +44,7 @@
         --wait 10
   delegate_to: "{{ groups['kvm_nodes'][0] }}" 
 
-- name: Restart master1 Doamin
+- name: Restart master1 Domain
   shell:
     cmd: >-
         virsh
@@ -70,7 +70,7 @@
         --wait 10
   delegate_to: "{{ groups['kvm_nodes'][1] }}"
 
-- name: Restart master2 Doamin
+- name: Restart master2 Domain
   shell:
     cmd: >-
         virsh
