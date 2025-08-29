@@ -18,14 +18,14 @@
         --network bridge:{{ common.interface_name }},mac.address={{ ocp_workers[0].mac_address }}
         --wait 15
         --autostart
-  delegate_to: "{{ groups['kvm_nodes'][0] }}" 
+  delegate_to: "{{ groups['kvm_workernodes'][0] }}" 
 
 - name: Restart worker1 Domain
   shell:
     cmd: >-
         virsh
         --connect qemu:///system start worker1
-  delegate_to: "{{ groups['kvm_nodes'][0] }}"
+  delegate_to: "{{ groups['kvm_workernodes'][0] }}"
 
 - name: Create coreos worker2 VM on KVM node2
   shell:
@@ -45,14 +45,14 @@
         --network bridge:{{ common.interface_name }},mac.address={{ ocp_workers[1].mac_address }}
         --wait 15
         --autostart
-  delegate_to: "{{ groups['kvm_nodes'][1] }}"
+  delegate_to: "{{ groups['kvm_workernodes'][1] }}"
 
 - name: Restart worker2 Domain
   shell:
     cmd: >-
         virsh
         --connect qemu:///system start worker2
-  delegate_to: "{{ groups['kvm_nodes'][1] }}"
+  delegate_to: "{{ groups['kvm_workernodes'][1] }}"
 
 - name: Create coreos worker3 VM on KVM node3
   shell:
@@ -72,14 +72,14 @@
         --network bridge:{{ common.interface_name }},mac.address={{ ocp_workers[2].mac_address }}
         --wait 15
         --autostart
-  delegate_to: "{{ groups['kvm_nodes'][2] }}"
+  delegate_to: "{{ groups['kvm_workernodes'][2] }}"
 
 - name: Restart worker3 Domain
   shell:
     cmd: >-
         virsh
         --connect qemu:///system start worker3
-  delegate_to: "{{ groups['kvm_nodes'][2] }}"
+  delegate_to: "{{ groups['kvm_workernodes'][2] }}"
 
 
 
