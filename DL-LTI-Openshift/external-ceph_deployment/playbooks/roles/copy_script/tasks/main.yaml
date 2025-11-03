@@ -1,4 +1,12 @@
 ---
+- name: Ensure rsync is installed
+  become: true
+  ansible.builtin.package:
+    name: rsync
+    state: present
 
-  - name: copy the installation directory to manager1
-    shell: scp -r /opt/* root@{{ servers[0].Host_IP }}:/opt
+- name: Copy the installation directory to manager1
+  become: true
+  shell: rsync -a /opt/ root@{{ servers[0].Host_IP }}:/opt/
+
+

@@ -185,6 +185,19 @@ else
 fi
 
 echo "============================================================"
+echo "Installing required Ansible Galaxy collections"
+echo "============================================================"
+
+if ! command -v ansible-galaxy &> /dev/null; then
+    echo "ansible-galaxy command not found! Installing ansible-core..."
+    $PACKAGE_MANAGER -y install ansible-core
+fi
+
+ansible-galaxy collection install community.general
+ansible-galaxy collection install community.libvirt
+ansible-galaxy collection install community.crypto
+
+echo "============================================================"
 echo "Verifying Python3 status and installing prerequisites"
 echo "============================================================"
 pip3 install --upgrade pip setuptools_rust
