@@ -27,7 +27,7 @@
 
     - name: Include server details
       include_vars:
-        file: ../../../../input.yaml
+        file: "{{ playbook_dir }}/../input.yaml"
     
     - name: Deploy image for each server and config using python method.
       command: python3 ./roles/rhel9_os_deployment/tasks/python_method_handler.py image_deployment_ '{"server" :{{item | to_json}}, "config" :{{config | to_json}}}'

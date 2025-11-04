@@ -13,8 +13,15 @@ mkdir /tmp/image/
 echo "Downloading openshift images"
 if [[ "$is_airgap" != "yes" ]]; then
     wget --wait=5 https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/$ocp_image_version/latest/rhcos-live-initramfs.x86_64.img -P /tmp/image/
-    wget --wait=5 https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/$ocp_image_version/latest/rhcos-live-kernel-x86_64 -P /tmp/image/
     wget --wait=5 https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/$ocp_image_version/latest/rhcos-live-rootfs.x86_64.img -P /tmp/image/
+
+    ocp_minor=$(echo "$ocp_version" | cut -d'.' -f2)
+    if (( ocp_minor >= 20 )); then
+        wget --wait=5 https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/$ocp_image_version/latest/rhcos-live-kernel.x86_64 -P /tmp/image/
+        mv /tmp/image/rhcos-live-kernel.x86_64 /tmp/image/rhcos-live-kernel-x86_64
+    else
+        wget --wait=5 https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/$ocp_image_version/latest/rhcos-live-kernel-x86_64 -P /tmp/image/
+    fi
 else
     wget --wait=10 http://$yumrepo/ocp_packages/rhcos-live.x86_64.iso -P /tmp/image/
 fi
