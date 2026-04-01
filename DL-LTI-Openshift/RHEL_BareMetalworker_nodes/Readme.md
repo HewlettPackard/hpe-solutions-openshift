@@ -1,6 +1,6 @@
-### **Adding RHEL 9.4 Worker Nodes**
+### **Adding RHEL 9.6 Worker Nodes**
 
-This section covers the steps to add RHEL 9.4 worker nodes to an existing Red Hat OpenShift Container Platform cluster.
+This section covers the steps to add RHEL 9.6 worker nodes to an existing Red Hat OpenShift Container Platform cluster.
 
 1. **Creating and deleting logical drives**
 
@@ -53,7 +53,7 @@ This section covers the steps to add RHEL 9.4 worker nodes to an existing Red Ha
 
 					' # ansible-playbook site.yml --ask-vault-pass'
 
-2. Cleanup and reboot the RHEL 9.4  [Installer machine](https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md "https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md"), so the machine can be added as worker node to the existing OpenShift Container Platform cluster.
+2. Cleanup and reboot the RHEL 9.6  [Installer machine](https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md "https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md"), so the machine can be added as worker node to the existing OpenShift Container Platform cluster.
 
 3. Login to the Installer VM (that we created as a part of rhel9_installerVM.yml -- it would have created one KVM VM on one of the head nodes)
 
@@ -81,7 +81,7 @@ The installation user should review hosts file (located on the installer VM at $
 vi inventory/hosts
 
 ```
-7. Copy rhel 9.4 DVD ISO to **/usr/share/nginx/html/**
+7. Copy rhel 9.6 DVD ISO to **/usr/share/nginx/html/**
 
 8. Run the below command to download the required packages for adding worker nodes.
 	 'sed -i 's/\r//' setup.sh' ###Run this command to remove extra spaces caused while copying scripts to rhel9 isntaller vm
@@ -115,4 +115,4 @@ Execute the following command to set the parameter **mastersSchedulable** para
          '$ oc edit scheduler'
 
 ### ***Note*** 
-To add more worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding rhel 9.4 Worker Nodes section.
+To add more worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding rhel 9.6 Worker Nodes section.

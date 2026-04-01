@@ -2,13 +2,13 @@
 
 ### **Installer Machine Prerequisite:**
 
-The following are the required prerequisites for the RHEL 9.4 installer machine:
+The following are the required prerequisites for the RHEL 9.6 installer machine:
 
-**Note:** If the RHEL 9.4 installer machine was previously created using the rhel9_installerVM.yml playbook, you may skip the earlier steps and proceed directly to Step 4.
+**Note:** If the RHEL 9.6 installer machine was previously created using the rhel9_installerVM.yml playbook, you may skip the earlier steps and proceed directly to Step 4.
 
 1.  At least 500 GB disk space (especially in the \"/\" partition), 4 CPU cores and 16GB RAM.
 
-2.  Rhel 9.4 Installer machine should be subscribed with valid **Redhat credentials**.
+2.  Rhel 9.6 Installer machine should be subscribed with valid **Redhat credentials**.
 
 3.  Sync time with NTP server.
 
@@ -115,7 +115,7 @@ The First Machine details provided in the server section of input file will be c
 					HTTP_server_base_url: https://172.28.*.*/  #Installer IP address
 					HTTP_file_path: /usr/share/nginx/html/    
 					OS_type: rhel
-					OS_image_name: rhel-9.4-x86_64-dvd.iso
+					OS_image_name: rhel-9.6-x86_64-dvd.iso
 					base_kickstart_filepath: '/opt/hpe-solutions-openshift/DL-LTI-Openshift/external-ceph_deployment/playbooks/roles/rhel9_os_deployment/tasks/ks_rhel9.cfg'
 
                     dashboard_user: xxx                      # provide the ceph user who needs admin access
@@ -200,7 +200,7 @@ we should excute the last three playbooks as per the customer requirement.
 
 **rhel9_os_deployment.yaml**
 
--   This playbook contains the scripts to deploy rhel9.4 OS on baremetal servers.
+-   This playbook contains the scripts to deploy rhel9.6 OS on baremetal servers.
 
 **ssh.yaml**
 
