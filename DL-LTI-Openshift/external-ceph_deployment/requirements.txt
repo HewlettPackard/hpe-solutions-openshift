@@ -7,4 +7,4 @@ jsonpatch
 jsonpath_rw
 ansible-vault
 jsonpath-ng
-requests
+requests >= 2.33.0
