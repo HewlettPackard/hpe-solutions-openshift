@@ -2,7 +2,7 @@
 
 **Introduction**
 
-This document contains configuring Red Hat OpenShift Data Foundation 4.15 on existing Red Hat OpenShift Container Platform 4.15 (OCP) worker nodes on bare metal or virtual machines.
+This document contains configuring Red Hat OpenShift Data Foundation 4.22 on existing Red Hat OpenShift Container Platform 4.22 (OCP) worker nodes on bare metal or virtual machines.
 
 The below operators are required to create ODF cluster and deployed through automation fashion.
 
@@ -12,15 +12,15 @@ The below operators are required to create ODF cluster and deployed through auto
 
 **Pre-requisites**
 
-1, Red Hat OpenShift Container Platform 4.15 cluster console is required with the login credentials.
+1, Red Hat OpenShift Container Platform 4.22 cluster console is required with the login credentials.
 
-2, ODF installation on OCP 4.15 cluster requires a minimum of 3 worker nodes but ODF should have exact 3 worker nodes.
+2, ODF installation on OCP 4.22 cluster requires a minimum of 3 worker nodes but ODF should have exact 3 worker nodes.
 
 3, The workers nodes which all are using for ODF should be added to OCP cluster.
 
 **Scripts for deploying ODF cluster**
 
-This section provides details on the scripts developed to automate the installation of ODF 4.15 operator on the OCP 4.15 cluster.
+This section provides details on the scripts developed to automate the installation of ODF 4.22 operator on the OCP 4.22 cluster.
 
 - **install\_odf\_operator.py** - main python script which installs Local Storage operator, OpenShift Data Foundation operators, creates file system & block storage and also creates SCs, PVs, PVCs.
 - **config.py** - This python script is used to convert user input values into program variables for usage by the install\_odf\_operator.py script.
@@ -28,7 +28,7 @@ This section provides details on the scripts developed to automate the installat
 - **create\_local\_storage\_operator.yaml** – Creates Local Storage operator's Namespace, installs Local Storage operator.
 - **auto\_discover\_devices.yaml–** Creates the LocalVolumeDiscovery resource using this file.
 - **localvolumeset.yaml** – Creates the LocalVolumeSets
-- **odf\_operator.yaml –** This playbook creates OpenShift Container Storage Namespace  and OpenShift Data Foundation Operator.
+- **odf\_operator.yaml –** This playbook creates the openshift-storage Namespace  and OpenShift Data Foundation Operator.
 - **storagecluster.yaml –** This playbook creates storage classes, PVCs (Persistent Volume Claim), pods to bring up the ODF cluster.
 
 This section provides details on the scripts developed to automate the installation of WordPress application. 
@@ -48,7 +48,7 @@ This section provides details on the scripts developed to automate the installat
 
 `   `"LOCAL\_STORAGE\_VERSION": "<OCP\_cluster\_version>",
 
-`   `"OPENSHIFT\_CONTAINER\_STORAGE\_VERSION": "<ODF Operator Version>",
+`   `"OPENSHIFT\_CONTAINER\_STORAGE\_VERSION": "<ODF Operator Version, for example 4.22>",
 
 `   `"OPENSHIFT\_CLIENT\_PATH": "<Provide oc absolute path ending with / OR leave empty in case oc is available under /usr/local/bin/>",
 
@@ -56,11 +56,11 @@ This section provides details on the scripts developed to automate the installat
 
 `   `"OPENSHIFT\_USERNAME": "<Openshift Container Platform username>",
 
-`  `"OPENSHIFT\_PASSWORD": ""<Openshift Container Platform Password>,
+`  `"OPENSHIFT\_PASSWORD": "<Openshift Container Platform Password>",
 
 `  `"DISK\_NUMBER": "<number of disks for ODF cluster>"
 
-5. Execute the following command to deploy ODF cluster.
+5. Execute the following command to deploy ODF cluster. Run it with the system python3, outside the Python 3.12 virtual environment (run deactivate first), because config.py imports the ansible package installed by the ansible-core RPM.
 
 $ cd odf\_installation
 

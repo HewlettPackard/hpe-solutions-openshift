@@ -43,14 +43,14 @@
     - name: download matchbox
       remote_user: 
       get_url: 
-        url: "https://github.com/poseidon/matchbox/releases/download/v0.9.0/matchbox-v0.9.0-linux-amd64.tar.gz"
+        url: "https://github.com/poseidon/matchbox/releases/download/v0.11.0/matchbox-v0.11.0-linux-amd64.tar.gz"
         dest: "/tmp/"
         mode: 0400
       when: is_environment_airgap == 'no'
 
     - name: Download matchbox
       shell: |
-        wget http://{{ yumrepo }}/ocp_packages/matchbox-v0.9.0-linux-amd64.tar.gz -P /tmp/ && echo "Download successful"
+        wget http://{{ yumrepo }}/ocp_packages/matchbox-v0.11.0-linux-amd64.tar.gz -P /tmp/ && echo "Download successful"
       register: download_result
       ignore_errors: yes
       when: is_environment_airgap == 'yes'
@@ -63,13 +63,13 @@
      
     - name: extract matchbox 
       unarchive:
-        src: "/tmp/matchbox-v0.9.0-linux-amd64.tar.gz"
+        src: "/tmp/matchbox-v0.11.0-linux-amd64.tar.gz"
         dest: "/tmp/"
         remote_src: yes
 
     - name: set path matchbox 
       copy:
-        src: "/tmp/matchbox-v0.9.0-linux-amd64/matchbox"
+        src: "/tmp/matchbox-v0.11.0-linux-amd64/matchbox"
         dest: /usr/local/bin
         mode: 0775
         remote_src: yes
@@ -94,7 +94,7 @@
 
     - name: copy matchbox service 
       copy:
-        src: "/tmp/matchbox-v0.9.0-linux-amd64/contrib/systemd/matchbox.service"
+        src: "/tmp/matchbox-v0.11.0-linux-amd64/contrib/systemd/matchbox.service"
         dest: /etc/systemd/system/matchbox.service
         remote_src: yes
         mode: 0775

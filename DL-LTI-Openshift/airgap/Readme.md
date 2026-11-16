@@ -22,7 +22,7 @@ follow below sections to deploy the OpenShift Container Platform through disconn
 
 **Download/YUM/Mirror registry server  requirements**:
 
-	a)should be installed with RHEL 9.4 
+	a)should be installed with RHEL 9.8 
 
 	b)At least 500 GB disk space (especially in the "/" partition), 4 CPU cores and 16GB RAM.
 
@@ -38,7 +38,7 @@ follow below sections to deploy the OpenShift Container Platform through disconn
 
 
 
-	   As part of setup.sh script it will create nginx service, so user must download and copy rhel 9.4 DVD ISO to /usr/share/nginx/html/
+	   As part of setup.sh script it will create nginx service, so user must download and copy rhel 9.8 DVD ISO to /usr/share/nginx/html/
 
 
 

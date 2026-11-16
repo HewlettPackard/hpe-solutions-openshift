@@ -74,7 +74,7 @@
         
 
     - name: Install required ansible packages
-      command: ansible-galaxy collection install ansible.posix
+      command: ansible-galaxy collection install "ansible.posix:>=1.6.1,<2.0.0"
       delegate_to: localhost
 
     - name: Pulling the latest subscription data from RHSM

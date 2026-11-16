@@ -7,9 +7,9 @@ The expansion playbooks has to executed from the administration server of the ce
 	    'mkdir /opt
 		 cd /opt
 		 yum install -y git
-		 git clone <https://github.hpe.com/Solutions1/GreenLake-for-OpenShift.git>'
+		 git clone <https://github.com/HewlettPackard/hpe-solutions-openshift.git>'
 
-2.  Setup the installer machine to configure the nginx, development tools and other python packages required for LTI installation. Navigate to the directory,  /opt/GreenLake-for-OpenShift/external-ceph_deployment/ and run the below command.
+2.  Setup the installer machine to configure the nginx, development tools and other python packages required for LTI installation. Navigate to the directory,  /opt/hpe-solutions-openshift/DL-LTI-Openshift/external-ceph_deployment/ and run the below command.
 
          'sh setup.sh'
 
@@ -43,7 +43,7 @@ We can provide the input variables in below method
 
 **Input.yaml: Manually editing input file**
 
-Go to the directory $BASE_DIR(**/opt/GreenLake-for-OpenShift/external-ceph_deployment/ceph-cluster-expansion**), here we will have input.yaml and hosts files.
+Go to the directory $BASE_DIR(**/opt/hpe-solutions-openshift/DL-LTI-Openshift/external-ceph_deployment/ceph-cluster-expansion**), here we will have input.yaml and hosts files.
 
 1. A preconfigured Ansible vault file (input.yaml) is provided as a part of this solution, which consists of sensitive information to support the host and virtual machine deployment.
 
@@ -87,8 +87,8 @@ A sample input.yaml file is as follows with a few filled parameters.
 					HTTP_server_base_url: http://172.28.*.*/  #Installer IP address
 					HTTP_file_path: /usr/share/nginx/html/    
 					OS_type: rhel
-					OS_image_name: rhel-9.4-x86_64-dvd.iso
-					base_kickstart_filepath: /opt/GreenLake-for-OpenShift/external-ceph_deployment/playbooks/roles/rhel9_os_deployment/tasks/ks_rhel9.cfg'
+					OS_image_name: rhel-9.8-x86_64-dvd.iso
+					base_kickstart_filepath: /opt/hpe-solutions-openshift/DL-LTI-Openshift/external-ceph_deployment/playbooks/roles/rhel9_os_deployment/tasks/ks_rhel9.cfg'
 
 
 2. The installation user should review hosts file (located on the installer VM at $BASE_DIR/hosts) and ensure that the information within the file accurately reflects the information in their environment.
@@ -133,7 +133,7 @@ In case if user want to deploy through individual playbooks. Sequence of playboo
 
 **rhel9_os_deployment.yaml**
 
--   This playbook contains the scripts to deploy rhel9.4 OS on baremetal servers.
+-   This playbook contains the scripts to deploy rhel9.8 OS on baremetal servers.
 
 **ssh_add.yaml**
 
@@ -141,7 +141,7 @@ In case if user want to deploy through individual playbooks. Sequence of playboo
 
 **subscriptions.yaml**
 
--   This playbook contains the script to RHEL subscription and enables the required repositories required for the building the ceph cluster.
+-   This playbook contains the script to RHEL subscription and enables the required repositories for building the Red Hat Ceph Storage (RHCS) 9 cluster, including rhceph-9-tools-for-rhel-9-x86_64-rpms.
 
 **ntp.yaml**
 

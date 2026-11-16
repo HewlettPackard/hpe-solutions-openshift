@@ -7,9 +7,10 @@ mkdir -p /var/www/html/ocp_packages
 echo "Downloading openshift images"
 
 wget --wait=5 https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/$ocp_image_version/latest/rhcos-live-initramfs.x86_64.img -P /var/www/html/ocp_packages
-wget --wait=5 https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/$ocp_image_version/latest/rhcos-live-kernel-x86_64 -P /var/www/html/ocp_packages
+wget --wait=5 https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/$ocp_image_version/latest/rhcos-live-kernel.x86_64 -P /var/www/html/ocp_packages
+mv /var/www/html/ocp_packages/rhcos-live-kernel.x86_64 /var/www/html/ocp_packages/rhcos-live-kernel-x86_64
 wget --wait=5 https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/$ocp_image_version/latest/rhcos-live-rootfs.x86_64.img -P /var/www/html/ocp_packages
-wget --wait=5 https://github.com/poseidon/matchbox/releases/download/v0.9.0/matchbox-v0.9.0-linux-amd64.tar.gz -P /var/www/html/ocp_packages
+wget --wait=5 https://github.com/poseidon/matchbox/releases/download/v0.11.0/matchbox-v0.11.0-linux-amd64.tar.gz -P /var/www/html/ocp_packages
 
 
 chmod -R +x /var/www/html/ocp_packages

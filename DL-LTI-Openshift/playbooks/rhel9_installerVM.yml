@@ -1,5 +1,5 @@
 ---
-- name: Create rhel 9.4 Installer VM to add worker nodes
+- name: Create rhel 9.8 Installer VM to add worker nodes
   hosts: "{{ groups['kvm_nodes'][0] }}"
   gather_facts: True
   vars_files:

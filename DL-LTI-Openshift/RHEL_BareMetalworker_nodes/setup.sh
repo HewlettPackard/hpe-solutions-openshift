@@ -29,7 +29,7 @@ echo "============================================================"
 echo "Starting Nginx server"
 echo "============================================================"
 SERVICE=httpd;
-if ps ax | grep -v grep | grep $SERVICE > /dev/nulli
+if ps ax | grep -v grep | grep $SERVICE > /dev/null
 then
     systemctl stop httpd
 fi
@@ -55,14 +55,11 @@ firewall-cmd --reload
 echo "============================================================"
 echo "Verifying Python3 status and installing the prerequisites"
 echo "============================================================"
-rpm -qa | grep -qw python38 || yum install python38 -y
-sudo alternatives --set python3 /usr/bin/python3.8
+rpm -qa | grep -qw python3.12 || yum install python3.12 -y
 python3 -m ensurepip
-yum install python3-pip -y
-pip3 install setuptools_rust
-pip3 install --upgrade pip
+python3 -m pip install --upgrade pip
 rpm -qa | grep -qw genisoimage || yum install genisoimage -y
 rpm -qa | grep -qw bc || yum install bc -y
 echo "Installing requirements"
-pip3 install -r requirements.txt
+python3 -m pip install -r requirements.txt
 

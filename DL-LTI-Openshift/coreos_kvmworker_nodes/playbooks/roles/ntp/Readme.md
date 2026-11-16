@@ -6,14 +6,14 @@ This script installs chrony on remote hosts which helps to ensure clocks are syn
 
 **Pre-requisite:-**
 
-1. RHEL 9.4  [Installer machine](https://github.hpe.com/Solutions/ISV-OpenShift/blob/develop/Readme.md "https://github.hpe.com/Solutions/ISV-OpenShift/blob/develop/Readme.md") is essential to initiate the NTP deployment process.
+1. RHEL 9.8  [Installer machine](https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md "https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md") is essential to initiate the NTP deployment process.
 2. Execute the following commands in the Ansible Engine to download the repositories.
 
                    '  # cd /opt
 
                       # yum install -y git
 
-                      # git clone  <https://github.hpe.com/Solutions/ISV-OpenShift.git> '
+                      # git clone  <https://github.com/HewlettPackard/hpe-solutions-openshift.git> '
 
 3. Generate and copy the ssh keys from ansible engine/installer machine to all the remote hosts.
 

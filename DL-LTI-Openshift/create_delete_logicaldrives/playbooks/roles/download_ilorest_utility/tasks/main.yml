@@ -1,13 +1,13 @@
 ---
 
 - name: Download the ILO REST rpm
-  shell: wget https://github.com/HewlettPackard/python-redfish-utility/releases/download/v3.5.1.0/ilorest-3.5.1.0-8.x86_64.rpm
+  shell: wget https://github.com/HewlettPackard/python-redfish-utility/releases/download/v7.4.0.0/ilorest-7.4.0.0-14.x86_64.rpm
   become: true
   args:
     chdir: /opt
 
 - name: Make the ILO REST accessible
-  shell: rpm -i ilorest-3.5.1.0-8.x86_64.rpm
+  shell: rpm -i ilorest-7.4.0.0-14.x86_64.rpm
   args:
     chdir: /opt
 

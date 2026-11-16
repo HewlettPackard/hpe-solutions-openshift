@@ -2,12 +2,12 @@
 
 ### **Installer Machine Prerequisite:**
 
-RHEL 9.6 Installer machine the following configurations.
+RHEL 9.8 Installer machine the following configurations.
 
 
 1.  At least 500 GB disk space (especially in the \"/\" partition), 4 CPU cores and 16GB RAM.
 
-2.  Rhel 9.6 Installer machine should be subscribed with valid **Redhat credentials**.
+2.  Rhel 9.8 Installer machine should be subscribed with valid **Redhat credentials**.
 
 3.  Sync time with NTP server.
 
@@ -15,9 +15,9 @@ RHEL 9.6 Installer machine the following configurations.
 
          ssh-keygen
 
-5.  Use the following commands to create and activate a Python3 virtual environment for deploying this solution.
+5.  Use the following commands to create and activate a Python 3.12 virtual environment for deploying this solution.
 
-		'python3 -m venv \<virtual_environment_name\>  Example:virtual_environment_name=ocp
+		'sudo dnf install -y python3.12 && python3.12 -m venv \<virtual_environment_name\>  Example:virtual_environment_name=ocp
 		 source \<virtual_environment_name\>/bin/activate'
 
 6.  Execute the following commands in the Ansible Engine to download the repositories.
@@ -27,7 +27,7 @@ RHEL 9.6 Installer machine the following configurations.
 		 yum install -y git
 		 git clone <https://github.com/HewlettPackard/hpe-solutions-openshift.git>'
 
-7.  Setup the installer machine to configure the nginx, development tools and other python packages required for LTI installation. Navigate to the directory,  /opt/hpe-solutions-openshift/DL-LTI-Openshift/ and run the below command.
+7.  Setup the installer machine to configure the nginx, development tools and other python packages required for LTI installation. setup.sh also installs the Ansible collections community.general, community.libvirt and community.crypto, pinned to releases that work with the ansible-core 2.14 shipped with RHEL 9. Do not upgrade them unless you also upgrade ansible-core. The ansible.posix collection is installed later by the prepare_rhel_hosts playbook. Navigate to the directory,  /opt/hpe-solutions-openshift/DL-LTI-Openshift/ and run the below command.
 
          'sh setup.sh'
 
@@ -177,7 +177,7 @@ A sample input.yaml file is as follows with a few filled parameters.
 					HTTP_server_base_url: https://172.28.*.*/  #Installer IP address
 					HTTP_file_path: /usr/share/nginx/html/    
 					OS_type: rhel
-					OS_image_name: rhel-9.6-x86_64-dvd.iso
+					OS_image_name: rhel-9.8-x86_64-dvd.iso
 					base_kickstart_filepath: /opt/hpe-solutions-openshift/DL-LTI-Openshift/playbooks/roles/rhel9_os_deployment/tasks/ks_rhel9.cfg'
 
 2. The installation user should review hosts file (located on the installer VM at $BASE_DIR/hosts) and ensure that the information within the file accurately reflects the information in their environment.
@@ -255,7 +255,7 @@ In case if user want to deploy through individual playbooks. Sequence of playboo
 
 **rhel9_os_deployment.yml**
 
--   This playbook contains the scripts to deploy rhel9.6 OS on baremetal servers.
+-   This playbook contains the scripts to deploy rhel9.8 OS on baremetal servers.
 
 **copy_ssh_headnode.yml**
 
@@ -372,9 +372,9 @@ installation.
 
          '$ oc get nodes'
 
-### **Adding RHEL9.6 Worker Nodes**
+### **Adding RHEL 9.8 Worker Nodes**
 
-This section covers the steps to add RHEL 9.6 worker nodes to an existing Red Hat OpenShift Container Platform cluster.
+This section covers the steps to add RHEL 9.8 worker nodes to an existing Red Hat OpenShift Container Platform cluster.
 
 1. Login to the Installer VM (that we created as a part of rhel9_installerVM.yml -- it would have created one KVM VM on one of the head nodes)
 
@@ -398,7 +398,7 @@ The installation user should review hosts file (located on the installer VM at $
 ```
 vi inventory/hosts
 ```
-4. Copy Rhel9.6 DVD ISO to /usr/share/nginx/html/ 
+4. Copy Rhel 9.8 DVD ISO to /usr/share/nginx/html/ 
 
 5. Navigate to the directory, /opt/hpe-solutions-openshift/DL-LTI-Openshift/RHEL_BareMetalworker_nodes/ and run the below command.
 
@@ -431,13 +431,13 @@ Execute the following command to set the parameter **mastersSchedulable** para
          '$ oc edit scheduler'
 
 ### ***Note*** 
-To add more RHEL worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding RHEL9.6 Worker Nodes section.
+To add more RHEL worker Nodes, need to update worker details in haproxy and binddns on head nodes. Then go ahead with Adding RHEL 9.8 Worker Nodes section.
 
 **Adding RH CoreOS Worker Nodes to Existing Openshift Cluster**
 
 This section covers the steps to add Baremetal RHCOS worker nodes to an existing Red Hat OpenShift Container Platform cluster.
 
-1. Login to the Rhel 9.6 Installer VM (that we created as a part of rhel9_installerVM.yml -- it would have been created as one KVM VM on one of the head nodes)
+1. Login to the Rhel 9.8 Installer VM (that we created as a part of rhel9_installerVM.yml -- it would have been created as one KVM VM on one of the head nodes)
 
 2. Navigate to the directory $BASE_DIR(**/opt/hpe-solutions-openshift/DL-LTI-Openshift/**) then copy **input file and hosts** file to $BASE_DIR/coreos_BareMetalworker_nodes/ and later get the input file from the $BASE_DIR for ocp worker details.
 

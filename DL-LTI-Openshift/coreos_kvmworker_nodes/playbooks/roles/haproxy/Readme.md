@@ -14,12 +14,12 @@ GPLv2 is the license for HAProxy
 
 **Pre-requisite:-**
 
-1. RHEL 9.4  [Installer machine](https://hewlettpackard.github.io/hpe-solutions-openshift/4.16-AMD-LTI/Solution-Deployment/Preparing-execution-environment.html "https://hewlettpackard.github.io/hpe-solutions-openshift/4.16-AMD-LTI/Solution-Deployment/Preparing-execution-environment.html") is essential to initiate the haproxy deployment process.
+1. RHEL 9.8  [Installer machine](https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md "https://github.com/HewlettPackard/hpe-solutions-openshift/blob/master/DL-LTI-Openshift/Readme.md") is essential to initiate the haproxy deployment process.
 2. Execute the following commands in the Ansible Engine to download the repositories.
 
                       ' # cd /opt
                         # yum install -y git
-                        # git clone  <https://github.hpe.com/Solutions/ISV-OpenShift.git> '
+                        # git clone  <https://github.com/HewlettPackard/hpe-solutions-openshift.git> '
 
 3. Generate and copy the ssh keys from ansible engine/installer machine to all the three HAProxy machines.
                        

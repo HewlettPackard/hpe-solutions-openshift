@@ -63,7 +63,7 @@ config:
    HTTP_server_base_url: http://172.28.xx.xxx/  #Installer IP address
    HTTP_file_path: /usr/share/nginx/html/
    OS_type: rhel
-   OS_image_name: RHEL-9.4.0-20240419.25-x86_64-dvd1.iso    # ISO image should be present in /usr/share/nginx/html/
+   OS_image_name: rhel-9.8-x86_64-dvd.iso    # ISO image should be present in /usr/share/nginx/html/
    base_kickstart_filepath: /opt/hpe-solutions-openshift/DL-LTI-Openshift/external-ceph_deployment/playbooks/roles/rhel9_os_deployment/tasks/ks_rhel9.cfg
 
 solution_network_ip: xxx.xx.xx.xx

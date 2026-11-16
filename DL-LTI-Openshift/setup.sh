@@ -193,24 +193,24 @@ if ! command -v ansible-galaxy &> /dev/null; then
     $PACKAGE_MANAGER -y install ansible-core
 fi
 
-ansible-galaxy collection install community.general
-ansible-galaxy collection install community.libvirt
-ansible-galaxy collection install community.crypto
+ansible-galaxy collection install "community.general:>=9.0.0,<10.0.0"
+ansible-galaxy collection install "community.libvirt:<2.0.0"
+ansible-galaxy collection install "community.crypto:<3.0.0"
 
 echo "============================================================"
 echo "Verifying Python3 status and installing prerequisites"
 echo "============================================================"
-pip3 install --upgrade pip setuptools_rust
+pip3 install --upgrade pip
 
 version=$($PYTHON_PKG -V 2>&1 | grep -Po '(?<=Python )\d+\.\d+')
-min=3.9
+min=3.10
 
 if [ "$(printf '%s\n' "$min" "$version" | sort -V | head -n1)" != "$min" ]; then
     echo "!!!!!!!!!!!======================================!!!!!!!!!!!!"
-    echo "This script requires Python 3.9 or greater"
-    echo "Install and enable Python 3.9 or above using:"
-    echo "RHEL: scl enable python39 bash"
-    echo "Ubuntu: update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1"
+    echo "This script requires Python 3.10 or greater"
+    echo "Install and enable Python 3.10 or above using:"
+    echo "RHEL: sudo dnf install -y python3.12, then recreate the venv: python3.12 -m venv <venv_name> && source <venv_name>/bin/activate"
+    echo "Ubuntu: install python3.12-venv, then create and activate the venv the same way"
     echo "Then: pip3 install -r requirements.txt"
     echo "!!!!!!!!!!!======================================!!!!!!!!!!!!"
     exit 1

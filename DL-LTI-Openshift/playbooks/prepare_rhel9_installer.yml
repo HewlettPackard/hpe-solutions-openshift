@@ -1,5 +1,5 @@
 ---
-- name: Prepare rhel 9.4 Installer VM to add worker nodes
+- name: Prepare rhel 9.8 Installer VM to add worker nodes
   hosts: rhel9_installerVM
   gather_facts: True
   vars_files:

@@ -1,10 +1,2 @@
-future >= 0.15.2
-python-ilorest-library==v4.5.0
-pyVmomi
-pyVim
-urlparse2
-jsonpatch
-jsonpath_rw
-ansible-vault
-jsonpath-ng
-requests >= 2.33.0
+python-ilorest-library==7.4.0.0
+requests>=2.34.2

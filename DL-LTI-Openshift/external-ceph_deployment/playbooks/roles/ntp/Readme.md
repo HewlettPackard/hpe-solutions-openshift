@@ -6,7 +6,7 @@ This script installs chrony on remote hosts which helps to ensure clocks are syn
 
 **Pre-requisite:-**
 
-1. RHEL 9.4 is essential to initiate the NTP deployment process.
+1. RHEL 9.8 is essential to initiate the NTP deployment process.
 
 3. Generate and copy the ssh keys from ansible engine/installer machine to all the remote hosts.
 
@@ -17,7 +17,7 @@ This script installs chrony on remote hosts which helps to ensure clocks are syn
 
 **Input File Update:-**
 
-1. User has to update the input.yaml file in /opt/GreenLake-for-OpenShift/external-odf_installation/ directory to  execute the NTP script.
+1. User has to update the input.yaml file in /opt/hpe-solutions-openshift/DL-LTI-Openshift/external-ceph_deployment/ directory to  execute the NTP script.
 2. User needs to update all the NTP deployment related details in the input.yaml file which include:-
                       
                       ' solution_network_ip: 172.28.\*.\* 

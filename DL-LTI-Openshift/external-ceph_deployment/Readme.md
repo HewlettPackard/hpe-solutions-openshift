@@ -2,13 +2,13 @@
 
 ### **Installer Machine Prerequisite:**
 
-The following are the required prerequisites for the RHEL 9.6 installer machine:
+The following are the required prerequisites for the RHEL 9.8 installer machine:
 
-**Note:** If the RHEL 9.6 installer machine was previously created using the rhel9_installerVM.yml playbook, you may skip the earlier steps and proceed directly to Step 4.
+**Note:** If the RHEL 9.8 installer machine was previously created using the rhel9_installerVM.yml playbook, you may skip the earlier steps and proceed directly to Step 4.
 
 1.  At least 500 GB disk space (especially in the \"/\" partition), 4 CPU cores and 16GB RAM.
 
-2.  Rhel 9.6 Installer machine should be subscribed with valid **Redhat credentials**.
+2.  Rhel 9.8 Installer machine should be subscribed with valid **Redhat credentials**. The subscription must include Red Hat Ceph Storage (RHCS) 9.
 
 3.  Sync time with NTP server.
 
@@ -16,9 +16,9 @@ The following are the required prerequisites for the RHEL 9.6 installer machine:
 
          ssh-keygen
 
-5.  Use the following commands to create and activate a Python3 virtual environment for deploying this solution.
+5.  Use the following commands to create and activate a Python 3.12 virtual environment for deploying this solution.
 
-		'python3 -m venv \<virtual_environment_name\>  Example:virtual_environment_name=ocp
+		'sudo dnf install -y python3.12 && python3.12 -m venv \<virtual_environment_name\>  Example:virtual_environment_name=ocp
 		 source \<virtual_environment_name\>/bin/activate'
 
 6.  Execute the following commands in the Ansible Engine to download the repositories.
@@ -28,7 +28,7 @@ The following are the required prerequisites for the RHEL 9.6 installer machine:
 		 yum install -y git
 		 git clone <https://github.com/HewlettPackard/hpe-solutions-openshift.git>
 
-7.  Setup the installer machine to configure the nginx, development tools and other python packages required for LTI installation. Navigate to the directory, /opt/hpe-solutions-openshift/DL-LTI-Openshift/ and run the below command.
+7.  Setup the installer machine to configure the nginx, development tools and other python packages required for LTI installation. setup.sh also installs the Ansible collections community.general, community.libvirt and community.crypto, pinned to releases that work with the ansible-core 2.14 shipped with RHEL 9. Do not upgrade them unless you also upgrade ansible-core. Navigate to the directory, /opt/hpe-solutions-openshift/DL-LTI-Openshift/ and run the below command.
 
          'sh setup.sh'
 
@@ -115,7 +115,7 @@ The First Machine details provided in the server section of input file will be c
 					HTTP_server_base_url: https://172.28.*.*/  #Installer IP address
 					HTTP_file_path: /usr/share/nginx/html/    
 					OS_type: rhel
-					OS_image_name: rhel-9.6-x86_64-dvd.iso
+					OS_image_name: rhel-9.8-x86_64-dvd.iso
 					base_kickstart_filepath: '/opt/hpe-solutions-openshift/DL-LTI-Openshift/external-ceph_deployment/playbooks/roles/rhel9_os_deployment/tasks/ks_rhel9.cfg'
 
                     dashboard_user: xxx                      # provide the ceph user who needs admin access
@@ -200,7 +200,7 @@ we should excute the last three playbooks as per the customer requirement.
 
 **rhel9_os_deployment.yaml**
 
--   This playbook contains the scripts to deploy rhel9.6 OS on baremetal servers.
+-   This playbook contains the scripts to deploy rhel9.8 OS on baremetal servers.
 
 **ssh.yaml**
 
@@ -208,7 +208,7 @@ we should excute the last three playbooks as per the customer requirement.
 
 **subscriptions.yaml**
 
--   This playbook contains the script to RHEL subscription and enables the required repositories required for the building the ceph cluster.
+-   This playbook contains the script to RHEL subscription and enables the required repositories for building the Red Hat Ceph Storage (RHCS) 9 cluster, including rhceph-9-tools-for-rhel-9-x86_64-rpms.
 
 **ntp.yaml**
 
