@@ -25,3 +25,5 @@ slave2 ip=172.28.*.* hostname=headnode3
 
 [yumrepo]
 10.0..*.*
+   
+   

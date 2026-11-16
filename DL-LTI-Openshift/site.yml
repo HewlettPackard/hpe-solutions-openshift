@@ -31,3 +31,4 @@
   - import_playbook: playbooks/copy_ocp_tool.yml
   - import_playbook: playbooks/deploy_ipxe_ocp.yml
   - import_playbook: playbooks/ocp_vm.yml
+      
